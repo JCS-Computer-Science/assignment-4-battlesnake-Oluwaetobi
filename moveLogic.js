@@ -39,28 +39,28 @@ export default function move(gameState){
     if (myHead.y < 1) {
         moveSafety.down = false;
     }
-    if (myHead.y > gameBoardProperties.height -1) {
+    if (myHead.y = gameBoardProperties.height) {
         moveSafety.up = false;
     }
     
     // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
     // gameState.you contains an object representing your snake, including its coordinates
     // https://docs.battlesnake.com/api/objects/battlesnake
-    if(gameState.you.length > 3) {
-        if ( gameState.you.body[(body.length - 1).x] -1 == myHead.x) {
-            moveSafety.right = false;
-        }
-        if ( gameState.you.body[(body.length - 1).x] +1 == myHead.x) {
-            moveSafety.left = false;
-        }
-        if ( gameState.you.body[(body.length - 1).y] +1 == myHead.y) {
-            moveSafety.down = false;
-        }
-        if ( gameState.you.body[(body.length - 1).y] -1 == myHead.y) {
-            moveSafety.up = false;
-        }
+    // if(gameState.you.length > 3) {
+    //     if ( gameState.you.body[(body.length - 1).x] -1 == myHead.x) {
+    //         moveSafety.right = false;
+    //     }
+    //     if ( gameState.you.body[(body.length - 1).x] +1 == myHead.x) {
+    //         moveSafety.left = false;
+    //     }
+    //     if ( gameState.you.body[(body.length - 1).y] +1 == myHead.y) {
+    //         moveSafety.down = false;
+    //     }
+    //     if ( gameState.you.body[(body.length - 1).y] -1 == myHead.y) {
+    //         moveSafety.up = false;
+    //     }
 
-    }
+    // }
     //gameState.you.body[(body.length - 1).x]
     
     // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
