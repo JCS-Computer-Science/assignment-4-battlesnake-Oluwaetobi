@@ -14,16 +14,16 @@ export default function move(gameState){
     const myHead = gameState.you.body[0];
     const myNeck = gameState.you.body[1];
     
-    if (myNeck.x < myHead.x) {        // Neck is left of head, don't move left
+    if (myNeck.x < myHead.x && myHead.y == myNeck.y) {        // Neck is left of head, don't move left
         moveSafety.left = false;
         
-    } else if (myNeck.x > myHead.x) { // Neck is right of head, don't move right
+    } else if (myNeck.x > myHead.x && myHead.y == myNeck.y) { // Neck is right of head, don't move right
         moveSafety.right = false;
         
-    } else if (myNeck.y < myHead.y) { // Neck is below head, don't move down
+    } else if (myNeck.y < myHead.y &&  myHead.x == myNeck.x) { // Neck is below head, don't move down
         moveSafety.down = false;
         
-    } else if (myNeck.y > myHead.y) { // Neck is above head, don't move up
+    } else if (myNeck.y > myHead.y && myHead.x == myNeck.x) { // Neck is above head, don't move up
         moveSafety.up = false;
     }
     
@@ -49,16 +49,16 @@ export default function move(gameState){
 
     // this for loop makes sure that the snake doesn't collide with any of the segments of it's body
     for (let i = 2; i < gameState.you.body.length; i++) {
-        if ( gameState.you.body[(i - 1).x] -1 == myHead.x) {
+        if ( gameState.you.body[i].x -1 == myHead.x && myHead.y == gameState.you.body[i].y) {
             moveSafety.right = false;
         }
-        if ( gameState.you.body[(i - 1).x] +1 == myHead.x) {
+        if ( gameState.you.body[i].x +1 == myHead.x && myHead.y == gameState.you.body[i].y) {
             moveSafety.left = false;
         }
-        if ( gameState.you.body[(i - 1).y] +1 == myHead.y) {
+        if ( gameState.you.body[i].y +1 == myHead.y && myHead.x == gameState.you.body[i].x) {
             moveSafety.down = false;
         }
-        if ( gameState.you.body[(i - 1).y] -1 == myHead.y) {
+        if ( gameState.you.body[i].y -1 == myHead.y && myHead.x == gameState.you.body[i].x) {
             moveSafety.up = false;
         } 
     }
