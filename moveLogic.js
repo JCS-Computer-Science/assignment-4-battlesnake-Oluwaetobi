@@ -30,33 +30,49 @@ export default function move(gameState){
     // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
     // gameState.board contains an object representing the game board including its width and height
     // https://docs.battlesnake.com/api/objects/board
-    if (myHead.x < 1) {
+    if (myHead.x == 0) {
         moveSafety.left = false;
     }
-    if (myHead.x > gameBoardProperties.width -1) {
+    if (myHead.x == gameBoardProperties.width -1) {
         moveSafety.right = false;
     }
-    if (myHead.y < 1) {
+    if (myHead.y == 0) {
         moveSafety.down = false;
     }
-    if (myHead.y = gameBoardProperties.height) {
+    if (myHead.y == gameBoardProperties.height -1) {
         moveSafety.up = false;
     }
     
     // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
     // gameState.you contains an object representing your snake, including its coordinates
     // https://docs.battlesnake.com/api/objects/battlesnake
+
+    // this for loop makes sure that the snake doesn't collide with any of the segments of it's body
+    for (let i = 2; i < gameState.you.body.length; i++) {
+        if ( gameState.you.body[(i - 1).x] -1 == myHead.x) {
+            moveSafety.right = false;
+        }
+        if ( gameState.you.body[(i - 1).x] +1 == myHead.x) {
+            moveSafety.left = false;
+        }
+        if ( gameState.you.body[(i - 1).y] +1 == myHead.y) {
+            moveSafety.down = false;
+        }
+        if ( gameState.you.body[(i - 1).y] -1 == myHead.y) {
+            moveSafety.up = false;
+        } 
+    }
     // if(gameState.you.length > 3) {
-    //     if ( gameState.you.body[(body.length - 1).x] -1 == myHead.x) {
+    //     if ( gameState.you.body[(gameState.you.body.length - 1).x] -1 == myHead.x) {
     //         moveSafety.right = false;
     //     }
-    //     if ( gameState.you.body[(body.length - 1).x] +1 == myHead.x) {
+    //     if ( gameState.you.body[(gameState.you.body.length - 1).x] +1 == myHead.x) {
     //         moveSafety.left = false;
     //     }
-    //     if ( gameState.you.body[(body.length - 1).y] +1 == myHead.y) {
+    //     if ( gameState.you.body[(gameState.you.body.length - 1).y] +1 == myHead.y) {
     //         moveSafety.down = false;
     //     }
-    //     if ( gameState.you.body[(body.length - 1).y] -1 == myHead.y) {
+    //     if ( gameState.you.body[(gameState.you.body.length - 1).y] -1 == myHead.y) {
     //         moveSafety.up = false;
     //     }
 
