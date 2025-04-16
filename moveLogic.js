@@ -101,6 +101,37 @@ export default function move(gameState){
             if (myHead.y == b.y +1 && myHead.x == b.x) {
                 moveSafety.down = false;
             }
+            // avoid snakes that want to eat the same food
+            if (myHead.y == b.y +1 && myHead.x == b.x + 1) {
+                moveSafety.left = false;
+            }
+            if (myHead.y == b.y +1 && myHead.x == b.x -1 && myNeck.x < myHead.x) {
+                moveSafety.right = false;
+                moveSafety.down = false;
+            }
+            if (myHead.y == b.y +1 && myHead.x == b.x -1) {
+                moveSafety.right = false;
+            }
+            if (myHead.y == b.y -1 && myHead.x == b.x -1) {
+                moveSafety.right = false;
+            }
+            if (myHead.y == b.y -1 && myHead.x == b.x + 1) {
+                moveSafety.left = false;
+            }
+            if (myHead.y == b.y -2 && myHead.x == b.x) {
+                moveSafety.up = false;
+            }
+            if (myHead.y == b.y + 2 && myHead.x == b.x) {
+                moveSafety.down = false;
+            }
+            if (myHead.y == b.y && myHead.x == b.x + 2) {
+                moveSafety.left = false;
+            }
+            if (myHead.y == b.y && myHead.x == b.x - 2) {
+                moveSafety.right = false;
+            }
+            
+
         })
     })
 
@@ -120,7 +151,9 @@ export default function move(gameState){
     
     // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     // gameState.board.food contains an array of food coordinates https://docs.battlesnake.com/api/objects/board
-    if (gameState.you.health < 50) {
+
+    let food = gameState.board.food;
+    if (gameState.you.health < 60) {
         food.forEach((f) => {
             if (myHead.x == f.x -1 && myHead.y == f.y) {
                 moveSafety.left = false;
