@@ -83,6 +83,27 @@ export default function move(gameState){
     // gameState.board.snakes contains an array of enemy snake objects, which includes their coordinates
     // https://docs.battlesnake.com/api/objects/battlesnake
     
+    const snakes = gameState.board.snakes;
+
+    snakes.forEach((snake) => {
+        const snakeBody = snake.body;
+
+        snakeBody.forEach((b) => {
+            if (myHead.x == b.x -1 && myHead.y == b.y) {
+                moveSafety.right = false;
+            }
+            if (myHead.x == b.x +1 && myHead.y == b.y) {
+                moveSafety.left = false;
+            }
+            if (myHead.y == b.y -1 && myHead.x == b.x) {
+                moveSafety.up = false;
+            }
+            if (myHead.y == b.y +1 && myHead.x == b.x) {
+                moveSafety.down = false;
+            }
+        })
+    })
+
     // Are there any safe moves left?
     
     //Object.keys(moveSafety) returns ["up", "down", "left", "right"]
@@ -99,7 +120,24 @@ export default function move(gameState){
     
     // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     // gameState.board.food contains an array of food coordinates https://docs.battlesnake.com/api/objects/board
-    
+    if (gameState.you.health < 50) {
+        food.forEach((f) => {
+            if (myHead.x == f.x -1 && myHead.y == f.y) {
+                moveSafety.left = false;
+            }
+            if (myHead.x == f.x +1 && myHead.y == f.y) {
+                moveSafety.right = false;
+            }
+            if (myHead.y == f.y -1 && myHead.x == f.x) {
+                moveSafety.down = false;
+            }
+            if (myHead.y == f.y +1 && myHead.x == f.x) {
+                moveSafety.up = false;
+            }
+        })
+
+    }
+
     console.log(`MOVE ${gameState.turn}: ${nextMove}`)
     return { move: nextMove };
 }
