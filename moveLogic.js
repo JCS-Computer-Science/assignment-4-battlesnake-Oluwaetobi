@@ -48,7 +48,7 @@ export default function move(gameState){
     // https://docs.battlesnake.com/api/objects/battlesnake
 
     // this for loop makes sure that the snake doesn't collide with any of the segments of my body
-    for (let i = 2; i < gameState.you.body.length; i++) {
+    for (let i = 2; i < gameState.you.body.length -1 ; i++) {
         if ( gameState.you.body[i].x -1 == myHead.x && myHead.y == gameState.you.body[i].y) {
             moveSafety.right = false;
         }
@@ -97,19 +97,50 @@ export default function move(gameState){
 
     // Prevent your battle snakes from get into dead end ends in the corner
     // bottom right corner
-     if (gameState.you.body[2].x == gameBoardProperties.width -2 && gameState.you.body[3] == gameBoardProperties.width -2  && gameState.you.body[3].y < 4) {
-        if (myHead.x > gameBoardProperties.width -2 && myHead.y < 2) {
-            moveSafety.right = false;
+    if (gameState.you.body.length > 4) {
+        if (gameState.you.body[2].x == gameBoardProperties.width -2 && gameState.you.body[3] == gameBoardProperties.width -2  && gameState.you.body[3].y < gameBoardProperties.height/2) {
+           if (myHead.x > gameBoardProperties.width -2 && myHead.y > myNeck.y) {
+               moveSafety.down = false;
+           } else {
+            moveSafety.up = false;
+           }
         }
-     }
+    }
      // top right corner
-     if (gameState.you.body[2].x == gameBoardProperties.width -2 && gameState.you.body[3] == gameBoardProperties.width -2  && gameState.you.body[3].y > gameBoardProperties.height -4) {
-        if (myHead.x > gameBoardProperties.width -2 && myHead.y < gameBoardProperties.height -2) {
-            moveSafety.right = false;
-            
-        }
+     if (gameState.you.body.length > 4) {
+         if (gameState.you.body[2].x == gameBoardProperties.width -2 && gameState.you.body[3] == gameBoardProperties.width -2  && gameState.you.body[3].y > gameBoardProperties.height/2) {
+            if (myHead.x > gameBoardProperties.width -2 && myHead.y > myNeck.y) {
+                moveSafety.down = false;
+                
+            } else {
+                moveSafety.up = false;
+            }
+         }
      }
-    
+    // top left corner
+    if (gameState.you.body.length > 4) {
+        if (gameState.you.body[2].x == 2 && gameState.you.body[3] == 2  && gameState.you.body[3].y > gameBoardProperties.height/2) {
+            if (myHead.x < 2 && myHead.y > myNeck.y) {
+                moveSafety.down = false;
+                
+            } else {
+                moveSafety.up = false;
+            }
+        } 
+    }
+    // bottom left corner
+    if (gameState.you.body.length > 4) {
+        if (gameState.you.body[2].x == 2 && gameState.you.body[3] == 2  && gameState.you.body[3].y < gameBoardProperties.height/2) {
+            if (myHead.x < 2 && myHead.y > myNeck.y) {
+                moveSafety.down = false;
+                
+            } else {
+                moveSafety.up = false;
+            }
+        }
+    }
+
+
     // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
     // gameState.board.snakes contains an array of enemy snake objects, which includes their coordinates
     // https://docs.battlesnake.com/api/objects/battlesnake
