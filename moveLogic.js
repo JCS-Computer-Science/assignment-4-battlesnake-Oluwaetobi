@@ -95,7 +95,20 @@ export default function move(gameState){
 
      }
 
-    
+    // Prevent your battle snakes from get into dead end ends in the corner
+    // bottom right corner
+     if (gameState.you.body[2].x == gameBoardProperties.width -2 && gameState.you.body[3] == gameBoardProperties.width -2  && gameState.you.body[3].y < 4) {
+        if (myHead.x > gameBoardProperties.width -2 && myHead.y < 2) {
+            moveSafety.right = false;
+        }
+     }
+     // top right corner
+     if (gameState.you.body[2].x == gameBoardProperties.width -2 && gameState.you.body[3] == gameBoardProperties.width -2  && gameState.you.body[3].y > gameBoardProperties.height -4) {
+        if (myHead.x > gameBoardProperties.width -2 && myHead.y < gameBoardProperties.height -2) {
+            moveSafety.right = false;
+            
+        }
+     }
     
     // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
     // gameState.board.snakes contains an array of enemy snake objects, which includes their coordinates
@@ -189,7 +202,7 @@ export default function move(gameState){
         
     }
     // avoid hazards
-        let hazard = gameState.board.hazards;
+        let hazards = gameState.board.hazards;
             hazards.forEach((h) => {
                 if (myHead.x == h.x -1 && myHead.y == h.y) {
                     moveSafety.right = false;
