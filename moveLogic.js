@@ -95,11 +95,11 @@ export default function move(gameState){
 
      }
 
-    // Prevent your battle snakes from get into dead end ends in the corner
+    // Prevent your battle snakes from get into dead end ends in the corner || vertical
     // bottom right corner
     if (gameState.you.body.length > 4) {
-        if (gameState.you.body[2].x == gameBoardProperties.width -2 && gameState.you.body[3] == gameBoardProperties.width -2  && gameState.you.body[3].y < gameBoardProperties.height/2) {
-           if (myHead.x > gameBoardProperties.width -2 && myHead.y > myNeck.y) {
+        if (gameState.you.body[2].x == gameBoardProperties.width -2 && gameState.you.body[3].x == gameBoardProperties.width -2  && gameState.you.body[3].y < gameBoardProperties.height/2) {
+           if (myHead.x > gameBoardProperties.width -2 && myHead.y > gameState.you.body[3].y) {
                moveSafety.down = false;
            } else {
             moveSafety.up = false;
@@ -108,8 +108,8 @@ export default function move(gameState){
     }
      // top right corner
      if (gameState.you.body.length > 4) {
-         if (gameState.you.body[2].x == gameBoardProperties.width -2 && gameState.you.body[3] == gameBoardProperties.width -2  && gameState.you.body[3].y > gameBoardProperties.height/2) {
-            if (myHead.x > gameBoardProperties.width -2 && myHead.y > myNeck.y) {
+         if (gameState.you.body[2].x == gameBoardProperties.width -2 && gameState.you.body[3].x == gameBoardProperties.width -2  && gameState.you.body[3].y > gameBoardProperties.height/2) {
+            if (myHead.x > gameBoardProperties.width -2 && myHead.y > gameState.you.body[3].y) {
                 moveSafety.down = false;
                 
             } else {
@@ -119,8 +119,8 @@ export default function move(gameState){
      }
     // top left corner
     if (gameState.you.body.length > 4) {
-        if (gameState.you.body[2].x == 1 && gameState.you.body[3] == 1  && gameState.you.body[3].y > gameBoardProperties.height/2) {
-            if (myHead.x < 2 && myHead.y > myNeck.y) {
+        if (gameState.you.body[2].x == 1 && gameState.you.body[3].x == 1  && gameState.you.body[3].y > gameBoardProperties.height/2) {
+            if (myHead.x < 2 && myHead.y > gameState.you.body[3].y) {
                 moveSafety.down = false;
                 
             } else {
@@ -130,8 +130,8 @@ export default function move(gameState){
     }
     // bottom left corner
     if (gameState.you.body.length > 4) {
-        if (gameState.you.body[2].x == 1 && gameState.you.body[3] == 1  && gameState.you.body[3].y < gameBoardProperties.height/2) {
-            if (myHead.x < 2 && myHead.y > myNeck.y) {
+        if (gameState.you.body[2].x == 1 && gameState.you.body[3].x == 1  && gameState.you.body[3].y < gameBoardProperties.height/2) {
+            if (myHead.x < 2 && myHead.y > gameState.you.body[3].y) {
                 moveSafety.down = false;
                 
             } else {
@@ -140,6 +140,52 @@ export default function move(gameState){
         }
     }
 
+     // Prevent your battle snakes from get into dead end ends in the corner || horizontal
+     // bottom right corner
+     if (gameState.you.body.length > 4) {
+        if (gameState.you.body[2].y == 1 && gameState.you.body[3].y == 1  && gameState.you.body[3].x > gameBoardProperties.width/2) {
+           if (myHead.y < 2 && myHead.x > gameState.you.body[3].x) {
+               moveSafety.left = false;
+           } else {
+            moveSafety.right = false;
+           }
+        }
+    }
+    // top right corner
+    if (gameState.you.body.length > 4) {
+        if (gameState.you.body[2].y == gameBoardProperties.height -2 && gameState.you.body[3].y ==  gameBoardProperties.height -2 && gameState.you.body[3].x > gameBoardProperties.width/2) {
+            if (myHead.y > gameBoardProperties.height -2 && myHead.x > gameState.you.body[3].x) {
+           moveSafety.left = false;
+        } else {
+            moveSafety.right = false;
+       }
+    }
+}
+    // top left corner
+    if (gameState.you.body.length > 4) {
+        if (gameState.you.body[2].y == gameBoardProperties.height -2 && gameState.you.body[3].y ==  gameBoardProperties.height -2 && gameState.you.body[3].x < gameBoardProperties.width/2) {
+        if (myHead.y > gameBoardProperties.height -2 && myHead.x > gameState.you.body[3].x) {
+            moveSafety.left = false;
+        } else {
+            moveSafety.right = false;
+        }
+        }
+    }
+    // bottom left corner
+    if (gameState.you.body.length > 4) {
+        if (gameState.you.body[2].y == 1 && gameState.you.body[3].y == 1  && gameState.you.body[3].x < gameBoardProperties.width/2) {
+        if (myHead.y < 2 && myHead.x > gameState.you.body[3].x) {
+            moveSafety.left = false;
+        } else {
+            moveSafety.right = false;
+        }
+        }
+    }
+
+    // prevents snake from moving into other dead ends
+    if (gameState.you.body.length > 4) {
+        
+    }
 
     // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
     // gameState.board.snakes contains an array of enemy snake objects, which includes their coordinates
@@ -164,39 +210,39 @@ export default function move(gameState){
             if (myHead.y == b.y +1 && myHead.x == b.x) {
                 moveSafety.down = false;
             }
-            // // avoid snakes that want to eat the same food
-            // if (myHead.y == b.y +1 && myHead.x == b.x + 1) {
-            //     moveSafety.left = false;
-            // }
-            // if (myHead.y == b.y +1 && myHead.x == b.x -1 && myNeck.x < myHead.x) {
-            //     moveSafety.right = false;
-            //     moveSafety.down = false;
-            // }
-            // if (myHead.y == b.y +1 && myHead.x == b.x -1) {
-            //     moveSafety.right = false;
-            // }
-            // if (myHead.y == b.y -1 && myHead.x == b.x -1) {
-            //     moveSafety.right = false;
-            // }
-            // if (myHead.y == b.y -1 && myHead.x == b.x + 1) {
-            //     if (myHead.y == 0) {
+            // avoid snakes that want to eat the same food
+            if (myHead.y == b.y +1 && myHead.x == b.x + 1) {
+                moveSafety.left = false;
+            }
+            if (myHead.y == b.y +1 && myHead.x == b.x -1 && myNeck.x < myHead.x) {
+                moveSafety.right = false;
+                moveSafety.down = false;
+            }
+            if (myHead.y == b.y +1 && myHead.x == b.x -1) {
+                moveSafety.right = false;
+            }
+            if (myHead.y == b.y -1 && myHead.x == b.x -1) {
+                moveSafety.right = false;
+            }
+            if (myHead.y == b.y -1 && myHead.x == b.x + 1) {
+                if (myHead.y == 0) {
 
-            //     } else {
-            //         moveSafety.left = false;
-            //     }
-            // }
-            // if (myHead.y == b.y -2 && myHead.x == b.x) {
-            //     moveSafety.up = false;
-            // }
-            // if (myHead.y == b.y + 2 && myHead.x == b.x) {
-            //     moveSafety.down = false;
-            // }
-            // if (myHead.y == b.y && myHead.x == b.x + 2) {
-            //     moveSafety.left = false;
-            // }
-            // if (myHead.y == b.y && myHead.x == b.x - 2) {
-            //     moveSafety.right = false;
-            // }
+                } else {
+                    moveSafety.left = false;
+                }
+            }
+            if (myHead.y == b.y -2 && myHead.x == b.x) {
+                moveSafety.up = false;
+            }
+            if (myHead.y == b.y + 2 && myHead.x == b.x) {
+                moveSafety.down = false;
+            }
+            if (myHead.y == b.y && myHead.x == b.x + 2) {
+                moveSafety.left = false;
+            }
+            if (myHead.y == b.y && myHead.x == b.x - 2) {
+                moveSafety.right = false;
+            }
             
 
         })
