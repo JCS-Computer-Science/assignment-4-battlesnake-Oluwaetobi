@@ -183,8 +183,31 @@ export default function move(gameState){
     }
 
     // prevents snake from moving into other dead ends
+    // bottom left corner
     if (gameState.you.body.length > 4) {
-        
+        if (myHead.x == 0 && myNeck.y == 1) {
+            moveSafety.down = false;
+        }
+    }
+    // bottom right corner
+    if (gameState.you.body.length > 4) {
+        if (myHead.x == gameBoardProperties.width -1 && myNeck.y == 1) {
+            moveSafety.down = false;
+        }
+    }
+
+    // top left corner
+    if (gameState.you.body.length > 4) {
+        if (myHead.x == 0 && myNeck.y == gameBoardProperties.height - 2) {
+            moveSafety.up = false;
+        }
+    }
+
+    // top right corner
+    if (gameState.you.body.length > 4) {
+        if (myHead.x == gameBoardProperties.widht -1 && myNeck.y == gameBoardProperties.height - 2) {
+            moveSafety.up = false;
+        }
     }
 
     // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
