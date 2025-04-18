@@ -119,7 +119,7 @@ export default function move(gameState){
      }
     // top left corner
     if (gameState.you.body.length > 4) {
-        if (gameState.you.body[2].x == 2 && gameState.you.body[3] == 2  && gameState.you.body[3].y > gameBoardProperties.height/2) {
+        if (gameState.you.body[2].x == 1 && gameState.you.body[3] == 1  && gameState.you.body[3].y > gameBoardProperties.height/2) {
             if (myHead.x < 2 && myHead.y > myNeck.y) {
                 moveSafety.down = false;
                 
@@ -130,7 +130,7 @@ export default function move(gameState){
     }
     // bottom left corner
     if (gameState.you.body.length > 4) {
-        if (gameState.you.body[2].x == 2 && gameState.you.body[3] == 2  && gameState.you.body[3].y < gameBoardProperties.height/2) {
+        if (gameState.you.body[2].x == 1 && gameState.you.body[3] == 1  && gameState.you.body[3].y < gameBoardProperties.height/2) {
             if (myHead.x < 2 && myHead.y > myNeck.y) {
                 moveSafety.down = false;
                 
@@ -151,6 +151,7 @@ export default function move(gameState){
         const snakeBody = snake.body;
 
         snakeBody.forEach((b) => {
+            // prevents my snake from colliding with other snakes
             if (myHead.x == b.x -1 && myHead.y == b.y) {
                 moveSafety.right = false;
             }
@@ -163,35 +164,39 @@ export default function move(gameState){
             if (myHead.y == b.y +1 && myHead.x == b.x) {
                 moveSafety.down = false;
             }
-            // avoid snakes that want to eat the same food
-            if (myHead.y == b.y +1 && myHead.x == b.x + 1) {
-                moveSafety.left = false;
-            }
-            if (myHead.y == b.y +1 && myHead.x == b.x -1 && myNeck.x < myHead.x) {
-                moveSafety.right = false;
-                moveSafety.down = false;
-            }
-            if (myHead.y == b.y +1 && myHead.x == b.x -1) {
-                moveSafety.right = false;
-            }
-            if (myHead.y == b.y -1 && myHead.x == b.x -1) {
-                moveSafety.right = false;
-            }
-            if (myHead.y == b.y -1 && myHead.x == b.x + 1) {
-                moveSafety.left = false;
-            }
-            if (myHead.y == b.y -2 && myHead.x == b.x) {
-                moveSafety.up = false;
-            }
-            if (myHead.y == b.y + 2 && myHead.x == b.x) {
-                moveSafety.down = false;
-            }
-            if (myHead.y == b.y && myHead.x == b.x + 2) {
-                moveSafety.left = false;
-            }
-            if (myHead.y == b.y && myHead.x == b.x - 2) {
-                moveSafety.right = false;
-            }
+            // // avoid snakes that want to eat the same food
+            // if (myHead.y == b.y +1 && myHead.x == b.x + 1) {
+            //     moveSafety.left = false;
+            // }
+            // if (myHead.y == b.y +1 && myHead.x == b.x -1 && myNeck.x < myHead.x) {
+            //     moveSafety.right = false;
+            //     moveSafety.down = false;
+            // }
+            // if (myHead.y == b.y +1 && myHead.x == b.x -1) {
+            //     moveSafety.right = false;
+            // }
+            // if (myHead.y == b.y -1 && myHead.x == b.x -1) {
+            //     moveSafety.right = false;
+            // }
+            // if (myHead.y == b.y -1 && myHead.x == b.x + 1) {
+            //     if (myHead.y == 0) {
+
+            //     } else {
+            //         moveSafety.left = false;
+            //     }
+            // }
+            // if (myHead.y == b.y -2 && myHead.x == b.x) {
+            //     moveSafety.up = false;
+            // }
+            // if (myHead.y == b.y + 2 && myHead.x == b.x) {
+            //     moveSafety.down = false;
+            // }
+            // if (myHead.y == b.y && myHead.x == b.x + 2) {
+            //     moveSafety.left = false;
+            // }
+            // if (myHead.y == b.y && myHead.x == b.x - 2) {
+            //     moveSafety.right = false;
+            // }
             
 
         })
