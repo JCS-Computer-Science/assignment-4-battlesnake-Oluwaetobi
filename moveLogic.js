@@ -30,7 +30,7 @@ export default function move(gameState){
     // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
     // gameState.board contains an object representing the game board including its width and height
     // https://docs.battlesnake.com/api/objects/board
-    let distanceFromBorder = 1;
+    let distanceFromBorder = 2;
 
     if (myHead.x < distanceFromBorder) {
         moveSafety.left = false;
