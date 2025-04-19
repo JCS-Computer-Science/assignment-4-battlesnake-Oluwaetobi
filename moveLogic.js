@@ -30,7 +30,12 @@ export default function move(gameState){
     // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
     // gameState.board contains an object representing the game board including its width and height
     // https://docs.battlesnake.com/api/objects/board
+
+    // DON'T CHANGE THIS VALUE!!!!!, because you have something on line 287 that is very dependent
+    // on this value
     let distanceFromBorder = 2;
+    // DON'T CHANGE THIS VALUE!!!!!, because you have something on line 287 that is very dependent
+    // on this value
 
     if (myHead.x < distanceFromBorder) {
         moveSafety.left = false;
@@ -71,7 +76,7 @@ export default function move(gameState){
      if (gameState.you.body.length > 5) {
          for (let i =0; i <  gameState.you.body.length -5; i ++) {
             if (myHead.x == gameState.you.body [i +2].x + 1  && myHead.x == gameState.you.body [i +4].x -1 || myHead.x == gameState.you.body[i +2].x -1 && myHead.x == gameState.you.body[i +4].x + 1) {
-                if (gameState.you.body[i +2].x && gameState.you.body[i +3].x && gameState.you.body[i +5].x && gameState.you.body[i +6].x) {
+                if (gameState.you.body[i +2].x == gameState.you.body[i +3].x && gameState.you.body[i +5].x == gameState.you.body[i +6].x) {
                 if (gameState.you.body[i +4].y > myHead.y) {
                     moveSafety.up = false;
                     break;
@@ -286,8 +291,18 @@ export default function move(gameState){
     //In this case we want to filter out any of these directions for which moveSafety[direction] == false
     const safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
     if (safeMoves.length == 0) {
-        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
-        return { move: "down" };
+        distanceFromBorder =- 1;
+        console.log(`MOVE ${gameState.turn}: No safe moves detected! Checking Again`);
+        const safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
+        if (safeMoves.length == 0) {
+            console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
+            return { move: "down" };
+        } else {
+          // Choose a random move from the safe moves
+            const nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];  
+            console.log(`MOVE ${gameState.turn}: ${nextMove}`)
+            return { move: nextMove };
+        }
     }
     
     // Choose a random move from the safe moves
