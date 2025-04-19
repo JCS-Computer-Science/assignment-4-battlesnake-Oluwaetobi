@@ -30,16 +30,18 @@ export default function move(gameState){
     // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
     // gameState.board contains an object representing the game board including its width and height
     // https://docs.battlesnake.com/api/objects/board
-    if (myHead.x == 0) {
+    let distanceFromBorder = 2;
+
+    if (myHead.x < distanceFromBorder) {
         moveSafety.left = false;
     }
-    if (myHead.x == gameBoardProperties.width -1) {
+    if (myHead.x > gameBoardProperties.width -(1 + distanceFromBorder)) {
         moveSafety.right = false;
     }
-    if (myHead.y == 0) {
+    if (myHead.y < distanceFromBorder) {
         moveSafety.down = false;
     }
-    if (myHead.y == gameBoardProperties.height -1) {
+    if (myHead.y > gameBoardProperties.height -(1+ distanceFromBorder)) {
         moveSafety.up = false;
     }
     
@@ -48,51 +50,57 @@ export default function move(gameState){
     // https://docs.battlesnake.com/api/objects/battlesnake
 
     // this for loop makes sure that the snake doesn't collide with any of the segments of my body
-    for (let i = 2; i < gameState.you.body.length -1 ; i++) {
-        if ( gameState.you.body[i].x -1 == myHead.x && myHead.y == gameState.you.body[i].y) {
-            moveSafety.right = false;
+    if (gameState.you.body.length > 4 ) {
+        for (let i = 2; i < gameState.you.body.length -1 ; i++) {
+            if ( gameState.you.body[i].x -1 == myHead.x && myHead.y == gameState.you.body[i].y) {
+                moveSafety.right = false;
+            }
+            if ( gameState.you.body[i].x +1 == myHead.x && myHead.y == gameState.you.body[i].y) {
+                moveSafety.left = false;
+            }
+            if ( gameState.you.body[i].y +1 == myHead.y && myHead.x == gameState.you.body[i].x) {
+                moveSafety.down = false;
+            }
+            if ( gameState.you.body[i].y -1 == myHead.y && myHead.x == gameState.you.body[i].x) {
+                moveSafety.up = false;
+            } 
         }
-        if ( gameState.you.body[i].x +1 == myHead.x && myHead.y == gameState.you.body[i].y) {
-            moveSafety.left = false;
-        }
-        if ( gameState.you.body[i].y +1 == myHead.y && myHead.x == gameState.you.body[i].x) {
-            moveSafety.down = false;
-        }
-        if ( gameState.you.body[i].y -1 == myHead.y && myHead.x == gameState.you.body[i].x) {
-            moveSafety.up = false;
-        } 
     }
     
      // avoiding get stuck in the loop of my body with a vertical loop
-     for (let i =0; i <  gameState.you.body.length -5; i ++) {
-        if (myHead.x == gameState.you.body [i +2].x + 1  && myHead.x == gameState.you.body [i +4].x -1 || myHead.x == gameState.you.body[i +2].x -1 && myHead.x == gameState.you.body[i +4].x + 1) {
-            if (gameState.you.body[i +2].x && gameState.you.body[i +3].x && gameState.you.body[i +5].x && gameState.you.body[i +6].x) {
-            if (gameState.you.body[i +4].y > myHead.y) {
-                moveSafety.up = false;
-                break;
-            } else {
-                moveSafety.down = false; 
-                break;
-            }
-            }
-
-        }
-     }
-     // avoiding get stuck in the loop of my body with a horizontal loop
-     for (let i =0; i <  gameState.you.body.length -5; i ++) {
-        if (myHead.y= gameState.you.body [i +2].y + 1  && myHead.y == gameState.you.body [i +4].y -1 || myHead.y == gameState.you.body[i +2].y -1 && myHead.y == gameState.you.body[i +4].y + 1) {
-            if (gameState.you.body[2].y && gameState.you.body[3].y && gameState.you.body[5].y && gameState.you.body[6].y) {
-                if (gameState.you.body[4].x > myHead.x) {
-                    moveSafety.right = false;
+     if (gameState.you.body.length > 5) {
+         for (let i =0; i <  gameState.you.body.length -5; i ++) {
+            if (myHead.x == gameState.you.body [i +2].x + 1  && myHead.x == gameState.you.body [i +4].x -1 || myHead.x == gameState.you.body[i +2].x -1 && myHead.x == gameState.you.body[i +4].x + 1) {
+                if (gameState.you.body[i +2].x && gameState.you.body[i +3].x && gameState.you.body[i +5].x && gameState.you.body[i +6].x) {
+                if (gameState.you.body[i +4].y > myHead.y) {
+                    moveSafety.up = false;
                     break;
                 } else {
-                    moveSafety.left = false;
+                    moveSafety.down = false; 
                     break;
                 }
+                }
+    
             }
-        
-        }
-
+         }
+     }
+     // avoiding get stuck in the loop of my body with a horizontal loop
+     if (gameState.you.body.length > 5) {
+         for (let i =0; i <  gameState.you.body.length -5; i ++) {
+            if (myHead.y= gameState.you.body [i +2].y + 1  && myHead.y == gameState.you.body [i +4].y -1 || myHead.y == gameState.you.body[i +2].y -1 && myHead.y == gameState.you.body[i +4].y + 1) {
+                if (gameState.you.body[2].y == gameState.you.body[3].y && gameState.you.body[5].y == gameState.you.body[6].y) {
+                    if (gameState.you.body[4].x > myHead.x) {
+                        moveSafety.right = false;
+                        break;
+                    } else {
+                        moveSafety.left = false;
+                        break;
+                    }
+                }
+            
+            }
+    
+         }
      }
 
     // Prevent your battle snakes from get into dead end ends in the corner || vertical
