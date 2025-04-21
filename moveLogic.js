@@ -16,6 +16,8 @@ export default function move(gameState){
     } else {
         health = 101;
     }
+    // this helps me to not try and avoid my tail when trying to stop my self from colliding with any of the segments of my body
+    let avoidTailOffset = 1;
     // We've included code to prevent your Battlesnake from moving backwards
     const myHead = gameState.you.body[0];
     const myNeck = gameState.you.body[1];
@@ -62,7 +64,7 @@ export default function move(gameState){
 
     // this for loop makes sure that the snake doesn't collide with any of the segments of my body
     if (gameState.you.body.length > 4 ) {
-        for (let i = 2; i < gameState.you.body.length -1 ; i++) {
+        for (let i = 2; i < gameState.you.body.length - avoidTailOffset ; i++) {
             if ( gameState.you.body[i].x -1 == myHead.x && myHead.y == gameState.you.body[i].y) {
                 moveSafety.right = false;
             }
@@ -80,7 +82,7 @@ export default function move(gameState){
     
      // avoiding get stuck in the loop of my body with a vertical loop
      if (gameState.you.body.length > 6) {
-         for (let i =0; i <  gameState.you.body.length -5; i ++) {
+         for (let i =0; i <  gameState.you.body.length -6; i ++) {
             if (myHead.x == gameState.you.body [i +2].x + 1  && myHead.x == gameState.you.body [i +4].x || myHead.x == gameState.you.body[i +2].x -1 && myHead.x == gameState.you.body[i +5].x + 1) {
                 if (gameState.you.body[i +2].x == gameState.you.body[i +3].x && gameState.you.body[i +5].x == gameState.you.body[i +6].x) {
                 if (gameState.you.body[i +4].y > myHead.y) {
@@ -97,7 +99,7 @@ export default function move(gameState){
      }
      // avoiding get stuck in the loop of my body with a vertical loop flipped
      if (gameState.you.body.length > 6) {
-        for (let i =0; i <  gameState.you.body.length -5; i ++) {
+        for (let i =0; i <  gameState.you.body.length -6; i ++) {
            if (myHead.x == gameState.you.body [i +2].x - 1  && myHead.x == gameState.you.body [i +4].x || myHead.x == gameState.you.body[i +2].x + 1 && myHead.x == gameState.you.body[i +5].x - 1) {
                if (gameState.you.body[i +2].x == gameState.you.body[i +3].x && gameState.you.body[i +5].x == gameState.you.body[i +6].x) {
                if (gameState.you.body[i +4].y > myHead.y) {
@@ -114,7 +116,7 @@ export default function move(gameState){
     }
      // avoiding get stuck in the loop of my body with a horizontal loop
      if (gameState.you.body.length >6) {
-         for (let i =0; i <  gameState.you.body.length -5; i ++) {
+         for (let i =0; i <  gameState.you.body.length -6; i ++) {
             if (myHead.y == gameState.you.body [i +2].y + 1  && myHead.y == gameState.you.body [i +4].y || myHead.y == gameState.you.body[i +2].y -1 && myHead.y == gameState.you.body[i +5].y + 1) {
                 if (gameState.you.body[i + 2].y == gameState.you.body[i + 3].y && gameState.you.body[i + 5].y == gameState.you.body[i + 6].y) {
                     if (gameState.you.body[i + 4].x > myHead.x) {
@@ -132,7 +134,7 @@ export default function move(gameState){
      }
      // avoiding get stuck in the loop of my body with a horizontal loop flipped
      if (gameState.you.body.length >6) {
-        for (let i =0; i <  gameState.you.body.length -5; i ++) {
+        for (let i =0; i <  gameState.you.body.length -6; i ++) {
            if (myHead.y == gameState.you.body [i +2].y - 1  && myHead.y == gameState.you.body [i +4].y || myHead.y == gameState.you.body[i +2].y + 1 && myHead.y == gameState.you.body[i +5].y - 1) {
                if (gameState.you.body[i + 2].y == gameState.you.body[i + 3].y && gameState.you.body[i +5].y == gameState.you.body[i + 6].y) {
                    if (gameState.you.body[i + 4].x > myHead.x) {
@@ -372,33 +374,16 @@ export default function move(gameState){
 
             // these make smart moves instead of killing me right away
             if (gameState.you.body.length > 4 ) {
-                for (let i = 2; i < gameState.you.body.length -1 ; i++) {
+                for (let i = 2; i < gameState.you.body.length - avoidTailOffset ; i++) {
                     if ( gameState.you.body[i].x -1 == myHead.x && myHead.y == gameState.you.body[i].y) {
                         if (myHead.x == 0) {
                             console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
                             return { move: "right" };  
                         } else {
                             console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving left`);
-                return { move: "left" };
-
+                            return { move: "left" };
                         }
-                       // moveSafety.right = false;
                     }
-                    if ( gameState.you.body[i].x +1 == myHead.x && myHead.y == gameState.you.body[i].y) {
-                        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
-            return { move: "right" };
-                       // moveSafety.left = false;
-                    }
-                    if ( gameState.you.body[i].y +1 == myHead.y && myHead.x == gameState.you.body[i].x) {
-                        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving up`);
-            return { move: "up" };
-                       // moveSafety.down = false;
-                    }
-                    if ( gameState.you.body[i].y -1 == myHead.y && myHead.x == gameState.you.body[i].x) {
-                        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
-            return { move: "down" };
-                        //moveSafety.up = false;
-                    } 
                 }
             }
             // this specific spot always moves down and kills me, so I am changing that
@@ -407,7 +392,7 @@ export default function move(gameState){
                 return { move: "left" }; 
             }
             if (gameState.you.body.length > 4 ) {
-                for (let i = 2; i < gameState.you.body.length -1 ; i++) {
+                for (let i = 2; i < gameState.you.body.length - avoidTailOffset ; i++) {
                     if ( gameState.you.body[i].x == myHead.x && myHead.y == gameState.you.body[i].y + 1) {
                         //moveSafety.right = false;
                         console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
