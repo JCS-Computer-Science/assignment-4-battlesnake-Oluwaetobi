@@ -353,8 +353,10 @@ export default function move(gameState){
             }
             // top left
             if (myHead.x == 1 && myHead.y == gameBoardProperties.height - 2) {
-                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
-            return { move: "right" };
+                if (moveSafety.right == true) {
+                    console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+                    return { move: "right" };
+                }
             }
             // bottom left
             if (myHead.x == 1 && myHead.y == 1) {
@@ -397,8 +399,10 @@ export default function move(gameState){
                 for (let i = 2; i < gameState.you.body.length - avoidTailOffset ; i++) {
                     if ( gameState.you.body[i].x == myHead.x && myHead.y == gameState.you.body[i].y + 1) {
                         //moveSafety.right = false;
-                        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
-            return { move: "right" };
+                        if (moveSafety.right == true) {
+                            console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+                            return { move: "right" };
+                        }
                     }
                 }
             }
@@ -414,6 +418,40 @@ export default function move(gameState){
                 console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving up`);
                 return { move: "up" };
             }
+            // this for loop makes sure that the snake doesn't collide with any of the segments of my body
+    if (gameState.you.body.length > 4 ) {
+        for (let i = 2; i < gameState.you.body.length - avoidTailOffset ; i++) {
+            if ( gameState.you.body[i].x -1 == myHead.x && myHead.y == gameState.you.body[i].y) {
+                //moveSafety.right = false;
+                if (moveSafety.left == true) {
+                    console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving left`);
+                    return { move: "left" };
+
+                }
+            }
+            if ( gameState.you.body[i].x +1 == myHead.x && myHead.y == gameState.you.body[i].y) {
+               // moveSafety.left = false;
+               if (moveSafety.right == true) {
+                   console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+                   return { move: "right" };
+               }
+            }
+            if ( gameState.you.body[i].y +1 == myHead.y && myHead.x == gameState.you.body[i].x) {
+                //moveSafety.down = false;
+                if (moveSafety.up == true) {
+                    console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving up`);
+                    return { move: "up" };
+                }
+            }
+            if ( gameState.you.body[i].y -1 == myHead.y && myHead.x == gameState.you.body[i].x) {
+                //moveSafety.up = false;
+                if (moveSafety.down == true) {
+                    console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
+                    return { move: "down" };
+                }
+            } 
+        }
+    }
 
             // end move if there are no other moves I can make
             console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
