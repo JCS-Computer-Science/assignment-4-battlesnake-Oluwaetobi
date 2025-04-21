@@ -471,20 +471,22 @@ export default function move(gameState){
                 console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving up`);
                 return { move: "up" };
             }
-            // avoiding get stuck in the loop of my body with a vertical loop at the very top where the
+            // avoiding get stuck in the loop of my body with a vertical loop at the very top or bottom where the
             // only place you can move is right
      if (gameState.you.body.length > 6) {
         for (let i =0; i <  gameState.you.body.length -6; i ++) {
            if (myHead.x == gameState.you.body [i +2].x + 1  && myHead.x == gameState.you.body [i +4].x || myHead.x == gameState.you.body[i +2].x + 1 && myHead.x == gameState.you.body[i +5].x - 1) {
                if (gameState.you.body[i +2].x == gameState.you.body[i +3].x && gameState.you.body[i +5].x == gameState.you.body[i +6].x) {
-               if (gameState.you.body[i +4].y > myHead.y) {
-                   moveSafety.up = false;
-                   console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
-                return { move: "right" };
-               } else {
-                   moveSafety.down = false; 
-                   console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
-                return { move: "right" };
+               if (myHead.y == 0 || myHead.y == gameBoardProperties.height -1) {
+                   if (gameState.you.body[i +4].y > myHead.y) {
+                      moveSafety.up = false;
+                      console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+                   return { move: "right" };
+                  } else {
+                      moveSafety.down = false; 
+                      console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+                   return { move: "right" };
+                  }
                }
                }
    
