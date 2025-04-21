@@ -9,8 +9,13 @@ export default function move(gameState){
         left: true,
         right: true
     };
-    
+    let healthDebug = false;
     let health = 60;
+    if (healthDebug == false) {
+        health = 60;
+    } else {
+        health = 101;
+    }
     // We've included code to prevent your Battlesnake from moving backwards
     const myHead = gameState.you.body[0];
     const myNeck = gameState.you.body[1];
@@ -76,7 +81,7 @@ export default function move(gameState){
      // avoiding get stuck in the loop of my body with a vertical loop
      if (gameState.you.body.length > 6) {
          for (let i =0; i <  gameState.you.body.length -5; i ++) {
-            if (myHead.x == gameState.you.body [i +2].x + 1  && myHead.x == gameState.you.body [i +4].x -1 || myHead.x == gameState.you.body[i +2].x -1 && myHead.x == gameState.you.body[i +4].x + 1) {
+            if (myHead.x == gameState.you.body [i +2].x + 1  && myHead.x == gameState.you.body [i +4].x || myHead.x == gameState.you.body[i +2].x -1 && myHead.x == gameState.you.body[i +5].x + 1) {
                 if (gameState.you.body[i +2].x == gameState.you.body[i +3].x && gameState.you.body[i +5].x == gameState.you.body[i +6].x) {
                 if (gameState.you.body[i +4].y > myHead.y) {
                     moveSafety.up = false;
@@ -90,12 +95,29 @@ export default function move(gameState){
             }
          }
      }
+     // avoiding get stuck in the loop of my body with a vertical loop flipped
+     if (gameState.you.body.length > 6) {
+        for (let i =0; i <  gameState.you.body.length -5; i ++) {
+           if (myHead.x == gameState.you.body [i +2].x - 1  && myHead.x == gameState.you.body [i +4].x || myHead.x == gameState.you.body[i +2].x + 1 && myHead.x == gameState.you.body[i +5].x - 1) {
+               if (gameState.you.body[i +2].x == gameState.you.body[i +3].x && gameState.you.body[i +5].x == gameState.you.body[i +6].x) {
+               if (gameState.you.body[i +4].y > myHead.y) {
+                   moveSafety.up = false;
+                   break;
+               } else {
+                   moveSafety.down = false; 
+                   break;
+               }
+               }
+   
+           }
+        }
+    }
      // avoiding get stuck in the loop of my body with a horizontal loop
      if (gameState.you.body.length >6) {
          for (let i =0; i <  gameState.you.body.length -5; i ++) {
-            if (myHead.y= gameState.you.body [i +2].y + 1  && myHead.y == gameState.you.body [i +4].y -1 || myHead.y == gameState.you.body[i +2].y -1 && myHead.y == gameState.you.body[i +4].y + 1) {
-                if (gameState.you.body[2].y == gameState.you.body[3].y && gameState.you.body[5].y == gameState.you.body[6].y) {
-                    if (gameState.you.body[4].x > myHead.x) {
+            if (myHead.y == gameState.you.body [i +2].y + 1  && myHead.y == gameState.you.body [i +4].y || myHead.y == gameState.you.body[i +2].y -1 && myHead.y == gameState.you.body[i +5].y + 1) {
+                if (gameState.you.body[i + 2].y == gameState.you.body[i + 3].y && gameState.you.body[i + 5].y == gameState.you.body[i + 6].y) {
+                    if (gameState.you.body[i + 4].x > myHead.x) {
                         moveSafety.right = false;
                         break;
                     } else {
@@ -108,6 +130,24 @@ export default function move(gameState){
     
          }
      }
+     // avoiding get stuck in the loop of my body with a horizontal loop flipped
+     if (gameState.you.body.length >6) {
+        for (let i =0; i <  gameState.you.body.length -5; i ++) {
+           if (myHead.y == gameState.you.body [i +2].y - 1  && myHead.y == gameState.you.body [i +4].y || myHead.y == gameState.you.body[i +2].y + 1 && myHead.y == gameState.you.body[i +5].y - 1) {
+               if (gameState.you.body[i + 2].y == gameState.you.body[i + 3].y && gameState.you.body[i +5].y == gameState.you.body[i + 6].y) {
+                   if (gameState.you.body[i + 4].x > myHead.x) {
+                       moveSafety.right = false;
+                       break;
+                   } else {
+                       moveSafety.left = false;
+                       break;
+                   }
+               }
+           
+           }
+   
+        }
+    }
 
     // Prevent your battle snakes from get into dead end ends in the corner || vertical
     // bottom right corner
@@ -297,6 +337,7 @@ export default function move(gameState){
     if (safeMoves.length == 0) {
         distanceFromBorder =- 1;
         health = 101;
+        healthDebug = true;
         console.log(`MOVE ${gameState.turn}: No safe moves detected! Checking Again`);
         const safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
         if (safeMoves.length == 0) {
@@ -382,15 +423,20 @@ export default function move(gameState){
             console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
             return { move: "right" };  
             }
-
+            if (myHead.x == gameBoardProperties.width -2 && myHead.y == 1 && myNeck.x == myHead.x && myNeck.y < myHead.y) {
+                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving up`);
+                return { move: "up" };
+            }
 
             // end move if there are no other moves I can make
             console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
+            healthDebug = false;
             return { move: "down" };
         } else {
           // Choose a random move from the safe moves
             const nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];  
             console.log(`MOVE ${gameState.turn}: ${nextMove}`)
+            healthDebug = false;
             return { move: nextMove };
         }
     }
