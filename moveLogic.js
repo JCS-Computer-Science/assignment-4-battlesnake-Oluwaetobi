@@ -10,6 +10,7 @@ export default function move(gameState){
         right: true
     };
     
+    let health = 60;
     // We've included code to prevent your Battlesnake from moving backwards
     const myHead = gameState.you.body[0];
     const myNeck = gameState.you.body[1];
@@ -73,7 +74,7 @@ export default function move(gameState){
     }
     
      // avoiding get stuck in the loop of my body with a vertical loop
-     if (gameState.you.body.length > 5) {
+     if (gameState.you.body.length > 6) {
          for (let i =0; i <  gameState.you.body.length -5; i ++) {
             if (myHead.x == gameState.you.body [i +2].x + 1  && myHead.x == gameState.you.body [i +4].x -1 || myHead.x == gameState.you.body[i +2].x -1 && myHead.x == gameState.you.body[i +4].x + 1) {
                 if (gameState.you.body[i +2].x == gameState.you.body[i +3].x && gameState.you.body[i +5].x == gameState.you.body[i +6].x) {
@@ -90,7 +91,7 @@ export default function move(gameState){
          }
      }
      // avoiding get stuck in the loop of my body with a horizontal loop
-     if (gameState.you.body.length > 5) {
+     if (gameState.you.body.length >6) {
          for (let i =0; i <  gameState.you.body.length -5; i ++) {
             if (myHead.y= gameState.you.body [i +2].y + 1  && myHead.y == gameState.you.body [i +4].y -1 || myHead.y == gameState.you.body[i +2].y -1 && myHead.y == gameState.you.body[i +4].y + 1) {
                 if (gameState.you.body[2].y == gameState.you.body[3].y && gameState.you.body[5].y == gameState.you.body[6].y) {
@@ -268,6 +269,9 @@ export default function move(gameState){
                 }
             }
             if (myHead.y == b.y -2 && myHead.x == b.x) {
+                if (myNeck.y < myHead.y) {
+                    moveSafety.down = false;
+                }
                 moveSafety.up = false;
             }
             if (myHead.y == b.y + 2 && myHead.x == b.x) {
@@ -292,9 +296,95 @@ export default function move(gameState){
     const safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
     if (safeMoves.length == 0) {
         distanceFromBorder =- 1;
+        health = 101;
         console.log(`MOVE ${gameState.turn}: No safe moves detected! Checking Again`);
         const safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
         if (safeMoves.length == 0) {
+            // this is supposed to act as a temporary solution to my moving down and killing
+            // myself problem when I have no moves left, it makes a smart move instead of just
+            // immediately killing me
+            // top right
+            if (myHead.x == gameBoardProperties.width -2 && myHead.y == gameBoardProperties.height - 2) {
+                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving left`);
+            return { move: "left" };
+            }
+            // top left
+            if (myHead.x == 1 && myHead.y == gameBoardProperties.height - 2) {
+                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+            return { move: "right" };
+            }
+            // bottom left
+            if (myHead.x == 1 && myHead.y == 1) {
+                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+            return { move: "right" };
+            }
+            // bottom right
+            if (myHead.x == gameBoardProperties.width -2 && myHead.y == 1) {
+                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving left`);
+            return { move: "left" };
+            }
+            
+            if (myNeck.y < myHead.y && myNeck.x == myHead.x) {
+                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving up`);
+            return { move: "up" };    
+            }
+
+            // these make smart moves instead of killing me right away
+            if (gameState.you.body.length > 4 ) {
+                for (let i = 2; i < gameState.you.body.length -1 ; i++) {
+                    if ( gameState.you.body[i].x -1 == myHead.x && myHead.y == gameState.you.body[i].y) {
+                        if (myHead.x == 0) {
+                            console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+                            return { move: "right" };  
+                        } else {
+                            console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving left`);
+                return { move: "left" };
+
+                        }
+                       // moveSafety.right = false;
+                    }
+                    if ( gameState.you.body[i].x +1 == myHead.x && myHead.y == gameState.you.body[i].y) {
+                        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+            return { move: "right" };
+                       // moveSafety.left = false;
+                    }
+                    if ( gameState.you.body[i].y +1 == myHead.y && myHead.x == gameState.you.body[i].x) {
+                        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving up`);
+            return { move: "up" };
+                       // moveSafety.down = false;
+                    }
+                    if ( gameState.you.body[i].y -1 == myHead.y && myHead.x == gameState.you.body[i].x) {
+                        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
+            return { move: "down" };
+                        //moveSafety.up = false;
+                    } 
+                }
+            }
+            // this specific spot always moves down and kills me, so I am changing that
+            if (myHead.x ==1 && myHead.y == 0) {
+                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving left`);
+                return { move: "left" }; 
+            }
+            if (gameState.you.body.length > 4 ) {
+                for (let i = 2; i < gameState.you.body.length -1 ; i++) {
+                    if ( gameState.you.body[i].x == myHead.x && myHead.y == gameState.you.body[i].y + 1) {
+                        //moveSafety.right = false;
+                        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+            return { move: "right" };
+                    }
+                }
+            }
+            if (myHead.x == 0 && myHead.y == 0 && myNeck.x == myHead.x && myNeck.y > myHead.y) {
+                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+            return { move: "right" };
+            }
+            if (myHead.x == 1 && myHead.y == 0 && myNeck.y == myHead.y && myNeck.x < myHead.y) {
+            console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+            return { move: "right" };  
+            }
+
+
+            // end move if there are no other moves I can make
             console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
             return { move: "down" };
         } else {
@@ -310,9 +400,8 @@ export default function move(gameState){
     
     // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     // gameState.board.food contains an array of food coordinates https://docs.battlesnake.com/api/objects/board
-    
     let food = gameState.board.food;
-    if (gameState.you.health < 60) {
+    if (gameState.you.health < health) {
         food.forEach((f) => {
             if (myHead.x == f.x -1 && myHead.y == f.y) {
                 moveSafety.left = false;
