@@ -379,10 +379,12 @@ export default function move(gameState){
                         if (myHead.x == 0) {
                             console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
                             return { move: "right" };  
-                        } else {
+                        } 
+                        if (myHead.x == gameBoardProperties.width - 1) {
                             console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving left`);
                             return { move: "left" };
                         }
+                        
                     }
                 }
             }
