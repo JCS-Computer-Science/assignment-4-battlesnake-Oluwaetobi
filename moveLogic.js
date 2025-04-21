@@ -83,7 +83,7 @@ export default function move(gameState){
      // avoiding get stuck in the loop of my body with a vertical loop
      if (gameState.you.body.length > 6) {
          for (let i =0; i <  gameState.you.body.length -6; i ++) {
-            if (myHead.x == gameState.you.body [i +2].x + 1  && myHead.x == gameState.you.body [i +4].x || myHead.x == gameState.you.body[i +2].x -1 && myHead.x == gameState.you.body[i +5].x + 1) {
+            if (myHead.x == gameState.you.body [i +2].x + 1  && myHead.x == gameState.you.body [i +4].x || myHead.x == gameState.you.body[i +2].x + 1 && myHead.x == gameState.you.body[i +5].x - 1) {
                 if (gameState.you.body[i +2].x == gameState.you.body[i +3].x && gameState.you.body[i +5].x == gameState.you.body[i +6].x) {
                 if (gameState.you.body[i +4].y > myHead.y) {
                     moveSafety.up = false;
@@ -100,7 +100,7 @@ export default function move(gameState){
      // avoiding get stuck in the loop of my body with a vertical loop flipped
      if (gameState.you.body.length > 6) {
         for (let i =0; i <  gameState.you.body.length -6; i ++) {
-           if (myHead.x == gameState.you.body [i +2].x - 1  && myHead.x == gameState.you.body [i +4].x || myHead.x == gameState.you.body[i +2].x + 1 && myHead.x == gameState.you.body[i +5].x - 1) {
+           if (myHead.x == gameState.you.body [i +2].x - 1  && myHead.x == gameState.you.body [i +4].x || myHead.x == gameState.you.body[i +2].x - 1 && myHead.x == gameState.you.body[i +5].x + 1) {
                if (gameState.you.body[i +2].x == gameState.you.body[i +3].x && gameState.you.body[i +5].x == gameState.you.body[i +6].x) {
                if (gameState.you.body[i +4].y > myHead.y) {
                    moveSafety.up = false;
@@ -117,7 +117,7 @@ export default function move(gameState){
      // avoiding get stuck in the loop of my body with a horizontal loop
      if (gameState.you.body.length >6) {
          for (let i =0; i <  gameState.you.body.length -6; i ++) {
-            if (myHead.y == gameState.you.body [i +2].y + 1  && myHead.y == gameState.you.body [i +4].y || myHead.y == gameState.you.body[i +2].y -1 && myHead.y == gameState.you.body[i +5].y + 1) {
+            if (myHead.y == gameState.you.body [i +2].y + 1  && myHead.y == gameState.you.body [i +4].y || myHead.y == gameState.you.body[i +2].y + 1 && myHead.y == gameState.you.body[i +5].y - 1) {
                 if (gameState.you.body[i + 2].y == gameState.you.body[i + 3].y && gameState.you.body[i + 5].y == gameState.you.body[i + 6].y) {
                     if (gameState.you.body[i + 4].x > myHead.x) {
                         moveSafety.right = false;
@@ -135,7 +135,7 @@ export default function move(gameState){
      // avoiding get stuck in the loop of my body with a horizontal loop flipped
      if (gameState.you.body.length >6) {
         for (let i =0; i <  gameState.you.body.length -6; i ++) {
-           if (myHead.y == gameState.you.body [i +2].y - 1  && myHead.y == gameState.you.body [i +4].y || myHead.y == gameState.you.body[i +2].y + 1 && myHead.y == gameState.you.body[i +5].y - 1) {
+           if (myHead.y == gameState.you.body [i +2].y - 1  && myHead.y == gameState.you.body [i +4].y || myHead.y == gameState.you.body[i +2].y - 1 && myHead.y == gameState.you.body[i +5].y + 1) {
                if (gameState.you.body[i + 2].y == gameState.you.body[i + 3].y && gameState.you.body[i +5].y == gameState.you.body[i + 6].y) {
                    if (gameState.you.body[i + 4].x > myHead.x) {
                        moveSafety.right = false;
