@@ -360,8 +360,10 @@ export default function move(gameState){
             }
             // bottom left
             if (myHead.x == 1 && myHead.y == 1) {
-                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
-            return { move: "right" };
+                if (moveSafety.right == true) {
+                    console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+                    return { move: "right" };
+                }
             }
             // bottom right
             if (myHead.x == gameBoardProperties.width -2 && myHead.y == 1) {
@@ -370,8 +372,10 @@ export default function move(gameState){
             }
             
             if (myNeck.y < myHead.y && myNeck.x == myHead.x) {
-                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving up`);
-            return { move: "up" };    
+                if (moveSafety.up == true) {
+                    console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving up`);
+                    return { move: "up" };    
+                }
             }
 
             // these make smart moves instead of killing me right away
@@ -453,10 +457,16 @@ export default function move(gameState){
         }
     }
 
-            // end move if there are no other moves I can make
-            console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
-            healthDebug = false;
-            return { move: "down" };
+            // END MOVE IF THERE ARE NO OTHER MOVES I CAN MAKE
+            if (myNeck.x == myHead.x && myNeck.y < myHead.y) {
+                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving up`);
+                healthDebug = false;
+                return { move: "up" };
+            } else {
+                console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
+                healthDebug = false;
+                return { move: "down" };
+            }
         } else {
           // Choose a random move from the safe moves
             const nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];  
@@ -474,17 +484,19 @@ export default function move(gameState){
     let food = gameState.board.food;
     if (gameState.you.health < health) {
         food.forEach((f) => {
-            if (myHead.x == f.x -1 && myHead.y == f.y) {
-                moveSafety.left = false;
-            }
-            if (myHead.x == f.x +1 && myHead.y == f.y) {
-                moveSafety.right = false;
-            }
-            if (myHead.y == f.y -1 && myHead.x == f.x) {
-                moveSafety.down = false;
-            }
-            if (myHead.y == f.y +1 && myHead.x == f.x) {
-                moveSafety.up = false;
+            if (healthDebug == false) {
+                if (myHead.x == f.x -1 && myHead.y == f.y) {
+                    moveSafety.left = false;
+                }
+                if (myHead.x == f.x +1 && myHead.y == f.y) {
+                    moveSafety.right = false;
+                }
+                if (myHead.y == f.y -1 && myHead.x == f.x) {
+                    moveSafety.down = false;
+                }
+                if (myHead.y == f.y +1 && myHead.x == f.x) {
+                    moveSafety.up = false;
+                }
             }
         })
         
