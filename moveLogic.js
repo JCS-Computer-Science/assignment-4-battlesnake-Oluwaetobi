@@ -498,7 +498,15 @@ export default function move(gameState){
         console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving left`);
                 return { move: "left" };
     }
-
+    if (myHead.x ==  gameBoardProperties.width -2 && myHead.y == gameBoardProperties.height -1) {
+        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+                return { move: "right" };
+    }
+    // this is a temporary solution, I have realized at this specific point, I keep killing myself.
+    if (myHead.x == gameBoardProperties.width-3 && myHead.y == gameBoardProperties.height -2 && myHead.x == gameState.you.body[3] && myHead.y == gameState.you.body[3] + 1)   {
+        onsole.log(`MOVE ${gameState.turn}: No safe moves detected! Moving right`);
+                return { move: "right" };
+    }
     
             // END MOVE IF THERE ARE NO OTHER MOVES I CAN MAKE
             if (myNeck.x == myHead.x && myNeck.y < myHead.y) {
