@@ -494,7 +494,10 @@ export default function move(gameState){
         }
     }
 
-    
+    if (myHead.x == 1 && myHead.y == gameBoardProperties.height -1) {
+        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving left`);
+                return { move: "left" };
+    }
 
     
             // END MOVE IF THERE ARE NO OTHER MOVES I CAN MAKE
