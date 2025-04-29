@@ -49,8 +49,8 @@ export default function move(gameState){
 
 
     // this for loop makes sure that the snake doesn't collide with any of the segments of it's body
-    if ( gameState.you.body.length > 3) {
-        for (let i = 2; i < gameState.you.body.length -2; i++) {
+    if ( gameState.you.body.length > 4) {
+        for (let i = 2; i + 1 < gameState.you.body.length; i++) {
             if ( gameState.you.body[i].x -1 == myHead.x && myHead.y == gameState.you.body[i].y) {
                 moveSafety.right = false;
             }
@@ -79,6 +79,7 @@ export default function move(gameState){
 
 
         snakeBody.forEach((b) => {
+            // keeps my snake from colliding with other snakes and every part of their body as well
             if (myHead.x == b.x -1 && myHead.y == b.y) {
                 moveSafety.right = false;
             }
@@ -92,6 +93,45 @@ export default function move(gameState){
                 moveSafety.down = false;
             }
         })
+
+        // keeps my snake from colliding with others snake's heads that are 2 units away
+        if (myHead.x == snakeBody[0].x -2 && myHead.y == snakeBody[0].y) {
+            moveSafety.right = false;
+        }
+        if (myHead.x == snakeBody[0].x +2 && myHead.y == snakeBody[0].y) {
+            moveSafety.left = false;
+        }
+        if (myHead.y == snakeBody[0].y -2 && myHead.x == snakeBody[0].x) {
+            moveSafety.up = false;
+        }
+        if (myHead.y == snakeBody[0].y +2 && myHead.x == snakeBody[0].x) {
+            moveSafety.down = false;
+        }
+        // keeps my snake from colliding with other snakes by predicting their future moves
+        if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y -1) {
+            moveSafety.right = false;
+        }
+        if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y + 1) {
+            moveSafety.right = false;
+        }
+        if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y - 1) {
+            moveSafety.left = false;
+        }
+        if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y + 1) {
+            moveSafety.left = false;
+        }
+        if (myHead.y == snakeBody[0].y -1 && myHead.x == snakeBody[0].x -1) {
+            moveSafety.up = false;
+        }
+        if (myHead.y == snakeBody[0].y -1 && myHead.x == snakeBody[0].x + 1) {
+            moveSafety.up = false;
+        }
+        if (myHead.y == snakeBody[0].y +1 && myHead.x == snakeBody[0].x -1) {
+            moveSafety.down = false;
+        }
+        if (myHead.y == snakeBody[0].y +1 && myHead.x == snakeBody[0].x + 1) {
+            moveSafety.down = false;
+        }
     })
 
 
