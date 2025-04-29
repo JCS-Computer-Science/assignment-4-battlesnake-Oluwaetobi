@@ -50,7 +50,12 @@ export default function move(gameState){
 
     // this for loop makes sure that the snake doesn't collide with any of the segments of it's body
     if ( gameState.you.body.length > 4) {
-        for (let i = 2; i + 1 < gameState.you.body.length; i++) {
+        for (let i = 2; i < gameState.you.body.length; i++) {
+            // console.log(i);
+            // console.log(gameState.you.body.length);
+            if (i >= gameState.you.body.length -1) {
+                break;
+            }
             if ( gameState.you.body[i].x -1 == myHead.x && myHead.y == gameState.you.body[i].y) {
                 moveSafety.right = false;
             }
@@ -79,6 +84,9 @@ export default function move(gameState){
 
 
         snakeBody.forEach((b) => {
+            if (snake.id == gameState.you.id){
+                return;
+            }
             // keeps my snake from colliding with other snakes and every part of their body as well
             if (myHead.x == b.x -1 && myHead.y == b.y) {
                 moveSafety.right = false;
