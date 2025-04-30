@@ -148,18 +148,21 @@ export default function move(gameState){
     // gameState.board.food contains an array of food coordinates https://docs.battlesnake.com/api/objects/board
     if (gameState.you.health < 50) {
         let food = gameState.board.food;
+        let safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
         food.forEach((f) => {
-            if (myHead.x == f.x -1 && myHead.y == f.y) {
-                moveSafety.left = false;
-            }
-            if (myHead.x == f.x +1 && myHead.y == f.y) {
-                moveSafety.right = false;
-            }
-            if (myHead.y == f.y -1 && myHead.x == f.x) {
-                moveSafety.down = false;
-            }
-            if (myHead.y == f.y +1 && myHead.x == f.x) {
-                moveSafety.up = false;
+            if (safeMoves.length != 0) {
+                if (myHead.x == f.x -1 && myHead.y == f.y) {
+                    moveSafety.left = false;
+                }
+                if (myHead.x == f.x +1 && myHead.y == f.y) {
+                    moveSafety.right = false;
+                }
+                if (myHead.y == f.y -1 && myHead.x == f.x) {
+                    moveSafety.down = false;
+                }
+                if (myHead.y == f.y +1 && myHead.x == f.x) {
+                    moveSafety.up = false;
+                }
             }
         })
         
@@ -167,21 +170,25 @@ export default function move(gameState){
     }
     // avoid hazards
     let hazards = gameState.board.hazards;
-    let safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
+    safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
     
         if (safeMoves.length != 0) {
             hazards.forEach((h) => {
-                if (myHead.x == h.x -1 && myHead.y == h.y) {
-                    moveSafety.right = false;
-                }
-                if (myHead.x == h.x +1 && myHead.y == h.y) {
-                    moveSafety.left = false;
-                }
-                if (myHead.y == h.y -1 && myHead.x == h.x) {
-                    moveSafety.up = false;
-                }
-                if (myHead.y == h.y +1 && myHead.x == h.x) {
-                    moveSafety.down = false;
+                if (myHead.x == h.x -1 && myHead.y == h.y && myHead.x == h.x +1 && myHead.y == h.y && myHead.y == h.y -1 && myHead.x == h.x && myHead.y == h.y +1 && myHead.x == h.x) {
+                    // There is no way to break a forEach loop other than to throw in an error
+                } else {
+                    if (myHead.x == h.x -1 && myHead.y == h.y) {
+                        moveSafety.right = false;
+                    }
+                    if (myHead.x == h.x +1 && myHead.y == h.y) {
+                        moveSafety.left = false;
+                    }
+                    if (myHead.y == h.y -1 && myHead.x == h.x) {
+                        moveSafety.up = false;
+                    }
+                    if (myHead.y == h.y +1 && myHead.x == h.x) {
+                        moveSafety.down = false;
+                    }
                 }
             })
         }
