@@ -168,24 +168,23 @@ export default function move(gameState){
     // avoid hazards
     let hazards = gameState.board.hazards;
     let safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
-    if (safeMoves.length == 0) {
-        // if there are no safemoves, than there is no point in trying to avoid the hazards or else I will die faster
-    } else {
-        hazards.forEach((h) => {
-            if (myHead.x == h.x -1 && myHead.y == h.y) {
-                moveSafety.right = false;
-            }
-            if (myHead.x == h.x +1 && myHead.y == h.y) {
-                moveSafety.left = false;
-            }
-            if (myHead.y == h.y -1 && myHead.x == h.x) {
-                moveSafety.up = false;
-            }
-            if (myHead.y == h.y +1 && myHead.x == h.x) {
-                moveSafety.down = false;
-            }
-        })
-    }
+    
+        if (safeMoves.length != 0) {
+            hazards.forEach((h) => {
+                if (myHead.x == h.x -1 && myHead.y == h.y) {
+                    moveSafety.right = false;
+                }
+                if (myHead.x == h.x +1 && myHead.y == h.y) {
+                    moveSafety.left = false;
+                }
+                if (myHead.y == h.y -1 && myHead.x == h.x) {
+                    moveSafety.up = false;
+                }
+                if (myHead.y == h.y +1 && myHead.x == h.x) {
+                    moveSafety.down = false;
+                }
+            })
+        }
     
     // Are there any safe moves left?
    
