@@ -143,20 +143,7 @@ export default function move(gameState){
     })
 
 
-    // Are there any safe moves left?
-   
-    //Object.keys(moveSafety) returns ["up", "down", "left", "right"]
-    //.filter() filters the array based on the function provided as an argument (using arrow function syntax here)
-    //In this case we want to filter out any of these directions for which moveSafety[direction] == false
-    const safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
-    if (safeMoves.length == 0) {
-        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
-        return { move: "down" };
-    }
-   
-    // Choose a random move from the safe moves
-    const nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
-   
+    
     // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     // gameState.board.food contains an array of food coordinates https://docs.battlesnake.com/api/objects/board
     if (gameState.you.health < 50) {
@@ -175,25 +162,44 @@ export default function move(gameState){
                 moveSafety.up = false;
             }
         })
-
-
+        
+        
     }
     // avoid hazards
     let hazards = gameState.board.hazards;
-    hazards.forEach((h) => {
-        if (myHead.x == h.x -1 && myHead.y == h.y) {
-            moveSafety.right = false;
-        }
-        if (myHead.x == h.x +1 && myHead.y == h.y) {
-            moveSafety.left = false;
-        }
-        if (myHead.y == h.y -1 && myHead.x == h.x) {
-            moveSafety.up = false;
-        }
-        if (myHead.y == h.y +1 && myHead.x == h.x) {
-            moveSafety.down = false;
-        }
-    })
+    let safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
+    if (safeMoves.length == 0) {
+        // if there are no safemoves, than there is no point in trying to avoid the hazards or else I will die faster
+    } else {
+        hazards.forEach((h) => {
+            if (myHead.x == h.x -1 && myHead.y == h.y) {
+                moveSafety.right = false;
+            }
+            if (myHead.x == h.x +1 && myHead.y == h.y) {
+                moveSafety.left = false;
+            }
+            if (myHead.y == h.y -1 && myHead.x == h.x) {
+                moveSafety.up = false;
+            }
+            if (myHead.y == h.y +1 && myHead.x == h.x) {
+                moveSafety.down = false;
+            }
+        })
+    }
+    
+    // Are there any safe moves left?
+   
+    //Object.keys(moveSafety) returns ["up", "down", "left", "right"]
+    //.filter() filters the array based on the function provided as an argument (using arrow function syntax here)
+    //In this case we want to filter out any of these directions for which moveSafety[direction] == false
+    safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
+    if (safeMoves.length == 0) {
+        console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
+        return { move: "down" };
+    }
+   
+    // Choose a random move from the safe moves
+    const nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
 
     console.log(`MOVE ${gameState.turn}: ${nextMove}`)
     return { move: nextMove };
