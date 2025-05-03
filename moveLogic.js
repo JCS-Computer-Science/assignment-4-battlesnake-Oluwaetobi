@@ -148,21 +148,23 @@ export default function move(gameState){
     // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     // gameState.board.food contains an array of food coordinates https://docs.battlesnake.com/api/objects/board
     let safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
-    if (gameState.you.health < 50) {
+    // this avoids food when it's health is greater than 50
+    if (gameState.you.health > 50) {
         let food = gameState.board.food;
         food.forEach((f) => {
+            // if my safe moves equals 0 then we don't need to try and avoid more stuff
             if (safeMoves.length != 0) {
                 if (myHead.x == f.x -1 && myHead.y == f.y) {
-                    moveSafety.left = false;
-                }
-                if (myHead.x == f.x +1 && myHead.y == f.y) {
                     moveSafety.right = false;
                 }
+                if (myHead.x == f.x +1 && myHead.y == f.y) {
+                    moveSafety.left = false;
+                }
                 if (myHead.y == f.y -1 && myHead.x == f.x) {
-                    moveSafety.down = false;
+                    moveSafety.up = false;
                 }
                 if (myHead.y == f.y +1 && myHead.x == f.x) {
-                    moveSafety.up = false;
+                    moveSafety.down = false;
                 }
             }
         })
@@ -202,6 +204,7 @@ export default function move(gameState){
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
     if (safeMoves.length == 0) {
             // ONLY FOR OUR FAILED DECISIONS, RESETS PART OF OUR CODE!!
+            console.log(`MOVE ${gameState.turn}: WARNING!!! No safe moves detected! CHECKING AGAIN!!`);
             moveSafety = {
                 up: true,
                 down: true,
