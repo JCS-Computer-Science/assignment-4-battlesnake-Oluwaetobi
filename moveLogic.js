@@ -169,7 +169,6 @@ export default function move(gameState){
         }
     
 
-    
     // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     // gameState.board.food contains an array of food coordinates https://docs.battlesnake.com/api/objects/board
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
