@@ -145,7 +145,7 @@ export default function move(gameState){
 
     // avoid hazards
     let hazards = gameState.board.hazards;
-    safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
+    let safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
     
         if (safeMoves.length != 0) {
             hazards.forEach((h) => {
@@ -172,7 +172,7 @@ export default function move(gameState){
     
     // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     // gameState.board.food contains an array of food coordinates https://docs.battlesnake.com/api/objects/board
-    let safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
+    safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
     // this avoids food when it's health is greater than 50
     if (gameState.you.health > 50) {
         let food = gameState.board.food;
