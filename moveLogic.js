@@ -337,10 +337,22 @@ export default function move(gameState){
                     if (myHead.y == b.y -2 && myHead.x == b.x) {
                         moveUpPoints -=1;
                     }
+                    if (myHead.y == b.y -2 && myHead.x == b.x + 1) {
+                        moveUpPoints -=1;
+                    }
+                    if (myHead.y == b.y -2 && myHead.x == b.x - 1) {
+                        moveUpPoints -=1;
+                    }
                     
                 }
                 if (moveSafety.down == true ) {
                     if (myHead.y == b.y +2 && myHead.x == b.x) {
+                        moveDownPoints -= 1;
+                    }
+                    if (myHead.y == b.y +2 && myHead.x == b.x + 1) {
+                        moveDownPoints -= 1;
+                    }
+                    if (myHead.y == b.y +2 && myHead.x == b.x - 1) {
                         moveDownPoints -= 1;
                     }
                     
@@ -349,10 +361,22 @@ export default function move(gameState){
                     if (myHead.x == b.x +2 && myHead.y == b.y) {
                         moveLeftPoints -= 1;
                     }
+                    if (myHead.x == b.x +2 && myHead.y == b.y + 1) {
+                        moveLeftPoints -= 1;
+                    }
+                    if (myHead.x == b.x +2 && myHead.y == b.y - 1) {
+                        moveLeftPoints -= 1;
+                    }
                     
                 }
                 if (moveSafety.right == true ) {
                     if (myHead.x == b.x -2 && myHead.y == b.y) {
+                        moveRightPoints -= 1;
+                    }
+                    if (myHead.x == b.x -2 && myHead.y == b.y + 1) {
+                        moveRightPoints -= 1;
+                    }
+                    if (myHead.x == b.x -2 && myHead.y == b.y - 1) {
                         moveRightPoints -= 1;
                     }
         
