@@ -343,6 +343,10 @@ export default function move(gameState){
                     if (myHead.y == b.y -2 && myHead.x == b.x - 1) {
                         moveUpPoints -=1;
                     }
+                    // protects me from going into dead ends in the corners
+                    if (myHead.y +2 > gameBoardProperties.height -1) {
+                        moveUpPoints -=1;
+                    }
                     
                 }
                 if (moveSafety.down == true ) {
@@ -354,6 +358,10 @@ export default function move(gameState){
                     }
                     if (myHead.y == b.y +2 && myHead.x == b.x - 1) {
                         moveDownPoints -= 1;
+                    }
+                    // protects me from going into dead ends in the corners
+                    if (myHead.y - 2 < 0) {
+                        moveDownPoints -=1;
                     }
                     
                 }
@@ -367,6 +375,10 @@ export default function move(gameState){
                     if (myHead.x == b.x +2 && myHead.y == b.y - 1) {
                         moveLeftPoints -= 1;
                     }
+                    // protects me from going into dead ends in the corners
+                    if (myHead.x -2 < 0) {
+                        moveLeftPoints -=1;
+                    }
                     
                 }
                 if (moveSafety.right == true ) {
@@ -379,18 +391,22 @@ export default function move(gameState){
                     if (myHead.x == b.x -2 && myHead.y == b.y - 1) {
                         moveRightPoints -= 1;
                     }
+                    // protects me from going into dead ends in the corners
+                    if (myHead.x +2 > gameBoardProperties.width -1) {
+                        moveRightPoints -=1;
+                    }
         
                 }
                 
                 // checks which moves have higher points, DON'T CHANGE THIS!!!!!! ONLY REVIEW!!
                 if (moveSafety.up == true) {
-                    if (moveUpPoints > (moveRightPoints && moveUpPoints && moveDownPoints)) {
+                    if (moveUpPoints > (moveRightPoints && moveLeftPoints && moveDownPoints)) {
                         UpPointsHigher = true;
                     }
 
                 }
                 if (moveSafety.down == true) {
-                    if (moveDownPoints > (moveRightPoints && moveUpPoints && moveDownPoints)) {
+                    if (moveDownPoints > (moveRightPoints && moveUpPoints && moveLeftPoints)) {
                         DownPointsHigher = true;
                     }
                     
@@ -402,7 +418,7 @@ export default function move(gameState){
                     
                 }
                 if (moveSafety.right == true) {
-                    if (moveRightPoints > (moveRightPoints && moveUpPoints && moveDownPoints)) {
+                    if (moveRightPoints > (moveLeftPoints && moveUpPoints && moveDownPoints)) {
                         RightPointsHigher = true;
                     }
                     
