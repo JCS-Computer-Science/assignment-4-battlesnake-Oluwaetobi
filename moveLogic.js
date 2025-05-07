@@ -9,7 +9,19 @@ export default function move(gameState){
         left: true,
         right: true
     };
-    let failedDecisions = 0;
+    let moveUpPoints = 0;
+    let moveDownPoints = 0;
+    let moveLeftPoints = 0;
+    let moveRightPoints = 0;
+
+    let UpPointsHigher = false;
+    let DownPointsHigher = false;
+    let LeftPointsHigher = false;
+    let RightPointsHigher = false;
+
+    // I am making nextmove and safemoves a global varaible since I am calling it more than once
+    let safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
+    let nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
    
     // We've included code to prevent your Battlesnake from moving backwards
     let myHead = gameState.you.body[0];
@@ -145,7 +157,7 @@ export default function move(gameState){
 
     // avoid hazards
     let hazards = gameState.board.hazards;
-    let safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
+    safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
     
         if (safeMoves.length != 0) {
             hazards.forEach((h) => {
@@ -287,6 +299,7 @@ export default function move(gameState){
                 return;
             }
             // keeps my snake from colliding with other snakes and every part of their body as well
+            // DON"T EDIT THIS!!!!!!!!!!!!!!!!!!
             if (myHead.x == b.x -1 && myHead.y == b.y) {
                 moveSafety.right = false;
             }
@@ -304,14 +317,129 @@ export default function move(gameState){
 
 
         }
+        // filters safe moves before making a final move
         safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
+
+        // makes a smart move using safe moves and direction points
+        /* EDIT THIS */
+        snakes.forEach((snake) => {
+            const snakeBody = snake.body;
+    
+    
+            snakeBody.forEach((b) => {
+                /* I am changing this only for this specific section ONLY because this will help me stop getting stuck in dead ends in my body
+                This kind of works like recursion, but I need to add more if statements here to make it smarter*/
+                // if (snake.id == gameState.you.id){
+                //     return;
+                // }
+                /* ADD More IF statements to make smart choices smarter*/
+                if (moveSafety.up == true ) {
+                    if (myHead.y == b.y -2 && myHead.x == b.x) {
+                        moveUpPoints -=1;
+                    }
+                    
+                }
+                if (moveSafety.down == true ) {
+                    if (myHead.y == b.y +2 && myHead.x == b.x) {
+                        moveDownPoints -= 1;
+                    }
+                    
+                }
+                if (moveSafety.left == true ) {
+                    if (myHead.x == b.x +2 && myHead.y == b.y) {
+                        moveLeftPoints -= 1;
+                    }
+                    
+                }
+                if (moveSafety.right == true ) {
+                    if (myHead.x == b.x -2 && myHead.y == b.y) {
+                        moveRightPoints -= 1;
+                    }
+        
+                }
+                
+                // checks which moves have higher points, DON'T CHANGE THIS!!!!!! ONLY REVIEW!!
+                if (moveSafety.up == true) {
+                    if (moveUpPoints > (moveRightPoints && moveUpPoints && moveDownPoints)) {
+                        UpPointsHigher = true;
+                    }
+
+                }
+                if (moveSafety.down == true) {
+                    if (moveDownPoints > (moveRightPoints && moveUpPoints && moveDownPoints)) {
+                        DownPointsHigher = true;
+                    }
+                    
+                }
+                if (moveSafety.left == true) {
+                    if (moveLeftPoints > (moveRightPoints && moveUpPoints && moveDownPoints)) {
+                        LeftPointsHigher = true;
+                    }
+                    
+                }
+                if (moveSafety.right == true) {
+                    if (moveRightPoints > (moveRightPoints && moveUpPoints && moveDownPoints)) {
+                        RightPointsHigher = true;
+                    }
+                    
+                }
+            
+            })
+        })
+
+
         if (safeMoves.length == 0) {
             console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
             return { move: "down" };
         }
    
-    // Choose a random move from the safe moves
-    const nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
+    // Choose a random move from the safe moves if length == 1. DON'T CHANGE THIS!!!!!! ONLY REVIEW IT!!
+    if (safeMoves.length == 1) {
+        nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
+    }
+    // DON'T CHANGE THIS!!!!!! ONLY REVIEW IT!!
+    if (safeMoves.length > 1) {
+        // since the start is always going to be 0, I don't need to change anything here
+        if (UpPointsHigher == true && moveSafety.up == true) {
+            nextMove = safeMoves[0];
+        }
+        else if (DownPointsHigher == true && moveSafety.down == true) {
+            // safeMoves.length changes so I need to account for that, it isn't always 4
+            let minus = 0;
+            if (moveSafety.up == false) {
+                minus += 1;
+            }
+            nextMove = safeMoves[1 - minus];
+        }
+        else if (LeftPointsHigher == true && moveSafety.left == true) {
+            // safeMoves.length changes so I need to account for that, it isn't always 4
+            let minus = 0;
+            if (moveSafety.up == false) {
+                minus += 1;
+            }
+            if (moveSafety.down == false) {
+                minus += 1;
+            }
+            nextMove = safeMoves[2 - minus];
+        }
+        else if (RightPointsHigher == true && moveSafety.right == true) {
+            // safeMoves.length changes so I need to account for that, it isn't always 4
+            let minus = 0;
+            if (moveSafety.up == false) {
+                minus += 1;
+            }
+            if (moveSafety.down == false) {
+                minus += 1;
+            }
+            if (moveSafety.left == false) {
+                minus +=1;
+            }
+            nextMove = safeMoves[3 - minus];
+        } else {
+            // if there is nothing to choose from pick a random move
+            nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
+        }
+    }
 
     console.log(`MOVE ${gameState.turn}: ${nextMove}`)
     return { move: nextMove };
