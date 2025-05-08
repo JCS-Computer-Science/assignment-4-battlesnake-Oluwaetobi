@@ -324,7 +324,10 @@ export default function move(gameState){
         /* EDIT THIS */
         snakes.forEach((snake) => {
             const snakeBody = snake.body;
-    
+            
+            // I need this i because it calls it too many times since the bounds are in the same
+            // position all the time
+            let i = 0;
     
             snakeBody.forEach((b) => {
                 /* I am changing this only for this specific section ONLY because this will help me stop getting stuck in dead ends in my body
@@ -333,6 +336,39 @@ export default function move(gameState){
                 //     return;
                 // }
                 /* ADD More IF statements to make smart choices smarter*/
+
+                // takes away points for their safety being false
+                let pointsRemovedForNotBeingSafe = 3;
+                let reallyBadChoices = -3;
+                if (i < 1) {
+                    if (moveSafety.up == false) {
+                        moveUpPoints -= pointsRemovedForNotBeingSafe;
+                    }
+                    if (moveSafety.down == false) {
+                        moveDownPoints -= pointsRemovedForNotBeingSafe;
+                    }
+                    if (moveSafety.left == false) {
+                        moveLeftPoints -= pointsRemovedForNotBeingSafe;
+                    }
+                    if (moveSafety.right == false) {
+                        moveRightPoints -= pointsRemovedForNotBeingSafe;
+                    }
+                }
+                
+                // rules out any real bad choices
+                if (UpPointsHigher < reallyBadChoices) {
+                    moveSafety.up = false;
+                }
+                if (DownPointsHigher < reallyBadChoices) {
+                    moveSafety.down = false;
+                }
+                if (LeftPointsHigher < reallyBadChoices) {
+                    moveSafety.left = false;
+                }
+                if (RightPointsHigher < reallyBadChoices) {
+                    moveSafety.right = false;
+                }
+
                 if (moveSafety.up == true ) {
                     if (myHead.y == b.y -2 && myHead.x == b.x) {
                         moveUpPoints -=1;
@@ -343,9 +379,13 @@ export default function move(gameState){
                     if (myHead.y == b.y -2 && myHead.x == b.x - 1) {
                         moveUpPoints -=1;
                     }
-                    // protects me from going into dead ends in the corners
-                    if (myHead.y +2 > gameBoardProperties.height -1) {
-                        moveUpPoints -=1;
+                    if (i < 1) {
+                        // I need this i because it calls it too many times since the bounds are in the same
+                        // position all the time
+                        // protects me from going into dead ends in the corners
+                        if (myHead.y +2 > gameBoardProperties.height -1) {
+                            moveUpPoints -=1;
+                        }
                     }
                     
                 }
@@ -359,9 +399,13 @@ export default function move(gameState){
                     if (myHead.y == b.y +2 && myHead.x == b.x - 1) {
                         moveDownPoints -= 1;
                     }
-                    // protects me from going into dead ends in the corners
-                    if (myHead.y - 2 < 0) {
-                        moveDownPoints -=1;
+                    if (i < 1) {
+                        // I need this i because it calls it too many times since the bounds are in the same
+                        // position all the time
+                        // protects me from going into dead ends in the corners
+                        if (myHead.y - 2 < 0) {
+                            moveDownPoints -=1;
+                        }
                     }
                     
                 }
@@ -375,9 +419,13 @@ export default function move(gameState){
                     if (myHead.x == b.x +2 && myHead.y == b.y - 1) {
                         moveLeftPoints -= 1;
                     }
-                    // protects me from going into dead ends in the corners
-                    if (myHead.x -2 < 0) {
-                        moveLeftPoints -=1;
+                    if (i < 1) {
+                        // I need this i because it calls it too many times since the bounds are in the same
+                        // position all the time
+                        // protects me from going into dead ends in the corners
+                        if (myHead.x -2 < 0) {
+                            moveLeftPoints -=1;
+                        }
                     }
                     
                 }
@@ -391,39 +439,44 @@ export default function move(gameState){
                     if (myHead.x == b.x -2 && myHead.y == b.y - 1) {
                         moveRightPoints -= 1;
                     }
-                    // protects me from going into dead ends in the corners
-                    if (myHead.x +2 > gameBoardProperties.width -1) {
-                        moveRightPoints -=1;
+                    if (i < 1) {
+                        // I need this i because it calls it too many times since the bounds are in the same
+                        // position all the time
+                        // protects me from going into dead ends in the corners
+                        if (myHead.x +2 > gameBoardProperties.width -1) {
+                            moveRightPoints -=1;
+                        }
                     }
         
                 }
                 
                 // checks which moves have higher points, DON'T CHANGE THIS!!!!!! ONLY REVIEW!!
                 if (moveSafety.up == true) {
-                    if (moveUpPoints > (moveRightPoints && moveLeftPoints && moveDownPoints)) {
+                    if (moveUpPoints > moveRightPoints &&  moveUpPoints > moveLeftPoints && moveUpPoints > moveDownPoints) {
                         UpPointsHigher = true;
                     }
 
                 }
                 if (moveSafety.down == true) {
-                    if (moveDownPoints > (moveRightPoints && moveUpPoints && moveLeftPoints)) {
+                    if (moveDownPoints > moveRightPoints && moveDownPoints > moveUpPoints && moveDownPoints > moveLeftPoints) {
                         DownPointsHigher = true;
                     }
                     
                 }
                 if (moveSafety.left == true) {
-                    if (moveLeftPoints > (moveRightPoints && moveUpPoints && moveDownPoints)) {
+                    if (moveLeftPoints > moveRightPoints && moveLeftPoints > moveUpPoints && moveLeftPoints > moveDownPoints) {
                         LeftPointsHigher = true;
                     }
                     
                 }
                 if (moveSafety.right == true) {
-                    if (moveRightPoints > (moveLeftPoints && moveUpPoints && moveDownPoints)) {
+                    if (moveRightPoints > moveLeftPoints && moveRightPoints > moveUpPoints && moveRightPoints > moveDownPoints) {
                         RightPointsHigher = true;
                     }
                     
                 }
             
+                i += 1;
             })
         })
 
@@ -480,6 +533,17 @@ export default function move(gameState){
             nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
         }
     }
+    
+    console.log("");
+    console.log("Up: " + moveUpPoints);
+    console.log("Down: " + moveDownPoints);
+    console.log("Left: " + moveLeftPoints);
+    console.log("Right: " + moveRightPoints);
+    console.log(" ");
+    console.log("Up: " + UpPointsHigher);
+    console.log("Down: " + DownPointsHigher);
+    console.log("Left: " + LeftPointsHigher);
+    console.log("Right: " + RightPointsHigher);
 
     console.log(`MOVE ${gameState.turn}: ${nextMove}`)
     return { move: nextMove };
