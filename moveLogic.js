@@ -162,7 +162,6 @@ export default function move(gameState){
     // avoid hazards
     let hazards = gameState.board.hazards;
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
-        if (superDuperReallyHungry == false) {
             if (safeMoves.length != 0) {
                 hazards.forEach((h) => {
                     if (myHead.x == h.x -1 && myHead.y == h.y && myHead.x == h.x +1 && myHead.y == h.y && myHead.y == h.y -1 && myHead.x == h.x && myHead.y == h.y +1 && myHead.x == h.x) {
@@ -183,7 +182,6 @@ export default function move(gameState){
                     }
                 })
             }
-        }
     
 
     // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
@@ -378,15 +376,19 @@ export default function move(gameState){
                              or else I will lose and accidentally kill myself, it will be too much       */
                                 if (myHead.x == f.x -1 && myHead.y == f.y) {
                                     moveRightPoints += 10;
+                                    moveSafety.right = true;
                                 }
                                 if (myHead.x == f.x +1 && myHead.y == f.y) {
                                     moveLeftPoints += 10;
+                                    moveSafety.left = true;
                                 }
                                 if (myHead.y == f.y -1 && myHead.x == f.x) {
                                     moveUpPoints += 10;
+                                    moveSafety.up = true;
                                 }
                                 if (myHead.y == f.y +1 && myHead.x == f.x) {
                                     moveDownPoints += 10;
+                                    moveSafety.down = true;
                                 }
                         })
                         
@@ -543,6 +545,9 @@ export default function move(gameState){
             return { move: "down" };
         }
    
+        // Filters move again just to make sure before making a final decision
+        safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
+
     // Choose a random move from the safe moves if length == 1. DON'T CHANGE THIS!!!!!! ONLY REVIEW IT!!
     if (safeMoves.length == 1) {
         nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
