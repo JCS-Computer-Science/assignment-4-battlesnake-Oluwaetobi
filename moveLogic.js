@@ -337,6 +337,57 @@ export default function move(gameState){
                 // }
                 /* ADD More IF statements to make smart choices smarter*/
 
+
+                // increases points for being hungry and having food close to you
+                if (i < 1) {
+                    if (gameState.you.health < 50) {
+                        let food = gameState.board.food;
+                        food.forEach((f) => {
+                            /* if my safe moves are less than 1 or equal to one then we don't need to try and avoid more stuff
+                             or else I will lose and accidentally kill myself, it will be too much       */
+                                if (myHead.x == f.x -1 && myHead.y == f.y) {
+                                    moveRightPoints += 1;
+                                }
+                                if (myHead.x == f.x +1 && myHead.y == f.y) {
+                                    moveLeftPoints += 1;
+                                }
+                                if (myHead.y == f.y -1 && myHead.x == f.x) {
+                                    moveUpPoints += 1;
+                                }
+                                if (myHead.y == f.y +1 && myHead.x == f.x) {
+                                    moveDownPoints += 1;
+                                }
+                        })
+                        
+                        
+                    }
+                }
+
+                // increases points by a lot for being really SUPER DUPER HUNGRY and having food close to you
+                if (i < 1) {
+                    if (gameState.you.health < 20) {
+                        let food = gameState.board.food;
+                        food.forEach((f) => {
+                            /* if my safe moves are less than 1 or equal to one then we don't need to try and avoid more stuff
+                             or else I will lose and accidentally kill myself, it will be too much       */
+                                if (myHead.x == f.x -1 && myHead.y == f.y) {
+                                    moveRightPoints += 10;
+                                }
+                                if (myHead.x == f.x +1 && myHead.y == f.y) {
+                                    moveLeftPoints += 10;
+                                }
+                                if (myHead.y == f.y -1 && myHead.x == f.x) {
+                                    moveUpPoints += 10;
+                                }
+                                if (myHead.y == f.y +1 && myHead.x == f.x) {
+                                    moveDownPoints += 10;
+                                }
+                        })
+                        
+                        
+                    }
+                }
+
                 // takes away points for their safety being false
                 let pointsRemovedForNotBeingSafe = 3;
                 let reallyBadChoices = -3;
