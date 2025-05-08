@@ -28,6 +28,9 @@ export default function move(gameState){
     let myHead = gameState.you.body[0];
     let myNeck = gameState.you.body[1];
    
+    if (gameState.you.health < 20) {
+        superDuperReallyHungry = true;
+    }
     if (myNeck.x < myHead.x && myHead.y == myNeck.y) {        // Neck is left of head, don't move left
         moveSafety.left = false;
        
