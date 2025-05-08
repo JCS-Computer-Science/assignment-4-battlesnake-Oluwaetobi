@@ -19,6 +19,7 @@ export default function move(gameState){
     let LeftPointsHigher = false;
     let RightPointsHigher = false;
 
+    let superDuperReallyHungry = false;
     // I am making nextmove and safemoves a global varaible since I am calling it more than once
     let safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
     let nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
@@ -158,26 +159,27 @@ export default function move(gameState){
     // avoid hazards
     let hazards = gameState.board.hazards;
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
-    
-        if (safeMoves.length != 0) {
-            hazards.forEach((h) => {
-                if (myHead.x == h.x -1 && myHead.y == h.y && myHead.x == h.x +1 && myHead.y == h.y && myHead.y == h.y -1 && myHead.x == h.x && myHead.y == h.y +1 && myHead.x == h.x) {
-                    // There is no way to break a forEach loop other than to throw in an error
-                } else {
-                    if (myHead.x == h.x -1 && myHead.y == h.y) {
-                        moveSafety.right = false;
+        if (superDuperReallyHungry == false) {
+            if (safeMoves.length != 0) {
+                hazards.forEach((h) => {
+                    if (myHead.x == h.x -1 && myHead.y == h.y && myHead.x == h.x +1 && myHead.y == h.y && myHead.y == h.y -1 && myHead.x == h.x && myHead.y == h.y +1 && myHead.x == h.x) {
+                        // There is no way to break a forEach loop other than to throw in an error
+                    } else {
+                        if (myHead.x == h.x -1 && myHead.y == h.y) {
+                            moveSafety.right = false;
+                        }
+                        if (myHead.x == h.x +1 && myHead.y == h.y) {
+                            moveSafety.left = false;
+                        }
+                        if (myHead.y == h.y -1 && myHead.x == h.x) {
+                            moveSafety.up = false;
+                        }
+                        if (myHead.y == h.y +1 && myHead.x == h.x) {
+                            moveSafety.down = false;
+                        }
                     }
-                    if (myHead.x == h.x +1 && myHead.y == h.y) {
-                        moveSafety.left = false;
-                    }
-                    if (myHead.y == h.y -1 && myHead.x == h.x) {
-                        moveSafety.up = false;
-                    }
-                    if (myHead.y == h.y +1 && myHead.x == h.x) {
-                        moveSafety.down = false;
-                    }
-                }
-            })
+                })
+            }
         }
     
 
@@ -366,6 +368,7 @@ export default function move(gameState){
                 // increases points by a lot for being really SUPER DUPER HUNGRY and having food close to you
                 if (i < 1) {
                     if (gameState.you.health < 20) {
+                        superDuperReallyHungry = true;
                         let food = gameState.board.food;
                         food.forEach((f) => {
                             /* if my safe moves are less than 1 or equal to one then we don't need to try and avoid more stuff
