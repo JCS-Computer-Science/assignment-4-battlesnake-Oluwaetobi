@@ -389,6 +389,7 @@ export default function move(gameState){
 
 
                 // increases points for being hungry and having food close to you
+                // Don't remove "if (i < 1)" it is extremely IMPORTANT!!
                 if (i < 1) {
                     if (gameState.you.health < 50) {
                         let food = gameState.board.food;
@@ -396,16 +397,16 @@ export default function move(gameState){
                             /* if my safe moves are less than 1 or equal to one then we don't need to try and avoid more stuff
                              or else I will lose and accidentally kill myself, it will be too much       */
                                 if (myHead.x == f.x -1 && myHead.y == f.y) {
-                                    moveRightPoints += 1;
+                                    moveRightPoints += 3;
                                 }
                                 if (myHead.x == f.x +1 && myHead.y == f.y) {
-                                    moveLeftPoints += 1;
+                                    moveLeftPoints += 3;
                                 }
                                 if (myHead.y == f.y -1 && myHead.x == f.x) {
-                                    moveUpPoints += 1;
+                                    moveUpPoints += 3;
                                 }
                                 if (myHead.y == f.y +1 && myHead.x == f.x) {
-                                    moveDownPoints += 1;
+                                    moveDownPoints += 3;
                                 }
                         })
                         
