@@ -489,7 +489,7 @@ export default function move(gameState){
                         // position all the time
                         // protects me from going into dead ends in the corners
                         if (myHead.y +2 > gameBoardProperties.height -1) {
-                            moveUpPoints -=1;
+                            moveUpPoints -=3;
                         }
                     }
                     
@@ -509,7 +509,7 @@ export default function move(gameState){
                         // position all the time
                         // protects me from going into dead ends in the corners
                         if (myHead.y - 2 < 0) {
-                            moveDownPoints -=1;
+                            moveDownPoints -=3;
                         }
                     }
                     
@@ -529,7 +529,7 @@ export default function move(gameState){
                         // position all the time
                         // protects me from going into dead ends in the corners
                         if (myHead.x -2 < 0) {
-                            moveLeftPoints -=1;
+                            moveLeftPoints -=3;
                         }
                     }
                     
@@ -549,7 +549,7 @@ export default function move(gameState){
                         // position all the time
                         // protects me from going into dead ends in the corners
                         if (myHead.x +2 > gameBoardProperties.width -1) {
-                            moveRightPoints -=1;
+                            moveRightPoints -= 3;
                         }
                     }
         
