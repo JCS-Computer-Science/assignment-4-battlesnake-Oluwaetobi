@@ -499,6 +499,8 @@ export default function move(gameState){
                 if (RightPointsHigher < reallyBadChoices) {
                     moveSafety.right = false;
                 }
+                
+                let deadEndPunishmentPoints = 2;
 
                 if (moveSafety.up == true ) {
                     if (myHead.y == b.y -2 && myHead.x == b.x) {
@@ -515,7 +517,7 @@ export default function move(gameState){
                         // position all the time
                         // protects me from going into dead ends in the corners
                         if (myHead.y +2 > gameBoardProperties.height -1) {
-                            moveUpPoints -=3;
+                            moveUpPoints -= deadEndPunishmentPoints;
                         }
                     }
                     
@@ -535,7 +537,7 @@ export default function move(gameState){
                         // position all the time
                         // protects me from going into dead ends in the corners
                         if (myHead.y - 2 < 0) {
-                            moveDownPoints -=3;
+                            moveDownPoints -=deadEndPunishmentPoints;
                         }
                     }
                     
@@ -555,7 +557,7 @@ export default function move(gameState){
                         // position all the time
                         // protects me from going into dead ends in the corners
                         if (myHead.x -2 < 0) {
-                            moveLeftPoints -=3;
+                            moveLeftPoints -= deadEndPunishmentPoints;
                         }
                     }
                     
@@ -575,7 +577,7 @@ export default function move(gameState){
                         // position all the time
                         // protects me from going into dead ends in the corners
                         if (myHead.x +2 > gameBoardProperties.width -1) {
-                            moveRightPoints -= 3;
+                            moveRightPoints -= deadEndPunishmentPoints;
                         }
                     }
         
