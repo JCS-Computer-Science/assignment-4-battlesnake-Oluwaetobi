@@ -440,8 +440,9 @@ export default function move(gameState){
                     }
                 }
 
-                // takes away points for their safety being false
+                // takes away points for their safety being false, DO NOT CHANGE THIS!!!!!
                 let pointsRemovedForNotBeingSafe = 6;
+                // REALLY BAD CHOICES at -6 is THE SWEET SPOT DO NOT CHANGE THIS!!!!
                 let reallyBadChoices = -6;
                 if (i < 1) {
                     if (moveSafety.up == false) {
@@ -459,6 +460,7 @@ export default function move(gameState){
                 }
                 
                 // rules out any real bad choices
+                // DO NOT CHANGE THIS!!!!
                 if (UpPointsHigher < reallyBadChoices) {
                     moveSafety.up = false;
                 }
