@@ -194,7 +194,10 @@ export default function move(gameState){
     // avoid hazards
     let hazards = gameState.board.hazards;
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
-            if (safeMoves.length != 0) {
+            // I took this out, safeMoves.length != 0, because I am able to account for it using points
+            // to make better decisions instead of by completely ignoring a decision, also this makes my
+            // game worse which is another reason to take it out!
+            // if (safeMoves.length != 0) {
                 hazards.forEach((h) => {
                     if (myHead.x == h.x -1 && myHead.y == h.y && myHead.x == h.x +1 && myHead.y == h.y && myHead.y == h.y -1 && myHead.x == h.x && myHead.y == h.y +1 && myHead.x == h.x) {
                         // There is no way to break a forEach loop other than to throw in an error
@@ -221,7 +224,7 @@ export default function move(gameState){
                         }
                     }
                 })
-            }
+            // }
     
 
     // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
