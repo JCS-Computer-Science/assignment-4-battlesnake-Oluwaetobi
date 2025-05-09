@@ -580,16 +580,17 @@ export default function move(gameState){
                 }
             
                 // sometimes none of the moves returns as true in that case I have to choose one of the moves that
-                // are greater than 0, at least it won't be an awfully bad choice, yay!!
+                // are greater than -1, at least it won't be an awfully bad choice, yay!!
+                // -1 is the sweet spot, DO NOT CHANGE THIS!!!!
                 if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
-                    if (moveLeftPoints >= 0) {
+                    if (moveLeftPoints >= -1) {
                         LeftPointsHigher = true;
-                    } else if(moveRightPoints >= 0) {
+                    } else if(moveRightPoints >= -1) {
                         RightPointsHigher = true;
-                    } else if (moveDownPoints >= 0) {
+                    } else if (moveDownPoints >= -1) {
                         DownPointsHigher = true;
                     } else {
-                        if (moveUpPoints >= 0) {
+                        if (moveUpPoints >= -1) {
                             UpPointsHigher = true;
                         }
                     }
