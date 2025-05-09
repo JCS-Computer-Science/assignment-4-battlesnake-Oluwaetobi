@@ -499,7 +499,7 @@ export default function move(gameState){
                 if (RightPointsHigher < reallyBadChoices) {
                     moveSafety.right = false;
                 }
-                
+                 
                 let deadEndPunishmentPoints = 2;
 
                 if (moveSafety.up == true ) {
