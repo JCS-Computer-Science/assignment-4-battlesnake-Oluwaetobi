@@ -119,24 +119,26 @@ export default function move(gameState){
             }
         })
 
+        let collisionPunishment = 4;
+
         // keeps my snake from colliding with others snake's heads that are 2 units away
         //  I am going to remove points instead of making them false, because I don't know for sure
         // that the snake will move in that direction
         if (myHead.x == snakeBody[0].x -2 && myHead.y == snakeBody[0].y) {
             // moveSafety.right = false;
-            moveRightPoints -= 2;
+            moveRightPoints -= collisionPunishment;
         }
         if (myHead.x == snakeBody[0].x +2 && myHead.y == snakeBody[0].y) {
             // moveSafety.left = false;
-            moveLeftPoints -= 2;
+            moveLeftPoints -= collisionPunishment;
         }
         if (myHead.y == snakeBody[0].y -2 && myHead.x == snakeBody[0].x) {
             // moveSafety.up = false;
-            moveUpPoints -= 2;
+            moveUpPoints -= collisionPunishment;
         }
         if (myHead.y == snakeBody[0].y +2 && myHead.x == snakeBody[0].x) {
             // moveSafety.down = false;
-            moveDownPoints -= 2;
+            moveDownPoints -= collisionPunishment;
         }
         // keeps my snake from colliding with other snakes by predicting their future moves
         //  I am going to remove points instead of making them false, because I don't know for sure
@@ -144,50 +146,50 @@ export default function move(gameState){
         if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y -1) {
             // moveSafety.up = false;
             // moveSafety.right = false;
-            moveUpPoints -= 2;
-            moveRightPoints -= 2;
+            moveUpPoints -= collisionPunishment;
+            moveRightPoints -= collisionPunishment;
         }
         if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y + 1) {
             // moveSafety.right = false;
             // moveSafety.down = false;
-            moveRightPoints -= 2;
-            moveDownPoints -= 2;
+            moveRightPoints -= collisionPunishment;
+            moveDownPoints -= collisionPunishment;
         }
         if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y - 1) {
             // moveSafety.up = false;
             // moveSafety.left = false;
-            moveUpPoints -= 2;
-            moveLeftPoints -= 2;
+            moveUpPoints -= collisionPunishment;
+            moveLeftPoints -= collisionPunishment;
         }
         if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y + 1) {
             // moveSafety.left = false;
             // moveSafety.down = false;
-            moveLeftPoints -= 2;
-            moveDownPoints -= 2;
+            moveLeftPoints -= collisionPunishment;
+            moveDownPoints -= collisionPunishment;
         }
         if (myHead.y == snakeBody[0].y -1 && myHead.x == snakeBody[0].x -1) {
             // moveSafety.up = false;
             // moveSafety.right = false;
-            moveUpPoints -= 2;
-            moveRightPoints -= 2;
+            moveUpPoints -= collisionPunishment;
+            moveRightPoints -= collisionPunishment;
         }
         if (myHead.y == snakeBody[0].y -1 && myHead.x == snakeBody[0].x + 1) {
             // moveSafety.up = false;
             // moveSafety.left = false;
-            moveUpPoints -= 2;
-            moveLeftPoints -= 2;
+            moveUpPoints -= collisionPunishment;
+            moveLeftPoints -= collisionPunishment;
         }
         if (myHead.y == snakeBody[0].y +1 && myHead.x == snakeBody[0].x -1) {
             // moveSafety.down = false;
             // moveSafety.right = false;
-            moveDownPoints -= 2;
-            moveRightPoints -= 2;
+            moveDownPoints -= collisionPunishment;
+            moveRightPoints -= collisionPunishment;
         }
         if (myHead.y == snakeBody[0].y +1 && myHead.x == snakeBody[0].x + 1) {
             // moveSafety.down = false;
             // moveSafety.left = false;
-            moveDownPoints -= 2;
-            moveLeftPoints -= 2;
+            moveDownPoints -= collisionPunishment;
+            moveLeftPoints -= collisionPunishment;
         }
     })
 
