@@ -423,19 +423,27 @@ export default function move(gameState){
                             /* if my safe moves are less than 1 or equal to one then we don't need to try and avoid more stuff
                              or else I will lose and accidentally kill myself, it will be too much       */
                                 if (myHead.x == f.x -1 && myHead.y == f.y) {
-                                    moveRightPoints += 10;
+                                    moveRightPoints += 15;
+                                    // This true part at the bottom may seem useless but I am going to leave it here
+                                    // Just in case!!
                                     moveSafety.right = true;
                                 }
                                 if (myHead.x == f.x +1 && myHead.y == f.y) {
-                                    moveLeftPoints += 10;
+                                    moveLeftPoints += 15;
+                                    // This true part at the bottom may seem useless but I am going to leave it here
+                                    // Just in case!!
                                     moveSafety.left = true;
                                 }
                                 if (myHead.y == f.y -1 && myHead.x == f.x) {
-                                    moveUpPoints += 10;
+                                    moveUpPoints += 15;
+                                    // This true part at the bottom may seem useless but I am going to leave it here
+                                    // Just in case!!
                                     moveSafety.up = true;
                                 }
                                 if (myHead.y == f.y +1 && myHead.x == f.x) {
-                                    moveDownPoints += 10;
+                                    moveDownPoints += 15;
+                                    // This true part at the bottom may seem useless but I am going to leave it here
+                                    // Just in case!!
                                     moveSafety.down = true;
                                 }
                         })
