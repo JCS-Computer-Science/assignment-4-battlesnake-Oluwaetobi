@@ -120,42 +120,74 @@ export default function move(gameState){
         })
 
         // keeps my snake from colliding with others snake's heads that are 2 units away
+        //  I am going to remove points instead of making them false, because I don't know for sure
+        // that the snake will move in that direction
         if (myHead.x == snakeBody[0].x -2 && myHead.y == snakeBody[0].y) {
-            moveSafety.right = false;
+            // moveSafety.right = false;
+            moveRightPoints -= 2;
         }
         if (myHead.x == snakeBody[0].x +2 && myHead.y == snakeBody[0].y) {
-            moveSafety.left = false;
+            // moveSafety.left = false;
+            moveLeftPoints -= 2;
         }
         if (myHead.y == snakeBody[0].y -2 && myHead.x == snakeBody[0].x) {
-            moveSafety.up = false;
+            // moveSafety.up = false;
+            moveUpPoints -= 2;
         }
         if (myHead.y == snakeBody[0].y +2 && myHead.x == snakeBody[0].x) {
-            moveSafety.down = false;
+            // moveSafety.down = false;
+            moveDownPoints -= 2;
         }
         // keeps my snake from colliding with other snakes by predicting their future moves
+        //  I am going to remove points instead of making them false, because I don't know for sure
+        // that the snake will move in that direction
         if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y -1) {
-            moveSafety.right = false;
+            // moveSafety.up = false;
+            // moveSafety.right = false;
+            moveUpPoints -= 2;
+            moveRightPoints -= 2;
         }
         if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y + 1) {
-            moveSafety.right = false;
+            // moveSafety.right = false;
+            // moveSafety.down = false;
+            moveRightPoints -= 2;
+            moveDownPoints -= 2;
         }
         if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y - 1) {
-            moveSafety.left = false;
+            // moveSafety.up = false;
+            // moveSafety.left = false;
+            moveUpPoints -= 2;
+            moveLeftPoints -= 2;
         }
         if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y + 1) {
-            moveSafety.left = false;
+            // moveSafety.left = false;
+            // moveSafety.down = false;
+            moveLeftPoints -= 2;
+            moveDownPoints -= 2;
         }
         if (myHead.y == snakeBody[0].y -1 && myHead.x == snakeBody[0].x -1) {
-            moveSafety.up = false;
+            // moveSafety.up = false;
+            // moveSafety.right = false;
+            moveUpPoints -= 2;
+            moveRightPoints -= 2;
         }
         if (myHead.y == snakeBody[0].y -1 && myHead.x == snakeBody[0].x + 1) {
-            moveSafety.up = false;
+            // moveSafety.up = false;
+            // moveSafety.left = false;
+            moveUpPoints -= 2;
+            moveLeftPoints -= 2;
         }
         if (myHead.y == snakeBody[0].y +1 && myHead.x == snakeBody[0].x -1) {
-            moveSafety.down = false;
+            // moveSafety.down = false;
+            // moveSafety.right = false;
+            moveDownPoints -= 2;
+            moveRightPoints -= 2;
         }
         if (myHead.y == snakeBody[0].y +1 && myHead.x == snakeBody[0].x + 1) {
-            moveSafety.down = false;
+            // moveSafety.down = false;
+            // moveSafety.left = false;
+            moveDownPoints -= 2;
+            moveLeftPoints -= 2;
         }
     })
 
@@ -167,17 +199,25 @@ export default function move(gameState){
                     if (myHead.x == h.x -1 && myHead.y == h.y && myHead.x == h.x +1 && myHead.y == h.y && myHead.y == h.y -1 && myHead.x == h.x && myHead.y == h.y +1 && myHead.x == h.x) {
                         // There is no way to break a forEach loop other than to throw in an error
                     } else {
+                        // instead of avoiding the hazards at all cost until there are no more safe moves
+                        // I am just making it a worser choice, because sometimes going into the hazards is actually
+                        // a good think, as avoiding it at all costs until there are no more safe moves is actually kind of 
+                        // problematic, and I have tested it as well and it is true.
                         if (myHead.x == h.x -1 && myHead.y == h.y) {
-                            moveSafety.right = false;
+                            // moveSafety.right = false;
+                            moveRightPoints -= 3;
                         }
                         if (myHead.x == h.x +1 && myHead.y == h.y) {
-                            moveSafety.left = false;
+                            // moveSafety.left = false;
+                            moveLeftPoints -= 3;
                         }
                         if (myHead.y == h.y -1 && myHead.x == h.x) {
-                            moveSafety.up = false;
+                            // moveSafety.up = false;
+                            moveUpPoints -= 3;
                         }
                         if (myHead.y == h.y +1 && myHead.x == h.x) {
-                            moveSafety.down = false;
+                            // moveSafety.down = false;
+                            moveDownPoints -= 3;
                         }
                     }
                 })
@@ -195,16 +235,20 @@ export default function move(gameState){
              or else I will lose and accidentally kill myself, it will be too much       */
             if (safeMoves.length > 1) {
                 if (myHead.x == f.x -1 && myHead.y == f.y) {
-                    moveSafety.right = false;
+                    // moveSafety.right = false;
+                    moveRightPoints -= 3;
                 }
                 if (myHead.x == f.x +1 && myHead.y == f.y) {
-                    moveSafety.left = false;
+                    // moveSafety.left = false;
+                    moveLeftPoints -= 3;
                 }
                 if (myHead.y == f.y -1 && myHead.x == f.x) {
-                    moveSafety.up = false;
+                    // moveSafety.up = false;
+                    moveUpPoints -= 3;
                 }
                 if (myHead.y == f.y +1 && myHead.x == f.x) {
-                    moveSafety.down = false;
+                    // moveSafety.down = false;
+                    moveDownPoints -= 3;
                 }
             }
         })
@@ -397,8 +441,8 @@ export default function move(gameState){
                 }
 
                 // takes away points for their safety being false
-                let pointsRemovedForNotBeingSafe = 3;
-                let reallyBadChoices = -3;
+                let pointsRemovedForNotBeingSafe = 6;
+                let reallyBadChoices = -6;
                 if (i < 1) {
                     if (moveSafety.up == false) {
                         moveUpPoints -= pointsRemovedForNotBeingSafe;
@@ -535,6 +579,21 @@ export default function move(gameState){
                     
                 }
             
+                // sometimes none of the moves returns as true in that case I have to choose one of the moves that
+                // are greater than 0, at least it won't be an awfully bad choice, yay!!
+                if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
+                    if (moveLeftPoints > 0) {
+                        LeftPointsHigher = true;
+                    } else if(moveRightPoints > 0) {
+                        RightPointsHigher = true;
+                    } else if (moveDownPoints > 0) {
+                        DownPointsHigher = true;
+                    } else {
+                        if (moveUpPoints > 0) {
+                            UpPointsHigher = true;
+                        }
+                    }
+                }
                 i += 1;
             })
         })
