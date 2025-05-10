@@ -200,37 +200,20 @@ export default function move(gameState){
     // avoid hazards
     let hazards = gameState.board.hazards;
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
-            // I took this out, safeMoves.length != 0, because I am able to account for it using points
-            // to make better decisions instead of by completely ignoring a decision, also this makes my
-            // game worse which is another reason to take it out!
-            // if (safeMoves.length != 0) {
                 hazards.forEach((h) => {
-                    if (myHead.x == h.x -1 && myHead.y == h.y && myHead.x == h.x +1 && myHead.y == h.y && myHead.y == h.y -1 && myHead.x == h.x && myHead.y == h.y +1 && myHead.x == h.x) {
-                        // There is no way to break a forEach loop other than to throw in an error
-                    } else {
-                        // instead of avoiding the hazards at all cost until there are no more safe moves
-                        // I am just making it a worser choice, because sometimes going into the hazards is actually
-                        // a good think, as avoiding it at all costs until there are no more safe moves is actually kind of 
-                        // problematic, and I have tested it as well and it is true.
                         if (myHead.x == h.x -1 && myHead.y == h.y) {
-                            // moveSafety.right = false;
                             moveRightPoints -= 3;
                         }
                         if (myHead.x == h.x +1 && myHead.y == h.y) {
-                            // moveSafety.left = false;
                             moveLeftPoints -= 3;
                         }
                         if (myHead.y == h.y -1 && myHead.x == h.x) {
-                            // moveSafety.up = false;
                             moveUpPoints -= 3;
                         }
                         if (myHead.y == h.y +1 && myHead.x == h.x) {
-                            // moveSafety.down = false;
                             moveDownPoints -= 3;
                         }
-                    }
                 })
-            // }
     
 
     // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
@@ -371,12 +354,30 @@ export default function move(gameState){
         })
     })
 
+    // the punishments here for staying in the hazards will be less since I am in a dire situation 
+    // and don't have many moves I can make and sometimes I may need to stay in the hazards to eat food
+    hazards.forEach((h) => {
+        if (myHead.x == h.x -1 && myHead.y == h.y) {
+            moveRightPoints -= 1;
+        }
+        if (myHead.x == h.x +1 && myHead.y == h.y) {
+            moveLeftPoints -= 1;
+        }
+        if (myHead.y == h.y -1 && myHead.x == h.x) {
+            moveUpPoints -= 1;
+        }
+        if (myHead.y == h.y +1 && myHead.x == h.x) {
+            moveDownPoints -= 1;
+        }
+})
+
+    // this marks the end of the dire situation and safemoves.length == 0
 
         }
         // filters safe moves before making a final move
         safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
 
-        // makes a smart move using safe moves and direction points
+        // makes smart moves using safe moves and direction points
         /* EDIT THIS */
         snakes.forEach((snake) => {
             const snakeBody = snake.body;
