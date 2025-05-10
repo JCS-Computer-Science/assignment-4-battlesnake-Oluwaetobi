@@ -3,6 +3,7 @@ export default function move(gameState){
         "height" : gameState.board.height,
         "width" : gameState.board.width
     }
+    // Don't change the order of this or else it will mess us the procedures and the AI guesses and picking
     let moveSafety = {
         up: true,
         down: true,
@@ -663,6 +664,7 @@ export default function move(gameState){
         nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
     }
     // DON'T CHANGE THIS!!!!!! ONLY REVIEW IT!!
+    // Don't change the order of this or else it will mess us the procedures and the AI guesses and picking
     if (safeMoves.length > 1) {
         // since the start is always going to be 0, I don't need to change anything here
         if (UpPointsHigher == true && moveSafety.up == true) {
