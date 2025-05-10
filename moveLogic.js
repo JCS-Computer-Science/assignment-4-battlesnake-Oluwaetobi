@@ -29,7 +29,10 @@ export default function move(gameState){
     let myHead = gameState.you.body[0];
     let myNeck = gameState.you.body[1];
    
-    if (gameState.you.health < 20) {
+    // DON'T CHANGE THIS, 30 is the sweet spot!!
+    let superDuperHungry = 30;
+    let hungry = 60;
+    if (gameState.you.health < superDuperHungry) {
         superDuperReallyHungry = true;
     }
     if (myNeck.x < myHead.x && myHead.y == myNeck.y) {        // Neck is left of head, don't move left
@@ -233,8 +236,8 @@ export default function move(gameState){
     // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     // gameState.board.food contains an array of food coordinates https://docs.battlesnake.com/api/objects/board
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
-    // this avoids food when it's health is greater than 50
-    if (gameState.you.health > 50) {
+    // this avoids food when it's health is greater than 60
+    if (gameState.you.health > hungry) {
         let food = gameState.board.food;
         food.forEach((f) => {
             /* if my safe moves are less than 1 or equal to one then we don't need to try and avoid more stuff
@@ -394,7 +397,7 @@ export default function move(gameState){
                 // increases points for being hungry and having food close to you
                 // Don't remove "if (i < 1)" it is extremely IMPORTANT!!
                 if (i < 1) {
-                    if (gameState.you.health < 50) {
+                    if (gameState.you.health < hungry) {
                         let food = gameState.board.food;
                         food.forEach((f) => {
                             /* if my safe moves are less than 1 or equal to one then we don't need to try and avoid more stuff
@@ -419,7 +422,7 @@ export default function move(gameState){
 
                 // increases points by a lot for being really SUPER DUPER HUNGRY and having food close to you
                 if (i < 1) {
-                    if (gameState.you.health < 20) {
+                    if (gameState.you.health < superDuperHungry) {
                         superDuperReallyHungry = true;
                         let food = gameState.board.food;
                         food.forEach((f) => {
