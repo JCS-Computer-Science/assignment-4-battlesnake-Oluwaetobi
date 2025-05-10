@@ -107,7 +107,7 @@ export default function move(gameState){
     // gameState.board.snakes contains an array of enemy snake objects, which includes their coordinates
     // https://docs.battlesnake.com/api/objects/battlesnake
    
-    // checks to see if I am the longest so I can no whether I have to avoid other snakes
+    // checks to see if I am the longest so I can no whether I have to avoid other snakes or not and it works now!!
     snakes = gameState.board.snakes;
 
     let amountOfSnakes1 = 0;
@@ -129,33 +129,11 @@ export default function move(gameState){
         console.log("Am I the Longest? " + IamTheLongest);
         console.log("How many Snakes are there?: " + snakes.length);
         console.log("AmountOfSnakes: " + amountOfSnakes1);
+        // console.log("i: " + i);
         console.log("Check Amount of Snakes: " + checkAmountOfSnakes1);
         console.log("");
 
     }
-    /** Unfortunately this section of code didn't work */
-
-    // snakes.forEach((snake) => {
-    //     const snakeLength = snake.length;
-    //     let amountOfSnakes = 0;
-    //     let check = 0;
-
-    //     snakeLength.forEach((l) => {
-    //         if (snake.id == gameState.you.id){
-    //             return;
-    //         }
-    //         amountOfSnakes += 1;
-    //         if (gameState.you.length > h) {
-    //             check += 1;
-    //         }
-
-    //     })
-
-    //     if (amountOfSnakes == check) {
-    //         IamTheLongest = true;
-    //     }
-        
-    // })
 
     snakes = gameState.board.snakes;
 
