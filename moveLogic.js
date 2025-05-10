@@ -502,19 +502,23 @@ export default function move(gameState){
                  
                 let deadEndPunishmentPoints = 2;
 
+                // GENERATIVE AI GUESSES
+
+                let AIbadMovePunishment = 2;
+
                 if (moveSafety.up == true ) {
                     if (myHead.y == b.y -2 && myHead.x == b.x) {
-                        moveUpPoints -=1;
+                        moveUpPoints -= AIbadMovePunishment;
                     }
                     // this helps me to get out of longer loops of my body
                     if (myHead.y == b.y -3 && myHead.x == b.x) {
-                        moveUpPoints -=1;
+                        moveUpPoints -=AIbadMovePunishment;
                     }
                     if (myHead.y == b.y -2 && myHead.x == b.x + 1) {
-                        moveUpPoints -=1;
+                        moveUpPoints -=AIbadMovePunishment;
                     }
                     if (myHead.y == b.y -2 && myHead.x == b.x - 1) {
-                        moveUpPoints -=1;
+                        moveUpPoints -=AIbadMovePunishment;
                     }
                     if (i < 1) {
                         // I need this i because it calls it too many times since the bounds are in the same
@@ -528,17 +532,17 @@ export default function move(gameState){
                 }
                 if (moveSafety.down == true ) {
                     if (myHead.y == b.y +2 && myHead.x == b.x) {
-                        moveDownPoints -= 1;
+                        moveDownPoints -= AIbadMovePunishment;
                     }
                     // this helps me to get out of longer loops of my body
                     if (myHead.y == b.y +3 && myHead.x == b.x) {
-                        moveDownPoints -= 1;
+                        moveDownPoints -= AIbadMovePunishment;
                     }
                     if (myHead.y == b.y +2 && myHead.x == b.x + 1) {
-                        moveDownPoints -= 1;
+                        moveDownPoints -= AIbadMovePunishment;
                     }
                     if (myHead.y == b.y +2 && myHead.x == b.x - 1) {
-                        moveDownPoints -= 1;
+                        moveDownPoints -= AIbadMovePunishment;
                     }
                     if (i < 1) {
                         // I need this i because it calls it too many times since the bounds are in the same
@@ -552,17 +556,17 @@ export default function move(gameState){
                 }
                 if (moveSafety.left == true ) {
                     if (myHead.x == b.x +2 && myHead.y == b.y) {
-                        moveLeftPoints -= 1;
+                        moveLeftPoints -= AIbadMovePunishment;
                     }
                     // this helps me to get out of longer loops of my body
                     if (myHead.x == b.x +3 && myHead.y == b.y) {
-                        moveLeftPoints -= 1;
+                        moveLeftPoints -= AIbadMovePunishment;
                     }
                     if (myHead.x == b.x +2 && myHead.y == b.y + 1) {
-                        moveLeftPoints -= 1;
+                        moveLeftPoints -= AIbadMovePunishment;
                     }
                     if (myHead.x == b.x +2 && myHead.y == b.y - 1) {
-                        moveLeftPoints -= 1;
+                        moveLeftPoints -= AIbadMovePunishment;
                     }
                     if (i < 1) {
                         // I need this i because it calls it too many times since the bounds are in the same
@@ -576,17 +580,17 @@ export default function move(gameState){
                 }
                 if (moveSafety.right == true ) {
                     if (myHead.x == b.x -2 && myHead.y == b.y) {
-                        moveRightPoints -= 1;
+                        moveRightPoints -= AIbadMovePunishment;
                     }
                     // this helps me to get out of longer loops of my body
                     if (myHead.x == b.x -3 && myHead.y == b.y) {
-                        moveRightPoints -= 1;
+                        moveRightPoints -= AIbadMovePunishment;
                     }
                     if (myHead.x == b.x -2 && myHead.y == b.y + 1) {
-                        moveRightPoints -= 1;
+                        moveRightPoints -= AIbadMovePunishment;
                     }
                     if (myHead.x == b.x -2 && myHead.y == b.y - 1) {
-                        moveRightPoints -= 1;
+                        moveRightPoints -= AIbadMovePunishment;
                     }
                     if (i < 1) {
                         // I need this i because it calls it too many times since the bounds are in the same
