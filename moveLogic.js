@@ -241,19 +241,19 @@ export default function move(gameState){
             if (safeMoves.length > 1) {
                 if (myHead.x == f.x -1 && myHead.y == f.y) {
                     // moveSafety.right = false;
-                    moveRightPoints -= 3;
+                    moveRightPoints -= 1;
                 }
                 if (myHead.x == f.x +1 && myHead.y == f.y) {
                     // moveSafety.left = false;
-                    moveLeftPoints -= 3;
+                    moveLeftPoints -= 1;
                 }
                 if (myHead.y == f.y -1 && myHead.x == f.x) {
                     // moveSafety.up = false;
-                    moveUpPoints -= 3;
+                    moveUpPoints -= 1;
                 }
                 if (myHead.y == f.y +1 && myHead.x == f.x) {
                     // moveSafety.down = false;
-                    moveDownPoints -= 3;
+                    moveDownPoints -= 1;
                 }
             }
         })
