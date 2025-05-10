@@ -113,18 +113,24 @@ export default function move(gameState){
     let amountOfSnakes1 = 0;
     let checkAmountOfSnakes1 = 0;
     for (let i = 0; i < snakes.length; i ++) {
-        if (snakes.id == gameState.you.id) {
+        if (snakes[i].id == gameState.you.id) {
             
         } else {
             amountOfSnakes1 += 1
-            if(gameState.you.length > snakes.length[i]) {
+            if(gameState.you.length > snakes[i].length) {
                 checkAmountOfSnakes1 +=1;
             }
         }
-        if (i - 1 == snakes.length && amountOfSnakes1 == checkAmountOfSnakes1) {
+        if (i + 1 == snakes.length && amountOfSnakes1 == checkAmountOfSnakes1) {
             IamTheLongest = true;
         }
+        console.log("");
         console.log("snakes IDs: " + snakes[i].id);
+        console.log("Am I the Longest? " + IamTheLongest);
+        console.log("How many Snakes are there?: " + snakes.length);
+        console.log("AmountOfSnakes: " + amountOfSnakes1);
+        console.log("Check Amount of Snakes: " + checkAmountOfSnakes1);
+        console.log("");
 
     }
     /** Unfortunately this section of code didn't work */
