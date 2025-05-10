@@ -10,6 +10,9 @@ export default function move(gameState){
         left: true,
         right: true
     };
+
+    let IamTheLongest = false;
+
     let moveUpPoints = 0;
     let moveDownPoints = 0;
     let moveLeftPoints = 0;
@@ -19,6 +22,8 @@ export default function move(gameState){
     let DownPointsHigher = false;
     let LeftPointsHigher = false;
     let RightPointsHigher = false;
+
+    let snakes = gameState.board.snakes;
 
     let superDuperReallyHungry = false;
     // I am making nextmove and safemoves a global varaible since I am calling it more than once
@@ -102,7 +107,30 @@ export default function move(gameState){
     // gameState.board.snakes contains an array of enemy snake objects, which includes their coordinates
     // https://docs.battlesnake.com/api/objects/battlesnake
    
-    let snakes = gameState.board.snakes;
+    // checks to see if I am the longest so I can no whether I have to avoid other snakes
+    snakes.forEach((snake) => {
+        const snakeHealth = snake.health;
+        let amountOfSnakes = 0;
+        let check = 0;
+
+        snakeHealth.forEach((h) => {
+            if (snake.id == gameState.you.id){
+                return;
+            }
+            amountOfSnakes += 1;
+            if (gameState.you.health > h) {
+                check += 1;
+            }
+
+        })
+
+        if (amountOfSnakes == check) {
+            IamTheLongest = true;
+        }
+        
+    })
+
+    snakes = gameState.board.snakes;
 
 
     snakes.forEach((snake) => {
@@ -130,55 +158,59 @@ export default function move(gameState){
 
         let collisionPunishment = 4;
 
-        // keeps my snake from colliding with others snake's heads that are 2 units away
-        //  I am going to remove points instead of making moves false, because I don't know for sure
-        // that the snake will move in that direction
-        if (myHead.x == snakeBody[0].x -2 && myHead.y == snakeBody[0].y) {
-            moveRightPoints -= collisionPunishment;
-        }
-        if (myHead.x == snakeBody[0].x +2 && myHead.y == snakeBody[0].y) {
-            moveLeftPoints -= collisionPunishment;
-        }
-        if (myHead.y == snakeBody[0].y -2 && myHead.x == snakeBody[0].x) {
-            moveUpPoints -= collisionPunishment;
-        }
-        if (myHead.y == snakeBody[0].y +2 && myHead.x == snakeBody[0].x) {
-            moveDownPoints -= collisionPunishment;
-        }
-        // keeps my snake from colliding with other snakes by predicting their future moves
-        //  I am going to remove points instead of making moves false, because I don't know for sure
-        // that the snake will move in that direction
-        if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y -1) {
-            moveUpPoints -= collisionPunishment;
-            moveRightPoints -= collisionPunishment;
-        }
-        if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y + 1) {
-            moveRightPoints -= collisionPunishment;
-            moveDownPoints -= collisionPunishment;
-        }
-        if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y - 1) {
-            moveUpPoints -= collisionPunishment;
-            moveLeftPoints -= collisionPunishment;
-        }
-        if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y + 1) {
-            moveLeftPoints -= collisionPunishment;
-            moveDownPoints -= collisionPunishment;
-        }
-        if (myHead.y == snakeBody[0].y -1 && myHead.x == snakeBody[0].x -1) {
-            moveUpPoints -= collisionPunishment;
-            moveRightPoints -= collisionPunishment;
-        }
-        if (myHead.y == snakeBody[0].y -1 && myHead.x == snakeBody[0].x + 1) {
-            moveUpPoints -= collisionPunishment;
-            moveLeftPoints -= collisionPunishment;
-        }
-        if (myHead.y == snakeBody[0].y +1 && myHead.x == snakeBody[0].x -1) {
-            moveDownPoints -= collisionPunishment;
-            moveRightPoints -= collisionPunishment;
-        }
-        if (myHead.y == snakeBody[0].y +1 && myHead.x == snakeBody[0].x + 1) {
-            moveDownPoints -= collisionPunishment;
-            moveLeftPoints -= collisionPunishment;
+        // only avoids other snakes heads if I am not the longest
+        if (IamTheLongest == false) {
+            // keeps my snake from colliding with others snake's heads that are 2 units away
+            //  I am going to remove points instead of making moves false, because I don't know for sure
+            // that the snake will move in that direction
+            if (myHead.x == snakeBody[0].x -2 && myHead.y == snakeBody[0].y) {
+                moveRightPoints -= collisionPunishment;
+            }
+            if (myHead.x == snakeBody[0].x +2 && myHead.y == snakeBody[0].y) {
+                moveLeftPoints -= collisionPunishment;
+            }
+            if (myHead.y == snakeBody[0].y -2 && myHead.x == snakeBody[0].x) {
+                moveUpPoints -= collisionPunishment;
+            }
+            if (myHead.y == snakeBody[0].y +2 && myHead.x == snakeBody[0].x) {
+                moveDownPoints -= collisionPunishment;
+            }
+            // keeps my snake from colliding with other snakes by predicting their future moves
+            //  I am going to remove points instead of making moves false, because I don't know for sure
+            // that the snake will move in that direction
+            if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y -1) {
+                moveUpPoints -= collisionPunishment;
+                moveRightPoints -= collisionPunishment;
+            }
+            if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y + 1) {
+                moveRightPoints -= collisionPunishment;
+                moveDownPoints -= collisionPunishment;
+            }
+            if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y - 1) {
+                moveUpPoints -= collisionPunishment;
+                moveLeftPoints -= collisionPunishment;
+            }
+            if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y + 1) {
+                moveLeftPoints -= collisionPunishment;
+                moveDownPoints -= collisionPunishment;
+            }
+            if (myHead.y == snakeBody[0].y -1 && myHead.x == snakeBody[0].x -1) {
+                moveUpPoints -= collisionPunishment;
+                moveRightPoints -= collisionPunishment;
+            }
+            if (myHead.y == snakeBody[0].y -1 && myHead.x == snakeBody[0].x + 1) {
+                moveUpPoints -= collisionPunishment;
+                moveLeftPoints -= collisionPunishment;
+            }
+            if (myHead.y == snakeBody[0].y +1 && myHead.x == snakeBody[0].x -1) {
+                moveDownPoints -= collisionPunishment;
+                moveRightPoints -= collisionPunishment;
+            }
+            if (myHead.y == snakeBody[0].y +1 && myHead.x == snakeBody[0].x + 1) {
+                moveDownPoints -= collisionPunishment;
+                moveLeftPoints -= collisionPunishment;
+            }
+
         }
     })
 
