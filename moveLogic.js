@@ -665,6 +665,29 @@ export default function move(gameState){
                     }
                 }
 
+                // sometimes the benchmark is less than -1 and this causes problems so I am doing add this;
+                if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
+                    for (let i = 2; i < 7; i++) {
+                        if (moveLeftPoints >= -i) {
+                            LeftPointsHigher = true;
+                        } else if(moveRightPoints >= -i) {
+                            RightPointsHigher = true;
+                        } else if (moveDownPoints >= -i) {
+                            DownPointsHigher = true;
+                        } else {
+                            if (moveUpPoints >= -i) {
+                                UpPointsHigher = true;
+                            }
+                        }
+
+                        if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
+
+                        } else {
+                            break;
+                        }
+                    }
+                }
+
                 // DON'T EDIT THIS, ONLY REVIEW IT!!!
                 // sometimes that above code still ends up having two ties, so I am going to break that
                 // and choose the best choice
