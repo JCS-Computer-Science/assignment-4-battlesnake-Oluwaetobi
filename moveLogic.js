@@ -72,8 +72,6 @@ export default function move(gameState){
     // this for loop makes sure that the snake doesn't collide with any of the segments of it's body
     if ( gameState.you.body.length > 4) {
         for (let i = 2; i < gameState.you.body.length; i++) {
-            // console.log(i);
-            // console.log(gameState.you.body.length);
             if (i >= gameState.you.body.length -1) {
                 break;
             }
@@ -126,72 +124,52 @@ export default function move(gameState){
         let collisionPunishment = 4;
 
         // keeps my snake from colliding with others snake's heads that are 2 units away
-        //  I am going to remove points instead of making them false, because I don't know for sure
+        //  I am going to remove points instead of making moves false, because I don't know for sure
         // that the snake will move in that direction
         if (myHead.x == snakeBody[0].x -2 && myHead.y == snakeBody[0].y) {
-            // moveSafety.right = false;
             moveRightPoints -= collisionPunishment;
         }
         if (myHead.x == snakeBody[0].x +2 && myHead.y == snakeBody[0].y) {
-            // moveSafety.left = false;
             moveLeftPoints -= collisionPunishment;
         }
         if (myHead.y == snakeBody[0].y -2 && myHead.x == snakeBody[0].x) {
-            // moveSafety.up = false;
             moveUpPoints -= collisionPunishment;
         }
         if (myHead.y == snakeBody[0].y +2 && myHead.x == snakeBody[0].x) {
-            // moveSafety.down = false;
             moveDownPoints -= collisionPunishment;
         }
         // keeps my snake from colliding with other snakes by predicting their future moves
-        //  I am going to remove points instead of making them false, because I don't know for sure
+        //  I am going to remove points instead of making moves false, because I don't know for sure
         // that the snake will move in that direction
         if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y -1) {
-            // moveSafety.up = false;
-            // moveSafety.right = false;
             moveUpPoints -= collisionPunishment;
             moveRightPoints -= collisionPunishment;
         }
         if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y + 1) {
-            // moveSafety.right = false;
-            // moveSafety.down = false;
             moveRightPoints -= collisionPunishment;
             moveDownPoints -= collisionPunishment;
         }
         if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y - 1) {
-            // moveSafety.up = false;
-            // moveSafety.left = false;
             moveUpPoints -= collisionPunishment;
             moveLeftPoints -= collisionPunishment;
         }
         if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y + 1) {
-            // moveSafety.left = false;
-            // moveSafety.down = false;
             moveLeftPoints -= collisionPunishment;
             moveDownPoints -= collisionPunishment;
         }
         if (myHead.y == snakeBody[0].y -1 && myHead.x == snakeBody[0].x -1) {
-            // moveSafety.up = false;
-            // moveSafety.right = false;
             moveUpPoints -= collisionPunishment;
             moveRightPoints -= collisionPunishment;
         }
         if (myHead.y == snakeBody[0].y -1 && myHead.x == snakeBody[0].x + 1) {
-            // moveSafety.up = false;
-            // moveSafety.left = false;
             moveUpPoints -= collisionPunishment;
             moveLeftPoints -= collisionPunishment;
         }
         if (myHead.y == snakeBody[0].y +1 && myHead.x == snakeBody[0].x -1) {
-            // moveSafety.down = false;
-            // moveSafety.right = false;
             moveDownPoints -= collisionPunishment;
             moveRightPoints -= collisionPunishment;
         }
         if (myHead.y == snakeBody[0].y +1 && myHead.x == snakeBody[0].x + 1) {
-            // moveSafety.down = false;
-            // moveSafety.left = false;
             moveDownPoints -= collisionPunishment;
             moveLeftPoints -= collisionPunishment;
         }
@@ -227,19 +205,15 @@ export default function move(gameState){
              or else I will lose and accidentally kill myself, it will be too much       */
             if (safeMoves.length > 1) {
                 if (myHead.x == f.x -1 && myHead.y == f.y) {
-                    // moveSafety.right = false;
                     moveRightPoints -= 1;
                 }
                 if (myHead.x == f.x +1 && myHead.y == f.y) {
-                    // moveSafety.left = false;
                     moveLeftPoints -= 1;
                 }
                 if (myHead.y == f.y -1 && myHead.x == f.x) {
-                    // moveSafety.up = false;
                     moveUpPoints -= 1;
                 }
                 if (myHead.y == f.y +1 && myHead.x == f.x) {
-                    // moveSafety.down = false;
                     moveDownPoints -= 1;
                 }
             }
@@ -253,6 +227,7 @@ export default function move(gameState){
     //.filter() filters the array based on the function provided as an argument (using arrow function syntax here)
     //In this case we want to filter out any of these directions for which moveSafety[direction] == false
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
+
     if (safeMoves.length == 0) {
             // ONLY FOR OUR FAILED DECISIONS, RESETS PART OF OUR CODE!!
             console.log(`MOVE ${gameState.turn}: WARNING!!! No safe moves detected! CHECKING AGAIN!!`);
@@ -301,8 +276,6 @@ export default function move(gameState){
     // this for loop makes sure that the snake doesn't collide with any of the segments of it's body
     if ( gameState.you.body.length > 4) {
         for (let i = 2; i < gameState.you.body.length; i++) {
-            // console.log(i);
-            // console.log(gameState.you.body.length);
             if (i >= gameState.you.body.length -1) {
                 break;
             }
@@ -389,12 +362,9 @@ export default function move(gameState){
             snakeBody.forEach((b) => {
                 /* I am changing this only for this specific section ONLY because this will help me stop getting stuck in dead ends in my body
                 This kind of works like recursion, but I need to add more if statements here to make it smarter*/
-                // if (snake.id == gameState.you.id){
-                //     return;
-                // }
+
                 /* ADD More IF statements to make smart choices smarter*/
-
-
+                
                 // increases points for being hungry and having food close to you
                 // Don't remove "if (i < 1)" it is extremely IMPORTANT!!
                 if (i < 1) {
