@@ -506,6 +506,10 @@ export default function move(gameState){
                     if (myHead.y == b.y -2 && myHead.x == b.x) {
                         moveUpPoints -=1;
                     }
+                    // this helps me to get out of longer loops of my body
+                    if (myHead.y == b.y -3 && myHead.x == b.x) {
+                        moveUpPoints -=1;
+                    }
                     if (myHead.y == b.y -2 && myHead.x == b.x + 1) {
                         moveUpPoints -=1;
                     }
@@ -524,6 +528,10 @@ export default function move(gameState){
                 }
                 if (moveSafety.down == true ) {
                     if (myHead.y == b.y +2 && myHead.x == b.x) {
+                        moveDownPoints -= 1;
+                    }
+                    // this helps me to get out of longer loops of my body
+                    if (myHead.y == b.y +3 && myHead.x == b.x) {
                         moveDownPoints -= 1;
                     }
                     if (myHead.y == b.y +2 && myHead.x == b.x + 1) {
@@ -546,6 +554,10 @@ export default function move(gameState){
                     if (myHead.x == b.x +2 && myHead.y == b.y) {
                         moveLeftPoints -= 1;
                     }
+                    // this helps me to get out of longer loops of my body
+                    if (myHead.x == b.x +3 && myHead.y == b.y) {
+                        moveLeftPoints -= 1;
+                    }
                     if (myHead.x == b.x +2 && myHead.y == b.y + 1) {
                         moveLeftPoints -= 1;
                     }
@@ -564,6 +576,10 @@ export default function move(gameState){
                 }
                 if (moveSafety.right == true ) {
                     if (myHead.x == b.x -2 && myHead.y == b.y) {
+                        moveRightPoints -= 1;
+                    }
+                    // this helps me to get out of longer loops of my body
+                    if (myHead.x == b.x -3 && myHead.y == b.y) {
                         moveRightPoints -= 1;
                     }
                     if (myHead.x == b.x -2 && myHead.y == b.y + 1) {
