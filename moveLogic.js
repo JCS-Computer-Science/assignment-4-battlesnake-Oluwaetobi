@@ -646,6 +646,34 @@ export default function move(gameState){
                         }
                     }
                 }
+
+                // DON'T EDIT THIS, ONLY REVIEW IT!!!
+                // sometimes that above code still ends up having two ties, so I am going to break that
+                // and choose the best choice
+                // 1st bracket
+                if (UpPointsHigher == true && DownPointsHigher == true && moveDownPoints > moveUpPoints) {
+                    UpPointsHigher = false;
+                }
+                if (DownPointsHigher == true && LeftPointsHigher == true && moveLeftPoints > moveDownPoints) {
+                    DownPointsHigher = false;
+                }
+                if (LeftPointsHigher == true && RightPointsHigher == true && moveRightPoints > moveLeftPoints) {
+                    LeftPointsHigher = false;
+                }
+
+                // 2nd bracket
+                if (UpPointsHigher == true && LeftPointsHigher == true && moveLeftPoints > moveUpPoints) {
+                    UpPointsHigher = false;
+                }
+                if (UpPointsHigher == true && RightPointsHigher == true && moveRightPoints > moveUpPoints) {
+                    UpPointsHigher = false;
+                }
+
+                // 3rd bracket
+                if (DownPointsHigher == true && RightPointsHigher == true && moveRightPoints > moveDownPoints) {
+                    DownPointsHigher = false;
+                }
+
                 i += 1;
             })
         })
