@@ -108,27 +108,47 @@ export default function move(gameState){
     // https://docs.battlesnake.com/api/objects/battlesnake
    
     // checks to see if I am the longest so I can no whether I have to avoid other snakes
-    snakes.forEach((snake) => {
-        const snakeHealth = snake.health;
-        let amountOfSnakes = 0;
-        let check = 0;
+    snakes = gameState.board.snakes;
 
-        snakeHealth.forEach((h) => {
-            if (snake.id == gameState.you.id){
-                return;
+    let amountOfSnakes1 = 0;
+    let checkAmountOfSnakes1 = 0;
+    for (let i = 0; i < 3; i ++) {
+        if (snakes.id == gameState.you.id) {
+            
+        } else {
+            amountOfSnakes1 += 1
+            if(gameState.you.length > snakes.length[i]) {
+                checkAmountOfSnakes1 +=1;
             }
-            amountOfSnakes += 1;
-            if (gameState.you.health > h) {
-                check += 1;
-            }
-
-        })
-
-        if (amountOfSnakes == check) {
+        }
+        if (i == 2 && amountOfSnakes1 == checkAmountOfSnakes1) {
             IamTheLongest = true;
         }
+
+    }
+    /** Unfortunately this section of code didn't work */
+
+    // snakes.forEach((snake) => {
+    //     const snakeLength = snake.length;
+    //     let amountOfSnakes = 0;
+    //     let check = 0;
+
+    //     snakeLength.forEach((l) => {
+    //         if (snake.id == gameState.you.id){
+    //             return;
+    //         }
+    //         amountOfSnakes += 1;
+    //         if (gameState.you.length > h) {
+    //             check += 1;
+    //         }
+
+    //     })
+
+    //     if (amountOfSnakes == check) {
+    //         IamTheLongest = true;
+    //     }
         
-    })
+    // })
 
     snakes = gameState.board.snakes;
 
