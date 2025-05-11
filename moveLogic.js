@@ -37,11 +37,12 @@ export default function move(gameState){
    
     // DON'T CHANGE THIS, 30 is the sweet spot!!
     let superDuperHungry = 30;
+    // Changing this means nothing, please go to lines 62-66
     let hungry = 75;
 
     let eatAggressivelyUntilIamThisLong = 7;
 
-    // checks to see if I am the longest are not to know whether I should eat food agresssively or not
+    // checks to see if I am the longest are not to know whether I should eat food agressively or not
     let amountOfSnakes1 = 0;
     let checkAmountOfSnakes1 = 0;
     for (let i = 0; i < snakes.length; i ++) {
