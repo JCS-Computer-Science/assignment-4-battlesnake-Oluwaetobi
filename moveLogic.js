@@ -12,6 +12,7 @@ export default function move(gameState){
     };
 
     let IamTheLongest = false;
+    let killReward = 2;
 
     let moveUpPoints = 0;
     let moveDownPoints = 0;
@@ -217,6 +218,22 @@ export default function move(gameState){
             }
 
         }
+
+        // helps me kill other snakes if I am the longest
+        if (IamTheLongest == true) {
+            if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y + 1) {
+                moveRightPoints += killReward;
+            }
+            if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y + 1) {
+                moveLeftPoints += killReward;
+            }
+            if (myHead.y == snakeBody[0].y - 1 && myHead.x == snakeBody[0].x + 1) {
+                moveUpPoints += killReward;
+            }
+            if (myHead.y == snakeBody[0].y + 1 && myHead.x == snakeBody[0].x + 1) {
+                moveDownPoints += killReward;
+            }
+        }
     })
 
     // avoid hazards
@@ -385,6 +402,34 @@ export default function move(gameState){
         }
         if (myHead.y == h.y +1 && myHead.x == h.x) {
             moveDownPoints -= 1;
+        }
+
+        // helps me get out of hazards I am 1 unit into
+        if (myHead.x != h.x -1 && myHead.y != h.y) {
+            moveRightPoints += 1;
+        }
+        if (myHead.x != h.x +1 && myHead.y != h.y) {
+            moveLeftPoints += 1;
+        }
+        if (myHead.y != h.y -1 && myHead.x != h.x) {
+            moveUpPoints += 1;
+        }
+        if (myHead.y != h.y +1 && myHead.x != h.x) {
+            moveDownPoints += 1;
+        }
+
+        // helps me get out of hazards that I am 2 units into
+        if (myHead.x != h.x -2 && myHead.y != h.y) {
+            moveRightPoints += 1;
+        }
+        if (myHead.x != h.x +2 && myHead.y != h.y) {
+            moveLeftPoints += 1;
+        }
+        if (myHead.y != h.y -2 && myHead.x != h.x) {
+            moveUpPoints += 1;
+        }
+        if (myHead.y != h.y +2 && myHead.x != h.x) {
+            moveDownPoints += 1;
         }
 })
 
