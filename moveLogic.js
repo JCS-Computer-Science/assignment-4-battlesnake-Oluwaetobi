@@ -10,44 +10,51 @@ export default function move(gameState){
         left: true,
         right: true
     };
-
+ 
+ 
     let IamTheLongest = false;
     let killReward = 3;
-
+ 
+ 
     let moveUpPoints = 0;
     let moveDownPoints = 0;
     let moveLeftPoints = 0;
     let moveRightPoints = 0;
-
+ 
+ 
     let UpPointsHigher = false;
     let DownPointsHigher = false;
     let LeftPointsHigher = false;
     let RightPointsHigher = false;
-
+ 
+ 
     let snakes = gameState.board.snakes;
-
+ 
+ 
     let superDuperReallyHungry = false;
     // I am making nextmove and safemoves a global varaible since I am calling it more than once
     let safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
     let nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
-   
+  
     // We've included code to prevent your Battlesnake from moving backwards
     let myHead = gameState.you.body[0];
     let myNeck = gameState.you.body[1];
-   
+  
     // DON'T CHANGE THIS, 30 is the sweet spot!!
     let superDuperHungry = 30;
     // Changing this means nothing, please go to lines 62-66
     let hungry = 75;
-
+ 
+ 
     let eatAggressivelyUntilIamThisLong = 7;
-
+ 
+ 
     // checks to see if I am the longest are not to know whether I should eat food agressively or not
     let amountOfSnakes1 = 0;
     let checkAmountOfSnakes1 = 0;
     for (let i = 0; i < snakes.length; i ++) {
         if (snakes[i].id == gameState.you.id) {
-            
+           
         } else {
             amountOfSnakes1 += 1
             if(gameState.you.length > snakes[i].length) {
@@ -58,14 +65,23 @@ export default function move(gameState){
             IamTheLongest = true;
         }
     }
-    
+   
     if (IamTheLongest == true) {
-        hungry = 80;
+        if (gameState.you.length < 13) {
+            hungry = 80;
+        } else {
+            hungry = 60;
+        }
     } else {
-        hungry = 101;
+        if (gameState.you.length < 13) {
+            hungry = 101;
+        } else {
+            hungry = 80;
+        }
     }
-
-    /* I am doing this because of all those snakes that keep trying to kill me, I although I will only eat food 
+ 
+ 
+    /* I am doing this because of all those snakes that keep trying to kill me, I although I will only eat food
     agressively until my length is higher than 7 because once your body gets longer that helps shield you
     from getting killed. Why thank you Coreyja, waryferryman, and wrenger, I'll beat you guys this time!! */
     if (gameState.you.body.length < eatAggressivelyUntilIamThisLong ) {
@@ -76,17 +92,17 @@ export default function move(gameState){
     }
     if (myNeck.x < myHead.x && myHead.y == myNeck.y) {        // Neck is left of head, don't move left
         moveSafety.left = false;
-       
+      
     } else if (myNeck.x > myHead.x && myHead.y == myNeck.y) { // Neck is right of head, don't move right
         moveSafety.right = false;
-       
+      
     } else if (myNeck.y < myHead.y &&  myHead.x == myNeck.x) { // Neck is below head, don't move down
         moveSafety.down = false;
-       
+      
     } else if (myNeck.y > myHead.y && myHead.x == myNeck.x) { // Neck is above head, don't move up
         moveSafety.up = false;
     }
-   
+  
     // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
     // gameState.board contains an object representing the game board including its width and height
     // https://docs.battlesnake.com/api/objects/board
@@ -102,12 +118,14 @@ export default function move(gameState){
     if (myHead.y == gameBoardProperties.height -1) {
         moveSafety.up = false;
     }
-   
+  
     // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
     // gameState.you contains an object representing your snake, including its coordinates
     // https://docs.battlesnake.com/api/objects/battlesnake
-
-
+ 
+ 
+ 
+ 
     // this for loop makes sure that the snake doesn't collide with any of the segments of it's body
     if ( gameState.you.body.length > 4) {
         for (let i = 2; i < gameState.you.body.length; i++) {
@@ -128,20 +146,20 @@ export default function move(gameState){
             }
         }
     }
- 
-   
+  
     // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
     // gameState.board.snakes contains an array of enemy snake objects, which includes their coordinates
     // https://docs.battlesnake.com/api/objects/battlesnake
-   
+  
     // checks to see if I am the longest so I can no whether I have to avoid other snakes or not and it works now!!
     snakes = gameState.board.snakes;
-
+ 
+ 
     amountOfSnakes1 = 0;
     checkAmountOfSnakes1 = 0;
     for (let i = 0; i < snakes.length; i ++) {
         if (snakes[i].id == gameState.you.id) {
-            
+           
         } else {
             amountOfSnakes1 += 1
             if(gameState.you.length > snakes[i].length) {
@@ -159,16 +177,22 @@ export default function move(gameState){
         // console.log("i: " + i);
         console.log("Check Amount of Snakes: " + checkAmountOfSnakes1);
         console.log("");
-
+ 
+ 
     }
-
+ 
+ 
     snakes = gameState.board.snakes;
-
-
+ 
+ 
+ 
+ 
     snakes.forEach((snake) => {
         const snakeBody = snake.body;
-
-
+ 
+ 
+ 
+ 
         snakeBody.forEach((b) => {
             if (snake.id == gameState.you.id){
                 return;
@@ -187,9 +211,11 @@ export default function move(gameState){
                 moveSafety.down = false;
             }
         })
-
+ 
+ 
         let collisionPunishment = 5;
-
+ 
+ 
         // only avoids other snakes heads if I am not the longest
         if (IamTheLongest == false) {
             // keeps my snake from colliding with others snake's heads that are 2 units away
@@ -242,9 +268,11 @@ export default function move(gameState){
                 moveDownPoints -= collisionPunishment;
                 moveLeftPoints -= collisionPunishment;
             }
-
+ 
+ 
         }
-
+ 
+ 
         // helps me kill other snakes if I am the longest
         if (IamTheLongest == true) {
             if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y + 1) {
@@ -254,7 +282,8 @@ export default function move(gameState){
             if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y + 1) {
                 moveLeftPoints += killReward;
                 moveDownPoints += killReward;
-
+ 
+ 
             }
             if (myHead.y == snakeBody[0].y - 1 && myHead.x == snakeBody[0].x + 1) {
                 moveUpPoints += killReward;
@@ -266,7 +295,8 @@ export default function move(gameState){
             }
         }
     })
-
+ 
+ 
     // avoid hazards
     let hazards = gameState.board.hazards;
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
@@ -284,8 +314,9 @@ export default function move(gameState){
                             moveDownPoints -= 3;
                         }
                 })
-    
-
+   
+ 
+ 
     // TODO: Step 4 - Move towards food instead of random, to regain health and survive longer
     // gameState.board.food contains an array of food coordinates https://docs.battlesnake.com/api/objects/board
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
@@ -310,16 +341,17 @@ export default function move(gameState){
                 }
             }
         })
-        
-        
+       
+       
     }
     // Are there any safe moves left?
-   
+  
     //Object.keys(moveSafety) returns ["up", "down", "left", "right"]
     //.filter() filters the array based on the function provided as an argument (using arrow function syntax here)
     //In this case we want to filter out any of these directions for which moveSafety[direction] == false
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
-
+ 
+ 
     if (safeMoves.length == 0) {
             // ONLY FOR OUR FAILED DECISIONS, RESETS PART OF OUR CODE!!
             console.log(`MOVE ${gameState.turn}: WARNING!!! No safe moves detected! CHECKING AGAIN!!`);
@@ -330,20 +362,20 @@ export default function move(gameState){
                 right: true
             };
             // We've included code to prevent your Battlesnake from moving backwards
-   
+  
     if (myNeck.x < myHead.x && myHead.y == myNeck.y) {        // Neck is left of head, don't move left
         moveSafety.left = false;
-       
+      
     } else if (myNeck.x > myHead.x && myHead.y == myNeck.y) { // Neck is right of head, don't move right
         moveSafety.right = false;
-       
+      
     } else if (myNeck.y < myHead.y &&  myHead.x == myNeck.x) { // Neck is below head, don't move down
         moveSafety.down = false;
-       
+      
     } else if (myNeck.y > myHead.y && myHead.x == myNeck.x) { // Neck is above head, don't move up
         moveSafety.up = false;
     }
-   
+  
     // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
     // gameState.board contains an object representing the game board including its width and height
     // https://docs.battlesnake.com/api/objects/board
@@ -359,12 +391,14 @@ export default function move(gameState){
     if (myHead.y == gameBoardProperties.height -1) {
         moveSafety.up = false;
     }
-   
+  
     // TODO: Step 2 - Prevent your Battlesnake from colliding with itself
     // gameState.you contains an object representing your snake, including its coordinates
     // https://docs.battlesnake.com/api/objects/battlesnake
-
-
+ 
+ 
+ 
+ 
     // this for loop makes sure that the snake doesn't collide with any of the segments of it's body
     if ( gameState.you.body.length > 4) {
         for (let i = 2; i < gameState.you.body.length; i++) {
@@ -385,19 +419,22 @@ export default function move(gameState){
             }
         }
     }
- 
-   
+  
     // TODO: Step 3 - Prevent your Battlesnake from colliding with other Battlesnakes
     // gameState.board.snakes contains an array of enemy snake objects, which includes their coordinates
     // https://docs.battlesnake.com/api/objects/battlesnake
-   
+  
     snakes = gameState.board.snakes;
-
-
+ 
+ 
+ 
+ 
     snakes.forEach((snake) => {
         const snakeBody = snake.body;
-
-
+ 
+ 
+ 
+ 
         snakeBody.forEach((b) => {
             if (snake.id == gameState.you.id){
                 return;
@@ -418,8 +455,9 @@ export default function move(gameState){
             }
         })
     })
-
-    // the punishments here for staying in the hazards will be less since I am in a dire situation 
+ 
+ 
+    // the punishments here for staying in the hazards will be less since I am in a dire situation
     // and don't have many moves I can make and sometimes I may need to stay in the hazards to eat food
     hazards.forEach((h) => {
         if (myHead.x == h.x -1 && myHead.y == h.y) {
@@ -434,7 +472,8 @@ export default function move(gameState){
         if (myHead.y == h.y +1 && myHead.x == h.x) {
             moveDownPoints -= 1;
         }
-
+ 
+ 
         // helps me get out of hazards I am 1 unit into
         if (myHead.x != h.x -1 && myHead.y != h.y) {
             moveRightPoints += 1;
@@ -448,7 +487,8 @@ export default function move(gameState){
         if (myHead.y != h.y +1 && myHead.x != h.x) {
             moveDownPoints += 1;
         }
-
+ 
+ 
         // helps me get out of hazards that I am 2 units into
         if (myHead.x != h.x -2 && myHead.y != h.y) {
             moveRightPoints += 1;
@@ -462,29 +502,33 @@ export default function move(gameState){
         if (myHead.y != h.y +2 && myHead.x != h.x) {
             moveDownPoints += 1;
         }
-})
-
+ })
+ 
+ 
     // this marks the end of the dire situation and safemoves.length == 0
-
+ 
+ 
         }
         // filters safe moves before making a final move
         safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
-
+ 
+ 
         // makes smart moves using safe moves and direction points
         /* EDIT THIS */
         snakes.forEach((snake) => {
             const snakeBody = snake.body;
-            
+           
             // I need this i because it calls it too many times since the bounds are in the same
             // position all the time
             let i = 0;
-    
+   
             snakeBody.forEach((b) => {
                 /* I am changing this only for this specific section ONLY because this will help me stop getting stuck in dead ends in my body
                 This kind of works like recursion, but I need to add more if statements here to make it smarter*/
-
+ 
+ 
                 /* ADD More IF statements to make smart choices smarter*/
-                
+               
                 // increases points for being hungry and having food close to you
                 // Don't remove "if (i < 1)" it is extremely IMPORTANT!!
                 if (i < 1) {
@@ -506,11 +550,12 @@ export default function move(gameState){
                                     moveDownPoints += 3;
                                 }
                         })
-                        
-                        
+                       
+                       
                     }
                 }
-
+ 
+ 
                 // increases points by a lot for being really SUPER DUPER HUNGRY and having food close to you
                 if (i < 1) {
                     if (gameState.you.health < superDuperHungry) {
@@ -520,7 +565,7 @@ export default function move(gameState){
                             /* if my safe moves are less than 1 or equal to one then we don't need to try and avoid more stuff
                              or else I will lose and accidentally kill myself, it will be too much       */
                                 if (myHead.x == f.x -1 && myHead.y == f.y) {
-                                    // I will increase th points by 11 and not more than that, because eating food 
+                                    // I will increase th points by 11 and not more than that, because eating food
                                     // when really hungry could kill me on the next term, the benefit here doesn't always
                                     // outweight everything else, think logically here!!
                                     moveRightPoints += 11;
@@ -529,7 +574,7 @@ export default function move(gameState){
                                     moveSafety.right = true;
                                 }
                                 if (myHead.x == f.x +1 && myHead.y == f.y) {
-                                    // I will increase th points by 11 and not more than that, because eating food 
+                                    // I will increase th points by 11 and not more than that, because eating food
                                     // when really hungry could kill me on the next term, the benefit here doesn't always
                                     // outweight everything else, think logically here!!
                                     moveLeftPoints += 11;
@@ -538,7 +583,7 @@ export default function move(gameState){
                                     moveSafety.left = true;
                                 }
                                 if (myHead.y == f.y -1 && myHead.x == f.x) {
-                                    // I will increase th points by 11 and not more than that, because eating food 
+                                    // I will increase th points by 11 and not more than that, because eating food
                                     // when really hungry could kill me on the next term, the benefit here doesn't always
                                     // outweight everything else, think logically here!!
                                     moveUpPoints += 11;
@@ -547,7 +592,7 @@ export default function move(gameState){
                                     moveSafety.up = true;
                                 }
                                 if (myHead.y == f.y +1 && myHead.x == f.x) {
-                                    // I will increase th points by 11 and not more than that, because eating food 
+                                    // I will increase th points by 11 and not more than that, because eating food
                                     // when really hungry could kill me on the next term, the benefit here doesn't always
                                     // outweight everything else, think logically here!!
                                     moveDownPoints += 11;
@@ -556,11 +601,12 @@ export default function move(gameState){
                                     moveSafety.down = true;
                                 }
                         })
-                        
-                        
+                       
+                       
                     }
                 }
-
+ 
+ 
                 // takes away points for their safety being false, DO NOT CHANGE THIS!!!!!
                 let pointsRemovedForNotBeingSafe = 20;
                 // REALLY BAD CHOICES at -6 is THE SWEET SPOT DO NOT CHANGE THIS!!!!
@@ -579,7 +625,7 @@ export default function move(gameState){
                         moveRightPoints -= pointsRemovedForNotBeingSafe;
                     }
                 }
-                
+               
                 // rules out any real bad choices
                 // DO NOT CHANGE THIS!!!!
                 if (UpPointsHigher < reallyBadChoices) {
@@ -594,13 +640,16 @@ export default function move(gameState){
                 if (RightPointsHigher < reallyBadChoices) {
                     moveSafety.right = false;
                 }
-                 
+                
                 let deadEndPunishmentPoints = 2;
-
+ 
+ 
                 // GENERATIVE AI GUESSES
-
+ 
+ 
                 let AIbadMovePunishment = 2;
-
+ 
+ 
                 if (moveSafety.up == true ) {
                     if (myHead.y == b.y -2 && myHead.x == b.x) {
                         moveUpPoints -= AIbadMovePunishment;
@@ -623,7 +672,7 @@ export default function move(gameState){
                             moveUpPoints -= deadEndPunishmentPoints;
                         }
                     }
-                    
+                   
                 }
                 if (moveSafety.down == true ) {
                     if (myHead.y == b.y +2 && myHead.x == b.x) {
@@ -647,7 +696,7 @@ export default function move(gameState){
                             moveDownPoints -=deadEndPunishmentPoints;
                         }
                     }
-                    
+                   
                 }
                 if (moveSafety.left == true ) {
                     if (myHead.x == b.x +2 && myHead.y == b.y) {
@@ -671,7 +720,7 @@ export default function move(gameState){
                             moveLeftPoints -= deadEndPunishmentPoints;
                         }
                     }
-                    
+                   
                 }
                 if (moveSafety.right == true ) {
                     if (myHead.x == b.x -2 && myHead.y == b.y) {
@@ -695,35 +744,36 @@ export default function move(gameState){
                             moveRightPoints -= deadEndPunishmentPoints;
                         }
                     }
-        
+       
                 }
-                
+               
                 // checks which moves have higher points, DON'T CHANGE THIS!!!!!! ONLY REVIEW!!
                 if (moveSafety.up == true) {
                     if (moveUpPoints > moveRightPoints &&  moveUpPoints > moveLeftPoints && moveUpPoints > moveDownPoints) {
                         UpPointsHigher = true;
                     }
-
+ 
+ 
                 }
                 if (moveSafety.down == true) {
                     if (moveDownPoints > moveRightPoints && moveDownPoints > moveUpPoints && moveDownPoints > moveLeftPoints) {
                         DownPointsHigher = true;
                     }
-                    
+                   
                 }
                 if (moveSafety.left == true) {
                     if (moveLeftPoints > moveRightPoints && moveLeftPoints > moveUpPoints && moveLeftPoints > moveDownPoints) {
                         LeftPointsHigher = true;
                     }
-                    
+                   
                 }
                 if (moveSafety.right == true) {
                     if (moveRightPoints > moveLeftPoints && moveRightPoints > moveUpPoints && moveRightPoints > moveDownPoints) {
                         RightPointsHigher = true;
                     }
-                    
+                   
                 }
-            
+           
                 // sometimes none of the moves returns as true in that case I have to choose one of the moves that
                 // are greater than -1, at least it won't be an awfully bad choice, yay!!
                 // -1 is the sweet spot, DO NOT CHANGE THIS!!!!
@@ -755,15 +805,18 @@ export default function move(gameState){
                                 UpPointsHigher = true;
                             }
                         }
-
+ 
+ 
                         if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
-
+ 
+ 
                         } else {
                             break;
                         }
                     }
                 }
-
+ 
+ 
                 // DON'T EDIT THIS, ONLY REVIEW IT!!!
                 // sometimes that above code still ends up having two ties, so I am going to break that
                 // and choose the best choice
@@ -777,7 +830,8 @@ export default function move(gameState){
                 if (LeftPointsHigher == true && RightPointsHigher == true && moveRightPoints > moveLeftPoints) {
                     LeftPointsHigher = false;
                 }
-
+ 
+ 
                 // 2nd bracket
                 if (UpPointsHigher == true && LeftPointsHigher == true && moveLeftPoints > moveUpPoints) {
                     UpPointsHigher = false;
@@ -785,25 +839,30 @@ export default function move(gameState){
                 if (UpPointsHigher == true && RightPointsHigher == true && moveRightPoints > moveUpPoints) {
                     UpPointsHigher = false;
                 }
-
+ 
+ 
                 // 3rd bracket
                 if (DownPointsHigher == true && RightPointsHigher == true && moveRightPoints > moveDownPoints) {
                     DownPointsHigher = false;
                 }
-
+ 
+ 
                 i += 1;
             })
         })
-
-
+ 
+ 
+ 
+ 
         if (safeMoves.length == 0) {
             console.log(`MOVE ${gameState.turn}: No safe moves detected! Moving down`);
             return { move: "down" };
         }
-   
+  
         // Filters move again just to make sure before making a final decision
         safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
-
+ 
+ 
     // Choose a random move from the safe moves if length == 1. DON'T CHANGE THIS!!!!!! ONLY REVIEW IT!!
     if (safeMoves.length == 1) {
         nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
@@ -852,7 +911,7 @@ export default function move(gameState){
             nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
         }
     }
-    
+   
     console.log("");
     console.log("Up: " + moveUpPoints);
     console.log("Down: " + moveDownPoints);
@@ -863,12 +922,23 @@ export default function move(gameState){
     console.log("Down: " + DownPointsHigher);
     console.log("Left: " + LeftPointsHigher);
     console.log("Right: " + RightPointsHigher);
-
+ 
+ 
     console.log(`MOVE ${gameState.turn}: ${nextMove}`)
     return { move: nextMove };
-}
-
-
-// npm run start
-
-
+ }
+ 
+ 
+ 
+ 
+ // npm run start
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
