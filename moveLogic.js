@@ -40,6 +40,30 @@ export default function move(gameState){
     let hungry = 75;
 
     let eatAggressivelyUntilIamThisLong = 7;
+
+    // checks to see if I am the longest are not to know whether I should eat food agresssively or not
+    let amountOfSnakes1 = 0;
+    let checkAmountOfSnakes1 = 0;
+    for (let i = 0; i < snakes.length; i ++) {
+        if (snakes[i].id == gameState.you.id) {
+            
+        } else {
+            amountOfSnakes1 += 1
+            if(gameState.you.length > snakes[i].length) {
+                checkAmountOfSnakes1 +=1;
+            }
+        }
+        if (i + 1 == snakes.length && amountOfSnakes1 == checkAmountOfSnakes1) {
+            IamTheLongest = true;
+        }
+    }
+    
+    if (IamTheLongest == true) {
+        hungry = 60;
+    } else {
+        hungry = 80;
+    }
+
     /* I am doing this because of all those snakes that keep trying to kill me, I although I will only eat food 
     agressively until my length is higher than 7 because once your body gets longer that helps shield you
     from getting killed. Why thank you Coreyja, waryferryman, and wrenger, I'll beat you guys this time!! */
@@ -112,8 +136,8 @@ export default function move(gameState){
     // checks to see if I am the longest so I can no whether I have to avoid other snakes or not and it works now!!
     snakes = gameState.board.snakes;
 
-    let amountOfSnakes1 = 0;
-    let checkAmountOfSnakes1 = 0;
+    amountOfSnakes1 = 0;
+    checkAmountOfSnakes1 = 0;
     for (let i = 0; i < snakes.length; i ++) {
         if (snakes[i].id == gameState.you.id) {
             
