@@ -60,9 +60,9 @@ export default function move(gameState){
     }
     
     if (IamTheLongest == true) {
-        hungry = 60;
+        hungry = 65;
     } else {
-        hungry = 80;
+        hungry = 90;
     }
 
     /* I am doing this because of all those snakes that keep trying to kill me, I although I will only eat food 
