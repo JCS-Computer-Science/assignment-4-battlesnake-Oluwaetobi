@@ -60,7 +60,7 @@ export default function move(gameState){
     }
     
     if (IamTheLongest == true) {
-        hungry = 65;
+        hungry = 75;
     } else {
         hungry = 90;
     }
