@@ -39,10 +39,11 @@ export default function move(gameState){
     let superDuperHungry = 30;
     let hungry = 60;
 
+    let eatAggressivelyUntilIamThisLong = 25;
     /* I am doing this because of all those snakes that keep trying to kill me, I although I will only eat food 
     agressively until my length is higher than 7 because once your body gets longer that helps shield you
     from getting killed. Why thank you Coreyja, waryferryman, and wrenger, I'll beat you guys this time!! */
-    if (gameState.you.body.length < 7 ) {
+    if (gameState.you.body.length < eatAggressivelyUntilIamThisLong ) {
         hungry = 102;
     }
     if (gameState.you.health < superDuperHungry) {
@@ -223,15 +224,20 @@ export default function move(gameState){
         if (IamTheLongest == true) {
             if (myHead.x == snakeBody[0].x -1 && myHead.y == snakeBody[0].y + 1) {
                 moveRightPoints += killReward;
+                moveDownPoints += killReward;
             }
             if (myHead.x == snakeBody[0].x +1 && myHead.y == snakeBody[0].y + 1) {
                 moveLeftPoints += killReward;
+                moveDownPoints += killReward;
+
             }
             if (myHead.y == snakeBody[0].y - 1 && myHead.x == snakeBody[0].x + 1) {
                 moveUpPoints += killReward;
+                moveLeftPoints += killReward;
             }
-            if (myHead.y == snakeBody[0].y + 1 && myHead.x == snakeBody[0].x + 1) {
-                moveDownPoints += killReward;
+            if (myHead.y == snakeBody[0].y - 1 && myHead.x == snakeBody[0].x - 1) {
+                moveUpPoints += killReward;
+                moveRightPoints += killReward
             }
         }
     })
