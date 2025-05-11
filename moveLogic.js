@@ -37,7 +37,7 @@ export default function move(gameState){
    
     // DON'T CHANGE THIS, 30 is the sweet spot!!
     let superDuperHungry = 30;
-    let hungry = 60;
+    let hungry = 75;
 
     let eatAggressivelyUntilIamThisLong = 7;
     /* I am doing this because of all those snakes that keep trying to kill me, I although I will only eat food 
@@ -163,7 +163,7 @@ export default function move(gameState){
             }
         })
 
-        let collisionPunishment = 4;
+        let collisionPunishment = 5;
 
         // only avoids other snakes heads if I am not the longest
         if (IamTheLongest == false) {
@@ -539,7 +539,7 @@ export default function move(gameState){
                 // takes away points for their safety being false, DO NOT CHANGE THIS!!!!!
                 let pointsRemovedForNotBeingSafe = 20;
                 // REALLY BAD CHOICES at -6 is THE SWEET SPOT DO NOT CHANGE THIS!!!!
-                let reallyBadChoices = -14;
+                let reallyBadChoices = -15;
                 if (i < 1) {
                     if (moveSafety.up == false) {
                         moveUpPoints -= pointsRemovedForNotBeingSafe;
