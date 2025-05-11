@@ -39,7 +39,7 @@ export default function move(gameState){
     let superDuperHungry = 30;
     let hungry = 60;
 
-    let eatAggressivelyUntilIamThisLong = 25;
+    let eatAggressivelyUntilIamThisLong = 7;
     /* I am doing this because of all those snakes that keep trying to kill me, I although I will only eat food 
     agressively until my length is higher than 7 because once your body gets longer that helps shield you
     from getting killed. Why thank you Coreyja, waryferryman, and wrenger, I'll beat you guys this time!! */
