@@ -12,7 +12,7 @@ export default function move(gameState){
     };
 
     let IamTheLongest = false;
-    let killReward = 2;
+    let killReward = 3;
 
     let moveUpPoints = 0;
     let moveDownPoints = 0;
