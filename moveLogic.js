@@ -590,6 +590,24 @@ export default function move(gameState){
                                 if (myHead.y == f.y +1 && myHead.x == f.x) {
                                     moveDownPoints += 3;
                                 }
+
+                                // eat food that is diagonal to me
+                                if (myHead.x == f.x -1 && myHead.y == f.y -1) {
+                                    moveRightPoints += 2;
+                                    moveUpPoints += 2;
+                                }
+                                if (myHead.x == f.x +1 && myHead.y == f.y - 1) {
+                                    moveLeftPoints += 2;
+                                    moveUpPoints += 2;
+                                }
+                                if (myHead.y == f.y + 1 && myHead.x == f.x -1) {
+                                    moveUpPoints += 2;
+                                    moveRightPoints += 2;
+                                }
+                                if (myHead.y == f.y +1 && myHead.x == f.x + 1) {
+                                    moveDownPoints += 2;
+                                    moveLeftPoints += 2;
+                                }
                         })
                        
                        
