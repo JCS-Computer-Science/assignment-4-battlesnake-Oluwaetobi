@@ -76,7 +76,11 @@ export default function move(gameState){
         if (gameState.you.length < 13) {
             hungry = 101;
         } else {
-            hungry = 80;
+            if (gameState.you.length < 15) {
+                hungry = 80;
+            } else{
+                hungry = 60;
+            }
         }
     }
  
