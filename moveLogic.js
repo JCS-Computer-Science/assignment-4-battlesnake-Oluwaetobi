@@ -317,6 +317,7 @@ export default function move(gameState){
     let hazards = gameState.board.hazards;
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
                 hazards.forEach((h) => {
+                    // hazards that are 1 unit away
                         if (myHead.x == h.x -1 && myHead.y == h.y) {
                             moveRightPoints -= 3;
                         }
@@ -328,6 +329,21 @@ export default function move(gameState){
                         }
                         if (myHead.y == h.y +1 && myHead.x == h.x) {
                             moveDownPoints -= 3;
+                        }
+
+                    // for hazards that are 2 units away
+                    // for hazards 2 units away
+                        if (myHead.x == h.x -2 && myHead.y == h.y) {
+                            moveRightPoints -= 1;
+                        }
+                        if (myHead.x == h.x +2 && myHead.y == h.y) {
+                            moveLeftPoints -= 1;
+                        }
+                        if (myHead.y == h.y -2 && myHead.x == h.x) {
+                            moveUpPoints -= 1;
+                        }
+                        if (myHead.y == h.y +2 && myHead.x == h.x) {
+                            moveDownPoints -= 1;
                         }
                 })
    
@@ -476,6 +492,7 @@ export default function move(gameState){
     // the punishments here for staying in the hazards will be less since I am in a dire situation
     // and don't have many moves I can make and sometimes I may need to stay in the hazards to eat food
     hazards.forEach((h) => {
+        // for hazards 1 unit away
         if (myHead.x == h.x -1 && myHead.y == h.y) {
             moveRightPoints -= 1;
         }
@@ -488,43 +505,26 @@ export default function move(gameState){
         if (myHead.y == h.y +1 && myHead.x == h.x) {
             moveDownPoints -= 1;
         }
- 
- 
-        // helps me get out of hazards I am 1 unit into
-        if (myHead.x != h.x -1 && myHead.y != h.y) {
-            moveRightPoints += 1;
+
+        // for hazards 2 units away
+        if (myHead.x == h.x -2 && myHead.y == h.y) {
+            moveRightPoints -= 1;
         }
-        if (myHead.x != h.x +1 && myHead.y != h.y) {
-            moveLeftPoints += 1;
+        if (myHead.x == h.x +2 && myHead.y == h.y) {
+            moveLeftPoints -= 1;
         }
-        if (myHead.y != h.y -1 && myHead.x != h.x) {
-            moveUpPoints += 1;
+        if (myHead.y == h.y -2 && myHead.x == h.x) {
+            moveUpPoints -= 1;
         }
-        if (myHead.y != h.y +1 && myHead.x != h.x) {
-            moveDownPoints += 1;
+        if (myHead.y == h.y +2 && myHead.x == h.x) {
+            moveDownPoints -= 1;
         }
- 
- 
-        // helps me get out of hazards that I am 2 units into
-        if (myHead.x != h.x -2 && myHead.y != h.y) {
-            moveRightPoints += 1;
-        }
-        if (myHead.x != h.x +2 && myHead.y != h.y) {
-            moveLeftPoints += 1;
-        }
-        if (myHead.y != h.y -2 && myHead.x != h.x) {
-            moveUpPoints += 1;
-        }
-        if (myHead.y != h.y +2 && myHead.x != h.x) {
-            moveDownPoints += 1;
-        }
- })
- 
+    })
+}
  
     // this marks the end of the dire situation and safemoves.length == 0
- 
- 
-        }
+
+    // NEW SECTION:
         // filters safe moves before making a final move
         safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
  
@@ -942,6 +942,6 @@ export default function move(gameState){
  
     console.log(`MOVE ${gameState.turn}: ${nextMove}`)
     return { move: nextMove };
- }
+}
  
  // npm run start
