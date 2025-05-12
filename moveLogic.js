@@ -212,7 +212,7 @@ export default function move(gameState){
             }
         })
  
- 
+        
         let collisionPunishment = 5;
  
  
