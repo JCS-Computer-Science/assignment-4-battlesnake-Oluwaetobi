@@ -376,6 +376,27 @@ export default function move(gameState){
        
        
     }
+
+    // Helps my snake follow my tail, instead of getting into dead ends and losing to other big snakes
+    if ( gameState.you.body.length > 4) {
+        let myTail = gameState.you.body.length;
+            if ( gameState.you.body[myTail -1].x -1 == myHead.x && myHead.y == gameState.you.body[myTail -1].y) {
+                moveRightPoints +=1;
+            }
+            if ( gameState.you.body[myTail -1].x +1 == myHead.x && myHead.y == gameState.you.body[myTail -1].y) {
+                moveLeftPoints +=1;
+            }
+            if ( gameState.you.body[myTail -1].y +1 == myHead.y && myHead.x == gameState.you.body[myTail -1].x) {
+                moveDownPoints += 1;
+            }
+            if ( gameState.you.body[myTail -1].y -1 == myHead.y && myHead.x == gameState.you.body[myTail -1].x) {
+                moveUpPoints += 1;
+            }
+        
+    }
+
+    // NEW SECTION:
+
     // Are there any safe moves left?
   
     //Object.keys(moveSafety) returns ["up", "down", "left", "right"]
