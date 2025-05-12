@@ -578,6 +578,8 @@ export default function move(gameState){
                         food.forEach((f) => {
                             /* if my safe moves are less than 1 or equal to one then we don't need to try and avoid more stuff
                              or else I will lose and accidentally kill myself, it will be too much       */
+
+                                // eat food that is adjacent to me
                                 if (myHead.x == f.x -1 && myHead.y == f.y) {
                                     moveRightPoints += 3;
                                 }
