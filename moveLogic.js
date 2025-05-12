@@ -610,6 +610,21 @@ export default function move(gameState){
                                     moveDownPoints += 2;
                                     moveLeftPoints += 2;
                                 }
+
+                                // eating food that is 2 units away
+                                // eat food that is adjacent to me
+                                if (myHead.x == f.x -1 && myHead.y == f.y) {
+                                    moveRightPoints += 2;
+                                }
+                                if (myHead.x == f.x +1 && myHead.y == f.y) {
+                                    moveLeftPoints += 2;
+                                }
+                                if (myHead.y == f.y -1 && myHead.x == f.x) {
+                                    moveUpPoints += 2;
+                                }
+                                if (myHead.y == f.y +1 && myHead.x == f.x) {
+                                    moveDownPoints += 2;
+                                }
                         })
                        
                        
