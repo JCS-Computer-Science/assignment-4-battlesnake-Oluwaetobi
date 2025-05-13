@@ -601,20 +601,15 @@ export default function move(gameState){
     snakes = gameState.board.snakes;
  
  
- 
- 
-    snakes.forEach((snake) => {
-        const snakeBody = snake.body;
- 
- 
- 
- 
-        snakeBody.forEach((b) => {
-            if (snake.id == gameState.you.id){
-                return;
+    // this helps me not avoid other people's tails if there are no safe moves, hopefully they haven't just ate food
+    // or else I will lose
+    for (let i = 0; i < snakes.length; i ++) {
+        if (snakes[i].id == gameState.you.id) { 
+
+        } else {
+            if (i >= snakes.length -1 ) {
+                break;
             }
-            // keeps my snake from colliding with other snakes and every part of their body as well
-            // DON"T EDIT THIS!!!!!!!!!!!!!!!!!!
             if (myHead.x == b.x -1 && myHead.y == b.y) {
                 moveSafety.right = false;
             }
@@ -626,9 +621,37 @@ export default function move(gameState){
             }
             if (myHead.y == b.y +1 && myHead.x == b.x) {
                 moveSafety.down = false;
-            }
-        })
-    })
+            } 
+        }
+    }
+
+ 
+    // snakes.forEach((snake) => {
+    //     const snakeBody = snake.body;
+ 
+ 
+ 
+ 
+    //     snakeBody.forEach((b) => {
+    //         if (snake.id == gameState.you.id){
+    //             return;
+    //         }
+    //         // keeps my snake from colliding with other snakes and every part of their body as well
+    //         // DON"T EDIT THIS!!!!!!!!!!!!!!!!!!
+    //         if (myHead.x == b.x -1 && myHead.y == b.y) {
+    //             moveSafety.right = false;
+    //         }
+    //         if (myHead.x == b.x +1 && myHead.y == b.y) {
+    //             moveSafety.left = false;
+    //         }
+    //         if (myHead.y == b.y -1 && myHead.x == b.x) {
+    //             moveSafety.up = false;
+    //         }
+    //         if (myHead.y == b.y +1 && myHead.x == b.x) {
+    //             moveSafety.down = false;
+    //         }
+    //     })
+    // })
  
  
     // the punishments here for staying in the hazards will be less since I am in a dire situation
