@@ -328,21 +328,30 @@ export default function move(gameState){
                         let cutOffSnakeReward = 3;
 
                         if (snakes[i].id == gameState.you.id) {
+                            let areThereHazards = 0;
+
                             if (myHead.x == h.x -1 && myHead.y == h.y) {
-                                // else if it is not in a hazard, it cuts off the snake on the far side of the board
-                            } else {
+                                areThereHazards += 1;
+                            }
+                            if (myHead.x == h.x +1 && myHead.y == h.y) {
+                                areThereHazards += 1;
+                            }
+                            if (myHead.y == h.y -1 && myHead.x == h.x) {
+                                areThereHazards += 1;
+                            }
+                            if (myHead.y == h.y +1 && myHead.x == h.x) {
+                                areThereHazards += 1;
+                            }
+                            if (areThereHazards == 0) {
                                 // cuts of a snake at the right side of the board game
-                                if (myHead.x == gameBoardProperties.width - 2 && myHead.y - 1 > snakes[i].body[0].y && snakes[i].body[0].x == gameBoardProperties.width) {
+                                if (myHead.x == gameBoardProperties.width - 2 && myHead.y - 1 > snakes[i].body[0].y && snakes[i].body[0].x == gameBoardProperties.width - 1) {
                                     moveRightPoints += cutOffSnakeReward;
                                 }
                                 // reverse direction
-                                if (myHead.x == gameBoardProperties.width - 2 && myHead.y + 1 < snakes[i].body[0].y && snakes[i].body[0].x == gameBoardProperties.width) {
+                                if (myHead.x == gameBoardProperties.width - 2 && myHead.y + 1 < snakes[i].body[0].y && snakes[i].body[0].x == gameBoardProperties.width - 1) {
                                     moveRightPoints += cutOffSnakeReward;
                                 }
-                            }
-                            if (myHead.x == h.x +1 && myHead.y == h.y) {
-                              // else if it is not in a hazard, it cuts off the snake on the far side of the board  
-                            } else {
+                           
                                 // cuts of a snake at the left side of the board game
                                 if (myHead.x == 1 && myHead.y - 1 > snakes[i].body[0].y && snakes[i].body[0].x == 0) {
                                     moveLeftPoints += cutOffSnakeReward;
@@ -351,22 +360,16 @@ export default function move(gameState){
                                 if (myHead.x == 1 && myHead.y + 1 < snakes[i].body[0].y && snakes[i].body[0].x == 0) {
                                     moveLeftPoints += cutOffSnakeReward;
                                 }
-                            }
-                            if (myHead.y == h.y -1 && myHead.x == h.x) {
-                               // else if it is not in a hazard, it cuts off the snake on the far side of the board
-                            } else {
+                            
                                 // cuts of a snake at the top side of the board game
-                                if (myHead.y == gameBoardProperties.height -2  && myHead.x - 1 > snakes[i].body[0].x && snakes[i].body[0].y == gameBoardProperties - 1) {
+                                if (myHead.y == gameBoardProperties.height -2  && myHead.x - 1 > snakes[i].body[0].x && snakes[i].body[0].y == gameBoardProperties.height - 1) {
                                     moveUpPoints += cutOffSnakeReward;
                                 }
                                 // reverse direction
-                                if (myHead.y == gameBoardProperties.height -2  && myHead.x + 1 < snakes[i].body[0].x && snakes[i].body[0].y == gameBoardProperties - 1) {
+                                if (myHead.y == gameBoardProperties.height -2  && myHead.x + 1 < snakes[i].body[0].x && snakes[i].body[0].y == gameBoardProperties.height - 1) {
                                     moveUpPoints += cutOffSnakeReward;
                                 }
-                            }
-                            if (myHead.y == h.y +1 && myHead.x == h.x) {
-                               // else if it is not in a hazard, it cuts off the snake on the far side of the board
-                            } else {
+                            
                                 // cuts of a snake at the bottom side of the board game
                                 if (myHead.y == 1  && myHead.x - 1 > snakes[i].body[0].x && snakes[i].body[0].y == 0) {
                                     moveDownPoints += cutOffSnakeReward;
@@ -375,6 +378,7 @@ export default function move(gameState){
                                 if (myHead.y == 1  && myHead.x + 1 < snakes[i].body[0].x && snakes[i].body[0].y == 0) {
                                     moveDownPoints += cutOffSnakeReward;
                                 }
+
                             }
                         }
                     }
