@@ -491,14 +491,6 @@ export default function move(gameState){
                 if (myHead.y == f.y +1 && myHead.x == f.x) {
                     moveDownPoints -= 1;
                 }
-
-                // helps me get food anywhere on the board
-                if (myHead.y < f.y) {
-                    moveUpPoints += 0.5
-                }
-                if (myHead.y > f.y) {
-                    moveDownPoints += 0.5
-                }
             }
         })
        
