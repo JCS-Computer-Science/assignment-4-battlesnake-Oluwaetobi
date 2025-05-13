@@ -692,6 +692,8 @@ export default function move(gameState){
                 if (i < 1) {
                     if (gameState.you.health < hungry) {
                         let food = gameState.board.food;
+                        // this helps me not oversShoot eating for food that is far away
+                        let doNotOverShootEating = 0;
                         food.forEach((f) => {
                             /* if my safe moves are less than 1 or equal to one then we don't need to try and avoid more stuff
                              or else I will lose and accidentally kill myself, it will be too much       */
@@ -730,7 +732,6 @@ export default function move(gameState){
 
                                 // eating food that is 2 units or more away
                                 // eat food that is adjacent to me
-                                let doNotOverShootEating = 0;
                                 for (let i = 2; i < gameBoardProperties.height - 4; i++) {
                                     /** I am removing the Left and Right functions because it is ruining my snakes ability
                                      * to stay alive
@@ -743,16 +744,16 @@ export default function move(gameState){
                                     //     moveLeftPoints += 2;
                                     //     doNotOverShootEating += 1;
                                     // }
+                                    if (doNotOverShootEating >= 1) {
+                                        break;
+                                    }
                                     if (myHead.y == f.y -i && myHead.x == f.x) {
-                                        moveUpPoints += 2;
+                                        moveUpPoints += 1;
                                         doNotOverShootEating += 1;
                                     }
                                     if (myHead.y == f.y +i && myHead.x == f.x) {
-                                        moveDownPoints += 2;
+                                        moveDownPoints += 1;
                                         doNotOverShootEating += 1;
-                                    }
-                                    if (doNotOverShootEating > 1) {
-                                        break;
                                     }
 
                                 }
