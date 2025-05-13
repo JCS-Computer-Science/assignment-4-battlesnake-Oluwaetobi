@@ -494,7 +494,6 @@ export default function move(gameState){
             }
         })
        
-       
     }
 
     // Helps my snake follow my tail, instead of getting into dead ends and losing to other big snakes
