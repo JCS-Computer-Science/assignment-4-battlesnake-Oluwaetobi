@@ -849,7 +849,7 @@ export default function move(gameState){
                     moveSafety.right = false;
                 }
                 
-                let deadEndPunishmentPoints = 2;
+                let deadEndPunishmentPoints = 3;
  
  
                 // GENERATIVE AI GUESSES
