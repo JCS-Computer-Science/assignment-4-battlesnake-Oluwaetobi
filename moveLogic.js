@@ -732,14 +732,17 @@ export default function move(gameState){
                                 // eat food that is adjacent to me
                                 let doNotOverShootEating = 0;
                                 for (let i = 2; i < gameBoardProperties.height - 4; i++) {
-                                    if (myHead.x == f.x -i && myHead.y == f.y) {
-                                        moveRightPoints += 2;
-                                        doNotOverShootEating += 1;
-                                    }
-                                    if (myHead.x == f.x +i && myHead.y == f.y) {
-                                        moveLeftPoints += 2;
-                                        doNotOverShootEating += 1;
-                                    }
+                                    /** I am removing the Left and Right functions because it is ruining my snakes ability
+                                     * to stay alive
+                                     */
+                                    // if (myHead.x == f.x -i && myHead.y == f.y) {
+                                    //     moveRightPoints += 2;
+                                    //     doNotOverShootEating += 1;
+                                    // }
+                                    // if (myHead.x == f.x +i && myHead.y == f.y) {
+                                    //     moveLeftPoints += 2;
+                                    //     doNotOverShootEating += 1;
+                                    // }
                                     if (myHead.y == f.y -i && myHead.x == f.x) {
                                         moveUpPoints += 2;
                                         doNotOverShootEating += 1;
@@ -748,7 +751,7 @@ export default function move(gameState){
                                         moveDownPoints += 2;
                                         doNotOverShootEating += 1;
                                     }
-                                    if (doNotOverShootEating > 3) {
+                                    if (doNotOverShootEating > 1) {
                                         break;
                                     }
 
