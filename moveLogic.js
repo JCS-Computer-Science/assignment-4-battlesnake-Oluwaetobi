@@ -607,25 +607,30 @@ export default function move(gameState){
         if (snakes[i].id == gameState.you.id) { 
 
         } else {
-            if (i >= snakes.length -1 ) {
-                break;
+            for (let a = 0; a < snakes[i].body.length; a++) {
+                if (a >= snakes[i].body.length -1 ) {
+                    break;
+                }
+                if (myHead.x == snakes[i].body[a].x -1 && myHead.y == snakes[i].body[a].y) {
+                    moveSafety.right = false;
+                }
+                if (myHead.x == snakes[i].body[a].x +1 && myHead.y == snakes[i].body[a].y) {
+                    moveSafety.left = false;
+                }
+                if (myHead.y == snakes[i].body[a].y -1 && myHead.x == snakes[i].body[a].x) {
+                    moveSafety.up = false;
+                }
+                if (myHead.y == snakes[i].body[a].y +1 && myHead.x == snakes[i].body[a].x) {
+                    moveSafety.down = false;
+                } 
+
             }
-            if (myHead.x == b.x -1 && myHead.y == b.y) {
-                moveSafety.right = false;
-            }
-            if (myHead.x == b.x +1 && myHead.y == b.y) {
-                moveSafety.left = false;
-            }
-            if (myHead.y == b.y -1 && myHead.x == b.x) {
-                moveSafety.up = false;
-            }
-            if (myHead.y == b.y +1 && myHead.x == b.x) {
-                moveSafety.down = false;
-            } 
         }
     }
 
  
+    /**The Top Code works better but I am not going to erase this bottom one just in case I want to revert to it */
+
     // snakes.forEach((snake) => {
     //     const snakeBody = snake.body;
  
