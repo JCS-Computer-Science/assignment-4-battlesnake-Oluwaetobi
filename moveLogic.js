@@ -14,7 +14,7 @@ export default function move(gameState){
  
     let IamTheLongest = false;
     let killReward = 4;
- 
+    let cuttingOffSnakeReward = 4;
  
     let moveUpPoints = 0;
     let moveDownPoints = 0;
@@ -321,11 +321,11 @@ export default function move(gameState){
     let hazards = gameState.board.hazards;
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
                 hazards.forEach((h) => {
-                    // hazards that are 1 unit away && cuts of people on the edges of the board as long as I am not in a hazard
+                    // hazards that are 1 unit away && cuts off people on the edges of the board as long as I am not in a hazard
                     // or else I might die trying to do it.
                     for (let i = 0; i < snakes.length; i ++) {
 
-                        let cutOffSnakeReward = 3;
+                        let cutOffSnakeReward = cuttingOffSnakeReward;
 
                         // cuts snakes off at the far side of the board game
                         if (snakes[i].id == gameState.you.id) {
@@ -421,7 +421,7 @@ export default function move(gameState){
                 if (hazards.length == 0) {
                     for (let i = 0; i < snakes.length; i ++) {
     
-                        let cutOffSnakeReward = 3;
+                        let cutOffSnakeReward = cuttingOffSnakeReward;
     
                         if (snakes[i].id == gameState.you.id) {
                             // if checking the same snake as my own skip that
