@@ -601,7 +601,7 @@ export default function move(gameState){
     snakes = gameState.board.snakes;
  
  
-    // this helps me not avoid other people's tails if there are no safe moves, hopefully they haven't just ate food
+    // this helps me TO NOT avoid other people's tails if there are no safe moves, hopefully they haven't just ate food
     // or else I will lose
     for (let i = 0; i < snakes.length; i ++) {
         if (snakes[i].id == gameState.you.id) { 
