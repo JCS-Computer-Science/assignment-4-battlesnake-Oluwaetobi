@@ -327,6 +327,7 @@ export default function move(gameState){
 
                         let cutOffSnakeReward = 3;
 
+                        // cuts snakes off at the far side of the board game
                         if (snakes[i].id == gameState.you.id) {
                             // if checking the same snake as my own skip that
                         } else {
@@ -416,6 +417,7 @@ export default function move(gameState){
                         }
                 })
 
+                // cuts off snakes at the far sides of the board
                 if (hazards.length == 0) {
                     for (let i = 0; i < snakes.length; i ++) {
     
