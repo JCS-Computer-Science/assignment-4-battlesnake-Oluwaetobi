@@ -491,8 +491,10 @@ export default function move(gameState){
                 if (myHead.y == f.y +1 && myHead.x == f.x) {
                     moveDownPoints -= 1;
                 }
+
             }
         })
+       
        
     }
 
@@ -726,19 +728,30 @@ export default function move(gameState){
                                     moveLeftPoints += 2;
                                 }
 
-                                // eating food that is 2 units away
+                                // eating food that is 2 units or more away
                                 // eat food that is adjacent to me
-                                if (myHead.x == f.x -1 && myHead.y == f.y) {
-                                    moveRightPoints += 2;
-                                }
-                                if (myHead.x == f.x +1 && myHead.y == f.y) {
-                                    moveLeftPoints += 2;
-                                }
-                                if (myHead.y == f.y -1 && myHead.x == f.x) {
-                                    moveUpPoints += 2;
-                                }
-                                if (myHead.y == f.y +1 && myHead.x == f.x) {
-                                    moveDownPoints += 2;
+                                let doNotOverShootEating = 0;
+                                for (let i = 2; i < gameBoardProperties.height - 4; i++) {
+                                    if (myHead.x == f.x -i && myHead.y == f.y) {
+                                        moveRightPoints += 2;
+                                        doNotOverShootEating += 1;
+                                    }
+                                    if (myHead.x == f.x +i && myHead.y == f.y) {
+                                        moveLeftPoints += 2;
+                                        doNotOverShootEating += 1;
+                                    }
+                                    if (myHead.y == f.y -i && myHead.x == f.x) {
+                                        moveUpPoints += 2;
+                                        doNotOverShootEating += 1;
+                                    }
+                                    if (myHead.y == f.y +i && myHead.x == f.x) {
+                                        moveDownPoints += 2;
+                                        doNotOverShootEating += 1;
+                                    }
+                                    if (doNotOverShootEating > 3) {
+                                        break;
+                                    }
+
                                 }
                         })
                        
