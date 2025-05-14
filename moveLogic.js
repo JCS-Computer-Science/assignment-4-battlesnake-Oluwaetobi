@@ -11,10 +11,16 @@ export default function move(gameState){
         right: true
     };
  
- 
+    // Same punishment helps me keep track of my variables
+
+    let theSamePunishment = 3;
+
     let IamTheLongest = false;
     let killReward = 4;
-    let cuttingOffSnakeReward = 4;
+
+    // The cutting off snake reward has to be greater than the dead end punishment or else it will only cut off snakes
+    // sometimes when given the oppurtunity it has to be all the time not sometimes
+    let cuttingOffSnakeReward = (theSamePunishment + 1);
  
     let moveUpPoints = 0;
     let moveDownPoints = 0;
@@ -879,8 +885,6 @@ export default function move(gameState){
                 
                 // The dead end punishment and bad Ai guesses have to be the same with the ai bad guesses being slightly higher
                 // or else it will ruin the quality of my snake
-
-                let theSamePunishment = 3;
 
                 let deadEndPunishmentPoints = theSamePunishment;
  
