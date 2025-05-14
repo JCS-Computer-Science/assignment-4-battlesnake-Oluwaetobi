@@ -877,13 +877,18 @@ export default function move(gameState){
                     moveSafety.right = false;
                 }
                 
-                let deadEndPunishmentPoints = 3;
+                // The dead end punishment and bad Ai guesses have to be the same with the ai bad guesses being slightly higher
+                // or else it will ruin the quality of my snake
+
+                let theSamePunishment = 3;
+
+                let deadEndPunishmentPoints = theSamePunishment;
  
  
                 // GENERATIVE AI GUESSES
  
  
-                let AIbadMovePunishment = 2;
+                let AIbadMovePunishment = (theSamePunishment + 1);
  
  
                 if (moveSafety.up == true ) {
