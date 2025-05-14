@@ -707,6 +707,148 @@ export default function move(gameState){
  
         // makes smart moves using safe moves and direction points
         /* EDIT THIS */
+
+        for (let i = 0; i < snakes.length; i ++) {
+
+             // I need this i because it calls it too many times since the bounds are in the same
+            // position all the time
+            let i = 0;
+
+            if (snakes[i].id == gameState.you.id) { 
+                for (let a = 0; a < snakes[i].body.length; a++) {
+
+                    // The dead end punishment and bad Ai guesses have to be the same with the ai bad guesses being slightly higher
+                   // or else it will ruin the quality of my snake
+
+
+                   // GENERATIVE AI GUESSES
+
+
+                   let AIbadMovePunishment = (theSamePunishment + 1);
+
+
+                   if (moveSafety.up == true ) {
+                       if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
+                           moveUpPoints -= AIbadMovePunishment;
+                       }
+                       // this helps me to get out of longer loops of my body
+                       if (myHead.y == snakes[i].body[a].y -3 && myHead.x == snakes[i].body[a].x) {
+                           moveUpPoints -=AIbadMovePunishment;
+                       }
+                   
+                   }
+                   if (moveSafety.down == true ) {
+                       if (myHead.y == snakes[i].body[a].y +2 && myHead.x == snakes[i].body[a].x) {
+                           moveDownPoints -= AIbadMovePunishment;
+                       }
+                       // this helps me to get out of longer loops of my body
+                       if (myHead.y == snakes[i].body[a].y +3 && myHead.x == snakes[i].body[a].x) {
+                           moveDownPoints -= AIbadMovePunishment;
+                       }
+                   
+                   }
+                   if (moveSafety.left == true ) {
+                       if (myHead.x == snakes[i].body[a].x +2 && myHead.y == snakes[i].body[a].y) {
+                           moveLeftPoints -= AIbadMovePunishment;
+                       }
+                       // this helps me to get out of longer loops of my body
+                       if (myHead.x == snakes[i].body[a].x +3 && myHead.y == snakes[i].body[a].y) {
+                           moveLeftPoints -= AIbadMovePunishment;
+                       }
+                   
+                   }
+                   if (moveSafety.right == true ) {
+                       if (myHead.x == snakes[i].body[a].x -2 && myHead.y == snakes[i].body[a].y) {
+                           moveRightPoints -= AIbadMovePunishment;
+                       }
+                       // this helps me to get out of longer loops of my body
+                       if (myHead.x == snakes[i].body[a].x -3 && myHead.y == snakes[i].body[a].y) {
+                           moveRightPoints -= AIbadMovePunishment;
+                       }
+                   }
+               }
+            } else {
+                for (let a = 0; a < snakes[i].body.length; a++) {
+
+                     // The dead end punishment and bad Ai guesses have to be the same with the ai bad guesses being slightly higher
+                    // or else it will ruin the quality of my snake
+ 
+ 
+                    // GENERATIVE AI GUESSES
+                    if (IamTheLongest == false) {
+                        let AIbadMovePunishment = (theSamePunishment + 1);
+     
+     
+                        if (moveSafety.up == true ) {
+                            if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
+                                moveUpPoints -= AIbadMovePunishment;
+                            }
+                            // this helps me to get out of longer loops of my body
+                            if (myHead.y == snakes[i].body[a].y -3 && myHead.x == snakes[i].body[a].x) {
+                                moveUpPoints -=AIbadMovePunishment;
+                            }
+                            if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x + 1) {
+                                moveUpPoints -=AIbadMovePunishment;
+                            }
+                            if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x - 1) {
+                                moveUpPoints -=AIbadMovePunishment;
+                            }
+                        
+                        }
+                        if (moveSafety.down == true ) {
+                            if (myHead.y == snakes[i].body[a].y +2 && myHead.x == snakes[i].body[a].x) {
+                                moveDownPoints -= AIbadMovePunishment;
+                            }
+                            // this helps me to get out of longer loops of my body
+                            if (myHead.y == snakes[i].body[a].y +3 && myHead.x == snakes[i].body[a].x) {
+                                moveDownPoints -= AIbadMovePunishment;
+                            }
+                            if (myHead.y == snakes[i].body[a].y +2 && myHead.x == snakes[i].body[a].x + 1) {
+                                moveDownPoints -= AIbadMovePunishment;
+                            }
+                            if (myHead.y == snakes[i].body[a].y +2 && myHead.x == snakes[i].body[a].x - 1) {
+                                moveDownPoints -= AIbadMovePunishment;
+                            }
+                        
+                        }
+                        if (moveSafety.left == true ) {
+                            if (myHead.x == snakes[i].body[a].x +2 && myHead.y == snakes[i].body[a].y) {
+                                moveLeftPoints -= AIbadMovePunishment;
+                            }
+                            // this helps me to get out of longer loops of my body
+                            if (myHead.x == snakes[i].body[a].x +3 && myHead.y == snakes[i].body[a].y) {
+                                moveLeftPoints -= AIbadMovePunishment;
+                            }
+                            if (myHead.x == snakes[i].body[a].x +2 && myHead.y == snakes[i].body[a].y + 1) {
+                                moveLeftPoints -= AIbadMovePunishment;
+                            }
+                            if (myHead.x == snakes[i].body[a].x +2 && myHead.y == snakes[i].body[a].y - 1) {
+                                moveLeftPoints -= AIbadMovePunishment;
+                            }
+                        
+                        }
+                        if (moveSafety.right == true ) {
+                            if (myHead.x == snakes[i].body[a].x -2 && myHead.y == snakes[i].body[a].y) {
+                                moveRightPoints -= AIbadMovePunishment;
+                            }
+                            // this helps me to get out of longer loops of my body
+                            if (myHead.x == snakes[i].body[a].x -3 && myHead.y == snakes[i].body[a].y) {
+                                moveRightPoints -= AIbadMovePunishment;
+                            }
+                            if (myHead.x == snakes[i].body[a].x -2 && myHead.y == snakes[i].body[a].y + 1) {
+                                moveRightPoints -= AIbadMovePunishment;
+                            }
+                            if (myHead.x == snakes[i].body[a].x -2 && myHead.y == snakes[i].body[a].y - 1) {
+                                moveRightPoints -= AIbadMovePunishment;
+                            }
+                        }
+
+                    }
+                    
+                }
+            }
+        }
+
         snakes.forEach((snake) => {
             const snakeBody = snake.body;
            
@@ -883,115 +1025,47 @@ export default function move(gameState){
                     moveSafety.right = false;
                 }
                 
-                // The dead end punishment and bad Ai guesses have to be the same with the ai bad guesses being slightly higher
-                // or else it will ruin the quality of my snake
-
                 let deadEndPunishmentPoints = theSamePunishment;
- 
- 
-                // GENERATIVE AI GUESSES
- 
- 
-                let AIbadMovePunishment = (theSamePunishment + 1);
- 
- 
-                if (moveSafety.up == true ) {
-                    if (myHead.y == b.y -2 && myHead.x == b.x) {
-                        moveUpPoints -= AIbadMovePunishment;
+
+               // INSERTED BACK STUFF
+               if (i < 1) {
+                    // #1
+                    // I need this i because it calls it too many times since the bounds are in the same
+                    // position all the time
+                    // protects me from going into dead ends in the corners
+                    if (myHead.y +2 > gameBoardProperties.height -1) {
+                        moveUpPoints -= deadEndPunishmentPoints;
                     }
-                    // this helps me to get out of longer loops of my body
-                    if (myHead.y == b.y -3 && myHead.x == b.x) {
-                        moveUpPoints -=AIbadMovePunishment;
-                    }
-                    if (myHead.y == b.y -2 && myHead.x == b.x + 1) {
-                        moveUpPoints -=AIbadMovePunishment;
-                    }
-                    if (myHead.y == b.y -2 && myHead.x == b.x - 1) {
-                        moveUpPoints -=AIbadMovePunishment;
-                    }
-                    if (i < 1) {
-                        // I need this i because it calls it too many times since the bounds are in the same
-                        // position all the time
-                        // protects me from going into dead ends in the corners
-                        if (myHead.y +2 > gameBoardProperties.height -1) {
-                            moveUpPoints -= deadEndPunishmentPoints;
-                        }
-                    }
-                   
                 }
-                if (moveSafety.down == true ) {
-                    if (myHead.y == b.y +2 && myHead.x == b.x) {
-                        moveDownPoints -= AIbadMovePunishment;
+                if (i < 1) {
+                    // #2
+                    // I need this i because it calls it too many times since the bounds are in the same
+                    // position all the time
+                    // protects me from going into dead ends in the corners
+                    if (myHead.y - 2 < 0) {
+                        moveDownPoints -=deadEndPunishmentPoints;
                     }
-                    // this helps me to get out of longer loops of my body
-                    if (myHead.y == b.y +3 && myHead.x == b.x) {
-                        moveDownPoints -= AIbadMovePunishment;
-                    }
-                    if (myHead.y == b.y +2 && myHead.x == b.x + 1) {
-                        moveDownPoints -= AIbadMovePunishment;
-                    }
-                    if (myHead.y == b.y +2 && myHead.x == b.x - 1) {
-                        moveDownPoints -= AIbadMovePunishment;
-                    }
-                    if (i < 1) {
-                        // I need this i because it calls it too many times since the bounds are in the same
-                        // position all the time
-                        // protects me from going into dead ends in the corners
-                        if (myHead.y - 2 < 0) {
-                            moveDownPoints -=deadEndPunishmentPoints;
-                        }
-                    }
-                   
                 }
-                if (moveSafety.left == true ) {
-                    if (myHead.x == b.x +2 && myHead.y == b.y) {
-                        moveLeftPoints -= AIbadMovePunishment;
+
+                if (i < 1) {
+                    // #3
+                    // I need this i because it calls it too many times since the bounds are in the same
+                    // position all the time
+                    // protects me from going into dead ends in the corners
+                    if (myHead.x -2 < 0) {
+                        moveLeftPoints -= deadEndPunishmentPoints;
                     }
-                    // this helps me to get out of longer loops of my body
-                    if (myHead.x == b.x +3 && myHead.y == b.y) {
-                        moveLeftPoints -= AIbadMovePunishment;
-                    }
-                    if (myHead.x == b.x +2 && myHead.y == b.y + 1) {
-                        moveLeftPoints -= AIbadMovePunishment;
-                    }
-                    if (myHead.x == b.x +2 && myHead.y == b.y - 1) {
-                        moveLeftPoints -= AIbadMovePunishment;
-                    }
-                    if (i < 1) {
-                        // I need this i because it calls it too many times since the bounds are in the same
-                        // position all the time
-                        // protects me from going into dead ends in the corners
-                        if (myHead.x -2 < 0) {
-                            moveLeftPoints -= deadEndPunishmentPoints;
-                        }
-                    }
-                   
                 }
-                if (moveSafety.right == true ) {
-                    if (myHead.x == b.x -2 && myHead.y == b.y) {
-                        moveRightPoints -= AIbadMovePunishment;
+                if (i < 1) {
+                    // #4
+                    // I need this i because it calls it too many times since the bounds are in the same
+                    // position all the time
+                    // protects me from going into dead ends in the corners
+                    if (myHead.x +2 > gameBoardProperties.width -1) {
+                        moveRightPoints -= deadEndPunishmentPoints;
                     }
-                    // this helps me to get out of longer loops of my body
-                    if (myHead.x == b.x -3 && myHead.y == b.y) {
-                        moveRightPoints -= AIbadMovePunishment;
-                    }
-                    if (myHead.x == b.x -2 && myHead.y == b.y + 1) {
-                        moveRightPoints -= AIbadMovePunishment;
-                    }
-                    if (myHead.x == b.x -2 && myHead.y == b.y - 1) {
-                        moveRightPoints -= AIbadMovePunishment;
-                    }
-                    if (i < 1) {
-                        // I need this i because it calls it too many times since the bounds are in the same
-                        // position all the time
-                        // protects me from going into dead ends in the corners
-                        if (myHead.x +2 > gameBoardProperties.width -1) {
-                            moveRightPoints -= deadEndPunishmentPoints;
-                        }
-                    }
-       
                 }
-               
+
                 // checks which moves have higher points, DON'T CHANGE THIS!!!!!! ONLY REVIEW!!
                 if (moveSafety.up == true) {
                     if (moveUpPoints > moveRightPoints &&  moveUpPoints > moveLeftPoints && moveUpPoints > moveDownPoints) {
