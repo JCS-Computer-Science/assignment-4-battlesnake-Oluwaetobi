@@ -438,36 +438,38 @@ export default function move(gameState){
                             let secondBracket = 0;
                             let thirdBracket = 0;
                             let fourthBracket = 0;
+                            /** I don't want the reward to be to high or else it will decrease the quality of my AI snake */
+                            let getOutOfHazardsReward = 1;
                             for (let i = 0; i < Math.round(gameBoardProperties.height/2); i++) {
                                 if (firstBracket == 0) {
                                     // helps me get out of hazards diagonally, move down and then right
                                     if (myHead.y - i != h.y && myHead.x + i != h.x) {
-                                        moveDownPoints += 2;
-                                        moveRightPoints += 2;
+                                        moveDownPoints += getOutOfHazardsReward;
+                                        moveRightPoints += getOutOfHazardsReward;
                                         firstBracket += 1;
                                     }
                                 }
                                 if (secondBracket == 0) {
                                     // helps me get out of hazards diagonally, move down and then left
                                     if (myHead.y - i != h.y && myHead.x - i != h.x) {
-                                        moveDownPoints += 2;
-                                        moveLeftPoints += 2;
+                                        moveDownPoints += getOutOfHazardsReward;
+                                        moveLeftPoints += getOutOfHazardsReward;
                                         secondBracket += 1;
                                     }
                                 }
                                 if (thirdBracket == 0) {
                                     // helps me get out of hazards diagonally, move up and then left
                                     if (myHead.y + i != h.y && myHead.x - i != h.x) {
-                                        moveDownPoints += 2;
-                                        moveLeftPoints += 2;
+                                        moveUpPoints += getOutOfHazardsReward;
+                                        moveLeftPoints += getOutOfHazardsReward;
                                         thirdBracket += 1;
                                     }
                                 }
                                 if (fourthBracket == 0) {
                                     // helps me get out of hazards diagonally, move up and then right
                                     if (myHead.y + i != h.y && myHead.x + i != h.x) {
-                                        moveDownPoints += 2;
-                                        moveLeftPoints += 2;
+                                        moveUpPoints += getOutOfHazardsReward;
+                                        moveRightPoints += getOutOfHazardsReward;
                                         fourthBracket += 1;
                                     }
                                 }
