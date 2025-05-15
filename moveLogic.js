@@ -961,6 +961,7 @@ export default function move(gameState){
 
                                 // eating food that is 2 units or more away
                                 // eat food that is adjacent to me
+                                // Now my snake can eat food anywehre on the board
                                 for (let i = 2; i < gameBoardProperties.height - 4; i++) {
                                     /** I am removing the Left and Right functions because it is ruining my snakes ability
                                      * to stay alive
