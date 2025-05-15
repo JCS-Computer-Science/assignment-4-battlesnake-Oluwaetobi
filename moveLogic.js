@@ -1060,6 +1060,38 @@ export default function move(gameState){
             if (moveSafety.right == false) {
                 moveRightPoints -= pointsRemovedForNotBeingSafe;
             }
+            
+            let deadEndPunishmentPoints = theSamePunishment;
+    
+           // INSERTED BACK STUFF
+                // #1
+                // I need this i because it calls it too many times since the bounds are in the same
+                // position all the time
+                // protects me from going into dead ends in the corners
+                if (myHead.y +2 > gameBoardProperties.height -1) {
+                    moveUpPoints -= deadEndPunishmentPoints;
+                }
+                // #2
+                // I need this i because it calls it too many times since the bounds are in the same
+                // position all the time
+                // protects me from going into dead ends in the corners
+                if (myHead.y - 2 < 0) {
+                    moveDownPoints -=deadEndPunishmentPoints;
+                }
+                // #3
+                // I need this i because it calls it too many times since the bounds are in the same
+                // position all the time
+                // protects me from going into dead ends in the corners
+                if (myHead.x -2 < 0) {
+                    moveLeftPoints -= deadEndPunishmentPoints;
+                }
+                // #4
+                // I need this i because it calls it too many times since the bounds are in the same
+                // position all the time
+                // protects me from going into dead ends in the corners
+                if (myHead.x +2 > gameBoardProperties.width -1) {
+                    moveRightPoints -= deadEndPunishmentPoints;
+                }
        
         // rules out any real bad choices
         // DO NOT CHANGE THIS!!!!
@@ -1076,37 +1108,6 @@ export default function move(gameState){
             moveSafety.right = false;
         }
         
-        let deadEndPunishmentPoints = theSamePunishment;
-
-       // INSERTED BACK STUFF
-            // #1
-            // I need this i because it calls it too many times since the bounds are in the same
-            // position all the time
-            // protects me from going into dead ends in the corners
-            if (myHead.y +2 > gameBoardProperties.height -1) {
-                moveUpPoints -= deadEndPunishmentPoints;
-            }
-            // #2
-            // I need this i because it calls it too many times since the bounds are in the same
-            // position all the time
-            // protects me from going into dead ends in the corners
-            if (myHead.y - 2 < 0) {
-                moveDownPoints -=deadEndPunishmentPoints;
-            }
-            // #3
-            // I need this i because it calls it too many times since the bounds are in the same
-            // position all the time
-            // protects me from going into dead ends in the corners
-            if (myHead.x -2 < 0) {
-                moveLeftPoints -= deadEndPunishmentPoints;
-            }
-            // #4
-            // I need this i because it calls it too many times since the bounds are in the same
-            // position all the time
-            // protects me from going into dead ends in the corners
-            if (myHead.x +2 > gameBoardProperties.width -1) {
-                moveRightPoints -= deadEndPunishmentPoints;
-            }
 
         // checks which moves have higher points, DON'T CHANGE THIS!!!!!! ONLY REVIEW!!
         if (moveSafety.up == true) {
