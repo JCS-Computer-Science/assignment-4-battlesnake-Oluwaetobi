@@ -727,9 +727,8 @@ export default function move(gameState){
 
         for (let i = 0; i < snakes.length; i ++) {
 
-             // I need this b because it calls it too many times since the bounds are in the same
-            // position all the time
-            // let b = 0;
+            /* I am changing this only for this specific section ONLY because this will help me stop getting stuck in dead ends in my body
+                This kind of works like recursion, but I need to add more if statements here to make it smarter*/
 
             if (snakes[i].id == gameState.you.id) { 
                 for (let a = 0; a < snakes[i].body.length; a++) {
@@ -910,9 +909,6 @@ export default function move(gameState){
             let i = 0;
    
             snakeBody.forEach((b) => {
-                /* I am changing this only for this specific section ONLY because this will help me stop getting stuck in dead ends in my body
-                This kind of works like recursion, but I need to add more if statements here to make it smarter*/
- 
  
                 /* ADD More IF statements to make smart choices smarter*/
                
