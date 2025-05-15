@@ -716,9 +716,7 @@ export default function move(gameState){
 
             if (snakes[i].id == gameState.you.id) { 
                 for (let a = 0; a < snakes[i].body.length; a++) {
-
-                    // The dead end punishment and bad Ai guesses have to be the same with the ai bad guesses being slightly higher
-                   // or else it will ruin the quality of my snake
+                    // This is looking only at my snake
 
 
                    // GENERATIVE AI GUESSES
@@ -768,10 +766,8 @@ export default function move(gameState){
                    }
                }
             } else {
+                // This is comparing my snake against other snakes, it does not include my snake in it's calculations
                 for (let a = 0; a < snakes[i].body.length; a++) {
-
-                     // The dead end punishment and bad Ai guesses have to be the same with the ai bad guesses being slightly higher
-                    // or else it will ruin the quality of my snake
  
  
                     // GENERATIVE AI GUESSES
@@ -783,10 +779,11 @@ export default function move(gameState){
                             if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
                                 moveUpPoints -= AIbadMovePunishment;
                             }
-                            // this helps me to get out of longer loops of my body
-                            if (myHead.y == snakes[i].body[a].y -3 && myHead.x == snakes[i].body[a].x) {
-                                moveUpPoints -=AIbadMovePunishment;
-                            }
+                            // // I am not sure if this is even useful anymore since I have rearranged my code
+                            // // this helps me to stay away from other snakes
+                            // if (myHead.y == snakes[i].body[a].y -3 && myHead.x == snakes[i].body[a].x) {
+                            //     moveUpPoints -=AIbadMovePunishment;
+                            // }
                             if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x + 1) {
                                 moveUpPoints -=AIbadMovePunishment;
                             }
@@ -799,10 +796,11 @@ export default function move(gameState){
                             if (myHead.y == snakes[i].body[a].y +2 && myHead.x == snakes[i].body[a].x) {
                                 moveDownPoints -= AIbadMovePunishment;
                             }
-                            // this helps me to get out of longer loops of my body
-                            if (myHead.y == snakes[i].body[a].y +3 && myHead.x == snakes[i].body[a].x) {
-                                moveDownPoints -= AIbadMovePunishment;
-                            }
+                            // // I am not sure if this is even useful anymore since I have rearranged my code
+                            // // this helps me to stay away from other snakes
+                            // if (myHead.y == snakes[i].body[a].y +3 && myHead.x == snakes[i].body[a].x) {
+                            //     moveDownPoints -= AIbadMovePunishment;
+                            // }
                             if (myHead.y == snakes[i].body[a].y +2 && myHead.x == snakes[i].body[a].x + 1) {
                                 moveDownPoints -= AIbadMovePunishment;
                             }
@@ -815,10 +813,11 @@ export default function move(gameState){
                             if (myHead.x == snakes[i].body[a].x +2 && myHead.y == snakes[i].body[a].y) {
                                 moveLeftPoints -= AIbadMovePunishment;
                             }
-                            // this helps me to get out of longer loops of my body
-                            if (myHead.x == snakes[i].body[a].x +3 && myHead.y == snakes[i].body[a].y) {
-                                moveLeftPoints -= AIbadMovePunishment;
-                            }
+                            // // I am not sure if this is even useful anymore since I have rearranged my code
+                            // // this helps me to stay away from other snakes
+                            // if (myHead.x == snakes[i].body[a].x +3 && myHead.y == snakes[i].body[a].y) {
+                            //     moveLeftPoints -= AIbadMovePunishment;
+                            // }
                             if (myHead.x == snakes[i].body[a].x +2 && myHead.y == snakes[i].body[a].y + 1) {
                                 moveLeftPoints -= AIbadMovePunishment;
                             }
@@ -831,10 +830,11 @@ export default function move(gameState){
                             if (myHead.x == snakes[i].body[a].x -2 && myHead.y == snakes[i].body[a].y) {
                                 moveRightPoints -= AIbadMovePunishment;
                             }
-                            // this helps me to get out of longer loops of my body
-                            if (myHead.x == snakes[i].body[a].x -3 && myHead.y == snakes[i].body[a].y) {
-                                moveRightPoints -= AIbadMovePunishment;
-                            }
+                            // // I am not sure if this is even useful anymore since I have rearranged my code
+                            // // this helps me to stay away from other snakes
+                            // if (myHead.x == snakes[i].body[a].x -3 && myHead.y == snakes[i].body[a].y) {
+                            //     moveRightPoints -= AIbadMovePunishment;
+                            // }
                             if (myHead.x == snakes[i].body[a].x -2 && myHead.y == snakes[i].body[a].y + 1) {
                                 moveRightPoints -= AIbadMovePunishment;
                             }
