@@ -713,7 +713,7 @@ export default function move(gameState){
 
              // I need this b because it calls it too many times since the bounds are in the same
             // position all the time
-            let b = 0;
+            // let b = 0;
 
             if (snakes[i].id == gameState.you.id) { 
                 for (let a = 0; a < snakes[i].body.length; a++) {
