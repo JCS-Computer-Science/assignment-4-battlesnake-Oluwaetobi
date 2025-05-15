@@ -430,6 +430,46 @@ export default function move(gameState){
                         if (myHead.y == h.y +2 && myHead.x == h.x) {
                             moveDownPoints -= 1;
                         }
+
+                    // this might seem like it is wrong, but please don't change it
+                    let firstBracket = 0;
+                    let secondBracket = 0;
+                    let thirdBracket = 0;
+                    let fourthBracket = 0;
+                    for (let i = 0; i < Math.round(gameBoardProperties.height/2); i++) {
+                        if (firstBracket == 0) {
+                            // helps me get out of hazards diagonally, move down and then right
+                            if (myHead.y - i != h.y && myHead.x + i != h.x) {
+                                moveDownPoints += 2;
+                                moveRightPoints += 2;
+                                firstBracket += 1;
+                            }
+                        }
+                        if (secondBracket == 0) {
+                            // helps me get out of hazards diagonally, move down and then left
+                            if (myHead.y - i != h.y && myHead.x - i != h.x) {
+                                moveDownPoints += 2;
+                                moveLeftPoints += 2;
+                                secondBracket += 1;
+                            }
+                        }
+                        if (thirdBracket == 0) {
+                            // helps me get out of hazards diagonally, move up and then left
+                            if (myHead.y + i != h.y && myHead.x - i != h.x) {
+                                moveDownPoints += 2;
+                                moveLeftPoints += 2;
+                                thirdBracket += 1;
+                            }
+                        }
+                        if (fourthBracket == 0) {
+                            // helps me get out of hazards diagonally, move up and then right
+                            if (myHead.y + i != h.y && myHead.x + i != h.x) {
+                                moveDownPoints += 2;
+                                moveLeftPoints += 2;
+                                fourthBracket += 1;
+                            }
+                        }
+                    }
                 })
 
                 // cuts off snakes at the far sides of the board
@@ -682,8 +722,8 @@ export default function move(gameState){
     // })
  
  
-    // the punishments here for staying in the hazards will be less since I am in a dire situation
-    // and don't have many moves I can make and sometimes I may need to stay in the hazards to eat food
+    /* the punishments here for staying in the hazards will be less since I am in a dire situation and my safe moves.length == 0
+     and don't have many moves I can make and sometimes I may need to stay in the hazards to eat food */
     hazards.forEach((h) => {
         // for hazards 1 unit away
         if (myHead.x == h.x -1 && myHead.y == h.y) {
@@ -1060,7 +1100,7 @@ export default function move(gameState){
             if (moveSafety.right == false) {
                 moveRightPoints -= pointsRemovedForNotBeingSafe;
             }
-            
+
             let deadEndPunishmentPoints = theSamePunishment;
     
            // INSERTED BACK STUFF
