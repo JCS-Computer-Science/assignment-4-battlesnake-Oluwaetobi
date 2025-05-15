@@ -431,45 +431,48 @@ export default function move(gameState){
                             moveDownPoints -= 1;
                         }
 
-                    // this might seem like it is wrong, but please don't change it
-                    let firstBracket = 0;
-                    let secondBracket = 0;
-                    let thirdBracket = 0;
-                    let fourthBracket = 0;
-                    for (let i = 0; i < Math.round(gameBoardProperties.height/2); i++) {
-                        if (firstBracket == 0) {
-                            // helps me get out of hazards diagonally, move down and then right
-                            if (myHead.y - i != h.y && myHead.x + i != h.x) {
-                                moveDownPoints += 2;
-                                moveRightPoints += 2;
-                                firstBracket += 1;
+                        // it will only do this stuff if I am in a hazard
+                        if (myHead.x == h.x && myHead.y ==h.y) {
+                            // this might seem like it is wrong, but please don't change it
+                            let firstBracket = 0;
+                            let secondBracket = 0;
+                            let thirdBracket = 0;
+                            let fourthBracket = 0;
+                            for (let i = 0; i < Math.round(gameBoardProperties.height/2); i++) {
+                                if (firstBracket == 0) {
+                                    // helps me get out of hazards diagonally, move down and then right
+                                    if (myHead.y - i != h.y && myHead.x + i != h.x) {
+                                        moveDownPoints += 2;
+                                        moveRightPoints += 2;
+                                        firstBracket += 1;
+                                    }
+                                }
+                                if (secondBracket == 0) {
+                                    // helps me get out of hazards diagonally, move down and then left
+                                    if (myHead.y - i != h.y && myHead.x - i != h.x) {
+                                        moveDownPoints += 2;
+                                        moveLeftPoints += 2;
+                                        secondBracket += 1;
+                                    }
+                                }
+                                if (thirdBracket == 0) {
+                                    // helps me get out of hazards diagonally, move up and then left
+                                    if (myHead.y + i != h.y && myHead.x - i != h.x) {
+                                        moveDownPoints += 2;
+                                        moveLeftPoints += 2;
+                                        thirdBracket += 1;
+                                    }
+                                }
+                                if (fourthBracket == 0) {
+                                    // helps me get out of hazards diagonally, move up and then right
+                                    if (myHead.y + i != h.y && myHead.x + i != h.x) {
+                                        moveDownPoints += 2;
+                                        moveLeftPoints += 2;
+                                        fourthBracket += 1;
+                                    }
+                                }
                             }
                         }
-                        if (secondBracket == 0) {
-                            // helps me get out of hazards diagonally, move down and then left
-                            if (myHead.y - i != h.y && myHead.x - i != h.x) {
-                                moveDownPoints += 2;
-                                moveLeftPoints += 2;
-                                secondBracket += 1;
-                            }
-                        }
-                        if (thirdBracket == 0) {
-                            // helps me get out of hazards diagonally, move up and then left
-                            if (myHead.y + i != h.y && myHead.x - i != h.x) {
-                                moveDownPoints += 2;
-                                moveLeftPoints += 2;
-                                thirdBracket += 1;
-                            }
-                        }
-                        if (fourthBracket == 0) {
-                            // helps me get out of hazards diagonally, move up and then right
-                            if (myHead.y + i != h.y && myHead.x + i != h.x) {
-                                moveDownPoints += 2;
-                                moveLeftPoints += 2;
-                                fourthBracket += 1;
-                            }
-                        }
-                    }
                 })
 
                 // cuts off snakes at the far sides of the board
