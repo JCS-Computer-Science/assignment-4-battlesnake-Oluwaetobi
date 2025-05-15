@@ -388,7 +388,7 @@ export default function move(gameState){
                                     moveDownPoints += cutOffSnakeReward;
                                 }
                                 
-                                console.log("Are There Hazards?: " + areThereHazards);
+                                // console.log("Are There Hazards?: " + areThereHazards);
                                 
                             }
                             
@@ -768,6 +768,39 @@ export default function move(gameState){
                }
             } else {
                 // This is comparing my snake against other snakes, it does not include my snake in it's calculations
+                // I have 2 of these for a reason, because I want to use both codes when I am the longest and when I am not
+                // although I am actually only use a small chunk for this part, because it kind of protects me from 
+                // colliding with other snakes although this a temporary solution
+                if (IamTheLongest == true) {
+                    for (let a = 0; a < snakes[i].body.length; a++) {
+                        if (moveSafety.up == true ) {
+                            if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
+                                moveUpPoints -= AIbadMovePunishment;
+                            }
+                        
+                        }
+                        if (moveSafety.down == true ) {
+                            if (myHead.y == snakes[i].body[a].y +2 && myHead.x == snakes[i].body[a].x) {
+                                moveDownPoints -= AIbadMovePunishment;
+                            }
+                        
+                        }
+                        if (moveSafety.left == true ) {
+                            if (myHead.x == snakes[i].body[a].x +2 && myHead.y == snakes[i].body[a].y) {
+                                moveLeftPoints -= AIbadMovePunishment;
+                            }
+                        
+                        }
+                        if (moveSafety.right == true ) {
+                            if (myHead.x == snakes[i].body[a].x -2 && myHead.y == snakes[i].body[a].y) {
+                                moveRightPoints -= AIbadMovePunishment;
+                            }
+                        }
+    
+                    }
+                }
+
+
                 for (let a = 0; a < snakes[i].body.length; a++) {
  
  
