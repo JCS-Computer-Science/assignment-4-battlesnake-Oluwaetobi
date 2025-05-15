@@ -788,6 +788,7 @@ export default function move(gameState){
                 // although I am actually only use a small chunk for this part, because it kind of protects me from 
                 // colliding with other snakes although this a temporary solution
                 if (IamTheLongest == true) {
+                    let AIbadMovePunishment = (theSamePunishment - 1);
                     for (let a = 0; a < snakes[i].body.length; a++) {
                         if (moveSafety.up == true ) {
                             if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
