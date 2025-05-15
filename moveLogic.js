@@ -899,6 +899,8 @@ export default function move(gameState){
             }
         }
 
+        // END OF A SECTION START OF A NEW SECTION
+
         snakes.forEach((snake) => {
             const snakeBody = snake.body;
            
@@ -1040,185 +1042,174 @@ export default function move(gameState){
                     }
                 }
  
- 
-                // takes away points for their safety being false, DO NOT CHANGE THIS!!!!!
-                let pointsRemovedForNotBeingSafe = 20;
-                // REALLY BAD CHOICES at -6 is THE SWEET SPOT DO NOT CHANGE THIS!!!!
-                let reallyBadChoices = -15;
-                if (i < 1) {
-                    if (moveSafety.up == false) {
-                        moveUpPoints -= pointsRemovedForNotBeingSafe;
-                    }
-                    if (moveSafety.down == false) {
-                        moveDownPoints -= pointsRemovedForNotBeingSafe;
-                    }
-                    if (moveSafety.left == false) {
-                        moveLeftPoints -= pointsRemovedForNotBeingSafe;
-                    }
-                    if (moveSafety.right == false) {
-                        moveRightPoints -= pointsRemovedForNotBeingSafe;
-                    }
-                }
-               
-                // rules out any real bad choices
-                // DO NOT CHANGE THIS!!!!
-                if (UpPointsHigher < reallyBadChoices) {
-                    moveSafety.up = false;
-                }
-                if (DownPointsHigher < reallyBadChoices) {
-                    moveSafety.down = false;
-                }
-                if (LeftPointsHigher < reallyBadChoices) {
-                    moveSafety.left = false;
-                }
-                if (RightPointsHigher < reallyBadChoices) {
-                    moveSafety.right = false;
-                }
-                
-                let deadEndPunishmentPoints = theSamePunishment;
-
-               // INSERTED BACK STUFF
-               if (i < 1) {
-                    // #1
-                    // I need this i because it calls it too many times since the bounds are in the same
-                    // position all the time
-                    // protects me from going into dead ends in the corners
-                    if (myHead.y +2 > gameBoardProperties.height -1) {
-                        moveUpPoints -= deadEndPunishmentPoints;
-                    }
-                }
-                if (i < 1) {
-                    // #2
-                    // I need this i because it calls it too many times since the bounds are in the same
-                    // position all the time
-                    // protects me from going into dead ends in the corners
-                    if (myHead.y - 2 < 0) {
-                        moveDownPoints -=deadEndPunishmentPoints;
-                    }
-                }
-
-                if (i < 1) {
-                    // #3
-                    // I need this i because it calls it too many times since the bounds are in the same
-                    // position all the time
-                    // protects me from going into dead ends in the corners
-                    if (myHead.x -2 < 0) {
-                        moveLeftPoints -= deadEndPunishmentPoints;
-                    }
-                }
-                if (i < 1) {
-                    // #4
-                    // I need this i because it calls it too many times since the bounds are in the same
-                    // position all the time
-                    // protects me from going into dead ends in the corners
-                    if (myHead.x +2 > gameBoardProperties.width -1) {
-                        moveRightPoints -= deadEndPunishmentPoints;
-                    }
-                }
-
-                // checks which moves have higher points, DON'T CHANGE THIS!!!!!! ONLY REVIEW!!
-                if (moveSafety.up == true) {
-                    if (moveUpPoints > moveRightPoints &&  moveUpPoints > moveLeftPoints && moveUpPoints > moveDownPoints) {
-                        UpPointsHigher = true;
-                    }
- 
- 
-                }
-                if (moveSafety.down == true) {
-                    if (moveDownPoints > moveRightPoints && moveDownPoints > moveUpPoints && moveDownPoints > moveLeftPoints) {
-                        DownPointsHigher = true;
-                    }
-                   
-                }
-                if (moveSafety.left == true) {
-                    if (moveLeftPoints > moveRightPoints && moveLeftPoints > moveUpPoints && moveLeftPoints > moveDownPoints) {
-                        LeftPointsHigher = true;
-                    }
-                   
-                }
-                if (moveSafety.right == true) {
-                    if (moveRightPoints > moveLeftPoints && moveRightPoints > moveUpPoints && moveRightPoints > moveDownPoints) {
-                        RightPointsHigher = true;
-                    }
-                   
-                }
-           
-                // sometimes none of the moves returns as true in that case I have to choose one of the moves that
-                // are greater than -1, at least it won't be an awfully bad choice, yay!!
-                // -1 is the sweet spot, DO NOT CHANGE THIS!!!!
-                if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
-                    if (moveLeftPoints >= -1) {
-                        LeftPointsHigher = true;
-                    } else if(moveRightPoints >= -1) {
-                        RightPointsHigher = true;
-                    } else if (moveDownPoints >= -1) {
-                        DownPointsHigher = true;
-                    } else {
-                        if (moveUpPoints >= -1) {
-                            UpPointsHigher = true;
-                        }
-                    }
-                }
-                // DON'T EDIT THIS ONLY REVIEW IT!!
-                // sometimes the benchmark is less than -1 and this causes problems so I am doing add this;
-                if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
-                    for (let i = 2; i < 10; i++) {
-                        if (moveLeftPoints >= -i) {
-                            LeftPointsHigher = true;
-                        } else if(moveRightPoints >= -i) {
-                            RightPointsHigher = true;
-                        } else if (moveDownPoints >= -i) {
-                            DownPointsHigher = true;
-                        } else {
-                            if (moveUpPoints >= -i) {
-                                UpPointsHigher = true;
-                            }
-                        }
- 
- 
-                        if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
- 
- 
-                        } else {
-                            break;
-                        }
-                    }
-                }
- 
- 
-                // DON'T EDIT THIS, ONLY REVIEW IT!!!
-                // sometimes that above code still ends up having two ties, so I am going to break that
-                // and choose the best choice
-                // 1st bracket
-                if (UpPointsHigher == true && DownPointsHigher == true && moveDownPoints > moveUpPoints) {
-                    UpPointsHigher = false;
-                }
-                if (DownPointsHigher == true && LeftPointsHigher == true && moveLeftPoints > moveDownPoints) {
-                    DownPointsHigher = false;
-                }
-                if (LeftPointsHigher == true && RightPointsHigher == true && moveRightPoints > moveLeftPoints) {
-                    LeftPointsHigher = false;
-                }
- 
- 
-                // 2nd bracket
-                if (UpPointsHigher == true && LeftPointsHigher == true && moveLeftPoints > moveUpPoints) {
-                    UpPointsHigher = false;
-                }
-                if (UpPointsHigher == true && RightPointsHigher == true && moveRightPoints > moveUpPoints) {
-                    UpPointsHigher = false;
-                }
- 
- 
-                // 3rd bracket
-                if (DownPointsHigher == true && RightPointsHigher == true && moveRightPoints > moveDownPoints) {
-                    DownPointsHigher = false;
-                }
- 
- 
                 i += 1;
             })
         })
+        
+        // takes away points for their safety being false, DO NOT CHANGE THIS!!!!!
+        let pointsRemovedForNotBeingSafe = 20;
+        // REALLY BAD CHOICES at -6 is THE SWEET SPOT DO NOT CHANGE THIS!!!!
+        let reallyBadChoices = -15;
+            if (moveSafety.up == false) {
+                moveUpPoints -= pointsRemovedForNotBeingSafe;
+            }
+            if (moveSafety.down == false) {
+                moveDownPoints -= pointsRemovedForNotBeingSafe;
+            }
+            if (moveSafety.left == false) {
+                moveLeftPoints -= pointsRemovedForNotBeingSafe;
+            }
+            if (moveSafety.right == false) {
+                moveRightPoints -= pointsRemovedForNotBeingSafe;
+            }
+       
+        // rules out any real bad choices
+        // DO NOT CHANGE THIS!!!!
+        if (UpPointsHigher < reallyBadChoices) {
+            moveSafety.up = false;
+        }
+        if (DownPointsHigher < reallyBadChoices) {
+            moveSafety.down = false;
+        }
+        if (LeftPointsHigher < reallyBadChoices) {
+            moveSafety.left = false;
+        }
+        if (RightPointsHigher < reallyBadChoices) {
+            moveSafety.right = false;
+        }
+        
+        let deadEndPunishmentPoints = theSamePunishment;
+
+       // INSERTED BACK STUFF
+            // #1
+            // I need this i because it calls it too many times since the bounds are in the same
+            // position all the time
+            // protects me from going into dead ends in the corners
+            if (myHead.y +2 > gameBoardProperties.height -1) {
+                moveUpPoints -= deadEndPunishmentPoints;
+            }
+            // #2
+            // I need this i because it calls it too many times since the bounds are in the same
+            // position all the time
+            // protects me from going into dead ends in the corners
+            if (myHead.y - 2 < 0) {
+                moveDownPoints -=deadEndPunishmentPoints;
+            }
+            // #3
+            // I need this i because it calls it too many times since the bounds are in the same
+            // position all the time
+            // protects me from going into dead ends in the corners
+            if (myHead.x -2 < 0) {
+                moveLeftPoints -= deadEndPunishmentPoints;
+            }
+            // #4
+            // I need this i because it calls it too many times since the bounds are in the same
+            // position all the time
+            // protects me from going into dead ends in the corners
+            if (myHead.x +2 > gameBoardProperties.width -1) {
+                moveRightPoints -= deadEndPunishmentPoints;
+            }
+
+        // checks which moves have higher points, DON'T CHANGE THIS!!!!!! ONLY REVIEW!!
+        if (moveSafety.up == true) {
+            if (moveUpPoints > moveRightPoints &&  moveUpPoints > moveLeftPoints && moveUpPoints > moveDownPoints) {
+                UpPointsHigher = true;
+            }
+
+
+        }
+        if (moveSafety.down == true) {
+            if (moveDownPoints > moveRightPoints && moveDownPoints > moveUpPoints && moveDownPoints > moveLeftPoints) {
+                DownPointsHigher = true;
+            }
+           
+        }
+        if (moveSafety.left == true) {
+            if (moveLeftPoints > moveRightPoints && moveLeftPoints > moveUpPoints && moveLeftPoints > moveDownPoints) {
+                LeftPointsHigher = true;
+            }
+           
+        }
+        if (moveSafety.right == true) {
+            if (moveRightPoints > moveLeftPoints && moveRightPoints > moveUpPoints && moveRightPoints > moveDownPoints) {
+                RightPointsHigher = true;
+            }
+           
+        }
+   
+        // sometimes none of the moves returns as true in that case I have to choose one of the moves that
+        // are greater than -1, at least it won't be an awfully bad choice, yay!!
+        // -1 is the sweet spot, DO NOT CHANGE THIS!!!!
+        if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
+            if (moveLeftPoints >= -1) {
+                LeftPointsHigher = true;
+            } else if(moveRightPoints >= -1) {
+                RightPointsHigher = true;
+            } else if (moveDownPoints >= -1) {
+                DownPointsHigher = true;
+            } else {
+                if (moveUpPoints >= -1) {
+                    UpPointsHigher = true;
+                }
+            }
+        }
+        // DON'T EDIT THIS ONLY REVIEW IT!!
+        // sometimes the benchmark is less than -1 and this causes problems so I am doing add this;
+        if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
+            for (let i = 2; i < 10; i++) {
+                if (moveLeftPoints >= -i) {
+                    LeftPointsHigher = true;
+                } else if(moveRightPoints >= -i) {
+                    RightPointsHigher = true;
+                } else if (moveDownPoints >= -i) {
+                    DownPointsHigher = true;
+                } else {
+                    if (moveUpPoints >= -i) {
+                        UpPointsHigher = true;
+                    }
+                }
+
+
+                if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
+
+
+                } else {
+                    break;
+                }
+            }
+        }
+
+
+        // DON'T EDIT THIS, ONLY REVIEW IT!!!
+        // sometimes that above code still ends up having two ties, so I am going to break that
+        // and choose the best choice
+        // 1st bracket
+        if (UpPointsHigher == true && DownPointsHigher == true && moveDownPoints > moveUpPoints) {
+            UpPointsHigher = false;
+        }
+        if (DownPointsHigher == true && LeftPointsHigher == true && moveLeftPoints > moveDownPoints) {
+            DownPointsHigher = false;
+        }
+        if (LeftPointsHigher == true && RightPointsHigher == true && moveRightPoints > moveLeftPoints) {
+            LeftPointsHigher = false;
+        }
+
+
+        // 2nd bracket
+        if (UpPointsHigher == true && LeftPointsHigher == true && moveLeftPoints > moveUpPoints) {
+            UpPointsHigher = false;
+        }
+        if (UpPointsHigher == true && RightPointsHigher == true && moveRightPoints > moveUpPoints) {
+            UpPointsHigher = false;
+        }
+
+
+        // 3rd bracket
+        if (DownPointsHigher == true && RightPointsHigher == true && moveRightPoints > moveDownPoints) {
+            DownPointsHigher = false;
+        }
+
+        // END OF A SECTION START OF A NEW SECTION
  
  
  
