@@ -1184,9 +1184,6 @@ export default function move(gameState){
         // sometimes none of the moves returns as true in that case I have to choose one of the moves that
         // are greater than -1, at least it won't be an awfully bad choice, yay!!
         // -1 is the sweet spot, DO NOT CHANGE THIS!!!!
-
-        /* This is a bit unfair, it causes some AI guesses to be inaccurate because sometimes another number might be
-        higher than it, although I might REVERT to this CODE, so I am going to keep it here just in case */
         if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
             if (moveLeftPoints >= -1) {
                 LeftPointsHigher = true;
@@ -1201,61 +1198,20 @@ export default function move(gameState){
             }
         }
 
-
-        // So I am doing this instead
-        // if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
-        //     if (moveLeftPoints >= -1) {
-        //         LeftPointsHigher = true;
-        //     } 
-        //     if(moveRightPoints >= -1) {
-        //         RightPointsHigher = true;
-        //     } 
-        //     if (moveDownPoints >= -1) {
-        //         DownPointsHigher = true;
-        //     } 
-        //     if (moveUpPoints >= -1) {
-        //         UpPointsHigher = true;
-        //     }
-        // }
-
         // DON'T EDIT THIS ONLY REVIEW IT!!
         // sometimes the benchmark is less than -1 and this causes problems so I am doing add this;
-        /* This is a bit unfair, it causes some AI guesses to be inaccurate because sometimes another number might be
-        higher than it, although I might REVERT to this CODE, so I am going to keep it here just in case*/
-        // if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
-        //     for (let i = 2; i < 10; i++) {
-        //         if (moveLeftPoints >= -i) {
-        //             LeftPointsHigher = true;
-        //         } else if(moveRightPoints >= -i) {
-        //             RightPointsHigher = true;
-        //         } else if (moveDownPoints >= -i) {
-        //             DownPointsHigher = true;
-        //         } else {
-        //             if (moveUpPoints >= -i) {
-        //                 UpPointsHigher = true;
-        //             }
-        //         }
-        //         if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
-        //             // if the first loop didn't work then it will restart if it was sucessful then the loop will break;
-        //         } else {
-        //             break;
-        //         }
-        //     }
-        // }
-        // So I am going to do this instead
         if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
             for (let i = 2; i < 10; i++) {
                 if (moveLeftPoints >= -i) {
                     LeftPointsHigher = true;
-                } 
-                if(moveRightPoints >= -i) {
+                } else if(moveRightPoints >= -i) {
                     RightPointsHigher = true;
-                }  
-                if (moveDownPoints >= -i) {
+                } else if (moveDownPoints >= -i) {
                     DownPointsHigher = true;
-                } 
-                if (moveUpPoints >= -i) {
-                    UpPointsHigher = true;
+                } else {
+                    if (moveUpPoints >= -i) {
+                        UpPointsHigher = true;
+                    }
                 }
                 if (LeftPointsHigher == false && UpPointsHigher == false && RightPointsHigher == false && DownPointsHigher == false) {
                     // if the first loop didn't work then it will restart if it was sucessful then the loop will break;
@@ -1312,7 +1268,7 @@ export default function move(gameState){
         nextMove = safeMoves[Math.floor(Math.random() * safeMoves.length)];
     }
     // DON'T CHANGE THIS!!!!!! ONLY REVIEW IT!!
-    // Don't change the order of this or else it will mess us the procedures and the AI guesses and picking
+    // DON"T CHANGE THE ORDER OF THIS OR ELSE IT WILL MESS UP THE PROCEDURE AND THE AI GUESSES AND PICKING
     if (safeMoves.length > 1) {
         // since the start is always going to be 0, I don't need to change anything here
         if (UpPointsHigher == true && moveSafety.up == true) {
