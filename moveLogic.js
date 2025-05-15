@@ -394,6 +394,7 @@ export default function move(gameState){
                             
                         }
                     }
+                    // for hazards that are 1 unit away
                         if (myHead.x == h.x -1 && myHead.y == h.y) {
                             moveRightPoints -= 3;
                         }
@@ -772,7 +773,7 @@ export default function move(gameState){
  
                     // GENERATIVE AI GUESSES
                     if (IamTheLongest == false) {
-                        let AIbadMovePunishment = (theSamePunishment + 1);
+                        let AIbadMovePunishment = (theSamePunishment - 1);
      
      
                         if (moveSafety.up == true ) {
