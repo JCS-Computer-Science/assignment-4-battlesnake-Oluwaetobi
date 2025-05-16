@@ -242,40 +242,40 @@ export default function move(gameState){
                         moveRightPoints -= collisionPunishment;
                     }
                     if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y + 1) {
-                        moveRightPoints -= collisionPunishment;
+                        moveRightPoints -= (collisionPunishment -1);
                     }
                     if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y - 1) {
-                        moveRightPoints -= collisionPunishment;
+                        moveRightPoints -= (collisionPunishment -1);
                     }
                     // left movement blocked
                     if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y) {
                         moveLeftPoints -= collisionPunishment;
                     }
                     if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y + 1) {
-                        moveLeftPoints -= collisionPunishment;
+                        moveLeftPoints -= (collisionPunishment -1);
                     }
                     if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y - 1) {
-                        moveLeftPoints -= collisionPunishment;
+                        moveLeftPoints -= (collisionPunishment -1);
                     }
                     // up movement blocked
                     if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x) {
                         moveUpPoints -= collisionPunishment;
                     }
                     if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x + 1) {
-                        moveUpPoints -= collisionPunishment;
+                        moveUpPoints -= (collisionPunishment -1);
                     }
                     if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x - 1) {
-                        moveUpPoints -= collisionPunishment;
+                        moveUpPoints -= (collisionPunishment -1);
                     }
                     // down movement blocked
                     if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x) {
                         moveDownPoints -= collisionPunishment;
                     }
                     if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x + 1) {
-                        moveDownPoints -= collisionPunishment;
+                        moveDownPoints -= (collisionPunishment -1);
                     }
                     if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x - 1) {
-                        moveDownPoints -= collisionPunishment;
+                        moveDownPoints -= (collisionPunishment -1);
                     }
 
                     /* keeps my snake from later colliding with other snakes heads that are 3 units away and 1 unit diagonal
@@ -1263,7 +1263,7 @@ export default function move(gameState){
         // END OF AN OLD SECTION START OF A NEW SECTION
         
         safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
-        
+
         // takes away points for their safety being false, DO NOT CHANGE THIS!!!!!
         let pointsRemovedForNotBeingSafe = 20;
         // REALLY BAD CHOICES at -6 is THE SWEET SPOT DO NOT CHANGE THIS!!!!
