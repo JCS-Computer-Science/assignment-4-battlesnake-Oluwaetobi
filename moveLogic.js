@@ -55,7 +55,7 @@ export default function move(gameState){
     let eatAggressivelyUntilIamThisLong = 7;
  
  
-    // checks to see if I am the longest are not to know whether I should eat food agressively or not
+    // checks to see if I am the longest
     let amountOfSnakes1 = 0;
     let checkAmountOfSnakes1 = 0;
     for (let i = 0; i < snakes.length; i ++) {
@@ -71,7 +71,14 @@ export default function move(gameState){
             IamTheLongest = true;
         }
     }
-   
+
+   // 1st time: if I am the only snake in the game, sets I am the longest to true and reduces hungry to 50
+   if (snakes.length == 1) {
+    IamTheLongest == true;
+    hungry = 50;
+   }
+
+    // checks if I am the longest in order to know how to go about eating in the game
     if (IamTheLongest == true) {
         if (gameState.you.length < 13) {
             hungry = 80;
@@ -91,6 +98,12 @@ export default function move(gameState){
     }
  
  
+    // 2nd time: if I am the only snake in the game, sets I am the longest to true and reduces hungry to 50
+   if (snakes.length == 1) {
+    IamTheLongest == true;
+    hungry = 50;
+   }
+    
     /* I am doing this because of all those snakes that keep trying to kill me, I although I will only eat food
     agressively until my length is higher than 7 because once your body gets longer that helps shield you
     from getting killed. Why thank you Coreyja, Waryferryman, and Wrenger, I'll beat you guys this time!! */
@@ -1273,7 +1286,7 @@ export default function move(gameState){
 
                                 // eating food that is 2 units or more away
                                 // eat food that is adjacent to me
-                                // Now my snake can eat food anywehre on the board
+                                // Now my snake track food and eat food anywehre on the game board
                                 for (let i = 2; i < gameBoardProperties.height - 4; i++) {
                                     /** I am removing the Left and Right functions because it is ruining my snakes ability
                                      * to stay alive
