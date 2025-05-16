@@ -896,6 +896,8 @@ export default function move(gameState){
         // makes smart moves using safe moves and direction points
         /* EDIT THIS */
 
+        snakes = gameState.board.snakes
+        
         for (let i = 0; i < snakes.length; i ++) {
 
             /* I am changing this only for this specific section ONLY because this will help me stop getting stuck in dead ends in my body
@@ -962,6 +964,8 @@ export default function move(gameState){
                 although I am actually only use a small chunk for this part, because it kind of protects me from 
                 colliding with other snakes although this a temporary solution, this may seem in correct but I have carefully
                 thought it through, SO DO NOT CHANGE IT!!!! */
+
+                
                 if (IamTheLongest == true) {
                     let AIbadMovePunishment = (theSamePunishment - 1);
                     for (let a = 0; a < snakes[i].body.length; a++) {
@@ -1024,8 +1028,8 @@ export default function move(gameState){
 
                 for (let a = 0; a < snakes[i].body.length; a++) {
  
- 
                     // GENERATIVE AI GUESSES
+
                     if (IamTheLongest == false) {
                         let AIbadMovePunishment = (theSamePunishment - 1);
                         
