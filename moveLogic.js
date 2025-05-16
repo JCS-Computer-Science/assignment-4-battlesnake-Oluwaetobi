@@ -739,7 +739,7 @@ export default function move(gameState){
  
  
  
-    // this for loop makes sure that the snake doesn't collide with any of the segments of it's body
+    // this for loop makes sure that the snake doesn't collide with any of the segments of it's body, except my tail
     if ( gameState.you.body.length > 4) {
         for (let i = 2; i < gameState.you.body.length; i++) {
             if (i >= gameState.you.body.length -1) {
