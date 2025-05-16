@@ -596,7 +596,7 @@ export default function move(gameState){
     // Helps my snake follow my tail, instead of getting into dead ends and losing to other big snakes
     if ( gameState.you.body.length > 4) {
         let myTail = gameState.you.body.length;
-        let followTailReward = 1;
+        let followTailReward = 0.5;
             // from 1 unit away tail
             if ( gameState.you.body[myTail -1].x -1 == myHead.x && myHead.y == gameState.you.body[myTail -1].y) {
                 moveRightPoints += followTailReward;
