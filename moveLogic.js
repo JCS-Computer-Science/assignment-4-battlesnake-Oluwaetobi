@@ -1151,6 +1151,8 @@ export default function move(gameState){
                 i += 1;
             })
         })
+
+        // END OF AN OLD SECTION START OF A NEW SECTION
         
         // takes away points for their safety being false, DO NOT CHANGE THIS!!!!!
         let pointsRemovedForNotBeingSafe = 20;
@@ -1173,31 +1175,23 @@ export default function move(gameState){
     
            // INSERTED BACK STUFF
                 // #1
-                // I need this i because it calls it too many times since the bounds are in the same
-                // position all the time
                 // protects me from going into dead ends in the corners
-                if (myHead.y +2 > gameBoardProperties.height -1) {
+                if (myHead.y +2 >= gameBoardProperties.height -1) {
                     moveUpPoints -= deadEndPunishmentPoints;
                 }
                 // #2
-                // I need this i because it calls it too many times since the bounds are in the same
-                // position all the time
                 // protects me from going into dead ends in the corners
-                if (myHead.y - 2 < 0) {
+                if (myHead.y - 2 <= 0) {
                     moveDownPoints -=deadEndPunishmentPoints;
                 }
                 // #3
-                // I need this i because it calls it too many times since the bounds are in the same
-                // position all the time
                 // protects me from going into dead ends in the corners
-                if (myHead.x -2 < 0) {
+                if (myHead.x -2 <= 0) {
                     moveLeftPoints -= deadEndPunishmentPoints;
                 }
                 // #4
-                // I need this i because it calls it too many times since the bounds are in the same
-                // position all the time
                 // protects me from going into dead ends in the corners
-                if (myHead.x +2 > gameBoardProperties.width -1) {
+                if (myHead.x +2 >= gameBoardProperties.width -1) {
                     moveRightPoints -= deadEndPunishmentPoints;
                 }
        
