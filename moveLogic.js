@@ -93,7 +93,7 @@ export default function move(gameState){
  
     /* I am doing this because of all those snakes that keep trying to kill me, I although I will only eat food
     agressively until my length is higher than 7 because once your body gets longer that helps shield you
-    from getting killed. Why thank you Coreyja, waryferryman, and wrenger, I'll beat you guys this time!! */
+    from getting killed. Why thank you Coreyja, Waryferryman, and Wrenger, I'll beat you guys this time!! */
     if (gameState.you.body.length < eatAggressivelyUntilIamThisLong ) {
         hungry = 102;
     }
@@ -1174,24 +1174,29 @@ export default function move(gameState){
             let deadEndPunishmentPoints = theSamePunishment;
     
            // INSERTED BACK STUFF
+           let distanceFromBorder = 2;
+           // if my health is less than 50 the distance from the border is lowered which makes it easier to find food
+           if (gameState.you.health < 50) {
+            distanceFromBorder = 1;
+        } 
                 // #1
                 // protects me from going into dead ends in the corners by maximum 2 units
-                if (myHead.y +2 >= gameBoardProperties.height -1) {
+                if (myHead.y +distanceFromBorder >= gameBoardProperties.height -1) {
                     moveUpPoints -= deadEndPunishmentPoints;
                 }
                 // #2
                 // protects me from going into dead ends in the corners by maximum 2 units
-                if (myHead.y - 2 <= 0) {
+                if (myHead.y - distanceFromBorder <= 0) {
                     moveDownPoints -=deadEndPunishmentPoints;
                 }
                 // #3
                 // protects me from going into dead ends in the corners by maximum 2 units
-                if (myHead.x -2 <= 0) {
+                if (myHead.x -distanceFromBorder <= 0) {
                     moveLeftPoints -= deadEndPunishmentPoints;
                 }
                 // #4
                 // protects me from going into dead ends in the corners by maximum 2 units
-                if (myHead.x +2 >= gameBoardProperties.width -1) {
+                if (myHead.x +distanceFromBorder >= gameBoardProperties.width -1) {
                     moveRightPoints -= deadEndPunishmentPoints;
                 }
        
