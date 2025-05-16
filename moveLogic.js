@@ -1172,6 +1172,81 @@ export default function move(gameState){
                 console.log("ThreeQualifications: " + threeQualifications);
 
                 // RIGHT MOVEMENT
+                threeQualifications = 0;
+                // helps me keep track of the last part we are checking for in the dead end in our snakes body
+                thirdOffSet = 0;
+                for (let count = 3; count < (snakes[i].body.length - (6 + 3)); count++) {
+                    // count = 3 since it cannot be the head, or neck
+                    if (myHead.y == snakes[i].body[count-1].y + 1 && myHead.x == snakes[i].body[count-1].x - 1) {
+                        threeQualifications += 1;
+                        break;
+                    }
+                }
+                // gameBoardProperties times 2 plus 3, because the trap could be as long as the gameBoard
+                // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
+                // cannot start from the head or neck
+                lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
+                // and I will have to set is to the snake's body length minus 2
+                if (lengthToCheck > snakes[i].body.length) {
+                    lengthToCheck = snakes[i].body.length -7;
+                }
+                for (let count = 7; count < lengthToCheck; count++) {
+                    if (myHead.y == snakes[i].body[count -1].y - 1 && myHead.x == snakes[i].body[count -1].x - 1) {
+                        threeQualifications += 1;
+                        thirdOffSet = count;
+                        break;
+                    }
+                }
+                // length to check minus 1 because it will not check the unit I have as my offset
+                for (let count = 4; count < (thirdOffSet +3); count++) {
+                    if (snakes[i].body[count -1].x > myHead.x) {
+                        threeQualifications += 1;
+                        break;
+                    }
+                }
+                if (threeQualifications == 3) {
+                    moveRightPoints -= 15;
+                }
+                console.log("ThreeQualifications: " + threeQualifications);
+                // reverse
+                threeQualifications = 0;
+                // helps me keep track of the last part we are checking for in the dead end in our snakes body
+                thirdOffSet = 0;
+                for (let count = 3; count < (snakes[i].body.length - (6 + 3)); count++) {
+                    // count = 3 since it cannot be the head, or neck
+                    if (myHead.y == snakes[i].body[count-1].y - 1 && myHead.x == snakes[i].body[count-1].x - 1) {
+                        threeQualifications += 1;
+                        break;
+                    }
+                }
+                // gameBoardProperties times 2 plus 3, because the trap could be as long as the gameBoard
+                // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
+                // cannot start from the head or neck
+                lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
+                // and I will have to set is to the snake's body length minus 2
+                if (lengthToCheck > snakes[i].body.length) {
+                    lengthToCheck = snakes[i].body.length -7;
+                }
+                for (let count = 7; count < lengthToCheck; count++) {
+                    if (myHead.y == snakes[i].body[count -1].y + 1 && myHead.x == snakes[i].body[count -1].x - 1) {
+                        threeQualifications += 1;
+                        thirdOffSet = count;
+                        break;
+                    }
+                }
+                // length to check minus 1 because it will not check the unit I have as my offset
+                for (let count = 4; count < (thirdOffSet +3); count++) {
+                    if (snakes[i].body[count -1].x > myHead.x) {
+                        threeQualifications += 1;
+                        break;
+                    }
+                }
+                if (threeQualifications == 3) {
+                    moveRightPoints -= 15;
+                }
+                console.log("ThreeQualifications: " + threeQualifications);
                 // DOWN MOVEMENT
                 // UP MOVEMENT
             } else {
