@@ -237,16 +237,44 @@ export default function move(gameState){
                 if (snakes[i].id == gameState.you.id) {
                    
                 } else {
+                    // right movement blocked
                     if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y) {
                         moveRightPoints -= collisionPunishment;
                     }
+                    if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y + 1) {
+                        moveRightPoints -= collisionPunishment;
+                    }
+                    if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y - 1) {
+                        moveRightPoints -= collisionPunishment;
+                    }
+                    // left movement blocked
                     if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y) {
                         moveLeftPoints -= collisionPunishment;
                     }
+                    if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y + 1) {
+                        moveLeftPoints -= collisionPunishment;
+                    }
+                    if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y - 1) {
+                        moveLeftPoints -= collisionPunishment;
+                    }
+                    // up movement blocked
                     if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x) {
                         moveUpPoints -= collisionPunishment;
                     }
+                    if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x + 1) {
+                        moveUpPoints -= collisionPunishment;
+                    }
+                    if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x - 1) {
+                        moveUpPoints -= collisionPunishment;
+                    }
+                    // down movement blocked
                     if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x) {
+                        moveDownPoints -= collisionPunishment;
+                    }
+                    if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x + 1) {
+                        moveDownPoints -= collisionPunishment;
+                    }
+                    if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x - 1) {
                         moveDownPoints -= collisionPunishment;
                     }
 
@@ -937,6 +965,10 @@ export default function move(gameState){
                 if (IamTheLongest == true) {
                     let AIbadMovePunishment = (theSamePunishment - 1);
                     for (let a = 0; a < snakes[i].body.length; a++) {
+                        // breaks code if looking at the head, I already have code for that, we don't need to run it twice
+                        if (a == 0) {
+                            break;
+                        }
                         if (moveSafety.up == true ) {
                             if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
                                 moveUpPoints -= AIbadMovePunishment;
@@ -971,8 +1003,11 @@ export default function move(gameState){
                     // GENERATIVE AI GUESSES
                     if (IamTheLongest == false) {
                         let AIbadMovePunishment = (theSamePunishment - 1);
-     
-     
+                        
+                        // if a == 0 which is looking at the head, ignore, because I already have code for that
+                        if (a == 0) {
+                            break;
+                        }
                         if (moveSafety.up == true ) {
                             if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
                                 moveUpPoints -= AIbadMovePunishment;
