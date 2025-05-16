@@ -597,6 +597,7 @@ export default function move(gameState){
     if ( gameState.you.body.length > 4) {
         let myTail = gameState.you.body.length;
         let followTailReward = 2;
+            // from 1 unit away tail
             if ( gameState.you.body[myTail -1].x -1 == myHead.x && myHead.y == gameState.you.body[myTail -1].y) {
                 moveRightPoints += followTailReward;
             }
@@ -609,6 +610,34 @@ export default function move(gameState){
             if ( gameState.you.body[myTail -1].y -1 == myHead.y && myHead.x == gameState.you.body[myTail -1].x) {
                 moveUpPoints += followTailReward;
             }
+
+            // 2 units away from tail
+            if ( gameState.you.body[myTail -1].x -2 == myHead.x && myHead.y == gameState.you.body[myTail -1].y) {
+                moveRightPoints += followTailReward;
+            }
+            if ( gameState.you.body[myTail -1].x +2 == myHead.x && myHead.y == gameState.you.body[myTail -1].y) {
+                moveLeftPoints +=followTailReward;
+            }
+            if ( gameState.you.body[myTail -1].y +2 == myHead.y && myHead.x == gameState.you.body[myTail -1].x) {
+                moveDownPoints += followTailReward;
+            }
+            if ( gameState.you.body[myTail -1].y -2 == myHead.y && myHead.x == gameState.you.body[myTail -1].x) {
+                moveUpPoints += followTailReward;
+            }
+            // diagonally from tail
+            if ( gameState.you.body[myTail -1].x -1 == myHead.x && myHead.y == gameState.you.body[myTail -1].y - 1) {
+                moveUpPoints += followTailReward;
+            }
+            if ( gameState.you.body[myTail -1].x +1 == myHead.x && myHead.y == gameState.you.body[myTail -1].y - 1) {
+                moveUpPoints +=followTailReward;
+            }
+            if ( gameState.you.body[myTail -1].x -1 == myHead.x && myHead.y == gameState.you.body[myTail -1].y + 1) {
+                moveDownPoints += followTailReward;
+            }
+            if ( gameState.you.body[myTail -1].x +1 == myHead.x && myHead.y == gameState.you.body[myTail -1].y + 1) {
+                moveDownPoints +=followTailReward;
+            }
+            
         
     }
 
