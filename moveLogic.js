@@ -14,6 +14,7 @@ export default function move(gameState){
     // Same punishment helps me keep track of my variables
 
     let theSamePunishment = 3;
+    let hazards = gameState.board.hazards;
 
     let IamTheLongest = false;
     let killReward = 4;
@@ -75,8 +76,14 @@ export default function move(gameState){
    // 1st time: if I am the only snake in the game, sets I am the longest to true and reduces hungry to 50
    if (snakes.length == 1) {
     IamTheLongest == true;
-    hungry = 50;
-   }
+    // if there are hazards I will get hungrier faster so I need the hungry to be higher
+    if (hazards.length == 0) {
+        // there are no hazards since it is equal to 0
+        hungry = 50;
+    } else {
+        hungry = 70;
+    }
+}
 
     // checks if I am the longest in order to know how to go about eating in the game
     if (IamTheLongest == true) {
@@ -99,10 +106,16 @@ export default function move(gameState){
  
  
     // 2nd time: if I am the only snake in the game, sets I am the longest to true and reduces hungry to 50
-   if (snakes.length == 1) {
-    IamTheLongest == true;
-    hungry = 50;
-   }
+    if (snakes.length == 1) {
+        IamTheLongest == true;
+        // if there are hazards I will get hungrier faster so I need the hungry to be higher
+        if (hazards.length == 0) {
+            // there are no hazards since it is equal to 0
+            hungry = 50;
+        } else {
+            hungry = 70;
+        }
+    }
     
     /* I am doing this because of all those snakes that keep trying to kill me, I although I will only eat food
     agressively until my length is higher than 7 because once your body gets longer that helps shield you
@@ -421,7 +434,7 @@ export default function move(gameState){
  
  
     // avoid hazards
-    let hazards = gameState.board.hazards;
+    hazards = gameState.board.hazards;
     safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
                 hazards.forEach((h) => {
                     // hazards that are 1 unit away && cuts off people on the edges of the board as long as I am not in a hazard
