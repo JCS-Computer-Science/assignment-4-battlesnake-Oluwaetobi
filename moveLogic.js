@@ -969,26 +969,51 @@ export default function move(gameState){
                         if (a == 0) {
                             break;
                         }
+                        // up movement
                         if (moveSafety.up == true ) {
                             if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
                                 moveUpPoints -= AIbadMovePunishment;
                             }
-                        
+                            if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x + 1) {
+                                moveUpPoints -=AIbadMovePunishment;
+                            }
+                            if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x - 1) {
+                                moveUpPoints -=AIbadMovePunishment;
+                            }
                         }
+                        // down movement
                         if (moveSafety.down == true ) {
                             if (myHead.y == snakes[i].body[a].y +2 && myHead.x == snakes[i].body[a].x) {
                                 moveDownPoints -= AIbadMovePunishment;
                             }
-                        
+                            if (myHead.y == snakes[i].body[a].y +2 && myHead.x == snakes[i].body[a].x + 1) {
+                                moveDownPoints -= AIbadMovePunishment;
+                            }
+                            if (myHead.y == snakes[i].body[a].y +2 && myHead.x == snakes[i].body[a].x - 1) {
+                                moveDownPoints -= AIbadMovePunishment;
+                            }
                         }
+                        // left movement
                         if (moveSafety.left == true ) {
                             if (myHead.x == snakes[i].body[a].x +2 && myHead.y == snakes[i].body[a].y) {
                                 moveLeftPoints -= AIbadMovePunishment;
                             }
-                        
+                            if (myHead.x == snakes[i].body[a].x +2 && myHead.y == snakes[i].body[a].y + 1) {
+                                moveLeftPoints -= AIbadMovePunishment;
+                            }
+                            if (myHead.x == snakes[i].body[a].x +2 && myHead.y == snakes[i].body[a].y - 1) {
+                                moveLeftPoints -= AIbadMovePunishment;
+                            }
                         }
+                        // right movement
                         if (moveSafety.right == true ) {
                             if (myHead.x == snakes[i].body[a].x -2 && myHead.y == snakes[i].body[a].y) {
+                                moveRightPoints -= AIbadMovePunishment;
+                            }
+                            if (myHead.x == snakes[i].body[a].x -2 && myHead.y == snakes[i].body[a].y + 1) {
+                                moveRightPoints -= AIbadMovePunishment;
+                            }
+                            if (myHead.x == snakes[i].body[a].x -2 && myHead.y == snakes[i].body[a].y - 1) {
                                 moveRightPoints -= AIbadMovePunishment;
                             }
                         }
@@ -1008,6 +1033,7 @@ export default function move(gameState){
                         if (a == 0) {
                             break;
                         }
+                        // up movement
                         if (moveSafety.up == true ) {
                             if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
                                 moveUpPoints -= AIbadMovePunishment;
@@ -1025,6 +1051,7 @@ export default function move(gameState){
                             }
                         
                         }
+                        // down movement
                         if (moveSafety.down == true ) {
                             if (myHead.y == snakes[i].body[a].y +2 && myHead.x == snakes[i].body[a].x) {
                                 moveDownPoints -= AIbadMovePunishment;
@@ -1042,6 +1069,7 @@ export default function move(gameState){
                             }
                         
                         }
+                        // left movement
                         if (moveSafety.left == true ) {
                             if (myHead.x == snakes[i].body[a].x +2 && myHead.y == snakes[i].body[a].y) {
                                 moveLeftPoints -= AIbadMovePunishment;
@@ -1059,6 +1087,7 @@ export default function move(gameState){
                             }
                         
                         }
+                        // right movement
                         if (moveSafety.right == true ) {
                             if (myHead.x == snakes[i].body[a].x -2 && myHead.y == snakes[i].body[a].y) {
                                 moveRightPoints -= AIbadMovePunishment;
