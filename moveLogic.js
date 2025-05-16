@@ -390,7 +390,7 @@ export default function move(gameState){
                     // hazards that are 1 unit away && cuts off people on the edges of the board as long as I am not in a hazard
                     // or else I might die trying to do it.
                     for (let i = 0; i < snakes.length; i ++) {
-                        let cutOffSnakeReward = (cuttingOffSnakeReward + 1);
+                        let cutOffSnakeReward = (cuttingOffSnakeReward + 2);
                         /* if my snake is in any of these positions or coordinates then cutting off a snake would be useless and could
                         actually kill my snake in the end, I ONLY INCLUDE ONE COORDINATE FOR A REASON, DON'T A SECOND ONE!!!*/
                         if (myHead.x == 0) {
@@ -428,45 +428,45 @@ export default function move(gameState){
                                 // cuts of a snake at the right side of the board game
                                 if (myHead.x == gameBoardProperties.width - 2 && myHead.y - 1 > snakes[i].body[0].y && snakes[i].body[0].x == gameBoardProperties.width - 1) {
                                     moveRightPoints += cutOffSnakeReward;
-                                    moveUpPoints += (cutOffSnakeReward);
+                                    moveUpPoints += (cutOffSnakeReward -1);
                                 }
                                 // reverse direction
                                 if (myHead.x == gameBoardProperties.width - 2 && myHead.y + 1 < snakes[i].body[0].y && snakes[i].body[0].x == gameBoardProperties.width - 1) {
                                     moveRightPoints += cutOffSnakeReward;
-                                    moveDownPoints += (cutOffSnakeReward);
+                                    moveDownPoints += (cutOffSnakeReward -1);
                                 }
                            
                                 // cuts of a snake at the left side of the board game
                                 if (myHead.x == 1 && myHead.y - 1 > snakes[i].body[0].y && snakes[i].body[0].x == 0) {
                                     moveLeftPoints += cutOffSnakeReward;
-                                    moveUpPoints += (cutOffSnakeReward);
+                                    moveUpPoints += (cutOffSnakeReward -1);
                                 }
                                 // reverse direction
                                 if (myHead.x == 1 && myHead.y + 1 < snakes[i].body[0].y && snakes[i].body[0].x == 0) {
                                     moveLeftPoints += cutOffSnakeReward;
-                                    moveDownPoints += (cutOffSnakeReward);
+                                    moveDownPoints += (cutOffSnakeReward -1);
                                 }
                             
                                 // cuts of a snake at the top side of the board game
                                 if (myHead.y == gameBoardProperties.height -2  && myHead.x - 1 > snakes[i].body[0].x && snakes[i].body[0].y == gameBoardProperties.height - 1) {
                                     moveUpPoints += cutOffSnakeReward;
-                                    moveRightPoints += (cutOffSnakeReward);
+                                    moveRightPoints += (cutOffSnakeReward -1 );
                                 }
                                 // reverse direction
                                 if (myHead.y == gameBoardProperties.height -2  && myHead.x + 1 < snakes[i].body[0].x && snakes[i].body[0].y == gameBoardProperties.height - 1) {
                                     moveUpPoints += cutOffSnakeReward;
-                                    moveLeftPoints += (cutOffSnakeReward);
+                                    moveLeftPoints += (cutOffSnakeReward -1);
                                 }
                             
                                 // cuts of a snake at the bottom side of the board game
                                 if (myHead.y == 1  && myHead.x - 1 > snakes[i].body[0].x && snakes[i].body[0].y == 0) {
                                     moveDownPoints += cutOffSnakeReward;
-                                    moveRightPoints += (cutOffSnakeReward);
+                                    moveRightPoints += (cutOffSnakeReward -1);
                                 }
                                 // reverse direction
                                 if (myHead.y == 1  && myHead.x + 1 < snakes[i].body[0].x && snakes[i].body[0].y == 0) {
                                     moveDownPoints += cutOffSnakeReward;
-                                    moveLeftPoints += (cutOffSnakeReward);
+                                    moveLeftPoints += (cutOffSnakeReward -1);
                                 }
                                 
                                 // console.log("Are There Hazards?: " + areThereHazards);
@@ -554,7 +554,7 @@ export default function move(gameState){
                 if (hazards.length == 0) {
                     for (let i = 0; i < snakes.length; i ++) {
     
-                        let cutOffSnakeReward = (cuttingOffSnakeReward + 1);
+                        let cutOffSnakeReward = (cuttingOffSnakeReward + 2);
                         /* if my snake is in any of these positions or coordinates then cutting off a snake would be useless and could
                         actually kill my snake in the end, I ONLY INCLUDE ONE COORDINATE FOR A REASON, DON'T A SECOND ONE!!!*/
                         if (myHead.x == 0) {
@@ -576,45 +576,45 @@ export default function move(gameState){
                             // cuts of a snake at the right side of the board game
                             if (myHead.x == gameBoardProperties.width - 2 && myHead.y - 1 > snakes[i].body[0].y && snakes[i].body[0].x == gameBoardProperties.width - 1) {
                                 moveRightPoints += cutOffSnakeReward;
-                                moveUpPoints += (cutOffSnakeReward);
+                                moveUpPoints += (cutOffSnakeReward -1);
                             }
                             // reverse direction
                             if (myHead.x == gameBoardProperties.width - 2 && myHead.y + 1 < snakes[i].body[0].y && snakes[i].body[0].x == gameBoardProperties.width - 1) {
                                 moveRightPoints += cutOffSnakeReward;
-                                moveDownPoints += (cutOffSnakeReward);
+                                moveDownPoints += (cutOffSnakeReward -1);
                             }
                        
                             // cuts of a snake at the left side of the board game
                             if (myHead.x == 1 && myHead.y - 1 > snakes[i].body[0].y && snakes[i].body[0].x == 0) {
                                 moveLeftPoints += cutOffSnakeReward;
-                                moveUpPoints += (cutOffSnakeReward);
+                                moveUpPoints += (cutOffSnakeReward -1);
                             }
                             // reverse direction
                             if (myHead.x == 1 && myHead.y + 1 < snakes[i].body[0].y && snakes[i].body[0].x == 0) {
                                 moveLeftPoints += cutOffSnakeReward;
-                                moveDownPoints += (cutOffSnakeReward);
+                                moveDownPoints += (cutOffSnakeReward-1);
                             }
                         
                             // cuts of a snake at the top side of the board game
                             if (myHead.y == gameBoardProperties.height -2  && myHead.x - 1 > snakes[i].body[0].x && snakes[i].body[0].y == gameBoardProperties.height - 1) {
                                 moveUpPoints += cutOffSnakeReward;
-                                moveRightPoints += (cutOffSnakeReward);
+                                moveRightPoints += (cutOffSnakeReward -1);
                             }
                             // reverse direction
                             if (myHead.y == gameBoardProperties.height -2  && myHead.x + 1 < snakes[i].body[0].x && snakes[i].body[0].y == gameBoardProperties.height - 1) {
                                 moveUpPoints += cutOffSnakeReward;
-                                moveLeftPoints += (cutOffSnakeReward);
+                                moveLeftPoints += (cutOffSnakeReward -1);
                             }
                         
                             // cuts of a snake at the bottom side of the board game
                             if (myHead.y == 1  && myHead.x - 1 > snakes[i].body[0].x && snakes[i].body[0].y == 0) {
                                 moveDownPoints += cutOffSnakeReward;
-                                moveRightPoints += (cutOffSnakeReward);
+                                moveRightPoints += (cutOffSnakeReward -1);
                             }
                             // reverse direction
                             if (myHead.y == 1  && myHead.x + 1 < snakes[i].body[0].x && snakes[i].body[0].y == 0) {
                                 moveDownPoints += cutOffSnakeReward;
-                                moveLeftPoints += (cutOffSnakeReward);
+                                moveLeftPoints += (cutOffSnakeReward -1);
                             }
 
                         }
