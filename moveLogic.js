@@ -249,6 +249,38 @@ export default function move(gameState){
                     if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x) {
                         moveDownPoints -= collisionPunishment;
                     }
+
+                    /* keeps my snake from later colliding with other snakes heads that are 3 units away and 1 unit diagonal
+                     and from not having anywhere to turn to, I won't minus a lot of point here because they are a bit far
+                    away and they may take a u turn or something, also don't change this because they're heads get really
+                    close really soon, also I only included it for ONE DIRECTION ON PURPOSE, because if my snake is at the bottom
+                    and I set 2 directions and there snake is 1 unit above mine, then I won't be able to escape because
+                    the top direction has been seen as bad, ONLY ONE DIRECTION HERE, DON'T EDIT THIS ONLY REVIEW IT!!*/
+                    if (myHead.x == snakes[i].body[0].x -3 && myHead.y == snakes[i].body[0].y+ 1) {
+                        moveRightPoints -= 1;
+                    }
+                    if (myHead.x == snakes[i].body[0].x -3 && myHead.y == snakes[i].body[0].y- 1) {
+                        moveRightPoints -= 1;
+                    }
+                    if (myHead.x == snakes[i].body[0].x + 3 && myHead.y == snakes[i].body[0].y- 1) {
+                        moveLeftPoints -= 1;
+                    }
+                    if (myHead.x == snakes[i].body[0].x + 3 && myHead.y == snakes[i].body[0].y+ 1) {
+                        moveLeftPoints -= 1;
+                    }
+                    if (myHead.x == snakes[i].body[0].x - 1 && myHead.y == snakes[i].body[0].y + 3) {
+                        moveDownPoints -= 1;
+                    }
+                    if (myHead.x == snakes[i].body[0].x + 1 && myHead.y == snakes[i].body[0].y + 3) {
+                        moveDownPoints -= 1;
+                    }
+                    if (myHead.x == snakes[i].body[0].x + 1 && myHead.y == snakes[i].body[0].y - 3) {
+                        moveUpPoints -= 1;
+                    }
+                    if (myHead.x == snakes[i].body[0].x - 1 && myHead.y == snakes[i].body[0].y - 3) {
+                        moveUpPoints -= 1;
+                    }
+
                     // keeps my snake from colliding with other snakes by predicting their future moves
                     //  I am going to remove points instead of making moves false, because I don't know for sure
                     // that the snake will move in that direction
