@@ -394,6 +394,7 @@ export default function move(gameState){
                         /**Helps snake move in the right direction after it has cut off and is declared before the 
                          * CutoffsnakeReward is changed to zero, NOTE THIS MUST BE ON TOP OF THE IF STATEMENTS THAT MAKE
                          * CUT OFF SNAKRE REWARD EQUAL TO 0!!
+                         * ALSO DON"T CHANGE THE CUTOFFSNAKEREWARD OR THE CUTOFFSNAKEREWARDMOVEINTHERIGHTDIRECTION VARIABLE!!!
                          */
                         let cutOffSnakeRewardMoveInTheRightDirection = cutOffSnakeReward;
                         /* if my snake is in any of these positions or coordinates then cutting off a snake would be useless and could
@@ -598,6 +599,7 @@ export default function move(gameState){
                         /**Helps snake move in the right direction after it has cut off and is declared before the 
                          * CutoffsnakeReward is changed to zero, NOTE THIS MUST BE ON TOP OF THE IF STATEMENTS THAT MAKE
                          * CUT OFF SNAKRE REWARD EQUAL TO 0!!
+                         * ALSO DON"T CHANGE THE CUTOFFSNAKEREWARD OR THE CUTOFFSNAKEREWARDMOVEINTHERIGHTDIRECTION VARIABLE!!!
                          */
                         let cutOffSnakeRewardMoveInTheRightDirection = cutOffSnakeReward;
                         /* if my snake is in any of these positions or coordinates then cutting off a snake would be useless and could
