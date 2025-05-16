@@ -330,8 +330,21 @@ export default function move(gameState){
                     // hazards that are 1 unit away && cuts off people on the edges of the board as long as I am not in a hazard
                     // or else I might die trying to do it.
                     for (let i = 0; i < snakes.length; i ++) {
-
                         let cutOffSnakeReward = (cuttingOffSnakeReward + 1);
+                        /* if my snake is in any of these positions or coordinates then cutting off a snake would be useless and could
+                        actually kill my snake in the end, I ONLY INCLUDE ONE COORDINATE FOR A REASON, DON'T A SECOND ONE!!!*/
+                        if (myHead.x == 0) {
+                            cutOffSnakeReward = 0;
+                        }
+                        if (myHead.x == gameBoardProperties.width -1) {
+                            cutOffSnakeReward = 0;
+                        }
+                        if (myHead.y == gameBoardProperties.height -1) {
+                            cutOffSnakeReward = 0;
+                        }
+                        if (myHead.y == 0) {
+                            cutOffSnakeReward = 0;
+                        }
 
                         // cuts snakes off at the far side of the board game
                         if (snakes[i].id == gameState.you.id) {
@@ -482,6 +495,20 @@ export default function move(gameState){
                     for (let i = 0; i < snakes.length; i ++) {
     
                         let cutOffSnakeReward = (cuttingOffSnakeReward + 1);
+                        /* if my snake is in any of these positions or coordinates then cutting off a snake would be useless and could
+                        actually kill my snake in the end, I ONLY INCLUDE ONE COORDINATE FOR A REASON, DON'T A SECOND ONE!!!*/
+                        if (myHead.x == 0) {
+                            cutOffSnakeReward = 0;
+                        }
+                        if (myHead.x == gameBoardProperties.width -1) {
+                            cutOffSnakeReward = 0;
+                        }
+                        if (myHead.y == gameBoardProperties.height -1) {
+                            cutOffSnakeReward = 0;
+                        }
+                        if (myHead.y == 0) {
+                            cutOffSnakeReward = 0;
+                        }
     
                         if (snakes[i].id == gameState.you.id) {
                             // if checking the same snake as my own skip that
