@@ -897,7 +897,7 @@ export default function move(gameState){
         /* EDIT THIS */
 
         snakes = gameState.board.snakes
-        
+
         for (let i = 0; i < snakes.length; i ++) {
 
             /* I am changing this only for this specific section ONLY because this will help me stop getting stuck in dead ends in my body
@@ -1261,6 +1261,8 @@ export default function move(gameState){
         })
 
         // END OF AN OLD SECTION START OF A NEW SECTION
+        
+        safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
         
         // takes away points for their safety being false, DO NOT CHANGE THIS!!!!!
         let pointsRemovedForNotBeingSafe = 20;
