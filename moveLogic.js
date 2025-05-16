@@ -782,6 +782,10 @@ export default function move(gameState){
 
                    // GENERATIVE AI GUESSES
 
+                   // this breaks the code if looking at my tail
+                   if (a >= snakes[i].body.length -1 ) {
+                    break;
+                    }
 
                    let AIbadMovePunishment = (theSamePunishment + 1);
 
