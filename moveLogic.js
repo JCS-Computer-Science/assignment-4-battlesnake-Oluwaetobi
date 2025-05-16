@@ -1095,13 +1095,13 @@ export default function move(gameState){
 
                 // stops my snake from going into 1 and a tiny bit more unit wide vertical and horizontal dead ends in my body
                 // LEFT MOVEMENT
-                let threeQualificationsLeftMovement = 0;
+                let threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
-                let thirdOffSetLeftMovement = 0;
+                let thirdOffSet = 0;
                 for (let count = 3; count < (snakes[i].body.length - (6 + 3)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y + 1 && myHead.x == snakes[i].body[count-1].x + 1) {
-                        threeQualificationsLeftMovement += 1;
+                        threeQualifications += 1;
                         break;
                     }
                 }
@@ -1112,34 +1112,34 @@ export default function move(gameState){
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
-                    lengthToCheck = snakes[i].body.length -5;
+                    lengthToCheck = snakes[i].body.length -7;
                 }
-                for (let count = 5; count < lengthToCheck; count++) {
+                for (let count = 7; count < lengthToCheck; count++) {
                     if (myHead.y == snakes[i].body[count -1].y - 1 && myHead.x == snakes[i].body[count -1].x + 1) {
-                        threeQualificationsLeftMovement += 1;
-                        thirdOffSetLeftMovement = count;
+                        threeQualifications += 1;
+                        thirdOffSet = count;
                         break;
                     }
                 }
                 // length to check minus 1 because it will not check the unit I have as my offset
-                for (let count = 4; count < (thirdOffSetLeftMovement -5); count++) {
+                for (let count = 4; count < (thirdOffSet +3); count++) {
                     if (snakes[i].body[count -1].x < myHead.x) {
-                        threeQualificationsLeftMovement += 1;
+                        threeQualifications += 1;
                         break;
                     }
                 }
-                if (threeQualificationsLeftMovement == 3) {
+                if (threeQualifications == 3) {
                     moveLeftPoints -= 15;
                 }
-                console.log("ThreeQualifications: " + threeQualificationsLeftMovement);
+                console.log("ThreeQualifications: " + threeQualifications);
                 // reverse
-                threeQualificationsLeftMovement = 0;
+                threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
-                thirdOffSetLeftMovement = 0;
+                thirdOffSet = 0;
                 for (let count = 3; count < (snakes[i].body.length - (6 + 3)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y - 1 && myHead.x == snakes[i].body[count-1].x + 1) {
-                        threeQualificationsLeftMovement += 1;
+                        threeQualifications += 1;
                         break;
                     }
                 }
@@ -1150,26 +1150,26 @@ export default function move(gameState){
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
-                    lengthToCheck = snakes[i].body.length -5;
+                    lengthToCheck = snakes[i].body.length -7;
                 }
-                for (let count = 5; count < lengthToCheck; count++) {
+                for (let count = 7; count < lengthToCheck; count++) {
                     if (myHead.y == snakes[i].body[count -1].y + 1 && myHead.x == snakes[i].body[count -1].x + 1) {
-                        threeQualificationsLeftMovement += 1;
-                        thirdOffSetLeftMovement = count;
+                        threeQualifications += 1;
+                        thirdOffSet = count;
                         break;
                     }
                 }
                 // length to check minus 1 because it will not check the unit I have as my offset
-                for (let count = 4; count < (thirdOffSetLeftMovement -5); count++) {
+                for (let count = 4; count < (thirdOffSet +3); count++) {
                     if (snakes[i].body[count -1].x < myHead.x) {
-                        threeQualificationsLeftMovement += 1;
+                        threeQualifications += 1;
                         break;
                     }
                 }
-                if (threeQualificationsLeftMovement == 3) {
+                if (threeQualifications == 3) {
                     moveLeftPoints -= 15;
                 }
-                console.log("ThreeQualifications: " + threeQualificationsLeftMovement);
+                console.log("ThreeQualifications: " + threeQualifications);
 
                 // RIGHT MOVEMENT
                 // DOWN MOVEMENT
