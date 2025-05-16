@@ -929,10 +929,11 @@ export default function move(gameState){
                    }
                }
             } else {
-                // This is comparing my snake against other snakes, it does not include my snake in it's calculations
-                // I have 2 of these for a reason, because I want to use both codes when I am the longest and when I am not
-                // although I am actually only use a small chunk for this part, because it kind of protects me from 
-                // colliding with other snakes although this a temporary solution
+                /* This is comparing my snake against other snakes, it does not include my snake in it's calculations
+                I have 2 of these for a reason, because I want to use both codes when I am the longest and when I am not
+                although I am actually only use a small chunk for this part, because it kind of protects me from 
+                colliding with other snakes although this a temporary solution, this may seem in correct but I have carefully
+                thought it through, SO DO NOT CHANGE IT!!!! */
                 if (IamTheLongest == true) {
                     let AIbadMovePunishment = (theSamePunishment - 1);
                     for (let a = 0; a < snakes[i].body.length; a++) {
