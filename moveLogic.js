@@ -1175,22 +1175,22 @@ export default function move(gameState){
     
            // INSERTED BACK STUFF
                 // #1
-                // protects me from going into dead ends in the corners
+                // protects me from going into dead ends in the corners by maximum 2 units
                 if (myHead.y +2 >= gameBoardProperties.height -1) {
                     moveUpPoints -= deadEndPunishmentPoints;
                 }
                 // #2
-                // protects me from going into dead ends in the corners
+                // protects me from going into dead ends in the corners by maximum 2 units
                 if (myHead.y - 2 <= 0) {
                     moveDownPoints -=deadEndPunishmentPoints;
                 }
                 // #3
-                // protects me from going into dead ends in the corners
+                // protects me from going into dead ends in the corners by maximum 2 units
                 if (myHead.x -2 <= 0) {
                     moveLeftPoints -= deadEndPunishmentPoints;
                 }
                 // #4
-                // protects me from going into dead ends in the corners
+                // protects me from going into dead ends in the corners by maximum 2 units
                 if (myHead.x +2 >= gameBoardProperties.width -1) {
                     moveRightPoints -= deadEndPunishmentPoints;
                 }
