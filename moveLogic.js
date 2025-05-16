@@ -968,11 +968,8 @@ export default function move(gameState){
                 
                 if (IamTheLongest == true) {
                     let AIbadMovePunishment = (theSamePunishment - 1);
-                    for (let a = 0; a < snakes[i].body.length; a++) {
-                        // breaks code if looking at the head, I already have code for that, we don't need to run it twice
-                        if (a == 0) {
-                            break;
-                        }
+                    // I start at a at 1 because I want it to ignore the head
+                    for (let a = 1; a < snakes[i].body.length; a++) {
                         // up movement
                         if (moveSafety.up == true ) {
                             if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
@@ -1025,18 +1022,14 @@ export default function move(gameState){
                     }
                 }
 
-
-                for (let a = 0; a < snakes[i].body.length; a++) {
+                // I start at a at 1 because I want it to ignore the head
+                for (let a = 1; a < snakes[i].body.length; a++) {
  
                     // GENERATIVE AI GUESSES
 
                     if (IamTheLongest == false) {
                         let AIbadMovePunishment = (theSamePunishment - 1);
-                        
-                        // if a == 0 which is looking at the head, ignore, because I already have code for that
-                        if (a == 0) {
-                            break;
-                        }
+                    
                         // up movement
                         if (moveSafety.up == true ) {
                             if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
