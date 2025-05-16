@@ -1216,9 +1216,12 @@ export default function move(gameState){
            // INSERTED BACK STUFF
            let distanceFromBorder = 2;
            // if my health is less than 50 the distance from the border is lowered which makes it easier to find food
-           if (gameState.you.health < 50) {
+           if (gameState.you.health < 80) {
             distanceFromBorder = 1;
-        } 
+        } else if (gameState.you.length >= (  (gameBoardProperties.height -3)*(gameBoardProperties.width - 3)  )) {
+            // if I am to big, then it gives me more space
+            distanceFromBorder = 1;
+        }
                 // #1
                 // protects me from going into dead ends in the corners by maximum 2 units
                 if (myHead.y +distanceFromBorder >= gameBoardProperties.height -1) {
