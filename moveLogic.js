@@ -1111,6 +1111,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 let lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1149,6 +1152,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1188,6 +1194,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1226,6 +1235,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1264,6 +1276,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1302,6 +1317,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1340,6 +1358,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1378,6 +1399,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1426,6 +1450,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 let lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1465,6 +1492,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1504,6 +1534,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1542,6 +1575,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1580,6 +1616,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1618,6 +1657,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1656,6 +1698,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
@@ -1694,6 +1739,9 @@ export default function move(gameState){
                 // plus 4 because the trap has to take up at least 4 units from after 3 units, plus 3 because it 
                 // cannot start from the head or neck
                 lengthToCheck = ((gameBoardProperties.height*2) +3);
+                // I am changing it to this because the upper one is causing some problems for my code although
+                // this is a temporary solution.
+                lengthToCheck = snakes[i].body.length;
                 // sometimes the lengthToCheck will be greater than the snakes body, it that case it will be undefined
                 // and I will have to set is to the snake's body length minus 2
                 if (lengthToCheck > snakes[i].body.length) {
