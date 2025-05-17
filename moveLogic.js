@@ -2077,7 +2077,9 @@ export default function move(gameState){
                 moveRightPoints -= pointsRemovedForNotBeingSafe;
             }
 
-            let deadEndPunishmentPoints = theSamePunishment;
+            let deadEndPunishmentPoints = (theSamePunishment + 1);
+            // I don't want it to be to big here, because it might not be the right decision
+            let moveAwayFromBorderPoints = 1;
     
            // INSERTED BACK STUFF
            let distanceFromBorder = 2;
@@ -2092,21 +2094,25 @@ export default function move(gameState){
                 // protects me from going into dead ends in the corners by maximum 2 units
                 if (myHead.y +distanceFromBorder >= gameBoardProperties.height -1) {
                     moveUpPoints -= deadEndPunishmentPoints;
+                    moveDownPoints += moveAwayFromBorderPoints;
                 }
                 // #2
                 // protects me from going into dead ends in the corners by maximum 2 units
                 if (myHead.y - distanceFromBorder <= 0) {
                     moveDownPoints -=deadEndPunishmentPoints;
+                    moveUpPoints += moveAwayFromBorderPoints;
                 }
                 // #3
                 // protects me from going into dead ends in the corners by maximum 2 units
                 if (myHead.x -distanceFromBorder <= 0) {
                     moveLeftPoints -= deadEndPunishmentPoints;
+                    moveRightPoints += moveAwayFromBorderPoints;
                 }
                 // #4
                 // protects me from going into dead ends in the corners by maximum 2 units
                 if (myHead.x +distanceFromBorder >= gameBoardProperties.width -1) {
                     moveRightPoints -= deadEndPunishmentPoints;
+                    moveLeftPoints += moveAwayFromBorderPoints;
                 }
        
         // rules out any real bad choices
