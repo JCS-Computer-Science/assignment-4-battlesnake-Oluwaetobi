@@ -1801,14 +1801,15 @@ export default function move(gameState){
 
 
 
-                // /** This only helps me avoid dead ends that are 1 unit wide with me and one other snake, but I am going 
-                //  * to be honest with you, it is much more complicated than that, since there can actually be a maximum 
-                //  * of 4 snakes in one game, that would mean I would need at least 10 different possibilities but I am only able
-                //  * to account for 2, BUT I HAVE FIXED THAT IN THE NEXT CODE BELOW THIS ONE AND THAT IS WHY THIS ONE IS 
+                // /** This only helps me avoid dead ends that are 1 unit wide and maximum 2 units tall
+                // the only difference is that this can do it for all snakes including my own, mixed up together
+                // the one one top of this can only do it without dead ends in my own body but of any length that is 1 unit wide
+                // at the opening  I HAVE FIXED THIS CODE such that it can do it not just for my snake and any snake
+                // but all the snakes regardless of whether it includes me or not with a maximum of about 11 possibilites
+                // WHICH HAS BEEN DONE IN THE BELOW THIS ONE AND THAT IS WHY THIS ONE IS 
                 // COMMENTED OUT BUT I AM GOING TO KEEP THIS CODE HERE JUST IN CASE
-                //  me and another snake and myself with myself, I could easily fix this with a few for loops
-                //  * this will be substantially useful in duels, just not in royale mode or standarad mode until I add the foor
-                //  * loops*/ 
+                //   This code is mostly useful only for duels but the one below this one is useful for games regardless of how many
+                // snakes there are*/ 
                 // // Block Up Movement
                 // let betweenBodiesQualifications = 0;
                 // let otherCheck = 0;
@@ -2220,7 +2221,7 @@ export default function move(gameState){
 
 
 
-                // can compare with all snakes including my own
+                // can compare with all snakes including my own with a maximum of 1 unit wide and 2 units tall
                 // Block Up Movement
                 let betweenBodiesQualifications = 0;
                 let otherCheck = 0;
