@@ -1448,7 +1448,8 @@ export default function move(gameState){
                 if (threeQualifications == 3) {
                     moveLeftPoints -= oneUnitWideDeadEndPointsRemoved;
                 }
-                console.log("Left: ThreeQualifications: " + threeQualifications);
+                console.log("");
+                console.log("Checking Against Other Snakes Left: ThreeQualifications: " + threeQualifications);
                 // reverse
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
@@ -1486,7 +1487,7 @@ export default function move(gameState){
                 if (threeQualifications == 3) {
                     moveLeftPoints -= oneUnitWideDeadEndPointsRemoved;
                 }
-                console.log("Left: ThreeQualifications: " + threeQualifications);
+                console.log("Checking Against Other Snakes Left: ThreeQualifications: " + threeQualifications);
 
                 // RIGHT MOVEMENT
                 threeQualifications = 0;
@@ -1525,7 +1526,7 @@ export default function move(gameState){
                 if (threeQualifications == 3) {
                     moveRightPoints -= oneUnitWideDeadEndPointsRemoved;
                 }
-                console.log("Right: ThreeQualifications: " + threeQualifications);
+                console.log("Checking Against Other Snakes Right: ThreeQualifications: " + threeQualifications);
                 // reverse
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
@@ -1563,7 +1564,7 @@ export default function move(gameState){
                 if (threeQualifications == 3) {
                     moveRightPoints -= oneUnitWideDeadEndPointsRemoved;
                 }
-                console.log("Right: ThreeQualifications: " + threeQualifications);
+                console.log("Checking Against Other Snakes Right: ThreeQualifications: " + threeQualifications);
                 // DOWN MOVEMENT
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
@@ -1601,7 +1602,7 @@ export default function move(gameState){
                 if (threeQualifications == 3) {
                     moveDownPoints -= oneUnitWideDeadEndPointsRemoved;
                 }
-                console.log("Down: ThreeQualifications: " + threeQualifications);
+                console.log("Checking Against Other Snakes Down: ThreeQualifications: " + threeQualifications);
                 // reverse
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
@@ -1639,7 +1640,7 @@ export default function move(gameState){
                 if (threeQualifications == 3) {
                     moveDownPoints -= oneUnitWideDeadEndPointsRemoved;
                 }
-                console.log("Down: ThreeQualifications: " + threeQualifications);
+                console.log("Checking Against Other Snakes Down: ThreeQualifications: " + threeQualifications);
                 // UP MOVEMENT
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
@@ -1677,7 +1678,7 @@ export default function move(gameState){
                 if (threeQualifications == 3) {
                     moveDownPoints -= oneUnitWideDeadEndPointsRemoved;
                 }
-                console.log("Up: ThreeQualifications: " + threeQualifications);
+                console.log("Checking Against Other Snakes Up: ThreeQualifications: " + threeQualifications);
                 // reverse
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
@@ -1715,7 +1716,7 @@ export default function move(gameState){
                 if (threeQualifications == 3) {
                     moveDownPoints -= oneUnitWideDeadEndPointsRemoved;
                 }
-                console.log("Up: ThreeQualifications: " + threeQualifications);
+                console.log("Checking Against Other Snakes Up: ThreeQualifications: " + threeQualifications);
 
                 
                 if (IamTheLongest == true) {
