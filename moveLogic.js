@@ -1398,7 +1398,7 @@ export default function move(gameState){
                     }
                 }
                 if (threeQualifications == 3) {
-                    moveDownPoints -= oneUnitWideDeadEndPointsRemoved;
+                    moveUpPoints -= oneUnitWideDeadEndPointsRemoved;
                 }
                 console.log("Up: ThreeQualifications: " + threeQualifications);
                 // reverse
@@ -1439,7 +1439,7 @@ export default function move(gameState){
                     }
                 }
                 if (threeQualifications == 3) {
-                    moveDownPoints -= oneUnitWideDeadEndPointsRemoved;
+                    moveUpPoints -= oneUnitWideDeadEndPointsRemoved;
                 }
                 console.log("Up: ThreeQualifications: " + threeQualifications);
 
@@ -1738,7 +1738,7 @@ export default function move(gameState){
                     }
                 }
                 if (threeQualifications == 3) {
-                    moveDownPoints -= oneUnitWideDeadEndPointsRemoved;
+                    moveUpPoints -= oneUnitWideDeadEndPointsRemoved;
                 }
                 console.log("Checking Against Other Snakes Up: ThreeQualifications: " + threeQualifications);
                 // reverse
@@ -1779,7 +1779,7 @@ export default function move(gameState){
                     }
                 }
                 if (threeQualifications == 3) {
-                    moveDownPoints -= oneUnitWideDeadEndPointsRemoved;
+                    moveUpPoints -= oneUnitWideDeadEndPointsRemoved;
                 }
                 console.log("Checking Against Other Snakes Up: ThreeQualifications: " + threeQualifications);
 
