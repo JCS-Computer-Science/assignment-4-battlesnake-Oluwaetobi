@@ -20,7 +20,11 @@ export default function move(gameState){
     It is now no longer completely dependent on this variable but can check individually whether it is bigger than a particular
     snake */
     let IamTheLongest = false;
-    let killReward = 4;
+    // Kill Reward has to be less than AI
+    let AIbadMovePunishmentSpecial = (theSamePunishment + 1);
+    // KillReward has to be 1 less than AIbadMovePUnishmentSpecial, or else I will end up trying to kill others and then
+    // quickly killing myself, I have tested it, SO DON'T CHANGE IT!!!
+    let killReward = (AIbadMovePunishmentSpecial -1);
 
     // The cutting off snake reward has to be greater than the dead end punishment or else it will only cut off snakes
     // sometimes when given the oppurtunity it has to be all the time not sometimes
@@ -1065,46 +1069,44 @@ export default function move(gameState){
                     break;
                     }
 
-                   let AIbadMovePunishment = (theSamePunishment + 1);
-
 
                    if (moveSafety.up == true ) {
                        if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
-                           moveUpPoints -= AIbadMovePunishment;
+                           moveUpPoints -= AIbadMovePunishmentSpecial;
                        }
                        // this helps me to get out of longer loops of my body
                        if (myHead.y == snakes[i].body[a].y -3 && myHead.x == snakes[i].body[a].x) {
-                           moveUpPoints -=AIbadMovePunishment;
+                           moveUpPoints -=AIbadMovePunishmentSpecial;
                        }
                    
                    }
                    if (moveSafety.down == true ) {
                        if (myHead.y == snakes[i].body[a].y +2 && myHead.x == snakes[i].body[a].x) {
-                           moveDownPoints -= AIbadMovePunishment;
+                           moveDownPoints -= AIbadMovePunishmentSpecial;
                        }
                        // this helps me to get out of longer loops of my body
                        if (myHead.y == snakes[i].body[a].y +3 && myHead.x == snakes[i].body[a].x) {
-                           moveDownPoints -= AIbadMovePunishment;
+                           moveDownPoints -= AIbadMovePunishmentSpecial;
                        }
                    
                    }
                    if (moveSafety.left == true ) {
                        if (myHead.x == snakes[i].body[a].x +2 && myHead.y == snakes[i].body[a].y) {
-                           moveLeftPoints -= AIbadMovePunishment;
+                           moveLeftPoints -= AIbadMovePunishmentSpecial;
                        }
                        // this helps me to get out of longer loops of my body
                        if (myHead.x == snakes[i].body[a].x +3 && myHead.y == snakes[i].body[a].y) {
-                           moveLeftPoints -= AIbadMovePunishment;
+                           moveLeftPoints -= AIbadMovePunishmentSpecial;
                        }
                    
                    }
                    if (moveSafety.right == true ) {
                        if (myHead.x == snakes[i].body[a].x -2 && myHead.y == snakes[i].body[a].y) {
-                           moveRightPoints -= AIbadMovePunishment;
+                           moveRightPoints -= AIbadMovePunishmentSpecial;
                        }
                        // this helps me to get out of longer loops of my body
                        if (myHead.x == snakes[i].body[a].x -3 && myHead.y == snakes[i].body[a].y) {
-                           moveRightPoints -= AIbadMovePunishment;
+                           moveRightPoints -= AIbadMovePunishmentSpecial;
                        }
                    }
 
