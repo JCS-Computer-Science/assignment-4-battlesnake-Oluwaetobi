@@ -806,6 +806,7 @@ export default function move(gameState){
     }
 
     // Helps my snake follow my tail, instead of getting into dead ends and losing to other big snakes
+    hazards = gameState.board.hazards;
     if ( gameState.you.body.length > 3) {
         let myTail = gameState.you.body.length;
         /* 0.5 for the followTailReward is the sweet spot, if it is any higher it will spin even when it is hungry and will spin 
@@ -819,6 +820,14 @@ export default function move(gameState){
             followTailReward = 0.3;
         } else if (gameState.you.health < 30) {
             followTailReward = 0.20;
+        }
+        // don't follow your tail if you are in a hazards or else you will spin in an hazard and die
+        for (let i = 0; i < hazards.length; i++ ) {
+            // if my head is in any hazard we will set the foloowTailReward to zero and break the for loop
+            if (myHead.x == hazards[i].x && myHead.y == hazards[i].y) {
+                followTailReward = 0;
+                break;
+            }
         }
             // from 1 unit away tail
             if ( gameState.you.body[myTail -1].x -1 == myHead.x && myHead.y == gameState.you.body[myTail -1].y) {
