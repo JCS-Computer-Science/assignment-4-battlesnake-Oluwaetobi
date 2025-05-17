@@ -194,7 +194,9 @@ export default function move(gameState){
     // gameState.board.snakes contains an array of enemy snake objects, which includes their coordinates
     // https://docs.battlesnake.com/api/objects/battlesnake
   
-    // checks to see if I am the longest so I can no whether I have to avoid other snakes or not and it works now!!
+    /* checks to see if I am the longest so I can no whether I have to avoid other snakes or not and it works now!! 
+    I have also added a next generation level of smartiness to my snake, so now I can check whether I am shorter or
+    longer than a specific snake even if there are more than 2 snakes in the arena!!*/
     snakes = gameState.board.snakes;
  
  
@@ -259,7 +261,7 @@ export default function move(gameState){
         let collisionPunishment = 5;
  
  
-        // only avoids other snakes heads if I am not the longest
+        // only avoids other snakes heads if I am not the longest and can also check if I am longer or shorter than a specific snake
 
         // don't remove this PART, Iamthelongest
         if (IamTheLongest == false) {
