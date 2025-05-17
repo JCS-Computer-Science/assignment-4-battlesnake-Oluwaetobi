@@ -1100,7 +1100,7 @@ export default function move(gameState){
                 let threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 let thirdOffSet = 0;
-                for (let count = 3; count < (snakes[i].body.length - (6 + 3)); count++) {
+                for (let count = 3; count < (snakes[i].body.length - (6)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y + 1 && myHead.x == snakes[i].body[count-1].x + 1) {
                         threeQualifications += 1;
@@ -1138,7 +1138,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3; count < (snakes[i].body.length - (6 + 3)); count++) {
+                for (let count = 3; count < (snakes[i].body.length - (6)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y - 1 && myHead.x == snakes[i].body[count-1].x + 1) {
                         threeQualifications += 1;
@@ -1177,7 +1177,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3; count < (snakes[i].body.length - (6 + 3)); count++) {
+                for (let count = 3; count < (snakes[i].body.length - (6)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y + 1 && myHead.x == snakes[i].body[count-1].x - 1) {
                         threeQualifications += 1;
@@ -1215,7 +1215,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3; count < (snakes[i].body.length - (6 + 3)); count++) {
+                for (let count = 3; count < (snakes[i].body.length - (6)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y - 1 && myHead.x == snakes[i].body[count-1].x - 1) {
                         threeQualifications += 1;
@@ -1253,7 +1253,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3; count < (snakes[i].body.length - (6 + 3)); count++) {
+                for (let count = 3; count < (snakes[i].body.length - (6)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y + 1 && myHead.x == snakes[i].body[count-1].x - 1) {
                         threeQualifications += 1;
@@ -1291,7 +1291,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3; count < (snakes[i].body.length - (6 + 3)); count++) {
+                for (let count = 3; count < (snakes[i].body.length - (6)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y + 1 && myHead.x == snakes[i].body[count-1].x + 1) {
                         threeQualifications += 1;
@@ -1329,7 +1329,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3; count < (snakes[i].body.length - (6 + 3)); count++) {
+                for (let count = 3; count < (snakes[i].body.length - (6)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y - 1 && myHead.x == snakes[i].body[count-1].x + 1) {
                         threeQualifications += 1;
@@ -1367,7 +1367,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3; count < (snakes[i].body.length - (6 + 3)); count++) {
+                for (let count = 3; count < (snakes[i].body.length - (6)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y - 1 && myHead.x == snakes[i].body[count-1].x - 1) {
                         threeQualifications += 1;
@@ -1415,7 +1415,7 @@ export default function move(gameState){
                 let threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 let thirdOffSet = 0;
-                for (let count = 3 - offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6 + 3- offSetSinceCheckingOtherSnakes)); count++) {
+                for (let count = 3 - offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6- offSetSinceCheckingOtherSnakes)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y + 1 && myHead.x == snakes[i].body[count-1].x + 1) {
                         threeQualifications += 1;
@@ -1454,7 +1454,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3 - offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6 + 3- offSetSinceCheckingOtherSnakes)); count++) {
+                for (let count = 3 - offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6- offSetSinceCheckingOtherSnakes)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y - 1 && myHead.x == snakes[i].body[count-1].x + 1) {
                         threeQualifications += 1;
@@ -1493,7 +1493,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3- offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6 + 3- offSetSinceCheckingOtherSnakes)); count++) {
+                for (let count = 3- offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6- offSetSinceCheckingOtherSnakes)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y + 1 && myHead.x == snakes[i].body[count-1].x - 1) {
                         threeQualifications += 1;
@@ -1531,7 +1531,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3- offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6 + 3- offSetSinceCheckingOtherSnakes)); count++) {
+                for (let count = 3- offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6- offSetSinceCheckingOtherSnakes)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y - 1 && myHead.x == snakes[i].body[count-1].x - 1) {
                         threeQualifications += 1;
@@ -1569,7 +1569,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3- offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6 + 3- offSetSinceCheckingOtherSnakes)); count++) {
+                for (let count = 3- offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6- offSetSinceCheckingOtherSnakes)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y + 1 && myHead.x == snakes[i].body[count-1].x - 1) {
                         threeQualifications += 1;
@@ -1607,7 +1607,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3- offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6 + 3- offSetSinceCheckingOtherSnakes)); count++) {
+                for (let count = 3- offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6- offSetSinceCheckingOtherSnakes)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y + 1 && myHead.x == snakes[i].body[count-1].x + 1) {
                         threeQualifications += 1;
@@ -1645,7 +1645,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3- offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6 + 3- offSetSinceCheckingOtherSnakes)); count++) {
+                for (let count = 3- offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6- offSetSinceCheckingOtherSnakes)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y - 1 && myHead.x == snakes[i].body[count-1].x + 1) {
                         threeQualifications += 1;
@@ -1683,7 +1683,7 @@ export default function move(gameState){
                 threeQualifications = 0;
                 // helps me keep track of the last part we are checking for in the dead end in our snakes body
                 thirdOffSet = 0;
-                for (let count = 3- offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6 + 3- offSetSinceCheckingOtherSnakes)); count++) {
+                for (let count = 3- offSetSinceCheckingOtherSnakes; count < (snakes[i].body.length - (6- offSetSinceCheckingOtherSnakes)); count++) {
                     // count = 3 since it cannot be the head, or neck
                     if (myHead.y == snakes[i].body[count-1].y - 1 && myHead.x == snakes[i].body[count-1].x - 1) {
                         threeQualifications += 1;
