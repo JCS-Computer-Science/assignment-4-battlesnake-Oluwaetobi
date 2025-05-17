@@ -2001,13 +2001,18 @@ export default function move(gameState){
                                     if (doNotOverShootEating >= 1) {
                                         break;
                                     }
+                                    let foodReward = 1;
+                                    // helps me get food better if I am really hungry
+                                    if (gameState.you.health < superDuperHungry) {
+                                        foodReward = 3;
+                                    }
                                     if (myHead.y == f.y -i && myHead.x == f.x) {
-                                        moveUpPoints += 1;
-                                        doNotOverShootEating += 1;
+                                        moveUpPoints += foodReward;
+                                        doNotOverShootEating += foodReward;
                                     }
                                     if (myHead.y == f.y +i && myHead.x == f.x) {
                                         moveDownPoints += 1;
-                                        doNotOverShootEating += 1;
+                                        doNotOverShootEating += foodReward;
                                     }
 
                                 }
