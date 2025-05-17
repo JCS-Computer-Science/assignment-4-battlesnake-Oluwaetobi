@@ -254,7 +254,7 @@ export default function move(gameState){
  
         // only avoids other snakes heads if I am not the longest
 
-        
+        // don't remove this PART, Iamthelongest
         if (IamTheLongest == false) {
             // keeps my snake from colliding with others snake's heads that are 2 units away
             //  I am going to remove points instead of making moves false, because I don't know for sure
@@ -263,136 +263,140 @@ export default function move(gameState){
                 if (snakes[i].id == gameState.you.id) {
                    
                 } else {
-                    // right movement blocked
-                    if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y) {
-                        moveRightPoints -= collisionPunishment;
-                    }
-                    if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y + 1) {
-                        moveRightPoints -= (collisionPunishment -1);
-                    }
-                    if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y - 1) {
-                        moveRightPoints -= (collisionPunishment -1);
-                    }
-                    if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y + 2) {
-                        moveRightPoints -= 2;
-                    }
-                    if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y - 2) {
-                        moveRightPoints -= 2;
-                    }
-                    // left movement blocked
-                    if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y) {
-                        moveLeftPoints -= collisionPunishment;
-                    }
-                    if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y + 1) {
-                        moveLeftPoints -= (collisionPunishment -1);
-                    }
-                    if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y - 1) {
-                        moveLeftPoints -= (collisionPunishment -1);
-                    }
-                    if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y + 2) {
-                        moveLeftPoints -= 2;
-                    }
-                    if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y - 2) {
-                        moveLeftPoints -= 2;
-                    }
-                    // up movement blocked
-                    if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x) {
-                        moveUpPoints -= collisionPunishment;
-                    }
-                    if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x + 1) {
-                        moveUpPoints -= (collisionPunishment -1);
-                    }
-                    if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x - 1) {
-                        moveUpPoints -= (collisionPunishment -1);
-                    }
-                    if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x + 2) {
-                        moveUpPoints -= 2;
-                    }
-                    if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x - 2) {
-                        moveUpPoints -= 2;
-                    }
-                    // down movement blocked
-                    if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x) {
-                        moveDownPoints -= collisionPunishment;
-                    }
-                    if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x + 1) {
-                        moveDownPoints -= (collisionPunishment -1);
-                    }
-                    if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x - 1) {
-                        moveDownPoints -= (collisionPunishment -1);
-                    }
-                    if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x + 2) {
-                        moveDownPoints -= 2;
-                    }
-                    if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x - 2) {
-                        moveDownPoints -= 2;
-                    }
+                    // only avoids them if I am shorter than that particular snake
+                    if (gameState.you.length < snakes[i].length) {
+                        // right movement blocked
+                        if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y) {
+                            moveRightPoints -= collisionPunishment;
+                        }
+                        if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y + 1) {
+                            moveRightPoints -= (collisionPunishment -1);
+                        }
+                        if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y - 1) {
+                            moveRightPoints -= (collisionPunishment -1);
+                        }
+                        if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y + 2) {
+                            moveRightPoints -= 2;
+                        }
+                        if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y - 2) {
+                            moveRightPoints -= 2;
+                        }
+                        // left movement blocked
+                        if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y) {
+                            moveLeftPoints -= collisionPunishment;
+                        }
+                        if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y + 1) {
+                            moveLeftPoints -= (collisionPunishment -1);
+                        }
+                        if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y - 1) {
+                            moveLeftPoints -= (collisionPunishment -1);
+                        }
+                        if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y + 2) {
+                            moveLeftPoints -= 2;
+                        }
+                        if (myHead.x == snakes[i].body[0].x +2 && myHead.y == snakes[i].body[0].y - 2) {
+                            moveLeftPoints -= 2;
+                        }
+                        // up movement blocked
+                        if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x) {
+                            moveUpPoints -= collisionPunishment;
+                        }
+                        if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x + 1) {
+                            moveUpPoints -= (collisionPunishment -1);
+                        }
+                        if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x - 1) {
+                            moveUpPoints -= (collisionPunishment -1);
+                        }
+                        if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x + 2) {
+                            moveUpPoints -= 2;
+                        }
+                        if (myHead.y == snakes[i].body[0].y -2 && myHead.x == snakes[i].body[0].x - 2) {
+                            moveUpPoints -= 2;
+                        }
+                        // down movement blocked
+                        if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x) {
+                            moveDownPoints -= collisionPunishment;
+                        }
+                        if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x + 1) {
+                            moveDownPoints -= (collisionPunishment -1);
+                        }
+                        if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x - 1) {
+                            moveDownPoints -= (collisionPunishment -1);
+                        }
+                        if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x + 2) {
+                            moveDownPoints -= 2;
+                        }
+                        if (myHead.y == snakes[i].body[0].y +2 && myHead.x == snakes[i].body[0].x - 2) {
+                            moveDownPoints -= 2;
+                        }
+    
+                        /* keeps my snake from later colliding with other snakes heads that are 3 units away and 1 unit diagonal
+                         and from not having anywhere to turn to, I won't minus a lot of point here because they are a bit far
+                        away and they may take a u turn or something, also don't change this because they're heads get really
+                        close really soon, also I only included it for ONE DIRECTION ON PURPOSE, because if my snake is at the bottom
+                        and I set 2 directions and there snake is 1 unit above mine, then I won't be able to escape because
+                        the top direction has been seen as bad, ONLY ONE DIRECTION HERE, DON'T EDIT THIS ONLY REVIEW IT!!*/
+                        if (myHead.x == snakes[i].body[0].x -3 && myHead.y == snakes[i].body[0].y+ 1) {
+                            moveRightPoints -= 1;
+                        }
+                        if (myHead.x == snakes[i].body[0].x -3 && myHead.y == snakes[i].body[0].y- 1) {
+                            moveRightPoints -= 1;
+                        }
+                        if (myHead.x == snakes[i].body[0].x + 3 && myHead.y == snakes[i].body[0].y- 1) {
+                            moveLeftPoints -= 1;
+                        }
+                        if (myHead.x == snakes[i].body[0].x + 3 && myHead.y == snakes[i].body[0].y+ 1) {
+                            moveLeftPoints -= 1;
+                        }
+                        if (myHead.x == snakes[i].body[0].x - 1 && myHead.y == snakes[i].body[0].y + 3) {
+                            moveDownPoints -= 1;
+                        }
+                        if (myHead.x == snakes[i].body[0].x + 1 && myHead.y == snakes[i].body[0].y + 3) {
+                            moveDownPoints -= 1;
+                        }
+                        if (myHead.x == snakes[i].body[0].x + 1 && myHead.y == snakes[i].body[0].y - 3) {
+                            moveUpPoints -= 1;
+                        }
+                        if (myHead.x == snakes[i].body[0].x - 1 && myHead.y == snakes[i].body[0].y - 3) {
+                            moveUpPoints -= 1;
+                        }
+    
+                        // keeps my snake from colliding with other snakes by predicting their future moves
+                        //  I am going to remove points instead of making moves false, because I don't know for sure
+                        // that the snake will move in that direction
+                        if (myHead.x == snakes[i].body[0].x -1 && myHead.y == snakes[i].body[0].y -1) {
+                            moveUpPoints -= collisionPunishment;
+                            moveRightPoints -= collisionPunishment;
+                        }
+                        if (myHead.x == snakes[i].body[0].x -1 && myHead.y == snakes[i].body[0].y + 1) {
+                            moveRightPoints -= collisionPunishment;
+                            moveDownPoints -= collisionPunishment;
+                        }
+                        if (myHead.x == snakes[i].body[0].x +1 && myHead.y == snakes[i].body[0].y - 1) {
+                            moveUpPoints -= collisionPunishment;
+                            moveLeftPoints -= collisionPunishment;
+                        }
+                        if (myHead.x == snakes[i].body[0].x +1 && myHead.y == snakes[i].body[0].y + 1) {
+                            moveLeftPoints -= collisionPunishment;
+                            moveDownPoints -= collisionPunishment;
+                        }
+                        if (myHead.y == snakes[i].body[0].y -1 && myHead.x == snakes[i].body[0].x -1) {
+                            moveUpPoints -= collisionPunishment;
+                            moveRightPoints -= collisionPunishment;
+                        }
+                        if (myHead.y == snakes[i].body[0].y -1 && myHead.x == snakes[i].body[0].x + 1) {
+                            moveUpPoints -= collisionPunishment;
+                            moveLeftPoints -= collisionPunishment;
+                        }
+                        if (myHead.y == snakes[i].body[0].y +1 && myHead.x == snakes[i].body[0].x -1) {
+                            moveDownPoints -= collisionPunishment;
+                            moveRightPoints -= collisionPunishment;
+                        }
+                        if (myHead.y == snakes[i].body[0].y +1 && myHead.x == snakes[i].body[0].x + 1) {
+                            moveDownPoints -= collisionPunishment;
+                            moveLeftPoints -= collisionPunishment;
+                        }
 
-                    /* keeps my snake from later colliding with other snakes heads that are 3 units away and 1 unit diagonal
-                     and from not having anywhere to turn to, I won't minus a lot of point here because they are a bit far
-                    away and they may take a u turn or something, also don't change this because they're heads get really
-                    close really soon, also I only included it for ONE DIRECTION ON PURPOSE, because if my snake is at the bottom
-                    and I set 2 directions and there snake is 1 unit above mine, then I won't be able to escape because
-                    the top direction has been seen as bad, ONLY ONE DIRECTION HERE, DON'T EDIT THIS ONLY REVIEW IT!!*/
-                    if (myHead.x == snakes[i].body[0].x -3 && myHead.y == snakes[i].body[0].y+ 1) {
-                        moveRightPoints -= 1;
-                    }
-                    if (myHead.x == snakes[i].body[0].x -3 && myHead.y == snakes[i].body[0].y- 1) {
-                        moveRightPoints -= 1;
-                    }
-                    if (myHead.x == snakes[i].body[0].x + 3 && myHead.y == snakes[i].body[0].y- 1) {
-                        moveLeftPoints -= 1;
-                    }
-                    if (myHead.x == snakes[i].body[0].x + 3 && myHead.y == snakes[i].body[0].y+ 1) {
-                        moveLeftPoints -= 1;
-                    }
-                    if (myHead.x == snakes[i].body[0].x - 1 && myHead.y == snakes[i].body[0].y + 3) {
-                        moveDownPoints -= 1;
-                    }
-                    if (myHead.x == snakes[i].body[0].x + 1 && myHead.y == snakes[i].body[0].y + 3) {
-                        moveDownPoints -= 1;
-                    }
-                    if (myHead.x == snakes[i].body[0].x + 1 && myHead.y == snakes[i].body[0].y - 3) {
-                        moveUpPoints -= 1;
-                    }
-                    if (myHead.x == snakes[i].body[0].x - 1 && myHead.y == snakes[i].body[0].y - 3) {
-                        moveUpPoints -= 1;
-                    }
-
-                    // keeps my snake from colliding with other snakes by predicting their future moves
-                    //  I am going to remove points instead of making moves false, because I don't know for sure
-                    // that the snake will move in that direction
-                    if (myHead.x == snakes[i].body[0].x -1 && myHead.y == snakes[i].body[0].y -1) {
-                        moveUpPoints -= collisionPunishment;
-                        moveRightPoints -= collisionPunishment;
-                    }
-                    if (myHead.x == snakes[i].body[0].x -1 && myHead.y == snakes[i].body[0].y + 1) {
-                        moveRightPoints -= collisionPunishment;
-                        moveDownPoints -= collisionPunishment;
-                    }
-                    if (myHead.x == snakes[i].body[0].x +1 && myHead.y == snakes[i].body[0].y - 1) {
-                        moveUpPoints -= collisionPunishment;
-                        moveLeftPoints -= collisionPunishment;
-                    }
-                    if (myHead.x == snakes[i].body[0].x +1 && myHead.y == snakes[i].body[0].y + 1) {
-                        moveLeftPoints -= collisionPunishment;
-                        moveDownPoints -= collisionPunishment;
-                    }
-                    if (myHead.y == snakes[i].body[0].y -1 && myHead.x == snakes[i].body[0].x -1) {
-                        moveUpPoints -= collisionPunishment;
-                        moveRightPoints -= collisionPunishment;
-                    }
-                    if (myHead.y == snakes[i].body[0].y -1 && myHead.x == snakes[i].body[0].x + 1) {
-                        moveUpPoints -= collisionPunishment;
-                        moveLeftPoints -= collisionPunishment;
-                    }
-                    if (myHead.y == snakes[i].body[0].y +1 && myHead.x == snakes[i].body[0].x -1) {
-                        moveDownPoints -= collisionPunishment;
-                        moveRightPoints -= collisionPunishment;
-                    }
-                    if (myHead.y == snakes[i].body[0].y +1 && myHead.x == snakes[i].body[0].x + 1) {
-                        moveDownPoints -= collisionPunishment;
-                        moveLeftPoints -= collisionPunishment;
                     }
                     
                 }
@@ -402,12 +406,12 @@ export default function move(gameState){
         }
  
  
-        // helps me kill other snakes if I am the longest
+        // helps me kill other snakes if I am longer than that particular snake
         for (let i = 0; i < snakes.length; i ++) {
             if (snakes[i].id == gameState.you.id) {
                
             } else {
-                if (IamTheLongest == true) {
+                if (gameState.you.length > snakes[i].length) {
                     if (myHead.x == snakes[i].body[0].x -1 && myHead.y == snakes[i].body[0].y + 1) {
                         moveRightPoints += killReward;
                         moveDownPoints += killReward;
@@ -1768,8 +1772,8 @@ export default function move(gameState){
                 }
                 console.log("Checking Against Other Snakes Up: ThreeQualifications: " + threeQualifications);
 
-                
-                if (IamTheLongest == true) {
+                // If I am longer than that particular snake then do this
+                if (gameState.you.length > snakes[i].length) {
                     let AIbadMovePunishment = (theSamePunishment - 1);
                     // I start at a at 1 because I want it to ignore the head
                     for (let a = 1; a < snakes[i].body.length; a++) {
@@ -1830,7 +1834,8 @@ export default function move(gameState){
  
                     // GENERATIVE AI GUESSES
 
-                    if (IamTheLongest == false) {
+                    // If I am shorter than that particular snake
+                    if (gameState.you.length < snakes[i].length) {
                         let AIbadMovePunishment = (theSamePunishment - 1);
                     
                         // up movement
