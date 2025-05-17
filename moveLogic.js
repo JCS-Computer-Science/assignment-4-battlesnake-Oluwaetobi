@@ -349,32 +349,33 @@ export default function move(gameState){
                         close really soon, also I only included it for ONE DIRECTION ON PURPOSE, because if my snake is at the bottom
                         and I set 2 directions and there snake is 1 unit above mine, then I won't be able to escape because
                         the top direction has been seen as bad, ONLY ONE DIRECTION HERE, DON'T EDIT THIS ONLY REVIEW IT!!*/
+                        let threeUnitsAwayPunishmentPoint = 2;
                         if (myHead.x == snakes[i].body[0].x -3 && myHead.y == snakes[i].body[0].y+ 1) {
-                            moveRightPoints -= 1;
+                            moveRightPoints -= threeUnitsAwayPunishmentPoint;
                         }
                         if (myHead.x == snakes[i].body[0].x -3 && myHead.y == snakes[i].body[0].y- 1) {
-                            moveRightPoints -= 1;
+                            moveRightPoints -= threeUnitsAwayPunishmentPoint;
                         }
                         if (myHead.x == snakes[i].body[0].x + 3 && myHead.y == snakes[i].body[0].y- 1) {
-                            moveLeftPoints -= 1;
+                            moveLeftPoints -= threeUnitsAwayPunishmentPoint;
                         }
                         if (myHead.x == snakes[i].body[0].x + 3 && myHead.y == snakes[i].body[0].y+ 1) {
-                            moveLeftPoints -= 1;
+                            moveLeftPoints -= threeUnitsAwayPunishmentPoint;
                         }
                         if (myHead.x == snakes[i].body[0].x - 1 && myHead.y == snakes[i].body[0].y + 3) {
-                            moveDownPoints -= 1;
+                            moveDownPoints -= threeUnitsAwayPunishmentPoint;
                         }
                         if (myHead.x == snakes[i].body[0].x + 1 && myHead.y == snakes[i].body[0].y + 3) {
-                            moveDownPoints -= 1;
+                            moveDownPoints -= threeUnitsAwayPunishmentPoint;
                         }
                         if (myHead.x == snakes[i].body[0].x + 1 && myHead.y == snakes[i].body[0].y - 3) {
-                            moveUpPoints -= 1;
+                            moveUpPoints -= threeUnitsAwayPunishmentPoint;
                         }
                         if (myHead.x == snakes[i].body[0].x - 1 && myHead.y == snakes[i].body[0].y - 3) {
-                            moveUpPoints -= 1;
+                            moveUpPoints -= threeUnitsAwayPunishmentPoint;
                         }
     
-                        // keeps my snake from colliding with other snakes by predicting their future moves
+                        // keeps my snake from colliding with other snake's heads by predicting their future moves
                         //  I am going to remove points instead of making moves false, because I don't know for sure
                         // that the snake will move in that direction
                         if (myHead.x == snakes[i].body[0].x -1 && myHead.y == snakes[i].body[0].y -1) {
