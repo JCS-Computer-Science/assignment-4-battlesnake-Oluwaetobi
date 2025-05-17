@@ -1804,7 +1804,9 @@ export default function move(gameState){
                 // /** This only helps me avoid dead ends that are 1 unit wide with me and one other snake, but I am going 
                 //  * to be honest with you, it is much more complicated than that, since there can actually be a maximum 
                 //  * of 4 snakes in one game, that would mean I would need at least 10 different possibilities but I am only able
-                //  * to account for 2, me and another snake and myself with myself, I could easily fix this with a few for loops
+                //  * to account for 2, BUT I HAVE FIXED THAT IN THE NEXT CODE BELOW THIS ONE AND THAT IS WHY THIS ONE IS 
+                // COMMENTED OUT BUT I AM GOING TO KEEP THIS CODE HERE JUST IN CASE
+                //  me and another snake and myself with myself, I could easily fix this with a few for loops
                 //  * this will be substantially useful in duels, just not in royale mode or standarad mode until I add the foor
                 //  * loops*/ 
                 // // Block Up Movement
