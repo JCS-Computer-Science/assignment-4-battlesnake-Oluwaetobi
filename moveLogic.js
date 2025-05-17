@@ -446,7 +446,7 @@ export default function move(gameState){
                          * CUT OFF SNAKRE REWARD EQUAL TO 0!!
                          * ALSO DON"T CHANGE THE CUTOFFSNAKEREWARD OR THE CUTOFFSNAKEREWARDMOVEINTHERIGHTDIRECTION VARIABLE!!!
                          */
-                        let cutOffSnakeRewardMoveInTheRightDirection = 3;
+                        let cutOffSnakeRewardMoveInTheRightDirection = 4;
                         /* if my snake is in any of these positions or coordinates then cutting off a snake would be useless and could
                         actually kill my snake in the end, I ONLY INCLUDE ONE COORDINATE FOR A REASON, DON'T A SECOND ONE!!!*/
                         if (myHead.x == 0) {
@@ -651,7 +651,7 @@ export default function move(gameState){
                          * CUT OFF SNAKRE REWARD EQUAL TO 0!!
                          * ALSO DON"T CHANGE THE CUTOFFSNAKEREWARD OR THE CUTOFFSNAKEREWARDMOVEINTHERIGHTDIRECTION VARIABLE!!!
                          */
-                        let cutOffSnakeRewardMoveInTheRightDirection = 3;
+                        let cutOffSnakeRewardMoveInTheRightDirection = 4;
                         /* if my snake is in any of these positions or coordinates then cutting off a snake would be useless and could
                         actually kill my snake in the end, I ONLY INCLUDE ONE COORDINATE FOR A REASON, DON'T A SECOND ONE!!!*/
                         if (myHead.x == 0) {
