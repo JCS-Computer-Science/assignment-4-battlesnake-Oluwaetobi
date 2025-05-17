@@ -799,6 +799,8 @@ export default function move(gameState){
             followTailReward = 0.5;
         } else if (gameState.you.health < 50) {
             followTailReward = 0.3;
+        } else if (gameState.you.health < 30) {
+            followTailReward = 0.20;
         }
             // from 1 unit away tail
             if ( gameState.you.body[myTail -1].x -1 == myHead.x && myHead.y == gameState.you.body[myTail -1].y) {
