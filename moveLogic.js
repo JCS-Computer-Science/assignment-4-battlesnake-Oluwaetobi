@@ -271,7 +271,7 @@ export default function move(gameState){
                    
                 } else {
                     // only avoids them if I am shorter than that particular snake
-                    if (gameState.you.length < snakes[i].length) {
+                    if (gameState.you.length <= snakes[i].length) {
                         // right movement blocked
                         if (myHead.x == snakes[i].body[0].x -2 && myHead.y == snakes[i].body[0].y) {
                             moveRightPoints -= collisionPunishment;
@@ -1842,7 +1842,7 @@ export default function move(gameState){
                     // GENERATIVE AI GUESSES
 
                     // If I am shorter than that particular snake
-                    if (gameState.you.length < snakes[i].length) {
+                    if (gameState.you.length <= snakes[i].length) {
                         let AIbadMovePunishment = (theSamePunishment - 1);
                     
                         // up movement
