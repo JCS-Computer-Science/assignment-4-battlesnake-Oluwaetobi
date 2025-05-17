@@ -16,6 +16,9 @@ export default function move(gameState){
     let theSamePunishment = 3;
     let hazards = gameState.board.hazards;
 
+    /* Iamthelongest variable is still useful, even though I have added a next generation level of smartiness to my snake
+    It is now no longer completely dependent on this variable but can check individually whether it is bigger than a particular
+    snake */
     let IamTheLongest = false;
     let killReward = 4;
 
@@ -37,7 +40,8 @@ export default function move(gameState){
  
     let snakes = gameState.board.snakes;
  
- 
+    // I don't know why this variable has a light color which means it is not being used, even though I am actually using
+    // this variable three times throughout my entire code
     let superDuperReallyHungry = false;
     // I am making nextmove and safemoves a global varaible since I am calling it more than once
     let safeMoves = Object.keys(moveSafety).filter(direction => moveSafety[direction]);
@@ -57,6 +61,9 @@ export default function move(gameState){
  
  
     // checks to see if I am the longest
+    /* Iamthelongest variable is still useful, even though I have added a next generation level of smartiness to my snake
+    It is now no longer completely dependent on this variable but can check individually whether it is bigger than a particular
+    snake */
     let amountOfSnakes1 = 0;
     let checkAmountOfSnakes1 = 0;
     for (let i = 0; i < snakes.length; i ++) {
