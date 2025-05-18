@@ -458,11 +458,11 @@ export default function move(gameState){
                
                 if (gameState.you.length >= 3 && gameState.you.length <= snakes[i].length) {
                     // right movement at the top sideof the board
-                    if (myHead.y == gameBoardProperties.height -1 && myHead.x == snakes[i].body[0].x + 1 && snakes[i].body[0].y == gameBoardProperties.height -1) {
+                    if (myHead.y == gameBoardProperties.height -2 && myHead.x == snakes[i].body[0].x + 1 && snakes[i].body[0].y == gameBoardProperties.height -1) {
                         moveRightPoints += forcePushKillReward;
                     }
                     // left movement at the top side of the board
-                    if (myHead.y == gameBoardProperties.height -1 && myHead.x == snakes[i].body[0].x - 1 && snakes[i].body[0].y == gameBoardProperties.height -1) {
+                    if (myHead.y == gameBoardProperties.height -2 && myHead.x == snakes[i].body[0].x - 1 && snakes[i].body[0].y == gameBoardProperties.height -1) {
                         moveLeftPoints += forcePushKillReward;
                     }
                     // right movement at the bottom side of the board
