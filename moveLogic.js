@@ -1797,7 +1797,7 @@ export default function move(gameState){
 
 
 
-                let goingInBetweenBodyDeadEndPunishment = 5;
+                let goingInBetweenBodyDeadEndPunishment = 12;
                 /*Checking for dead ends included between my body and another snakes body
                  can compare with all snakes including my own with a maximum of 1 unit wide and 2 units tall that is the difference
                  between this code and the one on top, it can compare with all snakes but only with a maximum length of 2 units unlike
