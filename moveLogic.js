@@ -421,9 +421,12 @@ export default function move(gameState){
  
  
         // helps me kill other snakes if I am longer than that particular snake
-        // I have made it so high because there are so many things that could stop me from getting this kill due to the way
-        // my code is structured, bodies, dead ends, and other stuff could make me lost this oppurtunity
-        let forcePushKillReward = 22;
+        // I have made it so high only when there are 2 snakes, myself and someone else in the arena, that way it just goes for the kill
+        //  my code is structured, bodies, dead ends, and other stuff could make me lost this oppurtunity
+        let forcePushKillReward = 3;
+        if (snakes.length == 2) {
+            forcePushKillReward = 23;
+        }
         for (let i = 0; i < snakes.length; i ++) {
             if (snakes[i].id == gameState.you.id) {
                
@@ -458,7 +461,12 @@ export default function move(gameState){
                         forcePushKillReward = 0;
                     }
                 }
-               
+               /* if I am at the very edges of the board, then there is no reason to continuing pushing them to the end 
+               because we are already at the end*/
+                if (myHead.x == 0 || myHead.x == gameBoardProperties.width -1 || myHead.y == 0 || myHead.y == gameBoardProperties.height - 1) {
+                    forcePushKillReward = 0;
+                }
+
                 if (gameState.you.length >= 3 && gameState.you.length <= snakes[i].length) {
                     // right movement at the top sideof the board
                     if (myHead.y == gameBoardProperties.height -2 && myHead.x == snakes[i].body[0].x + 1 && snakes[i].body[0].y == gameBoardProperties.height -1) {
