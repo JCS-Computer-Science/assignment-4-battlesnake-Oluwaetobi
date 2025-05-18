@@ -61,7 +61,7 @@ export default function move(gameState){
     let hungry = 75;
  
  
-    let eatAggressivelyUntilIamThisLong = 7;
+    let eatAggressivelyUntilIamThisLong = 8;
  
  
     // checks to see if I am the longest
@@ -805,7 +805,10 @@ export default function move(gameState){
        
     }
 
-    // Helps my snake follow my tail, instead of getting into dead ends and losing to other big snakes
+    /* Helps my snake follow my tail, instead of getting into dead ends and losing to other big snakes 
+    I changed it to having to be greater than 5 and changed the followTailReward to 0.9 at the start
+    because my snake is being stupid and following my tail too much at the start and then I keep losing to other big 
+    snakes**/
     hazards = gameState.board.hazards;
     if ( gameState.you.body.length > 5) {
         let myTail = gameState.you.body.length;
