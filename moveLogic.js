@@ -806,11 +806,12 @@ export default function move(gameState){
     }
 
     /* Helps my snake follow my tail, instead of getting into dead ends and losing to other big snakes 
-    I changed it to having to be greater than 5 and changed the followTailReward to 0.9 at the start
-    because my snake is being stupid and following my tail too much at the start and then I keep losing to other big 
+    I changed it to having to be greater than eatAggressivelyUntilIamThisLong and changed 
+    the followTailReward to 0.9 at the start because my snake is being stupid and following my tail too much 
+    at the start and then I keep losing to other big 
     snakes**/
     hazards = gameState.board.hazards;
-    if ( gameState.you.body.length > 5) {
+    if ( gameState.you.body.length > eatAggressivelyUntilIamThisLong) {
         let myTail = gameState.you.body.length;
         /* 0.5 for the followTailReward is the sweet spot, if it is any higher it will spin even when it is hungry and will spin 
         too much!! */
