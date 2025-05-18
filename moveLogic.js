@@ -2446,20 +2446,10 @@ export default function move(gameState){
 
         // END OF A SECTION START OF A NEW SECTION
 
-        snakes.forEach((snake) => {
-            const snakeBody = snake.body;
-           
-            // I need this i because it calls it too many times since the bounds are in the same
-            // position all the time
-            let i = 0;
-   
-            snakeBody.forEach((b) => {
- 
-                /* ADD More IF statements to make smart choices smarter*/
-               
-                // increases points for being hungry and having food close to you
+        // FOOD:
+
+        // increases points for being hungry and having food close to you
                 // Don't remove "if (i < 1)" it is extremely IMPORTANT!!
-                if (i < 1) {
                     if (gameState.you.health < hungry) {
                         let food = gameState.board.food;
                         // this helps me not oversShoot eating for food that is far away
@@ -2537,11 +2527,9 @@ export default function move(gameState){
                        
                        
                     }
-                }
  
  
                 // increases points by a lot for being really SUPER DUPER HUNGRY and having food close to you
-                if (i < 1) {
                     if (gameState.you.health < superDuperHungry) {
                         superDuperReallyHungry = true;
                         let food = gameState.board.food;
@@ -2588,11 +2576,6 @@ export default function move(gameState){
                        
                        
                     }
-                }
- 
-                i += 1;
-            })
-        })
 
         // END OF AN OLD SECTION START OF A NEW SECTION
         
