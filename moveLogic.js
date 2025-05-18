@@ -2282,6 +2282,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveUpPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
+                    console.log("UP MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
     
                     // Reverse
                     // Checking for dead ends included between my body and another snakes body
@@ -2334,6 +2335,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveUpPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
+                    console.log("Reverse: UP MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
                     // Block Down Movement
                     betweenBodiesQualifications = 0;
                     otherCheck = 0;
@@ -2383,6 +2385,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveDownPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
+                    console.log("DOWN MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
     
                     // Reverse
                     // Checking for dead ends included between my body and another snakes body
@@ -2435,6 +2438,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveDownPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
+                    console.log("Reverse: DOWN MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
     
                     // Blocks Right Movement
                     betweenBodiesQualifications = 0;
@@ -2485,6 +2489,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveRightPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
+                    console.log("RIGHT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
     
                     // Reverse
                     // Checking for dead ends included between my body and another snakes body
@@ -2537,6 +2542,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveRightPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
+                    console.log("Reverse: RIGHT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
                     // Blocks Left Movement
                     betweenBodiesQualifications = 0;
                     otherCheck = 0;
@@ -2586,6 +2592,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveLeftPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
+                    console.log("LEFT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
     
                     // Reverse
                     // Checking for dead ends included between my body and another snakes body
@@ -2638,6 +2645,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveLeftPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
+                    console.log("Reverse: LEFT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
 
                 }
 
