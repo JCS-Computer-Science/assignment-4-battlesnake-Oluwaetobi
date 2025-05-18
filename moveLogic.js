@@ -422,6 +422,7 @@ export default function move(gameState){
  
         // helps me kill other snakes if I am longer than that particular snake
         // I have made it so high only when there are 2 snakes, myself and someone else in the arena, that way it just goes for the kill
+        // since there is no that can kill me no longer how far I push, it will only be me and the snake I have cornered up
         //  my code is structured, bodies, dead ends, and other stuff could make me lost this oppurtunity
         let forcePushKillReward = 3;
         if (snakes.length == 2) {
