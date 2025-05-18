@@ -807,11 +807,11 @@ export default function move(gameState){
 
     // Helps my snake follow my tail, instead of getting into dead ends and losing to other big snakes
     hazards = gameState.board.hazards;
-    if ( gameState.you.body.length > 3) {
+    if ( gameState.you.body.length > 5) {
         let myTail = gameState.you.body.length;
         /* 0.5 for the followTailReward is the sweet spot, if it is any higher it will spin even when it is hungry and will spin 
         too much!! */
-        let followTailReward = 1;
+        let followTailReward = 0.9;
 
         // the lower my health is the more I decentivize my snake from following it's tail
         if (gameState.you.health < 90) {
