@@ -421,7 +421,9 @@ export default function move(gameState){
  
  
         // helps me kill other snakes if I am longer than that particular snake
-        let forcePushKillReward = 3;
+        // I have made it so high because there are so many things that could stop me from getting this kill due to the way
+        // my code is structured, bodies, dead ends, and other stuff could make me lost this oppurtunity
+        let forcePushKillReward = 22;
         for (let i = 0; i < snakes.length; i ++) {
             if (snakes[i].id == gameState.you.id) {
                
