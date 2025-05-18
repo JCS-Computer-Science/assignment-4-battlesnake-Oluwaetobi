@@ -1801,7 +1801,12 @@ export default function move(gameState){
                 /*Checking for dead ends included between my body and another snakes body
                  can compare with all snakes including my own with a maximum of 1 unit wide and 2 units tall that is the difference
                  between this code and the one on top, it can compare with all snakes but only with a maximum length of 2 units unlike
-                 the top which doesn't actually have a maximum for length only for width which is 1 unit **/
+                 the top which doesn't actually have a maximum for length only for width which is 1 unit 
+                 One Problem That I see with this method is that it can only compare 2 snakes at a time, even though it 
+                 can do it for all snakes regardless of the order. Sometimes the blockage maybe happening between 3 or 4 snakes!!
+                 In that Case this code is completely useless but hey it is still an improvement over the old one, I would say that
+                 this is where flood fill might possibly be better, although flood fill is not always the solution and 
+                 can sometimes be counterproductive**/
                 // Block Up Movement
                 let betweenBodiesQualifications = 0;
                 let otherCheck = 0;
