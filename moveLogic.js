@@ -446,11 +446,12 @@ export default function move(gameState){
                         moveRightPoints += killReward
                     }
                 }
-                // I have to be shorter than the snake to do force push kill, if I was longer I would just kill them right away
+                /* I have to be shorter than the snake to do force push kill, if I was longer I would just kill them right away
                 //  this keeps snakes along the edges of the walls
-                // and forces them to go to the edge of the board which kills them and I only do this if I am not in hazard
-                for (let i = 0; i < hazards.length; i ++) {
-                    if (myHead.x == hazards[i].x && myHead.y == hazards[i].y) {
+                // and forces them to go to the edge of the board which kills them and I only do this if I am not in hazard 
+                // Also remember that this should be myHeads compared with the snakes head NOT ANY PART OF THEIR BODY!*/
+                for (let b = 0; b < hazards.length; b ++) {
+                    if (myHead.x == hazards[b].x && myHead.y == hazards[b].y) {
                         // sets the forcePushKill Reward to zero if I am in a hazard
                         forcePushKillReward = 0;
                     }
