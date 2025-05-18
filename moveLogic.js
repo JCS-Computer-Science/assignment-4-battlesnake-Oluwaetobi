@@ -1806,7 +1806,7 @@ export default function move(gameState){
                  can do it for all snakes regardless of the order. Sometimes the blockage maybe happening between 3 or 4 snakes!!
                  In that Case this code is completely useless but hey it is still an improvement over the old one, I would say that
                  this is where flood fill might possibly be better, although flood fill is not always the solution and 
-                 can sometimes be counterproductive**/
+                 can sometimes be counterproductive, so yeah**/
                 // Block Up Movement
                 let betweenBodiesQualifications = 0;
                 let otherCheck = 0;
