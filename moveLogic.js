@@ -421,6 +421,7 @@ export default function move(gameState){
  
  
         // helps me kill other snakes if I am longer than that particular snake
+        let forcePushKillReward = 3;
         for (let i = 0; i < snakes.length; i ++) {
             if (snakes[i].id == gameState.you.id) {
                
@@ -445,7 +446,50 @@ export default function move(gameState){
                         moveRightPoints += killReward
                     }
                 }
-                
+                // I have to be shorter than the snake to do force push kill, if I was longer I would just kill them right away
+                //  this keeps snakes along the edges of the walls
+                // and forces them to go to the edge of the board which kills them and I only do this if I am not in hazard
+                for (let i = 0; i < hazards.length; i ++) {
+                    if (myHead.x == hazards[i].x && myHead.y == hazards[i].y) {
+                        // sets the forcePushKill Reward to zero if I am in a hazard
+                        forcePushKillReward = 0;
+                    }
+                }
+               
+                if (gameState.you.length >= 3 && gameState.you.length <= snakes[i].length) {
+                    // right movement at the top sideof the board
+                    if (myHead.y == gameBoardProperties.height -1 && myHead.x == snakes[i].body[0].x + 1 && snakes[i].body[0].y == gameBoardProperties.height -1) {
+                        moveRightPoints += forcePushKillReward;
+                    }
+                    // left movement at the top side of the board
+                    if (myHead.y == gameBoardProperties.height -1 && myHead.x == snakes[i].body[0].x - 1 && snakes[i].body[0].y == gameBoardProperties.height -1) {
+                        moveLeftPoints += forcePushKillReward;
+                    }
+                    // right movement at the bottom side of the board
+                    if (myHead.y == 1 && myHead.x == snakes[i].body[0].x + 1 && snakes[i].body[0].y == 0) {
+                        moveRightPoints += forcePushKillReward;
+                    }
+                    // left movement at the bottom side of the board
+                    if (myHead.y == 1 && myHead.x == snakes[i].body[0].x - 1 && snakes[i].body[0].y == 0) {
+                        moveLeftPoints += forcePushKillReward;
+                    }
+                    // up movement at the left side of the board
+                    if (myHead.x == 1 && myHead.y == snakes[i].body[0].y + 1 && snakes[i].body[0].x == 0) {
+                        moveUpPoints += forcePushKillReward;
+                    }
+                    // down movement at the left side of the board
+                    if (myHead.x == 1 && myHead.y == snakes[i].body[0].y - 1 && snakes[i].body[0].x == 0) {
+                        moveDownPoints += forcePushKillReward;
+                    }
+                    // up movement at the right side of the board
+                    if (myHead.x == gameBoardProperties -2 && myHead.y == snakes[i].body[0].y + 1 && snakes[i].body[0].x == gameBoardProperties -1) {
+                        moveUpPoints += forcePushKillReward;
+                    }
+                    // down movement at the right side of the board
+                    if (myHead.x == gameBoardProperties -2 && myHead.y == snakes[i].body[0].y - 1 && snakes[i].body[0].x == gameBoardProperties -1) {
+                        moveDownPoints += forcePushKillReward;
+                    }
+                }
             }
         }
     })
