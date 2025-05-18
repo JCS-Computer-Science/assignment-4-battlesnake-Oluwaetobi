@@ -2262,7 +2262,7 @@ export default function move(gameState){
                         if (a >= snakes[i].length-1) {
                             break;
                         }
-                        if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -1 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -2) {
+                        if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -2 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2273,7 +2273,7 @@ export default function move(gameState){
                         if (a >= snakes[z].body.length-1) {
                             break;
                         }
-                        if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -1 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -2) {
+                        if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -2 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2315,7 +2315,7 @@ export default function move(gameState){
                         if (a >= snakes[i].length-1) {
                             break;
                         }
-                        if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -1 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -2) {
+                        if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -2 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2326,7 +2326,7 @@ export default function move(gameState){
                         if (a >= snakes[z].body.length-1) {
                             break;
                         }
-                        if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -1 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -2) {
+                        if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -2 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2365,7 +2365,7 @@ export default function move(gameState){
                         if (a >= snakes[i].length-1) {
                             break;
                         }
-                        if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +1 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +2) {
+                        if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +2 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2376,7 +2376,7 @@ export default function move(gameState){
                         if (a >= snakes[z].body.length-1) {
                             break;
                         }
-                        if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y +1 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y +2) {
+                        if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y +2 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y +3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2418,7 +2418,7 @@ export default function move(gameState){
                         if (a >= snakes[i].length-1) {
                             break;
                         }
-                        if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +1 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +2) {
+                        if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +2 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2429,7 +2429,7 @@ export default function move(gameState){
                         if (a >= snakes[z].body.length-1) {
                             break;
                         }
-                        if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -1 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -2) {
+                        if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -2 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2469,7 +2469,7 @@ export default function move(gameState){
                         if (a >= snakes[i].length -1) {
                             break;
                         }
-                        if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -1 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -2) {
+                        if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -2 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2480,7 +2480,7 @@ export default function move(gameState){
                         if (a >= snakes[z].body.length -1) {
                             break;
                         }
-                        if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -1 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -2) {
+                        if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -2 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2522,7 +2522,7 @@ export default function move(gameState){
                         if (a >= snakes[i].length -1) {
                             break;
                         }
-                        if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -1 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -2) {
+                        if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -2 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2533,7 +2533,7 @@ export default function move(gameState){
                         if (a >= snakes[z].body.length -1) {
                             break;
                         }
-                        if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -1 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -2) {
+                        if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -2 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2572,7 +2572,7 @@ export default function move(gameState){
                         if (a >= snakes[i].length -1) {
                             break;
                         }
-                        if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +1 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +2) {
+                        if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +2 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2583,7 +2583,7 @@ export default function move(gameState){
                         if (a >= snakes[z].body.length -1) {
                             break;
                         }
-                        if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +1 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +2) {
+                        if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +2 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2625,7 +2625,7 @@ export default function move(gameState){
                         if (a >= snakes[i].length -1) {
                             break;
                         }
-                        if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +1 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +2) {
+                        if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +2 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +3) {
                             otherCheck += 1;
                             break;
                         }
@@ -2636,7 +2636,7 @@ export default function move(gameState){
                         if (a >= snakes[z].body.length -1) {
                             break;
                         }
-                        if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +1 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +2) {
+                        if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +2 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +3) {
                             otherCheck += 1;
                             break;
                         }
