@@ -2572,6 +2572,16 @@ export default function move(gameState){
                                     // Just in case!!
                                     moveSafety.down = true;
                                 }
+
+                                // eat food that is horizontally adjacted to me that is 2 units away when I am super duper hungry
+                                if (gameState.you.health < superDuperHungry) {
+                                    if (myHead.x == f.x -2 && myHead.y == f.y) {
+                                        moveRightPoints += 3;
+                                    }
+                                    if (myHead.x == f.x +2 && myHead.y == f.y) {
+                                        moveLeftPoints += 3;
+                                    }
+                                }
                         })
                        
                        
