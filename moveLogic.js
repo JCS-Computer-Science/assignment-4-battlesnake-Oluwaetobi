@@ -496,11 +496,11 @@ export default function move(gameState){
                         moveDownPoints += forcePushKillReward;
                     }
                     // up movement at the right side of the board
-                    if (myHead.x == gameBoardProperties -2 && myHead.y == snakes[i].body[0].y + 1 && snakes[i].body[0].x == gameBoardProperties -1) {
+                    if (myHead.x == gameBoardProperties.width -2 && myHead.y == snakes[i].body[0].y + 1 && snakes[i].body[0].x == gameBoardProperties.width -1) {
                         moveUpPoints += forcePushKillReward;
                     }
                     // down movement at the right side of the board
-                    if (myHead.x == gameBoardProperties -2 && myHead.y == snakes[i].body[0].y - 1 && snakes[i].body[0].x == gameBoardProperties -1) {
+                    if (myHead.x == gameBoardProperties.width -2 && myHead.y == snakes[i].body[0].y - 1 && snakes[i].body[0].x == gameBoardProperties.width -1) {
                         moveDownPoints += forcePushKillReward;
                     }
                 }
