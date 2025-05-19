@@ -61,7 +61,7 @@ export default function move(gameState){
     let hungry = 75;
  
  
-    let eatAggressivelyUntilIamThisLong = 8;
+    let eatAggressivelyUntilIamThisLong = 10;
  
  
     // checks to see if I am the longest
@@ -98,16 +98,18 @@ export default function move(gameState){
 
     // checks if I am the longest in order to know how to go about eating in the game
     if (IamTheLongest == true) {
-        if (gameState.you.length < 13) {
+        if (gameState.you.length < eatAggressivelyUntilIamThisLong + 3) {
+            hungry = 101;
+        } else if (gameState.you.length < eatAggressivelyUntilIamThisLong+ 5) {
             hungry = 80;
         } else {
             hungry = 60;
         }
     } else {
-        if (gameState.you.length < 13) {
+        if (gameState.you.length < eatAggressivelyUntilIamThisLong + 5) {
             hungry = 101;
         } else {
-            if (gameState.you.length < 15) {
+            if (gameState.you.length < eatAggressivelyUntilIamThisLong + 7) {
                 hungry = 80;
             } else{
                 hungry = 60;
