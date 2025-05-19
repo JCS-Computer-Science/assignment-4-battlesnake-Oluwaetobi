@@ -61,7 +61,7 @@ export default function move(gameState){
     let hungry = 75;
  
  
-    let eatAggressivelyUntilIamThisLong = 10;
+    let eatAggressivelyUntilIamThisLong = 30;
  
  
     // checks to see if I am the longest
