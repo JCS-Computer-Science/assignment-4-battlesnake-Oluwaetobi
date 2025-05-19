@@ -874,12 +874,14 @@ export default function move(gameState){
         let followTailReward = 0.9;
 
         // the lower my health is the more I decentivize my snake from following it's tail
-        if (gameState.you.health < 90) {
+        if (gameState.you.health > 90) {
             followTailReward = 0.5;
-        } else if (gameState.you.health < 50) {
+        } else if (gameState.you.health > 50) {
             followTailReward = 0.3;
-        } else if (gameState.you.health < 30) {
+        } else if (gameState.you.health > 30) {
             followTailReward = 0.20;
+        } else {
+            followTailReward = 0.10;
         }
         // don't follow your tail if you are in a hazards or else you will spin in an hazard and die
         for (let i = 0; i < hazards.length; i++ ) {
