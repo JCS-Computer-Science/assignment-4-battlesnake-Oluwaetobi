@@ -1,3 +1,9 @@
+/**Ejò yii, ti mo ti da ni oye atọwọda, o je ajafafa, ati o le segun oriṣiriṣi ejò. Sùgbon, ejò mi nilo lati da, ko da ju ati
+ * mo ro pé ejò yii to mo ti da o ti dé ni ipele ti o poju fun ejò yii nikan. Mo ro pé, mo nilo lati da ejo yii miiran pelu
+ * ete yato nitori pé, pelu ete yii, ko le da sugbon ti ma yipada ete mi pelu ejò yii miiran, mo le da e. Sugbon, mi o ma parun
+ * ejò yii, ma da ejò miiran.
+ */
+
 export default function move(gameState){
     let gameBoardProperties = {
         "height" : gameState.board.height,
