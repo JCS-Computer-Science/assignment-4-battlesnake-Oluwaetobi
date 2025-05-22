@@ -2673,7 +2673,35 @@ export default function move(gameState){
                 }
             }
             if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
-                moveRightPoints -= alongTheWallInBodyDeadEndPunishment;
+                moveLeftPoints -= alongTheWallInBodyDeadEndPunishment;
+            }
+
+        }
+        distanceUntilDeadEnd = 0;
+        bodySegmentsInStraightLine = 0;
+        // dead end along the left wall going up
+        if (myHead.x == 0 ) {
+            for (let i = 0; i < snakes.length; i++) {
+                for (let a = 0; a < snakes[i].length; a ++) {
+                    for (let z = 1; z < gameBoardProperties.width; z++) {
+                        if (myHead.x == snakes[i].body[a].x && myHead.y + z == snakes[i].body[a].x) {
+                            distanceUntilDeadEnd = z;
+                            break;
+                        }
+                    }
+                }
+            }
+            for (let i = 1; i <distanceUntilDeadEnd; i++) {
+                for (let c = 0; c < snakes.length; c ++) {
+                    for (let a = 0; a < snakes[i].length; a++){
+                        if (myHead.x + 1 == snakes[c].body[a].x && myHead.y + i == snakes[c].body[a].x) {
+                            bodySegmentsInStraightLine += 1;
+                        }
+                    }
+                }
+            }
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+                moveUpPoints -= alongTheWallInBodyDeadEndPunishment;
             }
 
         }
