@@ -2586,7 +2586,7 @@ export default function move(gameState){
                     }
                 }
             }
-            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine && bodySegmentsInStraightLine != 0 || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
                 moveRightPoints -= alongTheWallInBodyDeadEndPunishment;
             }
             console.log("BOTTOM WALL MOVING RIGHT: distanceUntilDeadEnd and bodySegmentsInStraightLine: " + distanceUntilDeadEnd + "" + bodySegmentsInStraightLine);
@@ -2615,7 +2615,7 @@ export default function move(gameState){
                     }
                 }
             }
-            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine && bodySegmentsInStraightLine != 0 || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
                 moveLeftPoints -= alongTheWallInBodyDeadEndPunishment;
             }
             console.log("BOTTOM WALL MOVING LEFT: distanceUntilDeadEnd and bodySegmentsInStraightLine: " + distanceUntilDeadEnd + "" + bodySegmentsInStraightLine);
@@ -2643,7 +2643,7 @@ export default function move(gameState){
                     }
                 }
             }
-            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine && bodySegmentsInStraightLine != 0 || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
                 moveRightPoints -= alongTheWallInBodyDeadEndPunishment;
             }
             console.log("TOP WALL MOVING RIGHT: distanceUntilDeadEnd and bodySegmentsInStraightLine: " + distanceUntilDeadEnd + "" + bodySegmentsInStraightLine);
@@ -2672,7 +2672,7 @@ export default function move(gameState){
                     }
                 }
             }
-            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine && bodySegmentsInStraightLine != 0 || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
                 moveLeftPoints -= alongTheWallInBodyDeadEndPunishment;
             }
             console.log("TOP WALL MOVING LEFT: distanceUntilDeadEnd and bodySegmentsInStraightLine: " + distanceUntilDeadEnd + "" + bodySegmentsInStraightLine);
@@ -2700,7 +2700,7 @@ export default function move(gameState){
                     }
                 }
             }
-            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine && bodySegmentsInStraightLine != 0 || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
                 moveUpPoints -= alongTheWallInBodyDeadEndPunishment;
             }
             console.log("LEFT WALL MOVING UP: distanceUntilDeadEnd and bodySegmentsInStraightLine: " + distanceUntilDeadEnd + "" + bodySegmentsInStraightLine);
@@ -2729,7 +2729,7 @@ export default function move(gameState){
                     }
                 }
             }
-            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine && bodySegmentsInStraightLine != 0 || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
                 moveDownPoints -= alongTheWallInBodyDeadEndPunishment;
             }
             console.log("LEFT WALL MOVING DOWN: distanceUntilDeadEnd and bodySegmentsInStraightLine: " + distanceUntilDeadEnd + "" + bodySegmentsInStraightLine);
@@ -2757,7 +2757,7 @@ export default function move(gameState){
                     }
                 }
             }
-            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine && bodySegmentsInStraightLine != 0 || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
                 moveUpPoints -= alongTheWallInBodyDeadEndPunishment;
             }
             console.log("RIGHT WALL MOVING UP: distanceUntilDeadEnd and bodySegmentsInStraightLine: " + distanceUntilDeadEnd + "" + bodySegmentsInStraightLine);
@@ -2786,7 +2786,7 @@ export default function move(gameState){
                     }
                 }
             }
-            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine && bodySegmentsInStraightLine != 0 || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
                 moveDownPoints -= alongTheWallInBodyDeadEndPunishment;
             }
             console.log("RIGHT WALL MOVING DOWN: distanceUntilDeadEnd and bodySegmentsInStraightLine: " + distanceUntilDeadEnd + "" + bodySegmentsInStraightLine);
