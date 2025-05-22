@@ -276,6 +276,12 @@ export default function move(gameState){
                     // ignores it if looking at my snake
                 } else {
                     for (let b = 0; b < snakes[i].length; b++) {
+                        // breaks the for loop when looking at the snakes tail if I am not supposed to be avoid their tail
+                        if (avoidOtherSnakesTails == false) {
+                            if (b >= snakes[i].length -1) {
+                                break;
+                            }
+                        }
                         // keeps my snake from colliding with other snakes and every part of their body as well
                         if (myHead.x == snakes[i].body[b].x -1 && myHead.y == snakes[i].body[b].y) {
                             moveSafety.right = false;
@@ -2337,6 +2343,15 @@ export default function move(gameState){
                     let AIbadMovePunishment = (theSamePunishment - 1);
                     // I start at a at 1 because I want it to ignore the head
                     for (let a = 1; a < snakes[i].body.length; a++) {
+
+                        // ignores the tail if it needs to
+                        // breaks the for loop when looking at the snakes tail if I am not supposed to be avoid their tail
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length -1) {
+                                break;
+                            }
+                        }
+
                         // up movement
                         if (moveSafety.up == true ) {
                             if (myHead.y == snakes[i].body[a].y -2 && myHead.x == snakes[i].body[a].x) {
@@ -2393,6 +2408,14 @@ export default function move(gameState){
                 for (let a = 1; a < snakes[i].body.length; a++) {
  
                     // GENERATIVE AI GUESSES
+
+                    // helps ignore the tail if I need to
+                    // breaks the for loop when looking at the snakes tail if I am not supposed to be avoid their tail
+                    if (avoidOtherSnakesTails == false) {
+                        if (a >= snakes[i].length -1) {
+                            break;
+                        }
+                    }
 
                     // If I am shorter than that particular snake
                     if (gameState.you.length <= snakes[i].length) {
