@@ -278,7 +278,7 @@ export default function move(gameState){
                 } else {
                     for (let b = 0; b < snakes[i].length; b++) {
                         // breaks the for loop when looking at the snakes tail if I am not supposed to be avoid their tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (b >= snakes[i].length -1) {
                                 break;
                             }
@@ -1928,7 +1928,7 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length-1) {
                                 break;
                             }
@@ -1941,7 +1941,7 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length-1) {
                                 break;
                             }
@@ -1954,7 +1954,7 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[z].body.length-1) {
                                 break;
                             }
@@ -1987,7 +1987,7 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length-1) {
                                 break;
                             }
@@ -2000,7 +2000,7 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length-1) {
                                 break;
                             }
@@ -2013,7 +2013,7 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[z].body.length-1) {
                                 break;
                             }
@@ -2043,7 +2043,7 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length-1) {
                                 break;
                             }
@@ -2056,7 +2056,7 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length-1) {
                                 break;
                             }
@@ -2070,7 +2070,7 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[z].body.length-1) {
                                 break;
                             }
@@ -2103,7 +2103,7 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length-1) {
                                 break;
                             }
@@ -2116,7 +2116,7 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length-1) {
                                 break;
                             }
@@ -2130,7 +2130,7 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[z].body.length-1) {
                                 break;
                             }
@@ -2162,7 +2162,7 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length -1) {
                                 break;
                             }
@@ -2175,7 +2175,7 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length -1) {
                                 break;
                             }
@@ -2189,7 +2189,7 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[z].body.length -1) {
                                 break;
                             }
@@ -2223,7 +2223,7 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length -1) {
                                 break;
                             }
@@ -2236,7 +2236,7 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length -1) {
                                 break;
                             }
@@ -2249,7 +2249,7 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[z].body.length -1) {
                                 break;
                             }
@@ -2279,7 +2279,7 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length -1) {
                                 break;
                             }
@@ -2293,7 +2293,7 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length -1) {
                                 break;
                             }
@@ -2307,7 +2307,7 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[z].body.length -1) {
                                 break;
                             }
@@ -2341,7 +2341,7 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length -1) {
                                 break;
                             }
@@ -2355,7 +2355,7 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length -1) {
                                 break;
                             }
@@ -2369,7 +2369,7 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[z].body.length -1) {
                                 break;
                             }
@@ -2406,7 +2406,7 @@ export default function move(gameState){
 
                         // ignores the tail if it needs to
                         // breaks the for loop when looking at the snakes tail if I am not supposed to be avoid their tail
-                        if (avoidOtherSnakesTails == false) {
+                        if (avoidOtherSnakesTails === false) {
                             if (a >= snakes[i].length -1) {
                                 break;
                             }
@@ -2471,7 +2471,7 @@ export default function move(gameState){
 
                     // helps ignore the tail if I need to
                     // breaks the for loop when looking at the snakes tail if I am not supposed to be avoid their tail
-                    if (avoidOtherSnakesTails == false) {
+                    if (avoidOtherSnakesTails === false) {
                         if (a >= snakes[i].length -1) {
                             break;
                         }
