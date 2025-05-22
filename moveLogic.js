@@ -1968,7 +1968,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveUpPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
-                    console.log("UP MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+                    // console.log("UP MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
     
                     // Reverse
                     // Checking for dead ends included between my body and another snakes body
@@ -2027,7 +2027,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveUpPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
-                    console.log("Reverse: UP MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+                    // console.log("Reverse: UP MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
                     // Block Down Movement
                     betweenBodiesQualifications = 0;
                     otherCheck = 0;
@@ -2084,7 +2084,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveDownPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
-                    console.log("DOWN MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+                    // console.log("DOWN MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
     
                     // Reverse
                     // Checking for dead ends included between my body and another snakes body
@@ -2145,7 +2145,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveDownPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
-                    console.log("Reverse: DOWN MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+                    // console.log("Reverse: DOWN MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
     
                     // Blocks Right Movement
                     betweenBodiesQualifications = 0;
@@ -2204,7 +2204,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveRightPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
-                    console.log("RIGHT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+                    // console.log("RIGHT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
     
                     // Reverse
                     // Checking for dead ends included between my body and another snakes body
@@ -2263,7 +2263,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveRightPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
-                    console.log("Reverse: RIGHT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+                    // console.log("Reverse: RIGHT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
                     // Blocks Left Movement
                     betweenBodiesQualifications = 0;
                     otherCheck = 0;
@@ -2322,7 +2322,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveLeftPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
-                    console.log("LEFT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+                    // console.log("LEFT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
     
                     // Reverse
                     // Checking for dead ends included between my body and another snakes body
@@ -2384,7 +2384,7 @@ export default function move(gameState){
                     if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                         moveLeftPoints -= goingInBetweenBodyDeadEndPunishment;
                     }
-                    console.log("Reverse: LEFT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+                    // console.log("Reverse: LEFT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
 
                 }
 
@@ -2557,6 +2557,125 @@ export default function move(gameState){
                     
                 }
             }
+        }
+
+        /** Prevents my battlesnake from going into dead ends into other snakes or my snakes bodies at the very edge of the 
+         * snake board
+         */
+        let alongTheWallInBodyDeadEndPunishment = 15;
+        let distanceUntilDeadEnd = 0;
+        let bodySegmentsInStraightLine = 0;
+        // dead end along the bottom wall going to the right
+        if (myHead.y == 0 ) {
+            for (let i = 0; i < snakes.length; i++) {
+                for (let a = 0; a < snakes[i].length; a ++) {
+                    for (let z = 1; z < gameBoardProperties.width; z++) {
+                        if (myHead.x + z == snakes[i].body[a].x && myHead.y == snakes[i].body[a].x) {
+                            distanceUntilDeadEnd = z;
+                            break;
+                        }
+                    }
+                }
+            }
+            for (let i = 1; i <distanceUntilDeadEnd; i++) {
+                for (let c = 0; c < snakes.length; c ++) {
+                    for (let a = 0; a < snakes[i].length; a++){
+                        if (myHead.x + i == snakes[c].body[a].x && myHead.y + 1 == snakes[c].body[a].x) {
+                            bodySegmentsInStraightLine += 1;
+                        }
+                    }
+                }
+            }
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+                moveRightPoints -= alongTheWallInBodyDeadEndPunishment;
+            }
+
+        }
+        // Reverse
+        distanceUntilDeadEnd = 0;
+        bodySegmentsInStraightLine = 0;
+        // dead end along the bottom wall going to the left
+        if (myHead.y == 0 ) {
+            for (let i = 0; i < snakes.length; i++) {
+                for (let a = 0; a < snakes[i].length; a ++) {
+                    for (let z = 1; z < gameBoardProperties.width; z++) {
+                        if (myHead.x - z == snakes[i].body[a].x && myHead.y == snakes[i].body[a].x) {
+                            distanceUntilDeadEnd = z;
+                            break;
+                        }
+                    }
+                }
+            }
+            for (let i = 1; i <distanceUntilDeadEnd; i++) {
+                for (let c = 0; c < snakes.length; c ++) {
+                    for (let a = 0; a < snakes[i].length; a++){
+                        if (myHead.x - i == snakes[c].body[a].x && myHead.y + 1 == snakes[c].body[a].x) {
+                            bodySegmentsInStraightLine += 1;
+                        }
+                    }
+                }
+            }
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+                moveLeftPoints -= alongTheWallInBodyDeadEndPunishment;
+            }
+
+        }
+        distanceUntilDeadEnd = 0;
+        bodySegmentsInStraightLine = 0;
+        // dead end along the top wall going to the right
+        if (myHead.y == gameBoardProperties.height -1 ) {
+            for (let i = 0; i < snakes.length; i++) {
+                for (let a = 0; a < snakes[i].length; a ++) {
+                    for (let z = 1; z < gameBoardProperties.width; z++) {
+                        if (myHead.x + z == snakes[i].body[a].x && myHead.y == snakes[i].body[a].x) {
+                            distanceUntilDeadEnd = z;
+                            break;
+                        }
+                    }
+                }
+            }
+            for (let i = 1; i <distanceUntilDeadEnd; i++) {
+                for (let c = 0; c < snakes.length; c ++) {
+                    for (let a = 0; a < snakes[i].length; a++){
+                        if (myHead.x + i == snakes[c].body[a].x && myHead.y + 1 == snakes[c].body[a].x) {
+                            bodySegmentsInStraightLine += 1;
+                        }
+                    }
+                }
+            }
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+                moveRightPoints -= alongTheWallInBodyDeadEndPunishment;
+            }
+
+        }
+        // reverse
+        distanceUntilDeadEnd = 0;
+        bodySegmentsInStraightLine = 0;
+        // dead end along the top wall going to the left
+        if (myHead.y == gameBoardProperties.height -1 ) {
+            for (let i = 0; i < snakes.length; i++) {
+                for (let a = 0; a < snakes[i].length; a ++) {
+                    for (let z = 1; z < gameBoardProperties.width; z++) {
+                        if (myHead.x - z == snakes[i].body[a].x && myHead.y == snakes[i].body[a].x) {
+                            distanceUntilDeadEnd = z;
+                            break;
+                        }
+                    }
+                }
+            }
+            for (let i = 1; i <distanceUntilDeadEnd; i++) {
+                for (let c = 0; c < snakes.length; c ++) {
+                    for (let a = 0; a < snakes[i].length; a++){
+                        if (myHead.x - i == snakes[c].body[a].x && myHead.y + 1 == snakes[c].body[a].x) {
+                            bodySegmentsInStraightLine += 1;
+                        }
+                    }
+                }
+            }
+            if (distanceUntilDeadEnd == bodySegmentsInStraightLine) {
+                moveRightPoints -= alongTheWallInBodyDeadEndPunishment;
+            }
+
         }
 
         // END OF A SECTION START OF A NEW SECTION
