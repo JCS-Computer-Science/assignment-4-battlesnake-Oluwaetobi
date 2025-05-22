@@ -70,7 +70,24 @@ export default function move(gameState){
  
     let eatAggressivelyUntilIamThisLong = 30;
  
- 
+    // helps me to know where dead ends are
+    const allOfSnakesPositionsExceptMyOwn = [];
+    const allOfSnakesPositionsIncludingMyOwn = [];
+
+    // pushes all of the snakes' positions into an array except for my own position
+    for(let i = 0; i < snakes.length; i ++) {
+        if (snakes[i].id == gameState.you.id) {
+            // do nothing
+        } else {
+            allOfSnakesPositionsExceptMyOwn.push(JSON.stringify(snakes[i].body));
+        }
+    }
+    console.log("allOfSnakesPositionsExceptMyOwn: " + allOfSnakesPositionsExceptMyOwn);
+    // pushes all of the snakes' positions including my own
+    for(let i = 0; i < snakes.length; i ++) {
+            allOfSnakesPositionsIncludingMyOwn.push(JSON.stringify(snakes[i].body));
+        }
+        console.log("allOfSnakesPositionsIncludingMyOwn: " + allOfSnakesPositionsIncludingMyOwn);
     // checks to see if I am the longest
     /* Iamthelongest variable is still useful, even though I have added a next generation level of smartiness to my snake
     It is now no longer completely dependent on this variable but can check individually whether it is bigger than a particular
@@ -301,7 +318,7 @@ export default function move(gameState){
                 }
             }
     
-    let collisionPunishment = 5;
+    let collisionPunishment = 6;
 
 
     // only avoids other snakes heads if I am not the longest and can also check if I am longer or shorter than a specific snake
@@ -969,7 +986,7 @@ export default function move(gameState){
                 moveDownPoints +=followTailReward;
             }
             
-        
+        // console.log("Follow Tail Reward: " + followTailReward);
     }
 
     // NEW SECTION:
