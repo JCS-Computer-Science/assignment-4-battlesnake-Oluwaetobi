@@ -2599,7 +2599,7 @@ export default function move(gameState){
             for (let i = 0; i < snakes.length; i++) {
                 for (let a = 0; a < snakes[i].length; a ++) {
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x - z == snakes[i].body[a].x && myHead.y == snakes[i].body[a].x) {
+                        if (myHead.x - z == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2609,7 +2609,7 @@ export default function move(gameState){
             for (let i = 1; i <distanceUntilDeadEnd; i++) {
                 for (let c = 0; c < snakes.length; c ++) {
                     for (let a = 0; a < snakes[i].length; a++){
-                        if (myHead.x - i == snakes[c].body[a].x && myHead.y + 1 == snakes[c].body[a].x) {
+                        if (myHead.x - i == snakes[c].body[a].x && myHead.y + 1 == snakes[c].body[a].y) {
                             bodySegmentsInStraightLine += 1;
                         }
                     }
@@ -2627,7 +2627,7 @@ export default function move(gameState){
             for (let i = 0; i < snakes.length; i++) {
                 for (let a = 0; a < snakes[i].length; a ++) {
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x + z == snakes[i].body[a].x && myHead.y == snakes[i].body[a].x) {
+                        if (myHead.x + z == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2637,7 +2637,7 @@ export default function move(gameState){
             for (let i = 1; i <distanceUntilDeadEnd; i++) {
                 for (let c = 0; c < snakes.length; c ++) {
                     for (let a = 0; a < snakes[i].length; a++){
-                        if (myHead.x + i == snakes[c].body[a].x && myHead.y + 1 == snakes[c].body[a].x) {
+                        if (myHead.x + i == snakes[c].body[a].x && myHead.y + 1 == snakes[c].body[a].y) {
                             bodySegmentsInStraightLine += 1;
                         }
                     }
@@ -2656,7 +2656,7 @@ export default function move(gameState){
             for (let i = 0; i < snakes.length; i++) {
                 for (let a = 0; a < snakes[i].length; a ++) {
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x - z == snakes[i].body[a].x && myHead.y == snakes[i].body[a].x) {
+                        if (myHead.x - z == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2666,7 +2666,7 @@ export default function move(gameState){
             for (let i = 1; i <distanceUntilDeadEnd; i++) {
                 for (let c = 0; c < snakes.length; c ++) {
                     for (let a = 0; a < snakes[i].length; a++){
-                        if (myHead.x - i == snakes[c].body[a].x && myHead.y + 1 == snakes[c].body[a].x) {
+                        if (myHead.x - i == snakes[c].body[a].x && myHead.y + 1 == snakes[c].body[a].y) {
                             bodySegmentsInStraightLine += 1;
                         }
                     }
@@ -2684,7 +2684,7 @@ export default function move(gameState){
             for (let i = 0; i < snakes.length; i++) {
                 for (let a = 0; a < snakes[i].length; a ++) {
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x == snakes[i].body[a].x && myHead.y + z == snakes[i].body[a].x) {
+                        if (myHead.x == snakes[i].body[a].x && myHead.y + z == snakes[i].body[a].y) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2694,7 +2694,7 @@ export default function move(gameState){
             for (let i = 1; i <distanceUntilDeadEnd; i++) {
                 for (let c = 0; c < snakes.length; c ++) {
                     for (let a = 0; a < snakes[i].length; a++){
-                        if (myHead.x + 1 == snakes[c].body[a].x && myHead.y + i == snakes[c].body[a].x) {
+                        if (myHead.x + 1 == snakes[c].body[a].x && myHead.y + i == snakes[c].body[a].y) {
                             bodySegmentsInStraightLine += 1;
                         }
                     }
