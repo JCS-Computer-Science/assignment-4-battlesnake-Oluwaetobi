@@ -1160,7 +1160,7 @@ export default function move(gameState){
         snakes = gameState.board.snakes
 
         for (let i = 0; i < snakes.length; i ++) {
-            let oneUnitWideDeadEndPointsRemoved = 50
+            let oneUnitWideDeadEndPointsRemoved = 30
             let offSetSinceCheckingOtherSnakes = 1;
 
             /* I am changing this only for this specific section ONLY because this will help me stop getting stuck in dead ends in my body
