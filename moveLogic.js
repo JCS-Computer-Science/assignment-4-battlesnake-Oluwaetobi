@@ -1927,8 +1927,10 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length-1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length-1) {
+                                break;
+                            }
                         }
                         if (myHead.x == snakes[i].body[a].x -1 && myHead.y == snakes[i].body[a].y -1) {
                             betweenBodiesQualifications += 1;
@@ -1938,8 +1940,10 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length-1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length-1) {
+                                break;
+                            }
                         }
                         if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -2 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -3) {
                             otherCheck += 1;
@@ -1949,8 +1953,10 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[z].body.length-1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[z].body.length-1) {
+                                break;
+                            }
                         }
                         if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -2 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -3) {
                             otherCheck += 1;
@@ -1980,8 +1986,10 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length-1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length-1) {
+                                break;
+                            }
                         }
                         if (myHead.x == snakes[i].body[a].x +1 && myHead.y == snakes[i].body[a].y -1) {
                             betweenBodiesQualifications += 1;
@@ -1991,8 +1999,10 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length-1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length-1) {
+                                break;
+                            }
                         }
                         if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -2 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -3) {
                             otherCheck += 1;
@@ -2002,8 +2012,10 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[z].body.length-1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[z].body.length-1) {
+                                break;
+                            }
                         }
                         if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -2 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -3) {
                             otherCheck += 1;
@@ -2030,8 +2042,10 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length-1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length-1) {
+                                break;
+                            }
                         }
                         if (myHead.x == snakes[i].body[a].x -1 && myHead.y == snakes[i].body[a].y +1) {
                             betweenBodiesQualifications += 1;
@@ -2041,8 +2055,11 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length-1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length-1) {
+                                break;
+                            }
+                            
                         }
                         if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +2 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +3) {
                             otherCheck += 1;
@@ -2052,8 +2069,10 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[z].body.length-1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[z].body.length-1) {
+                                break;
+                            }
                         }
                         if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y +2 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y +3) {
                             otherCheck += 1;
@@ -2083,8 +2102,10 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length-1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length-1) {
+                                break;
+                            }
                         }
                         if (myHead.x == snakes[i].body[a].x +1 && myHead.y == snakes[i].body[a].y +1) {
                             betweenBodiesQualifications += 1;
@@ -2094,8 +2115,11 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length-1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length-1) {
+                                break;
+                            }
+                            
                         }
                         if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +2 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +3) {
                             otherCheck += 1;
@@ -2105,8 +2129,11 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[z].body.length-1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[z].body.length-1) {
+                                break;
+                            }
+                            
                         }
                         if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -2 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -3) {
                             otherCheck += 1;
@@ -2134,8 +2161,10 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length -1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length -1) {
+                                break;
+                            }
                         }
                         if (myHead.x == snakes[i].body[a].x -1 && myHead.y == snakes[i].body[a].y +1) {
                             betweenBodiesQualifications += 1;
@@ -2145,8 +2174,11 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length -1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length -1) {
+                                break;
+                            }
+                            
                         }
                         if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -2 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -3) {
                             otherCheck += 1;
@@ -2156,8 +2188,11 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[z].body.length -1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[z].body.length -1) {
+                                break;
+                            }
+                            
                         }
                         if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -2 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -3) {
                             otherCheck += 1;
@@ -2187,8 +2222,10 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length -1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length -1) {
+                                break;
+                            }
                         }
                         if (myHead.x == snakes[i].body[a].x -1 && myHead.y == snakes[i].body[a].y -1) {
                             betweenBodiesQualifications += 1;
@@ -2198,8 +2235,10 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length -1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length -1) {
+                                break;
+                            }
                         }
                         if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -2 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -3) {
                             otherCheck += 1;
@@ -2209,8 +2248,10 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[z].body.length -1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[z].body.length -1) {
+                                break;
+                            }
                         }
                         if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -2 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -3) {
                             otherCheck += 1;
@@ -2237,8 +2278,11 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length -1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length -1) {
+                                break;
+                            }
+                            
                         }
                         if (myHead.x == snakes[i].body[a].x +1 && myHead.y == snakes[i].body[a].y +1) {
                             betweenBodiesQualifications += 1;
@@ -2248,8 +2292,11 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length -1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length -1) {
+                                break;
+                            }
+                            
                         }
                         if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +2 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +3) {
                             otherCheck += 1;
@@ -2259,8 +2306,11 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[z].body.length -1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[z].body.length -1) {
+                                break;
+                            }
+                            
                         }
                         if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +2 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +3) {
                             otherCheck += 1;
@@ -2290,8 +2340,11 @@ export default function move(gameState){
                     }
                     for (let a= 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length -1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length -1) {
+                                break;
+                            }
+                            
                         }
                         if (myHead.x == snakes[i].body[a].x +1 && myHead.y == snakes[i].body[a].y -1) {
                             betweenBodiesQualifications += 1;
@@ -2301,8 +2354,11 @@ export default function move(gameState){
                     // check's other snake
                     for (let a = 0; a < snakes[i].length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[i].length -1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[i].length -1) {
+                                break;
+                            }
+                            
                         }
                         if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +2 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +3) {
                             otherCheck += 1;
@@ -2312,8 +2368,11 @@ export default function move(gameState){
                     // also checks my snake
                     for (let a = 0; a < snakes[z].body.length; a++) {
                         // ignores snake's tail
-                        if (a >= snakes[z].body.length -1) {
-                            break;
+                        if (avoidOtherSnakesTails == false) {
+                            if (a >= snakes[z].body.length -1) {
+                                break;
+                            }
+                            
                         }
                         if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +2 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +3) {
                             otherCheck += 1;
