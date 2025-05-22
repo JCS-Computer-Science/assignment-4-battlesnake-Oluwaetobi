@@ -167,7 +167,7 @@ export default function move(gameState){
         food.forEach((f) => {
             for (let i = 0; i < snakes.length; i++) {
                 if (snakes[i].id == gameState.you.id) {
-                    // ignores it if looking at my battlesnake
+                    // ignores procedure if looking at my own battlesnake
                 } else {
                     if (snakes[i].body[0].x == f.x -1 && snakes[i].body[0].y == f.y) {
                         avoidOtherSnakesTails = true;
@@ -215,6 +215,7 @@ export default function move(gameState){
     // this for loop makes sure that the snake doesn't collide with any of the segments of it's body
     if ( gameState.you.body.length > 4) {
         for (let i = 2; i < gameState.you.body.length; i++) {
+            // ignores my tail
             if (i >= gameState.you.body.length -1) {
                 break;
             }
