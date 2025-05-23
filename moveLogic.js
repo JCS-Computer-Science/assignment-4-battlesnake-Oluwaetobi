@@ -2620,7 +2620,7 @@ export default function move(gameState){
                 moveRightPoints -= pointsRemovedForNotBeingSafe;
             }
 
-            let deadEndPunishmentPoints = (theSamePunishment + 1);
+            let deadEndPunishmentPoints = (theSamePunishment - 1);
             // I don't want it to be to big here, because it might not be the right decision, please don't change the 
             // number here because this is the sweet spot, "2"
             let moveAwayFromBorderPoints = 3;
