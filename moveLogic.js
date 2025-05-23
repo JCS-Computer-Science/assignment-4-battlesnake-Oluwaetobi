@@ -83,18 +83,26 @@ export default function move(gameState){
     const allOfSnakesPositionsIncludingMyOwn = [];
 
     // pushes all of the snakes' positions into an array except for my own position
+    let snakeCounta = 0;
     for(let i = 0; i < snakes.length; i ++) {
         if (snakes[i].id == gameState.you.id) {
             // do nothing
         } else {
-            allOfSnakesPositionsExceptMyOwn.push(snakes[i].body);
+            for(let a = 0; a< snakes[i].length; a++) {
+                allOfSnakesPositionsExceptMyOwn.splice(snakeCounta, 0, snakes[i].body[a]);
+                snakeCounta += 1;
+            }
         }
     }
     console.log("allOfSnakesPositionsExceptMyOwn: " + JSON.stringify(allOfSnakesPositionsExceptMyOwn));
 
     // pushes all of the snakes' positions including my own
+    let snakeCountb = 0;
     for(let i = 0; i < snakes.length; i ++) {
-        allOfSnakesPositionsIncludingMyOwn.push(snakes[i].body);
+        for (let a = 0; a < snakes[i].length; a++) {
+            allOfSnakesPositionsIncludingMyOwn.splice(snakeCountb, 0, snakes[i].body[a]);
+            snakeCountb += 1;
+        }
     }
         console.log("allOfSnakesPositionsIncludingMyOwn: " + JSON.stringify(allOfSnakesPositionsIncludingMyOwn));
         console.log("allOfSnakesPositionsIncludingMyOwn length: " + allOfSnakesPositionsIncludingMyOwn.length);
@@ -2475,7 +2483,7 @@ export default function move(gameState){
         }
         // this is just a test, I don't need it
         for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i ++) {
-            console.log("ALLSNAKES[i].x: " + JSON.stringify(allOfSnakesPositionsIncludingMyOwn[i].x));
+            console.log("ALLSNAKES[i].x: " + JSON.stringify(ALLSNAKES[i].x));
         }
         console.log("allOfSnakesPositionsIncludingMyOwn length: " + allOfSnakesPositionsIncludingMyOwn.length);
         console.log("ALLSNAKES.length: "+ ALLSNAKES.length);
