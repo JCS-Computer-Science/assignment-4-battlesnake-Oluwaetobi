@@ -74,6 +74,7 @@ export default function move(gameState){
     that  doesn't allow me to know the length using the name of the variable and then adding .length at the end see
     https://stackoverflow.com/questions/15297501/length-of-array-in-object-doesnt-match
     **/
+   // I think I have solved th problem using splice
     let storeLengthOfAllSnakesPositionsExceptMyOwn = 0;
     let storeLengthOfAllSnakesPositionsIncludingMyOwn = 0;
     // helps me to know where dead ends are
@@ -85,17 +86,30 @@ export default function move(gameState){
         if (snakes[i].id == gameState.you.id) {
             // do nothing
         } else {
-            storeLengthOfAllSnakesPositionsExceptMyOwn += snakes[i].length;
-            allOfSnakesPositionsExceptMyOwn.push(JSON.stringify(snakes[i].body));
+            for (let a = 0; a < snakes[i].length; a++) {
+                storeLengthOfAllSnakesPositionsExceptMyOwn += a;
+                if (a >= snakes[i].length -1 && i != snakes.length -1) {
+                    allOfSnakesPositionsExceptMyOwn.splice(a, 0, JSON.stringify(snakes[i].body[a]) + ",");
+                } else {
+                    allOfSnakesPositionsExceptMyOwn.splice(a, 0, JSON.stringify(snakes[i].body[a]));
+                }
+            }
         }
     }
     console.log("allOfSnakesPositionsExceptMyOwn: " + allOfSnakesPositionsExceptMyOwn);
     // pushes all of the snakes' positions including my own
     for(let i = 0; i < snakes.length; i ++) {
-        storeLengthOfAllSnakesPositionsIncludingMyOwn += snakes[i].length;
-            allOfSnakesPositionsIncludingMyOwn.push(JSON.stringify(snakes[i].body));
+        for(let a = 0; a < snakes[i].length; a++) {
+            storeLengthOfAllSnakesPositionsIncludingMyOwn += a;
+            if (a >= snakes[i].length -1 && i != snakes.length -1) {
+                allOfSnakesPositionsIncludingMyOwn.splice(a, 0, JSON.stringify(snakes[i].body[a]) + ",");
+            } else {
+                allOfSnakesPositionsIncludingMyOwn.splice(a, 0, JSON.stringify(snakes[i].body[a]));
+            }
+        }
         }
         console.log("allOfSnakesPositionsIncludingMyOwn: " + allOfSnakesPositionsIncludingMyOwn);
+        console.log("allOfSnakesPositionsIncludingMyOwn length: " + allOfSnakesPositionsIncludingMyOwn.length);
     // checks to see if I am the longest
     /* Iamthelongest variable is still useful, even though I have added a next generation level of smartiness to my snake
     It is now no longer completely dependent on this variable but can check individually whether it is bigger than a particular
@@ -2263,7 +2277,7 @@ export default function move(gameState){
         let bodySegmentsInStraightLine = 0;
         // dead end along the bottom wall going to the right
         if (myHead.y == 0 ) {
-            for (let i = 0; i < storeLengthOfAllSnakesPositionsIncludingMyOwn; i++) {
+            for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x + z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].x) {
                             distanceUntilDeadEnd = z;
@@ -2272,7 +2286,7 @@ export default function move(gameState){
                     }
             }
             for (let i = 1; i <distanceUntilDeadEnd; i++) {
-                for (let c = 0; c < storeLengthOfAllSnakesPositionsIncludingMyOwn; c ++) {
+                for (let c = 0; c < allOfSnakesPositionsIncludingMyOwn.length; c ++) {
                         if (myHead.x + i == ALLSNAKES[c].x && myHead.y + 1 == ALLSNAKES[c].x) {
                             bodySegmentsInStraightLine += 1;
                         }
@@ -2290,7 +2304,7 @@ export default function move(gameState){
         bodySegmentsInStraightLine = 0;
         // dead end along the bottom wall going to the left
         if (myHead.y == 0 ) {
-            for (let i = 0; i < storeLengthOfAllSnakesPositionsIncludingMyOwn; i++) {
+            for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x - z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2299,7 +2313,7 @@ export default function move(gameState){
                 }
             }
             for (let i = 1; i <distanceUntilDeadEnd; i++) {
-                for (let c = 0; c < storeLengthOfAllSnakesPositionsIncludingMyOwn; c ++) {
+                for (let c = 0; c < allOfSnakesPositionsIncludingMyOwn.length; c ++) {
                         if (myHead.x - i == ALLSNAKES[c].x && myHead.y + 1 == ALLSNAKES[c].y) {
                             bodySegmentsInStraightLine += 1;
                         }
@@ -2316,7 +2330,7 @@ export default function move(gameState){
         bodySegmentsInStraightLine = 0;
         // dead end along the top wall going to the right
         if (myHead.y == gameBoardProperties.height -1 ) {
-            for (let i = 0; i < storeLengthOfAllSnakesPositionsIncludingMyOwn; i++) {
+            for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x + z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2325,7 +2339,7 @@ export default function move(gameState){
                 }
             }
             for (let i = 1; i <distanceUntilDeadEnd; i++) {
-                for (let c = 0; c < storeLengthOfAllSnakesPositionsIncludingMyOwn; c ++) {
+                for (let c = 0; c < allOfSnakesPositionsIncludingMyOwn.length; c ++) {
                         if (myHead.x + i == ALLSNAKES[c].x && myHead.y - 1 == ALLSNAKES[c].y) {
                             bodySegmentsInStraightLine += 1;
                         }
@@ -2343,7 +2357,7 @@ export default function move(gameState){
         bodySegmentsInStraightLine = 0;
         // dead end along the top wall going to the left
         if (myHead.y == gameBoardProperties.height -1 ) {
-            for (let i = 0; i < storeLengthOfAllSnakesPositionsIncludingMyOwn; i++) {
+            for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x - z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2352,7 +2366,7 @@ export default function move(gameState){
                 }
             }
             for (let i = 1; i <distanceUntilDeadEnd; i++) {
-                for (let c = 0; c < storeLengthOfAllSnakesPositionsIncludingMyOwn; c ++) {
+                for (let c = 0; c < allOfSnakesPositionsIncludingMyOwn.length; c ++) {
                         if (myHead.x - i == ALLSNAKES[c].x && myHead.y - 1 == ALLSNAKES[c].y) {
                             bodySegmentsInStraightLine += 1;
                         }
@@ -2369,7 +2383,7 @@ export default function move(gameState){
         bodySegmentsInStraightLine = 0;
         // dead end along the left wall going up
         if (myHead.x == 0 ) {
-            for (let i = 0; i < storeLengthOfAllSnakesPositionsIncludingMyOwn; i++) {
+            for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x == ALLSNAKES[i].x && myHead.y + z == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2378,7 +2392,7 @@ export default function move(gameState){
                 }
             }
             for (let i = 1; i <distanceUntilDeadEnd; i++) {
-                for (let c = 0; c < storeLengthOfAllSnakesPositionsIncludingMyOwn; c ++) {
+                for (let c = 0; c < allOfSnakesPositionsIncludingMyOwn.length; c ++) {
                         if (myHead.x + 1 == ALLSNAKES[c].x && myHead.y + i == ALLSNAKES[c].y) {
                             bodySegmentsInStraightLine += 1;
                         }
@@ -2396,7 +2410,7 @@ export default function move(gameState){
         bodySegmentsInStraightLine = 0;
         // dead end along the left wall going down
         if (myHead.x == 0 ) {
-            for (let i = 0; i < storeLengthOfAllSnakesPositionsIncludingMyOwn; i++) {
+            for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x == ALLSNAKES[i].x && myHead.y - z == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2405,7 +2419,7 @@ export default function move(gameState){
                 }
             }
             for (let i = 1; i <distanceUntilDeadEnd; i++) {
-                for (let c = 0; c < storeLengthOfAllSnakesPositionsIncludingMyOwn; c ++) {
+                for (let c = 0; c < allOfSnakesPositionsIncludingMyOwn.length; c ++) {
                         if (myHead.x + 1 == ALLSNAKES[c].x && myHead.y - i == ALLSNAKES[c].y) {
                             bodySegmentsInStraightLine += 1;
                         }
@@ -2422,7 +2436,7 @@ export default function move(gameState){
         bodySegmentsInStraightLine = 0;
         // dead end along the right wall going up
         if (myHead.x == gameBoardProperties.width - 1 ) {
-            for (let i = 0; i < storeLengthOfAllSnakesPositionsIncludingMyOwn; i++) {
+            for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x == ALLSNAKES[i].x && myHead.y + z == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2431,7 +2445,7 @@ export default function move(gameState){
                 }
             }
             for (let i = 1; i <distanceUntilDeadEnd; i++) {
-                for (let c = 0; c < storeLengthOfAllSnakesPositionsIncludingMyOwn; c ++) {
+                for (let c = 0; c < allOfSnakesPositionsIncludingMyOwn.length; c ++) {
                         if (myHead.x - 1 == ALLSNAKES[c].x && myHead.y + i == ALLSNAKES[c].y) {
                             bodySegmentsInStraightLine += 1;
                         }
@@ -2449,7 +2463,7 @@ export default function move(gameState){
         bodySegmentsInStraightLine = 0;
         // dead end along the right wall going down
         if (myHead.x == gameBoardProperties.width - 1 ) {
-            for (let i = 0; i < storeLengthOfAllSnakesPositionsIncludingMyOwn; i++) {
+            for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x == ALLSNAKES[i].x && myHead.y - z == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2458,7 +2472,7 @@ export default function move(gameState){
                 }
             }
             for (let i = 1; i <distanceUntilDeadEnd; i++) {
-                for (let c = 0; c < storeLengthOfAllSnakesPositionsIncludingMyOwn; c ++) {
+                for (let c = 0; c < allOfSnakesPositionsIncludingMyOwn.length; c ++) {
                         if (myHead.x - 1 == ALLSNAKES[c].x && myHead.y - i == ALLSNAKES[c].y) {
                             bodySegmentsInStraightLine += 1;
                         }
@@ -2471,7 +2485,7 @@ export default function move(gameState){
             }
             console.log("RIGHT WALL MOVING DOWN: distanceUntilDeadEnd and bodySegmentsInStraightLine: " + distanceUntilDeadEnd + "" + bodySegmentsInStraightLine);
         }
-        console.log("storeLengthOfAllSnakesPositionsIncludingMyOwn.length: " + storeLengthOfAllSnakesPositionsIncludingMyOwn);
+        console.log("allOfSnakesPositionsIncludingMyOwn length: " + allOfSnakesPositionsIncludingMyOwn.length);
         console.log("ALLSNAKES.length: "+ ALLSNAKES.length);
         // console.log("ALLSNAKES: " + ALLSNAKES);
 
