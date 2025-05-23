@@ -2274,6 +2274,10 @@ export default function move(gameState){
         // dead end along the bottom wall going to the right
         if (myHead.y == 0 ) {
             for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
+                // breaks for loop because the inner one is already broken
+                if(distanceUntilDeadEnd != 0) {
+                    break;
+                }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x + z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].x) {
                             distanceUntilDeadEnd = z;
@@ -2301,6 +2305,10 @@ export default function move(gameState){
         // dead end along the bottom wall going to the left
         if (myHead.y == 0 ) {
             for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
+                // breaks for loop because the inner one is already broken
+                if(distanceUntilDeadEnd != 0) {
+                    break;
+                }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x - z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2327,6 +2335,10 @@ export default function move(gameState){
         // dead end along the top wall going to the right
         if (myHead.y == gameBoardProperties.height -1 ) {
             for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
+                // breaks for loop because the inner one is already broken
+                if(distanceUntilDeadEnd != 0) {
+                    break;
+                }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x + z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2354,6 +2366,10 @@ export default function move(gameState){
         // dead end along the top wall going to the left
         if (myHead.y == gameBoardProperties.height -1 ) {
             for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
+                // breaks for loop because the inner one is already broken
+                if(distanceUntilDeadEnd != 0) {
+                    break;
+                }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x - z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2380,6 +2396,10 @@ export default function move(gameState){
         // dead end along the left wall going up
         if (myHead.x == 0 ) {
             for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
+                // breaks for loop because the inner one is already broken
+                if(distanceUntilDeadEnd != 0) {
+                    break;
+                }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x == ALLSNAKES[i].x && myHead.y + z == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2407,6 +2427,10 @@ export default function move(gameState){
         // dead end along the left wall going down
         if (myHead.x == 0 ) {
             for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
+                // breaks for loop because the inner one is already broken
+                if(distanceUntilDeadEnd != 0) {
+                    break;
+                }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x == ALLSNAKES[i].x && myHead.y - z == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2433,6 +2457,10 @@ export default function move(gameState){
         // dead end along the right wall going up
         if (myHead.x == gameBoardProperties.width - 1 ) {
             for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
+                // breaks for loop because the inner one is already broken
+                if(distanceUntilDeadEnd != 0) {
+                    break;
+                }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x == ALLSNAKES[i].x && myHead.y + z == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2460,6 +2488,10 @@ export default function move(gameState){
         // dead end along the right wall going down
         if (myHead.x == gameBoardProperties.width - 1 ) {
             for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i++) {
+                // breaks for loop because the inner one is already broken
+                if(distanceUntilDeadEnd != 0) {
+                    break;
+                }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
                         if (myHead.x == ALLSNAKES[i].x && myHead.y - z == ALLSNAKES[i].y) {
                             distanceUntilDeadEnd = z;
@@ -2482,9 +2514,9 @@ export default function move(gameState){
             console.log("RIGHT WALL MOVING DOWN: distanceUntilDeadEnd and bodySegmentsInStraightLine: " + distanceUntilDeadEnd + "" + bodySegmentsInStraightLine);
         }
         // this is just a test, I don't need it
-        for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i ++) {
-            console.log("ALLSNAKES[i].x: " + JSON.stringify(ALLSNAKES[i].x));
-        }
+        // for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i ++) {
+        //     console.log("ALLSNAKES[i].x: " + JSON.stringify(ALLSNAKES[i].x));
+        // }
         console.log("allOfSnakesPositionsIncludingMyOwn length: " + allOfSnakesPositionsIncludingMyOwn.length);
         console.log("ALLSNAKES.length: "+ ALLSNAKES.length);
         // console.log("ALLSNAKES: " + ALLSNAKES);
