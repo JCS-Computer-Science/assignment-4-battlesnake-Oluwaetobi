@@ -471,8 +471,6 @@ export default function move(gameState){
                 
             }
         }
-
-
     }
 
 
@@ -496,8 +494,6 @@ export default function move(gameState){
                 if (myHead.x == snakes[i].body[0].x +1 && myHead.y == snakes[i].body[0].y + 1) {
                     moveLeftPoints += killReward;
                     moveDownPoints += killReward;
-     
-     
                 }
                 if (myHead.y == snakes[i].body[0].y - 1 && myHead.x == snakes[i].body[0].x + 1) {
                     moveUpPoints += killReward;
@@ -1099,36 +1095,6 @@ export default function move(gameState){
             }
         }
     }
-
- 
-    /**The Top Code works better but I am not going to erase this bottom one just in case I want to revert to it */
-
-    // snakes.forEach((snake) => {
-    //     const snakeBody = snake.body;
- 
- 
- 
- 
-    //     snakeBody.forEach((b) => {
-    //         if (snake.id == gameState.you.id){
-    //             return;
-    //         }
-    //         // keeps my snake from colliding with other snakes and every part of their body as well
-    //         // DON"T EDIT THIS!!!!!!!!!!!!!!!!!!
-    //         if (myHead.x == b.x -1 && myHead.y == b.y) {
-    //             moveSafety.right = false;
-    //         }
-    //         if (myHead.x == b.x +1 && myHead.y == b.y) {
-    //             moveSafety.left = false;
-    //         }
-    //         if (myHead.y == b.y -1 && myHead.x == b.x) {
-    //             moveSafety.up = false;
-    //         }
-    //         if (myHead.y == b.y +1 && myHead.x == b.x) {
-    //             moveSafety.down = false;
-    //         }
-    //     })
-    // })
  
  
     /* the punishments here for staying in the hazards will be less since I am in a dire situation and my safe moves.length == 0
@@ -1180,7 +1146,7 @@ export default function move(gameState){
             let oneUnitWideDeadEndPointsRemoved = 30
             let offSetSinceCheckingOtherSnakes = 1;
 
-            /* I am changing this only for this specific section ONLY because this will help me stop getting stuck in dead ends in my body
+            /* I am changing this only for this specific section ONLY because this will help me stop getting stuck in dead ends in MY BODY
                 This kind of works like recursion, but I need to add more if statements here to make it smarter*/
 
             if (snakes[i].id == gameState.you.id) { 
@@ -2098,11 +2064,8 @@ export default function move(gameState){
          can compare with all snakes including my own with a maximum of 1 unit wide and 2 units tall that is the difference
          between this code and the one on top, it can compare with all snakes but only with a maximum length of 2 units unlike
          the top which doesn't actually have a maximum for length only for width which is 1 unit 
-         One Problem That I see with this method is that it can only compare 2 snakes at a time, even though it 
-         can do it for all snakes regardless of the order. Sometimes the blockage maybe happening between 3 or 4 snakes!!
-         In that Case this code is completely useless but hey it is still an improvement over the old one, I would say that
-         this is where flood fill might possibly be better, although flood fill is not always the solution and 
-         can sometimes be counterproductive, so yeah**/
+         The Blockage might be happening between 3 or 4 snakes and now my code can ACCOUNT FOR THAT YAY!!! I guess I do not flood
+         fill, I was able to find my own unique way of coding something**/
 
         // Block Up Movement
         let betweenBodiesQualifications = 0;
@@ -2282,8 +2245,8 @@ export default function move(gameState){
 
 
 
-        /** Prevents my battlesnake from going into dead ends into other snakes or my snakes bodies at the very edge of the 
-         * snake board
+        /** Prevents my battlesnake from going into dead ends into other snakes' and my snake's bodies at the very edge of the 
+         * snake board, I have fixed the old code, this code is brand new.
          */
         let alongTheWallInBodyDeadEndPunishment = 15;
         let distanceUntilDeadEnd = 0;
