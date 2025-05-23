@@ -2259,7 +2259,7 @@ export default function move(gameState){
                     betweenBodiesQualifications += 1;
                 }
             // check's other snake
-                if (myHead.y == ALLSNAKES[z].y && myHead.x == sALLSNAKES[z].x +2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +3) {
+                if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +3) {
                     otherCheck += 1;
                 }
             // needs at least 2 betweenbody checks and at least one otherCheck
