@@ -2111,14 +2111,13 @@ export default function move(gameState){
         let ALLSNAKES = allOfSnakesPositionsIncludingMyOwn;
         // since I am already in a for loop I only need one more for loop
         for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
-            // replace all gameState with snakes[z].body
                 if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y - 1) {
                     betweenBodiesQualifications += 1;
                 }
                 if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y -1) {
                     betweenBodiesQualifications += 1;
                 }
-            // check's other snake
+            // checks all snakes
                 if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -3) {
                     otherCheck += 1;
                 }
@@ -2139,7 +2138,7 @@ export default function move(gameState){
                 if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y -1) {
                     betweenBodiesQualifications += 1;
                 }
-            // check's other snake
+            // checks all snakes
                 if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -3) {
                     otherCheck += 1;
                 }
@@ -2157,7 +2156,7 @@ export default function move(gameState){
                 if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y +1) {
                     betweenBodiesQualifications += 1;
                 }
-            // check's other snake
+            // checks all snakes
                 if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +3) {
                     otherCheck += 1;
                 }
@@ -2178,7 +2177,7 @@ export default function move(gameState){
                 if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y +1) {
                     betweenBodiesQualifications += 1;
                 }
-            // check's other snake
+            // checks all snakes
                 // ignores snake's tail
                 if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +3) {
                     otherCheck += 1;
@@ -2198,7 +2197,7 @@ export default function move(gameState){
                 if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y +1) {
                     betweenBodiesQualifications += 1;
                 }
-            // check's other snake
+            // checks all snakes
                 if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -3) {
                     otherCheck += 1;
                 }
@@ -2219,7 +2218,7 @@ export default function move(gameState){
                 if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y -1) {
                     betweenBodiesQualifications += 1;
                 }
-            // check's other snake
+            // checks all snakes
                 if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -3) {
                     otherCheck += 1;
                 }
@@ -2237,7 +2236,7 @@ export default function move(gameState){
                 if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y +1) {
                     betweenBodiesQualifications += 1;
                 }
-            // check's other snake
+            // checks all snakes
                 if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +3) {
                     otherCheck += 1;
                 }
@@ -2258,7 +2257,7 @@ export default function move(gameState){
                 if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y -1) {
                     betweenBodiesQualifications += 1;
                 }
-            // check's other snake
+            // checks all snakes
                 if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +3) {
                     otherCheck += 1;
                 }
