@@ -73,7 +73,9 @@ export default function move(gameState){
     /* helps me store the length so I can know it later on, because I use json.stringify there is a object problem 
     that  doesn't allow me to know the length using the name of the variable and then adding .length at the end see
     https://stackoverflow.com/questions/15297501/length-of-array-in-object-doesnt-match
-    This problem has been solved using splice
+    
+    I have solved this problem, and I can still use push, I am not supposed to stringify the array of objects but I am supposed to stringify it in the console.logs
+    so that I can actually read that objects
     **/
    // 
     // helps me to know where dead ends are
@@ -85,27 +87,16 @@ export default function move(gameState){
         if (snakes[i].id == gameState.you.id) {
             // do nothing
         } else {
-            for (let a = 0; a < snakes[i].length; a++) {
-                if (a >= snakes[i].length -1 && i != snakes.length -1) {
-                    allOfSnakesPositionsExceptMyOwn.splice(a, 0, JSON.stringify(snakes[i].body[a]) + ",");
-                } else {
-                    allOfSnakesPositionsExceptMyOwn.splice(a, 0, JSON.stringify(snakes[i].body[a]));
-                }
-            }
+            allOfSnakesPositionsExceptMyOwn.push(snakes[i].body);
         }
     }
-    console.log("allOfSnakesPositionsExceptMyOwn: " + allOfSnakesPositionsExceptMyOwn);
+    console.log("allOfSnakesPositionsExceptMyOwn: " + JSON.stringify(allOfSnakesPositionsExceptMyOwn));
+
     // pushes all of the snakes' positions including my own
     for(let i = 0; i < snakes.length; i ++) {
-        for(let a = 0; a < snakes[i].length; a++) {
-            if (a >= snakes[i].length -1 && i != snakes.length -1) {
-                allOfSnakesPositionsIncludingMyOwn.splice(a, 0, JSON.stringify(snakes[i].body[a]) + ",");
-            } else {
-                allOfSnakesPositionsIncludingMyOwn.splice(a, 0, JSON.stringify(snakes[i].body[a]));
-            }
-        }
-        }
-        console.log("allOfSnakesPositionsIncludingMyOwn: " + allOfSnakesPositionsIncludingMyOwn);
+        allOfSnakesPositionsIncludingMyOwn.push(snakes[i].body);
+    }
+        console.log("allOfSnakesPositionsIncludingMyOwn: " + JSON.stringify(allOfSnakesPositionsIncludingMyOwn));
         console.log("allOfSnakesPositionsIncludingMyOwn length: " + allOfSnakesPositionsIncludingMyOwn.length);
     // checks to see if I am the longest
     /* Iamthelongest variable is still useful, even though I have added a next generation level of smartiness to my snake
@@ -2482,6 +2473,10 @@ export default function move(gameState){
             }
             console.log("RIGHT WALL MOVING DOWN: distanceUntilDeadEnd and bodySegmentsInStraightLine: " + distanceUntilDeadEnd + "" + bodySegmentsInStraightLine);
         }
+        // this is just a test, I don't need it
+        for (let i = 0; i < allOfSnakesPositionsIncludingMyOwn.length; i ++) {
+            console.log("ALLSNAKES[i].x: " + JSON.stringify(allOfSnakesPositionsIncludingMyOwn[i].x));
+        }
         console.log("allOfSnakesPositionsIncludingMyOwn length: " + allOfSnakesPositionsIncludingMyOwn.length);
         console.log("ALLSNAKES.length: "+ ALLSNAKES.length);
         // console.log("ALLSNAKES: " + ALLSNAKES);
@@ -2886,6 +2881,7 @@ export default function move(gameState){
  
  
     console.log(`MOVE ${gameState.turn}: ${nextMove}`)
+    console.log("");
     return { move: nextMove };
 }
  
