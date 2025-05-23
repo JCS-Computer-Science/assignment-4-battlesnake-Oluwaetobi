@@ -73,10 +73,9 @@ export default function move(gameState){
     /* helps me store the length so I can know it later on, because I use json.stringify there is a object problem 
     that  doesn't allow me to know the length using the name of the variable and then adding .length at the end see
     https://stackoverflow.com/questions/15297501/length-of-array-in-object-doesnt-match
+    This problem has been solved using splice
     **/
-   // I think I have solved th problem using splice
-    let storeLengthOfAllSnakesPositionsExceptMyOwn = 0;
-    let storeLengthOfAllSnakesPositionsIncludingMyOwn = 0;
+   // 
     // helps me to know where dead ends are
     const allOfSnakesPositionsExceptMyOwn = [];
     const allOfSnakesPositionsIncludingMyOwn = [];
@@ -87,7 +86,6 @@ export default function move(gameState){
             // do nothing
         } else {
             for (let a = 0; a < snakes[i].length; a++) {
-                storeLengthOfAllSnakesPositionsExceptMyOwn += a;
                 if (a >= snakes[i].length -1 && i != snakes.length -1) {
                     allOfSnakesPositionsExceptMyOwn.splice(a, 0, JSON.stringify(snakes[i].body[a]) + ",");
                 } else {
@@ -100,7 +98,6 @@ export default function move(gameState){
     // pushes all of the snakes' positions including my own
     for(let i = 0; i < snakes.length; i ++) {
         for(let a = 0; a < snakes[i].length; a++) {
-            storeLengthOfAllSnakesPositionsIncludingMyOwn += a;
             if (a >= snakes[i].length -1 && i != snakes.length -1) {
                 allOfSnakesPositionsIncludingMyOwn.splice(a, 0, JSON.stringify(snakes[i].body[a]) + ",");
             } else {
