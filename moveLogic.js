@@ -1913,497 +1913,7 @@ export default function move(gameState){
 
 
 
-                let goingInBetweenBodyDeadEndPunishment = 12;
-                /*Checking for dead ends included between my body and another snakes body
-                 can compare with all snakes including my own with a maximum of 1 unit wide and 2 units tall that is the difference
-                 between this code and the one on top, it can compare with all snakes but only with a maximum length of 2 units unlike
-                 the top which doesn't actually have a maximum for length only for width which is 1 unit 
-                 One Problem That I see with this method is that it can only compare 2 snakes at a time, even though it 
-                 can do it for all snakes regardless of the order. Sometimes the blockage maybe happening between 3 or 4 snakes!!
-                 In that Case this code is completely useless but hey it is still an improvement over the old one, I would say that
-                 this is where flood fill might possibly be better, although flood fill is not always the solution and 
-                 can sometimes be counterproductive, so yeah**/
-                // Block Up Movement
-                let betweenBodiesQualifications = 0;
-                let otherCheck = 0;
-                // since I am already in a for loop I only need one more for loop
-                for (let z = 0; z < snakes.length; z++) {
-                    // stops the for loop if checking myself with myself, I already have that
-                    if (snakes[i].id == gameState.you.id && gameState.you.id == snakes[z].id) {
-                        break;
-                    }
-                    // replace all gameState with snakes[z].body
-                    for (let a = 0; a < snakes[z].body.length; a++ ) {
-                        // ignores my tail
-                        if (a >= snakes[z].body.length-1) {
-                            break;
-                        }
-                        if (myHead.x == snakes[z].body[a].x + 1 && myHead.y == snakes[z].body[a].y - 1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    for (let a= 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length-1) {
-                                break;
-                            }
-                        }
-                        if (myHead.x == snakes[i].body[a].x -1 && myHead.y == snakes[i].body[a].y -1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    // check's other snake
-                    for (let a = 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length-1) {
-                                break;
-                            }
-                        }
-                        if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -2 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // also checks my snake
-                    for (let a = 0; a < snakes[z].body.length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[z].body.length-1) {
-                                break;
-                            }
-                        }
-                        if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -2 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // needs at least 2 betweenbody checks and at least one otherCheck
-                    if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
-                        moveUpPoints -= goingInBetweenBodyDeadEndPunishment;
-                    }
-                    // console.log("UP MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
-    
-                    // Reverse
-                    // Checking for dead ends included between my body and another snakes body
-                    // Block Up Movement
-                    betweenBodiesQualifications = 0;
-                    otherCheck = 0;
-                    for (let a = 0; a < snakes[z].body.length; a++ ) {
-                        // ignores my tail
-                        if (a >= snakes[z].body.length-1) {
-                            break;
-                        }
-                        if (myHead.x == snakes[z].body[a].x - 1 && myHead.y == snakes[z].body[a].y - 1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    for (let a= 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length-1) {
-                                break;
-                            }
-                        }
-                        if (myHead.x == snakes[i].body[a].x +1 && myHead.y == snakes[i].body[a].y -1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    // check's other snake
-                    for (let a = 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length-1) {
-                                break;
-                            }
-                        }
-                        if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -2 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y -3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // also checks my snake
-                    for (let a = 0; a < snakes[z].body.length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[z].body.length-1) {
-                                break;
-                            }
-                        }
-                        if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -2 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // needs at least 2 betweenbody checks and at least one otherCheck
-                    if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
-                        moveUpPoints -= goingInBetweenBodyDeadEndPunishment;
-                    }
-                    // console.log("Reverse: UP MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
-                    // Block Down Movement
-                    betweenBodiesQualifications = 0;
-                    otherCheck = 0;
-                    for (let a = 0; a < snakes[z].body.length; a++ ) {
-                        // ignores my tail
-                        if (a >= snakes[z].body.length-1) {
-                            break;
-                        }
-                        if (myHead.x == snakes[z].body[a].x + 1 && myHead.y == snakes[z].body[a].y + 1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    for (let a= 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length-1) {
-                                break;
-                            }
-                        }
-                        if (myHead.x == snakes[i].body[a].x -1 && myHead.y == snakes[i].body[a].y +1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    // check's other snake
-                    for (let a = 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length-1) {
-                                break;
-                            }
-                            
-                        }
-                        if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +2 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // also checks my snake
-                    for (let a = 0; a < snakes[z].body.length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[z].body.length-1) {
-                                break;
-                            }
-                        }
-                        if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y +2 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y +3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // needs at least 2 betweenbody checks and at least one otherCheck
-                    if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
-                        moveDownPoints -= goingInBetweenBodyDeadEndPunishment;
-                    }
-                    // console.log("DOWN MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
-    
-                    // Reverse
-                    // Checking for dead ends included between my body and another snakes body
-                    // Block Down Movement
-                    betweenBodiesQualifications = 0;
-                    otherCheck = 0;
-                    for (let a = 0; a < snakes[z].body.length; a++ ) {
-                        // ignores my tail
-                        if (a >= snakes[z].body.length-1) {
-                            break;
-                        }
-                        if (myHead.x == snakes[z].body[a].x - 1 && myHead.y == snakes[z].body[a].y + 1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    for (let a= 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length-1) {
-                                break;
-                            }
-                        }
-                        if (myHead.x == snakes[i].body[a].x +1 && myHead.y == snakes[i].body[a].y +1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    // check's other snake
-                    for (let a = 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length-1) {
-                                break;
-                            }
-                            
-                        }
-                        if (myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +2 || myHead.x == snakes[i].body[a].x && myHead.y == snakes[i].body[a].y +3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // also checks my snake
-                    for (let a = 0; a < snakes[z].body.length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[z].body.length-1) {
-                                break;
-                            }
-                            
-                        }
-                        if (myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -2 || myHead.x == snakes[z].body[a].x && myHead.y == snakes[z].body[a].y -3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // needs at least 2 betweenbody checks and at least one otherCheck
-                    if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
-                        moveDownPoints -= goingInBetweenBodyDeadEndPunishment;
-                    }
-                    // console.log("Reverse: DOWN MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
-    
-                    // Blocks Right Movement
-                    betweenBodiesQualifications = 0;
-                    otherCheck = 0;
-                    for (let a = 0; a < snakes[z].body.length; a++ ) {
-                        // ignores my tail
-                        if (a >= snakes[z].body.length-1) {
-                            break;
-                        }
-                        if (myHead.x == snakes[z].body[a].x - 1 && myHead.y == snakes[z].body[a].y - 1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    for (let a= 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length -1) {
-                                break;
-                            }
-                        }
-                        if (myHead.x == snakes[i].body[a].x -1 && myHead.y == snakes[i].body[a].y +1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    // check's other snake
-                    for (let a = 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length -1) {
-                                break;
-                            }
-                            
-                        }
-                        if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -2 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // also checks my snake
-                    for (let a = 0; a < snakes[z].body.length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[z].body.length -1) {
-                                break;
-                            }
-                            
-                        }
-                        if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -2 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // needs at least 2 betweenbody checks and at least one otherCheck
-                    if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
-                        moveRightPoints -= goingInBetweenBodyDeadEndPunishment;
-                    }
-                    // console.log("RIGHT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
-    
-                    // Reverse
-                    // Checking for dead ends included between my body and another snakes body
-                    // Blocks Right Movement
-                    betweenBodiesQualifications = 0;
-                    otherCheck = 0;
-                    for (let a = 0; a < snakes[z].body.length; a++ ) {
-                        // ignores my tail
-                        if (a >= snakes[z].body.length-1) {
-                            break;
-                        }
-                        if (myHead.x == snakes[z].body[a].x - 1 && myHead.y == snakes[z].body[a].y + 1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    for (let a= 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length -1) {
-                                break;
-                            }
-                        }
-                        if (myHead.x == snakes[i].body[a].x -1 && myHead.y == snakes[i].body[a].y -1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    // check's other snake
-                    for (let a = 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length -1) {
-                                break;
-                            }
-                        }
-                        if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -2 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x -3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // also checks my snake
-                    for (let a = 0; a < snakes[z].body.length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[z].body.length -1) {
-                                break;
-                            }
-                        }
-                        if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -2 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x -3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // needs at least 2 betweenbody checks and at least one otherCheck
-                    if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
-                        moveRightPoints -= goingInBetweenBodyDeadEndPunishment;
-                    }
-                    // console.log("Reverse: RIGHT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
-                    // Blocks Left Movement
-                    betweenBodiesQualifications = 0;
-                    otherCheck = 0;
-                    for (let a = 0; a < snakes[z].body.length; a++ ) {
-                        // ignores my tail
-                        if (a >= snakes[z].body.length-1) {
-                            break;
-                        }
-                        if (myHead.x == snakes[z].body[a].x + 1 && myHead.y == snakes[z].body[a].y - 1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    for (let a= 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length -1) {
-                                break;
-                            }
-                            
-                        }
-                        if (myHead.x == snakes[i].body[a].x +1 && myHead.y == snakes[i].body[a].y +1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    // check's other snake
-                    for (let a = 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length -1) {
-                                break;
-                            }
-                            
-                        }
-                        if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +2 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // also checks my snake
-                    for (let a = 0; a < snakes[z].body.length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[z].body.length -1) {
-                                break;
-                            }
-                            
-                        }
-                        if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +2 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // needs at least 2 betweenbody checks and at least one otherCheck
-                    if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
-                        moveLeftPoints -= goingInBetweenBodyDeadEndPunishment;
-                    }
-                    // console.log("LEFT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
-    
-                    // Reverse
-                    // Checking for dead ends included between my body and another snakes body
-                    // Blocks Left Movement
-                    betweenBodiesQualifications = 0;
-                    otherCheck = 0;
-                    for (let a = 0; a < snakes[z].body.length; a++ ) {
-                        // ignores my tail
-                        if (a >= snakes[z].body.length-1) {
-                            break;
-                        }
-                        if (myHead.x == snakes[z].body[a].x + 1 && myHead.y == snakes[z].body[a].y + 1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    for (let a= 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length -1) {
-                                break;
-                            }
-                            
-                        }
-                        if (myHead.x == snakes[i].body[a].x +1 && myHead.y == snakes[i].body[a].y -1) {
-                            betweenBodiesQualifications += 1;
-                            break;
-                        }
-                    }
-                    // check's other snake
-                    for (let a = 0; a < snakes[i].length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[i].length -1) {
-                                break;
-                            }
-                            
-                        }
-                        if (myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +2 || myHead.y == snakes[i].body[a].y && myHead.x == snakes[i].body[a].x +3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // also checks my snake
-                    for (let a = 0; a < snakes[z].body.length; a++) {
-                        // ignores snake's tail
-                        if (avoidOtherSnakesTails === false) {
-                            if (a >= snakes[z].body.length -1) {
-                                break;
-                            }
-                            
-                        }
-                        if (myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +2 || myHead.y == snakes[z].body[a].y && myHead.x == snakes[z].body[a].x +3) {
-                            otherCheck += 1;
-                            break;
-                        }
-                    }
-                    // needs at least 2 betweenbody checks and at least one otherCheck
-                    if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
-                        moveLeftPoints -= goingInBetweenBodyDeadEndPunishment;
-                    }
-                    // console.log("Reverse: LEFT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
-
-                }
+               
 
 
 
@@ -2575,6 +2085,203 @@ export default function move(gameState){
                 }
             }
         }
+
+
+
+
+
+
+
+
+        let goingInBetweenBodyDeadEndPunishment = 12;
+        /*Checking for dead ends included between my body and another snakes body
+         can compare with all snakes including my own with a maximum of 1 unit wide and 2 units tall that is the difference
+         between this code and the one on top, it can compare with all snakes but only with a maximum length of 2 units unlike
+         the top which doesn't actually have a maximum for length only for width which is 1 unit 
+         One Problem That I see with this method is that it can only compare 2 snakes at a time, even though it 
+         can do it for all snakes regardless of the order. Sometimes the blockage maybe happening between 3 or 4 snakes!!
+         In that Case this code is completely useless but hey it is still an improvement over the old one, I would say that
+         this is where flood fill might possibly be better, although flood fill is not always the solution and 
+         can sometimes be counterproductive, so yeah**/
+
+        // Block Up Movement
+        let betweenBodiesQualifications = 0;
+        let otherCheck = 0;
+        // just to make it shorter
+        let ALLSNAKES = allOfSnakesPositionsIncludingMyOwn;
+        // since I am already in a for loop I only need one more for loop
+        for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
+            // replace all gameState with snakes[z].body
+                if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y - 1) {
+                    betweenBodiesQualifications += 1;
+                }
+                if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y -1) {
+                    betweenBodiesQualifications += 1;
+                }
+            // check's other snake
+                if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -3) {
+                    otherCheck += 1;
+                }
+            // needs at least 2 betweenbody checks and at least one otherCheck
+            if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
+                moveUpPoints -= goingInBetweenBodyDeadEndPunishment;
+            }
+            // console.log("UP MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+
+            // Reverse
+            // Checking for dead ends included between my body and another snakes body
+            // Block Up Movement
+            betweenBodiesQualifications = 0;
+            otherCheck = 0;
+                if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y - 1) {
+                    betweenBodiesQualifications += 1;
+                }
+                if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y -1) {
+                    betweenBodiesQualifications += 1;
+                }
+            // check's other snake
+                if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -3) {
+                    otherCheck += 1;
+                }
+            // needs at least 2 betweenbody checks and at least one otherCheck
+            if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
+                moveUpPoints -= goingInBetweenBodyDeadEndPunishment;
+            }
+            // console.log("Reverse: UP MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+            // Block Down Movement
+            betweenBodiesQualifications = 0;
+            otherCheck = 0;
+                if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y + 1) {
+                    betweenBodiesQualifications += 1;
+                }
+                if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y +1) {
+                    betweenBodiesQualifications += 1;
+                }
+            // check's other snake
+                if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +3) {
+                    otherCheck += 1;
+                }
+            // needs at least 2 betweenbody checks and at least one otherCheck
+            if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
+                moveDownPoints -= goingInBetweenBodyDeadEndPunishment;
+            }
+            // console.log("DOWN MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+
+            // Reverse
+            // Checking for dead ends included between my body and another snakes body
+            // Block Down Movement
+            betweenBodiesQualifications = 0;
+            otherCheck = 0;
+                if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y + 1) {
+                    betweenBodiesQualifications += 1;
+                }
+                if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y +1) {
+                    betweenBodiesQualifications += 1;
+                }
+            // check's other snake
+                // ignores snake's tail
+                if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +3) {
+                    otherCheck += 1;
+                }
+            // needs at least 2 betweenbody checks and at least one otherCheck
+            if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
+                moveDownPoints -= goingInBetweenBodyDeadEndPunishment;
+            }
+            // console.log("Reverse: DOWN MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+
+            // Blocks Right Movement
+            betweenBodiesQualifications = 0;
+            otherCheck = 0;
+                if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y - 1) {
+                    betweenBodiesQualifications += 1;
+                }
+                if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y +1) {
+                    betweenBodiesQualifications += 1;
+                }
+            // check's other snake
+                if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -3) {
+                    otherCheck += 1;
+                }
+            // needs at least 2 betweenbody checks and at least one otherCheck
+            if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
+                moveRightPoints -= goingInBetweenBodyDeadEndPunishment;
+            }
+            // console.log("RIGHT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+
+            // Reverse
+            // Checking for dead ends included between my body and another snakes body
+            // Blocks Right Movement
+            betweenBodiesQualifications = 0;
+            otherCheck = 0;
+                if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y + 1) {
+                    betweenBodiesQualifications += 1;
+                }
+                if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y -1) {
+                    betweenBodiesQualifications += 1;
+                }
+            // check's other snake
+                if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -3) {
+                    otherCheck += 1;
+                }
+            // needs at least 2 betweenbody checks and at least one otherCheck
+            if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
+                moveRightPoints -= goingInBetweenBodyDeadEndPunishment;
+            }
+            // console.log("Reverse: RIGHT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+            // Blocks Left Movement
+            betweenBodiesQualifications = 0;
+            otherCheck = 0;
+                if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y - 1) {
+                    betweenBodiesQualifications += 1;
+                }
+                if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y +1) {
+                    betweenBodiesQualifications += 1;
+                }
+            // check's other snake
+                if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +3) {
+                    otherCheck += 1;
+                }
+            // needs at least 2 betweenbody checks and at least one otherCheck
+            if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
+                moveLeftPoints -= goingInBetweenBodyDeadEndPunishment;
+            }
+            // console.log("LEFT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+
+            // Reverse
+            // Checking for dead ends included between my body and another snakes body
+            // Blocks Left Movement
+            betweenBodiesQualifications = 0;
+            otherCheck = 0;
+                if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y + 1) {
+                    betweenBodiesQualifications += 1;
+                }
+                if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y -1) {
+                    betweenBodiesQualifications += 1;
+                }
+            // check's other snake
+                if (myHead.y == ALLSNAKES[z].y && myHead.x == sALLSNAKES[z].x +2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +3) {
+                    otherCheck += 1;
+                }
+            // needs at least 2 betweenbody checks and at least one otherCheck
+            if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
+                moveLeftPoints -= goingInBetweenBodyDeadEndPunishment;
+            }
+            // console.log("Reverse: LEFT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         /** Prevents my battlesnake from going into dead ends into other snakes or my snakes bodies at the very edge of the 
          * snake board
