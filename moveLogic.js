@@ -2315,7 +2315,7 @@ export default function move(gameState){
                     break;
                 }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x - z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y || myHead.x - z <= gameBoardProperties.width) {
+                        if (myHead.x - z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y || myHead.x - z <= -1) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2376,7 +2376,7 @@ export default function move(gameState){
                     break;
                 }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x - z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y || myHead.x -z  <= gameBoardProperties.width) {
+                        if (myHead.x - z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y || myHead.x -z  <= -1) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2437,7 +2437,7 @@ export default function move(gameState){
                     break;
                 }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x == ALLSNAKES[i].x && myHead.y - z == ALLSNAKES[i].y || myHead.y - z <= gameBoardProperties.height) {
+                        if (myHead.x == ALLSNAKES[i].x && myHead.y - z == ALLSNAKES[i].y || myHead.y - z <= -1) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2498,7 +2498,7 @@ export default function move(gameState){
                     break;
                 }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x == ALLSNAKES[i].x && myHead.y - z == ALLSNAKES[i].y || myHead.y - z >= gameBoardProperties.height) {
+                        if (myHead.x == ALLSNAKES[i].x && myHead.y - z == ALLSNAKES[i].y || myHead.y - z <= -1) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
