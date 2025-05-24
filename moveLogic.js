@@ -2266,8 +2266,8 @@ export default function move(gameState){
 
         /** Prevents my battlesnake from going into dead ends into other snakes' and my snake's bodies at the very edge of the 
          * snake board, I have fixed the old code, this code is brand new.
-         * NOTE THIS ONLY WORKS IF THERE IS ANOTHER SNAKE ON THE OTHER SIDE OF THE DEAD END AT THE EDGE OF THE SNAKE BOARD
-         * I WILL HAVE TO MAKE ANOTHER CODE SIMILAR TO THIS THAT ISN'T DEPENDENT ON THEERE BE ANOTHER SNAKE AT THE OTHER SIDE
+         * NOTE THIS WORKS IF THERE IS ANOTHER SNAKE ON THE OTHER SIDE OF THE DEAD END AT THE EDGE OF THE SNAKE BOARD
+         * AND EVEN WHEN THERE ISN'T ANOTHER SNAKE AT THE EDGE OF THE BOARD, I HAVE FIXED MY CODE!!! YAY!!
          */
         let alongTheWallInBodyDeadEndPunishment = 15;
         let distanceUntilDeadEnd = 0;
