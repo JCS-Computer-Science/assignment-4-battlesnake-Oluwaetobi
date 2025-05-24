@@ -2280,7 +2280,7 @@ export default function move(gameState){
                     break;
                 }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x + z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].x) {
+                        if (myHead.x + z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].x || myHead.x + z >= gameBoardProperties.width) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2294,6 +2294,10 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
+                /* don't change this because it also helps when there is no snake at the other side and there is just
+                Because I also compare with walls not just snakes, and this gives my algorithm at little bit of
+                flexibility, if this is changed, or made less, it will ruin my code algorithm, so if anything
+                more not less!!**/
                 if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
                     moveRightPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
@@ -2311,7 +2315,7 @@ export default function move(gameState){
                     break;
                 }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x - z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y) {
+                        if (myHead.x - z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y || myHead.x - z <= gameBoardProperties.width) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2341,7 +2345,7 @@ export default function move(gameState){
                     break;
                 }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x + z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y) {
+                        if (myHead.x + z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y || myHead.x + z >= gameBoardProperties.width) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2372,7 +2376,7 @@ export default function move(gameState){
                     break;
                 }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x - z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y) {
+                        if (myHead.x - z == ALLSNAKES[i].x && myHead.y == ALLSNAKES[i].y || myHead.x -z  <= gameBoardProperties.width) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2402,7 +2406,7 @@ export default function move(gameState){
                     break;
                 }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x == ALLSNAKES[i].x && myHead.y + z == ALLSNAKES[i].y) {
+                        if (myHead.x == ALLSNAKES[i].x && myHead.y + z == ALLSNAKES[i].y || myHead.y + z >= gameBoardProperties.height) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2433,7 +2437,7 @@ export default function move(gameState){
                     break;
                 }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x == ALLSNAKES[i].x && myHead.y - z == ALLSNAKES[i].y) {
+                        if (myHead.x == ALLSNAKES[i].x && myHead.y - z == ALLSNAKES[i].y || myHead.y - z <= gameBoardProperties.height) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2463,7 +2467,7 @@ export default function move(gameState){
                     break;
                 }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x == ALLSNAKES[i].x && myHead.y + z == ALLSNAKES[i].y) {
+                        if (myHead.x == ALLSNAKES[i].x && myHead.y + z == ALLSNAKES[i].y || myHead.y + z >= gameBoardProperties.height) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
@@ -2494,7 +2498,7 @@ export default function move(gameState){
                     break;
                 }
                     for (let z = 1; z < gameBoardProperties.width; z++) {
-                        if (myHead.x == ALLSNAKES[i].x && myHead.y - z == ALLSNAKES[i].y) {
+                        if (myHead.x == ALLSNAKES[i].x && myHead.y - z == ALLSNAKES[i].y || myHead.y - z >= gameBoardProperties.height) {
                             distanceUntilDeadEnd = z;
                             break;
                         }
