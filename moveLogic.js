@@ -1221,6 +1221,10 @@ export default function move(gameState){
                    }
 
                 }
+
+
+                // Helps me not to get into dead ends into my body and other snakes bodies
+                
                 // I am subtracting this offset because I realize that the twist can start from my neck
                 let newOffSet = 1;
                 // stops my snake from going into 1 and a tiny bit more unit wide vertical and horizontal dead ends in my body
