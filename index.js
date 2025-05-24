@@ -18,7 +18,7 @@ app.use(express.json());
 const config = {
   apiversion: "1",
   author: "",       // TODO: Your Battlesnake Username
-  color: "#A52A2A", // TODO: Choose color
+  color: "#CD7F32", // TODO: Choose color
   head: "rudolph",  // TODO: Choose head, see https://play.battlesnake.com/customizations/ for options unlocked in your account
   tail: "nr-booster",  // TODO: Choose tail, see https://play.battlesnake.com/customizations/ for options unlocked in your account
 }
