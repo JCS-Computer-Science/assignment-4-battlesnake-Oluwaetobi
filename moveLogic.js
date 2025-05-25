@@ -70,6 +70,39 @@ export default function move(gameState){
  
     let eatAggressivelyUntilIamThisLong = 30;
  
+
+    /**Helps me check whether I should avoid other snakes tails only if there is food 1 unit away from them 
+     * I need this function to be at the top, because there are some function at the very top that depend on 
+     * this function
+    */
+    let avoidOtherSnakesTails = false;
+
+    food = gameState.board.food;
+        food.forEach((f) => {
+            for (let i = 0; i < snakes.length; i++) {
+                if (snakes[i].id == gameState.you.id) {
+                    // ignores procedure if looking at my own battlesnake
+                } else {
+                    if (snakes[i].body[0].x == f.x -1 && snakes[i].body[0].y == f.y) {
+                        avoidOtherSnakesTails = true;
+                        break;
+                    }
+                    if (snakes[i].body[0].x == f.x +1 && snakes[i].body[0].y == f.y) {
+                        avoidOtherSnakesTails = true;
+                        break;
+                    }
+                    if (snakes[i].body[0].y == f.y -1 && snakes[i].body[0].x == f.x) {
+                        avoidOtherSnakesTails = true;
+                        break;
+                    }
+                    if (snakes[i].body[0].y == f.y +1 && snakes[i].body[0].x == f.x) {
+                        avoidOtherSnakesTails = true;
+                        break;
+                    }
+                }
+            }
+        })
+
     /* helps me store the length so I can know it later on, because I use json.stringify there is a object problem 
     that  doesn't allow me to know the length using the name of the variable and then adding .length at the end see
     https://stackoverflow.com/questions/15297501/length-of-array-in-object-doesnt-match
@@ -89,6 +122,10 @@ export default function move(gameState){
             // do nothing
         } else {
             for(let a = 0; a< snakes[i].length; a++) {
+                // excludes the tail if the snake is close to food by breaking the inner for loop at the tail
+                if (avoidOtherSnakesTails == false && a >= snakes[i].length -1) {
+                    break;
+                }
                 allOfSnakesPositionsExceptMyOwn.splice(snakeCounta, 0, snakes[i].body[a]);
                 snakeCounta += 1;
             }
@@ -100,6 +137,10 @@ export default function move(gameState){
     let snakeCountb = 0;
     for(let i = 0; i < snakes.length; i ++) {
         for (let a = 0; a < snakes[i].length; a++) {
+            // excludes the tail if the snake is close to food by breaking the inner for loop at the tail
+            if (avoidOtherSnakesTails == false && a >= snakes[i].length -1) {
+                break;
+            }
             allOfSnakesPositionsIncludingMyOwn.splice(snakeCountb, 0, snakes[i].body[a]);
             snakeCountb += 1;
         }
@@ -195,34 +236,6 @@ export default function move(gameState){
     }
 
 
-    /**Helps me check whether I should avoid other snakes tails only if there is food 1 unit away from them */
-    let avoidOtherSnakesTails = false;
-
-    food = gameState.board.food;
-        food.forEach((f) => {
-            for (let i = 0; i < snakes.length; i++) {
-                if (snakes[i].id == gameState.you.id) {
-                    // ignores procedure if looking at my own battlesnake
-                } else {
-                    if (snakes[i].body[0].x == f.x -1 && snakes[i].body[0].y == f.y) {
-                        avoidOtherSnakesTails = true;
-                        break;
-                    }
-                    if (snakes[i].body[0].x == f.x +1 && snakes[i].body[0].y == f.y) {
-                        avoidOtherSnakesTails = true;
-                        break;
-                    }
-                    if (snakes[i].body[0].y == f.y -1 && snakes[i].body[0].x == f.x) {
-                        avoidOtherSnakesTails = true;
-                        break;
-                    }
-                    if (snakes[i].body[0].y == f.y +1 && snakes[i].body[0].x == f.x) {
-                        avoidOtherSnakesTails = true;
-                        break;
-                    }
-                }
-            }
-        })
   
     // TODO: Step 1 - Prevent your Battlesnake from moving out of bounds
     // gameState.board contains an object representing the game board including its width and height
