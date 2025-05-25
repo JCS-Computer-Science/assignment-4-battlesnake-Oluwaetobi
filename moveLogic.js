@@ -2318,7 +2318,7 @@ export default function move(gameState){
                 Because I also compare with walls not just snakes, and this gives my algorithm at little bit of
                 flexibility, if this is changed, or made less, it will ruin my code algorithm, so if anything
                 more not less!!**/
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveRightPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2349,7 +2349,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine|| distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine|| distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine ) {
                     moveLeftPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2379,7 +2379,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine ) {
                     moveRightPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2410,7 +2410,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveLeftPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2440,7 +2440,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine|| distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine|| distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveUpPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2471,7 +2471,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine|| distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine|| distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveDownPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2501,7 +2501,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveUpPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
