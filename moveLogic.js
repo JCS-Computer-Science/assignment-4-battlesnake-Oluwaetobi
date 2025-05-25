@@ -2096,17 +2096,18 @@ export default function move(gameState){
         // just to make it shorter
         const ALLSNAKES = allOfSnakesPositionsIncludingMyOwn;
         // since I am already in a for loop I only need one more for loop
-        for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
+            for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
                 if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y - 1) {
                     betweenBodiesQualifications += 1;
                 }
                 if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y -1) {
                     betweenBodiesQualifications += 1;
                 }
-            // checks all snakes
+                // checks all snakes
                 if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -3) {
                     otherCheck += 1;
                 }
+            }
             // needs at least 2 betweenbody checks and at least one otherCheck
             if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                 moveUpPoints -= goingInBetweenBodyDeadEndPunishment;
@@ -2118,6 +2119,7 @@ export default function move(gameState){
             // Block Up Movement
             betweenBodiesQualifications = 0;
             otherCheck = 0;
+            for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
                 if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y - 1) {
                     betweenBodiesQualifications += 1;
                 }
@@ -2128,6 +2130,7 @@ export default function move(gameState){
                 if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -3) {
                     otherCheck += 1;
                 }
+            }
             // needs at least 2 betweenbody checks and at least one otherCheck
             if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                 moveUpPoints -= goingInBetweenBodyDeadEndPunishment;
@@ -2136,6 +2139,7 @@ export default function move(gameState){
             // Block Down Movement
             betweenBodiesQualifications = 0;
             otherCheck = 0;
+            for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
                 if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y + 1) {
                     betweenBodiesQualifications += 1;
                 }
@@ -2146,6 +2150,7 @@ export default function move(gameState){
                 if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +3) {
                     otherCheck += 1;
                 }
+            }
             // needs at least 2 betweenbody checks and at least one otherCheck
             if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                 moveDownPoints -= goingInBetweenBodyDeadEndPunishment;
@@ -2157,6 +2162,7 @@ export default function move(gameState){
             // Block Down Movement
             betweenBodiesQualifications = 0;
             otherCheck = 0;
+            for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
                 if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y + 1) {
                     betweenBodiesQualifications += 1;
                 }
@@ -2168,6 +2174,7 @@ export default function move(gameState){
                 if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +3) {
                     otherCheck += 1;
                 }
+            }
             // needs at least 2 betweenbody checks and at least one otherCheck
             if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                 moveDownPoints -= goingInBetweenBodyDeadEndPunishment;
@@ -2177,6 +2184,7 @@ export default function move(gameState){
             // Blocks Right Movement
             betweenBodiesQualifications = 0;
             otherCheck = 0;
+            for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
                 if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y - 1) {
                     betweenBodiesQualifications += 1;
                 }
@@ -2187,6 +2195,7 @@ export default function move(gameState){
                 if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -3) {
                     otherCheck += 1;
                 }
+            }
             // needs at least 2 betweenbody checks and at least one otherCheck
             if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                 moveRightPoints -= goingInBetweenBodyDeadEndPunishment;
@@ -2198,6 +2207,7 @@ export default function move(gameState){
             // Blocks Right Movement
             betweenBodiesQualifications = 0;
             otherCheck = 0;
+            for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
                 if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y + 1) {
                     betweenBodiesQualifications += 1;
                 }
@@ -2208,6 +2218,7 @@ export default function move(gameState){
                 if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -3) {
                     otherCheck += 1;
                 }
+            }
             // needs at least 2 betweenbody checks and at least one otherCheck
             if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                 moveRightPoints -= goingInBetweenBodyDeadEndPunishment;
@@ -2216,6 +2227,7 @@ export default function move(gameState){
             // Blocks Left Movement
             betweenBodiesQualifications = 0;
             otherCheck = 0;
+            for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
                 if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y - 1) {
                     betweenBodiesQualifications += 1;
                 }
@@ -2226,6 +2238,7 @@ export default function move(gameState){
                 if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +3) {
                     otherCheck += 1;
                 }
+            }
             // needs at least 2 betweenbody checks and at least one otherCheck
             if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                 moveLeftPoints -= goingInBetweenBodyDeadEndPunishment;
@@ -2237,6 +2250,7 @@ export default function move(gameState){
             // Blocks Left Movement
             betweenBodiesQualifications = 0;
             otherCheck = 0;
+            for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
                 if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y + 1) {
                     betweenBodiesQualifications += 1;
                 }
@@ -2247,13 +2261,12 @@ export default function move(gameState){
                 if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +3) {
                     otherCheck += 1;
                 }
+            }
             // needs at least 2 betweenbody checks and at least one otherCheck
             if (betweenBodiesQualifications == 2 && otherCheck >= 1) {
                 moveLeftPoints -= goingInBetweenBodyDeadEndPunishment;
             }
             // console.log("Reverse: LEFT MOVEMENT BetweenbodiesQualifications and OtherCheck: " + betweenBodiesQualifications + " " + otherCheck);
-
-        }
 
 
 
