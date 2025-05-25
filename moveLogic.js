@@ -2183,7 +2183,6 @@ export default function move(gameState){
                     betweenBodiesQualifications += 1;
                 }
             // checks all snakes
-                // ignores snake's tail
                 if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +3) {
                     otherCheck += 1;
                 }
@@ -2327,10 +2326,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                /* don't change this because it also helps when there is no snake at the other side and there is just
-                Because I also compare with walls not just snakes, and this gives my algorithm at little bit of
-                flexibility, if this is changed, or made less, it will ruin my code algorithm, so if anything
-                more not less!!**/
+                /* Try not to change this because this is the sweet spot**/
                 if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveRightPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
@@ -2591,7 +2587,7 @@ export default function move(gameState){
                 Because I also compare with walls not just snakes, and this gives my algorithm at little bit of
                 flexibility, if this is changed, or made less, it will ruin my code algorithm, so if anything
                 more not less!!**/
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveRightPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2616,7 +2612,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine|| distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine|| distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveLeftPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2640,7 +2636,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveRightPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2665,7 +2661,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveLeftPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2689,7 +2685,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine|| distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine|| distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveUpPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2714,7 +2710,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine|| distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine|| distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveDownPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2738,7 +2734,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine ) {
                     moveUpPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
@@ -2763,7 +2759,7 @@ export default function move(gameState){
                 }
             }
             if (bodySegmentsInStraightLine != 0) {
-                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine || distanceUntilDeadEnd - 2 == bodySegmentsInStraightLine) {
+                if (distanceUntilDeadEnd == bodySegmentsInStraightLine || distanceUntilDeadEnd - 1 == bodySegmentsInStraightLine) {
                     moveDownPoints -= alongTheWallInBodyDeadEndPunishment;
                 }
             }
