@@ -336,7 +336,7 @@ export default function move(gameState){
                 }
             }
     
-    let collisionPunishment = 6;
+    let collisionPunishment = 7;
 
 
     // only avoids other snakes heads if I am not the longest and can also check if I am longer or shorter than a specific snake
