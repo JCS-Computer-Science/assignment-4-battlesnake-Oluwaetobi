@@ -2110,14 +2110,14 @@ export default function move(gameState){
         const ALLSNAKES = allOfSnakesPositionsIncludingMyOwn;
         // since I am already in a for loop I only need one more for loop
             for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
-                if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y - 1) {
+                if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y - 1 || myHead.x == (-1) + 1 && myHead.y == (gameBoardProperties.height + 1) - 1) {
                     betweenBodiesQualifications += 1;
                 }
-                if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y -1) {
+                if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y -1 || myHead.x == (gameBoardProperties.width + 1) -1 && myHead.y == (gameBoardProperties.height +1) -1) {
                     betweenBodiesQualifications += 1;
                 }
                 // checks all snakes
-                if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -3) {
+                if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -3 || myHead.y + 2 == gameBoardProperties.height || myHead.y + 3 == gameBoardProperties.height) {
                     otherCheck += 1;
                 }
             }
@@ -2133,14 +2133,14 @@ export default function move(gameState){
             betweenBodiesQualifications = 0;
             otherCheck = 0;
             for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
-                if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y - 1) {
+                if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y - 1 || myHead.x == (gameBoardProperties.width + 1) - 1 && myHead.y == (gameBoardProperties.height + 1)- 1) {
                     betweenBodiesQualifications += 1;
                 }
-                if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y -1) {
+                if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y -1 || myHead.x == (-1) +1 && myHead.y == (gameBoardProperties.height + 1) -1) {
                     betweenBodiesQualifications += 1;
                 }
             // checks all snakes
-                if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -3) {
+                if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y -3 || myHead.y + 2 == gameBoardProperties.height || myHead.y + 3 == gameBoardProperties.height) {
                     otherCheck += 1;
                 }
             }
@@ -2153,14 +2153,14 @@ export default function move(gameState){
             betweenBodiesQualifications = 0;
             otherCheck = 0;
             for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
-                if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y + 1) {
+                if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y + 1 || myHead.x == (-1) + 1 && myHead.y == (-1) + 1) {
                     betweenBodiesQualifications += 1;
                 }
-                if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y +1) {
+                if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y +1 || myHead.x == (gameBoardProperties.width + 1) -1 && myHead.y == (-1) +1) {
                     betweenBodiesQualifications += 1;
                 }
             // checks all snakes
-                if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +3) {
+                if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +3 || myHead.y - 2 == -1 || myHead.y - 3 == -1) {
                     otherCheck += 1;
                 }
             }
@@ -2176,14 +2176,14 @@ export default function move(gameState){
             betweenBodiesQualifications = 0;
             otherCheck = 0;
             for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
-                if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y + 1) {
+                if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y + 1 || myHead.x == (gameBoardProperties.width + 1) - 1 && myHead.y == (-1) + 1) {
                     betweenBodiesQualifications += 1;
                 }
-                if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y +1) {
+                if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y +1 || myHead.x == (-1) +1 && myHead.y == (-1) +1) {
                     betweenBodiesQualifications += 1;
                 }
             // checks all snakes
-                if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +3) {
+                if (myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +2 || myHead.x == ALLSNAKES[z].x && myHead.y == ALLSNAKES[z].y +3 || myHead.y - 2 == -1 || myHead.y - 3 == -1) {
                     otherCheck += 1;
                 }
             }
@@ -2197,14 +2197,14 @@ export default function move(gameState){
             betweenBodiesQualifications = 0;
             otherCheck = 0;
             for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
-                if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y - 1) {
+                if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y - 1 || myHead.x == (gameBoardProperties.width + 1) - 1 && myHead.y == (gameBoardProperties.height + 1) - 1) {
                     betweenBodiesQualifications += 1;
                 }
-                if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y +1) {
+                if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y +1 || myHead.x == (gameBoardProperties.width + 1) -1 && myHead.y == (-1) +1) {
                     betweenBodiesQualifications += 1;
                 }
             // checks all snakes
-                if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -3) {
+                if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -3 || myHead.x + 2 == gameBoardProperties.width || myHead.x + 3 == gameBoardProperties.width) {
                     otherCheck += 1;
                 }
             }
@@ -2220,14 +2220,14 @@ export default function move(gameState){
             betweenBodiesQualifications = 0;
             otherCheck = 0;
             for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
-                if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y + 1) {
+                if (myHead.x == ALLSNAKES[z].x - 1 && myHead.y == ALLSNAKES[z].y + 1 || myHead.x == (gameBoardProperties.width + 1) - 1 && myHead.y == (-1) + 1) {
                     betweenBodiesQualifications += 1;
                 }
-                if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y -1) {
+                if (myHead.x == ALLSNAKES[z].x -1 && myHead.y == ALLSNAKES[z].y -1 || myHead.x == (gameBoardProperties.width + 1) -1 && myHead.y == (gameBoardProperties.height + 1) -1) {
                     betweenBodiesQualifications += 1;
                 }
             // checks all snakes
-                if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -3) {
+                if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x -3 || myHead.x + 2 == gameBoardProperties.width || myHead.x + 3 == gameBoardProperties.width) {
                     otherCheck += 1;
                 }
             }
@@ -2240,14 +2240,14 @@ export default function move(gameState){
             betweenBodiesQualifications = 0;
             otherCheck = 0;
             for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
-                if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y - 1) {
+                if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y - 1 || myHead.x == (-1)+ 1 && myHead.y == (gameBoardProperties.height + 1) - 1) {
                     betweenBodiesQualifications += 1;
                 }
-                if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y +1) {
+                if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y +1 || myHead.x == (-1) +1 && myHead.y == (-1) +1) {
                     betweenBodiesQualifications += 1;
                 }
             // checks all snakes
-                if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +3) {
+                if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +3 || myHead.x -2 == -1 || myHead.x - 3 == -1) {
                     otherCheck += 1;
                 }
             }
@@ -2263,14 +2263,14 @@ export default function move(gameState){
             betweenBodiesQualifications = 0;
             otherCheck = 0;
             for (let z = 0; z < allOfSnakesPositionsIncludingMyOwn.length; z++) {
-                if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y + 1) {
+                if (myHead.x == ALLSNAKES[z].x + 1 && myHead.y == ALLSNAKES[z].y + 1 || myHead.x == (-1)+ 1 && myHead.y == (-1) + 1) {
                     betweenBodiesQualifications += 1;
                 }
-                if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y -1) {
+                if (myHead.x == ALLSNAKES[z].x +1 && myHead.y == ALLSNAKES[z].y -1 || myHead.x == (-1) +1 && myHead.y == (gameBoardProperties.height + 1) -1) {
                     betweenBodiesQualifications += 1;
                 }
             // checks all snakes
-                if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +3) {
+                if (myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +2 || myHead.y == ALLSNAKES[z].y && myHead.x == ALLSNAKES[z].x +3 || myHead.x - 2 == -1 || myHead.x - 3 == -1) {
                     otherCheck += 1;
                 }
             }
